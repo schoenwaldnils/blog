@@ -2,4 +2,13 @@
 
 .Footer {
   flex-shrink: 0;
+  height: 6rem;
+  color: #fff;
+  background-color: var(--Footer-background, #000);
+}
+
+.Footer-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }

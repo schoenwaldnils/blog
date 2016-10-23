@@ -3,6 +3,8 @@
 .Header {
   flex-shrink: 0;
   height: 4rem;
+  font-size: 1.5rem;
+  color: #fff;
   background-color: var(--Header-background, #000);
 }
 
