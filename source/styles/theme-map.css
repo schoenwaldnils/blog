@@ -1,0 +1,45 @@
+:root {
+
+  /**
+   * base
+   */
+
+  --text-color: var(--color-gray-darkest);
+
+  --background-color: var(--color-gray-lighter);
+
+  /**
+   * components-arrange
+   */
+
+  --Arrange-gutter-size: var(--space-small-px);
+
+
+  /**
+   * components-grid
+   */
+
+  --Grid-gutter-size: var(--space-medium-px);
+
+
+  /**
+   * Z-Index Applications
+   */
+
+
+  /**
+   * Fonts
+   */
+
+
+  /**
+   * Layout
+   */
+
+
+  /**
+   * Components
+   */
+
+  --Header-background: var(--color-gray-darker);
+}

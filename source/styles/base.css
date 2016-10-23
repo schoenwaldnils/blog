@@ -1,0 +1,42 @@
+html {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  min-height: 100vh;
+}
+
+@media (--md-viewport) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (--lg-viewport) {
+  html {
+    font-size: 20px;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/**:focus {
+  outline: 0;
+}*/
+
+textarea:focus,
+input:focus {
+  outline: 1px solid var(--color-blue);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

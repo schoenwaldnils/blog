@@ -4,3 +4,4 @@ build
 .sass-cache
 .jekyll-metadata
 npm-debug.log
+node_modules

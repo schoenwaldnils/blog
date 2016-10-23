@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ page.lang | default: site.lang | default: "en" }}">
+  {% include head.html %}
+  <body>
+    {% component Header %}
+    <div class="Content u-maxWidth">
+      {{ content }}
+    </div>
+    {% component Footer %}
+    <script src="/build/main.js"></script>
+  </body>
+</html>

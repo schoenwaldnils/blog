@@ -1,0 +1,13 @@
+/** @define Header */
+
+.Header {
+  flex-shrink: 0;
+  height: 4rem;
+  background-color: var(--Header-background, #000);
+}
+
+.Header-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
