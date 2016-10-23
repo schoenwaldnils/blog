@@ -3,10 +3,11 @@
   {% include head.html %}
   <body>
     {% component Header %}
-    <div class="Content u-maxWidth">
+    {% componentBlock Content %}
       {{ content }}
-    </div>
+    {% endcomponentBlock %}
     {% component Footer %}
     <script src="/build/main.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sanchez">
   </body>
 </html>
