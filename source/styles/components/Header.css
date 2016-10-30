@@ -1,0 +1,51 @@
+/** @define Header */
+
+.Header {
+  flex-shrink: 0;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: var(--Header-background, #000);
+}
+
+.Header-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.Header-logo {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-right: 5vw;
+  margin-bottom: -2rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.Header-title {
+  flex-grow: 1;
+}
+
+.Header-wrapSocialIcons {
+  display: none;
+}
+
+@media (--sm-viewport) {
+  .Header-wrapSocialIcons {
+    flex-shrink: 0;
+    display: flex;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+}
+
+.Header-wrapSocialIcons > *:not(:last-child) {
+  margin-right: .25em;
+}

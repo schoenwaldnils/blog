@@ -5,8 +5,13 @@
    */
 
   --text-color: var(--color-gray-darkest);
+  --link-color: var(--color-brandred);
+  --link-color-hover: var(--text-color);
+  --headline-color: var(--color-brandred);
 
-  --background-color: var(--color-gray-lighter);
+  --body-background-color: var(--color-gray-lighter);
+  --body-gradient-size: 6vw;
+  --body-gradient-color: var(--color-gray-light);
 
   /**
    * components-arrange
@@ -43,4 +48,5 @@
 
   --Header-background: var(--color-gray-darker);
   --Footer-background: var(--color-gray-darker);
+  --SocialIcon-inset-color: var(--color-gray-darkest);
 }

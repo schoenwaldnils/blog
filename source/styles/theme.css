@@ -9,16 +9,16 @@
  * Breakpoints
  */
 
-@custom-media --sm-viewport (min-width: 321px);
-@custom-media --md-viewport (min-width: 541px);
+@custom-media --sm-viewport (min-width: 481px);
+@custom-media --md-viewport (min-width: 621px);
 @custom-media --lg-viewport (min-width: 769px);
 
-@custom-media --sm-viewport-max (max-width: 320px);
-@custom-media --md-viewport-max (max-width: 540px);
+@custom-media --sm-viewport-max (max-width: 480px);
+@custom-media --md-viewport-max (max-width: 620px);
 @custom-media --lg-viewport-max (max-width: 768px);
 
-@custom-media --sm-viewport-only (min-width: 321px) and (max-width: 540px);
-@custom-media --md-viewport-only (min-width: 541px) and (max-width: 768px);
+@custom-media --sm-viewport-only (min-width: 481px) and (max-width: 620px);
+@custom-media --md-viewport-only (min-width: 621px) and (max-width: 768px);
 @custom-media --lg-viewport-only (min-width: 769px) and (max-width: 1024px);
 
 :root {
@@ -26,20 +26,23 @@
   /*
    * Colors
    */
-  --color-black:         #000;
-  --color-gray-darkest:  #262E33;
-    --color-gray-darker: #444;
-  --color-gray-dark:     #7C7C7C;
-  --color-gray:          #888;
-    --color-gray-lighter:  #ccc;
-  --color-gray-lightest: #f2f2f2;
-  --color-white:         #fff;
+  --color-black:          #000;
+    --color-gray-darkest: #272727;
+    --color-gray-darker:  #444;
+  --color-gray-dark:      #7C7C7C;
+  --color-gray:           #888;
+    --color-gray-light:   #bbb;
+    --color-gray-lighter: #ccc;
+  --color-gray-lightest:  #f2f2f2;
+  --color-white:          #fff;
 
-  --color-blue:          #52a3d1;
-  --color-blue-light:    #72BDE9;
-  --color-green:         #5EC261;
-  --color-red:           #F76262;
-  --color-orange:        #f79a46;
+  --color-brandred:       #ba3e48;
+
+  --color-blue:           #52a3d1;
+  --color-blue-light:     #72BDE9;
+  --color-green:          #5EC261;
+  --color-red:            #F76262;
+  --color-orange:         #f79a46;
 
   /*
    * Fonts
@@ -47,7 +50,7 @@
   --font-size: 1rem;
   --font-family: 'Open Sans', sans-serif;
   --font-weight: 300;
-  --line-height: 1.35;
+  --line-height: 1.4;
 
   /*
    * Spacing
@@ -77,4 +80,5 @@
 
   --max-width: 30rem;
 
+  --time-animation: 300ms;
 }

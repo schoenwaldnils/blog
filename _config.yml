@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Nils Schönwalds Personal Blog
+title: Schönwald Media
 email: nils@schoenwald.media
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -38,7 +38,6 @@ exclude:
   - npm-debug.log
   - node_modules
 
-google_analytics: UA-NNNNNNNN-N
+permalink: :title
 
-username_twitter: schoenwaldnils
-username_github: schoenwaldnils
+google_analytics: UA-33721620-2

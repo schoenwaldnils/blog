@@ -16,12 +16,13 @@
 @import "styles/base.css";
 @import "styles/utils/index.css";
 @import "styles/typography.css";
+@import "styles/components/**/*.css";
 
 /*
- * Components
+ * SVG-Sprite
  */
 
-@import "components/**/*.css";
+@import "../build/svg-sprite/symbol/sprite.css";
 
 /*
  * Shame

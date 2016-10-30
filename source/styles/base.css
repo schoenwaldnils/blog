@@ -24,7 +24,13 @@ body {
   min-height: 100vh;
   margin: 0;
   color: var(--text-color);
-  background-color: var(--background-color);
+  background:
+    linear-gradient(to bottom, var(--body-gradient-color) 0%, var(--body-gradient-color) 1%, transparent 1%),
+    linear-gradient(to right, var(--body-gradient-color) 0%, var(--body-gradient-color) 1%, transparent 1%),
+    linear-gradient(135deg,  transparent 50%, var(--body-gradient-color) 50%, var(--body-gradient-color) 51%, transparent 51%),
+    linear-gradient(45deg,  transparent 50%, var(--body-gradient-color) 50%, var(--body-gradient-color) 51%, transparent 51%);
+  background-size: var(--body-gradient-size) var(--body-gradient-size);
+  background-color: var(--body-background-color);
 }
 
 /**:focus {

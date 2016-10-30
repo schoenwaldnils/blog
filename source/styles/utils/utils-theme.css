@@ -3,6 +3,14 @@
   max-width: var(--max-width);
   margin-right: auto;
   margin-left: auto;
-  padding-right: 2rem;
-  padding-left: 2rem;
+  padding-right: 5vw;
+  padding-left: 5vw;
+}
+
+date {
+  display: inline-block;
+  font-family: 'Sanchez', serif;
+  font-weight: 200;
+  font-size: .8em;
+  margin-bottom: .5em;
 }

@@ -2,12 +2,12 @@
 
 .Content {
   flex-grow: 1;
-  padding-top: 3rem;
+  padding-top: 2.5rem;
 }
 
 .Content-box {
-  padding: 3em;
+  padding: 2em;
   margin-bottom: 3em;
   background: #fff;
-  border-bottom: 0.35em solid #aaa;
+  border-bottom: .25rem solid #aaa;
 }

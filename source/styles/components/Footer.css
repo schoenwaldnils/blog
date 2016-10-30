@@ -1,0 +1,33 @@
+/** @define Footer */
+
+.Footer {
+  flex-shrink: 0;
+  height: 3.5rem;
+  color: #fff;
+  background-color: var(--Footer-background, #000);
+  border-top: solid .25rem var(--color-brandred);
+}
+
+.Footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.Footer-wrapSocialIcons {
+  flex-shrink: 0;
+  display: flex;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+@media (--sm-viewport) {
+  .Footer-wrapSocialIcons {
+    display: none;
+  }
+}
+
+.Footer-wrapSocialIcons > *:not(:last-child) {
+  margin-right: .5em;
+}

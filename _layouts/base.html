@@ -2,13 +2,15 @@
 <html class="no-js" lang="{{ page.lang | default: site.lang | default: "en" }}">
   {% include head.html %}
   <body>
-    {% componentBlock Header %}
-      {{ site.title }}
-    {% endcomponentBlock %}
-    {% componentBlock Content %}
-      {{ content }}
-    {% endcomponentBlock %}
-    {% component Footer %}
+    {% include Header.html %}
+    <div class="Content">
+      <div class="u-maxWidth">
+        <div class="Content-box u-richText">
+          {{ content }}
+        </div>
+      </div>
+    </div>
+    {% include Footer.html %}
     <script src="/build/main.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sanchez">
   </body>

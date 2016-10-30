@@ -1,0 +1,9 @@
+{% assign name = include.name | downcase %}
+<a class="SocialIcon SocialIcon--{{ name }}" href="{{include.href}}" target="_blank">
+  <span class="SocialIcon-iconFront">
+    {% include Svg.html name=name %}
+  </span>
+  <span class="SocialIcon-iconBack">
+    {% include Svg.html name=name %}
+  </span>
+</a>

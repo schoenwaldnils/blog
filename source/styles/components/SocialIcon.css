@@ -1,0 +1,67 @@
+/** @define SocialIcon */
+
+.SocialIcon {
+  position: relative;
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.SocialIcon::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--SocialIcon-inset-color, #000);
+  content: '';
+}
+
+.SocialIcon-iconFront,
+.SocialIcon-iconBack {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: .4em;
+  color: #fff;
+  border-radius: 50%;
+  transition: transform var(--time-animation);
+  backface-visibility: hidden;
+}
+
+.SocialIcon-iconFront {
+  background-color: var(--Header-background);
+}
+
+.SocialIcon-iconBack {
+  transform: rotateX(180deg);
+}
+
+.SocialIcon--github .SocialIcon-iconFront,
+.SocialIcon--github .SocialIcon-iconBack {
+  font-size: .6em;
+}
+
+
+.SocialIcon:hover .SocialIcon-iconFront {
+  transform: rotateX(180deg);
+}
+
+.SocialIcon:hover .SocialIcon-iconBack {
+  transform: rotateX(0deg);
+}
+
+.SocialIcon--twitter .SocialIcon-iconBack {
+  background-color: #55acee;
+}
+
+.SocialIcon--github .SocialIcon-iconBack {
+  color: #000;
+  background-color: #fff;
+}

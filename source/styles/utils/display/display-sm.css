@@ -54,4 +54,8 @@
   .u-sm-tableRow {
     display: table-row !important;
   }
+
+  .u-sm-flex {
+    display: table-row !important;
+  }
 }

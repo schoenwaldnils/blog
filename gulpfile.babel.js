@@ -4,6 +4,7 @@ import gulp from 'gulp';
 import postcss from 'gulp-postcss';
 import postcssImport from 'postcss-easy-import';
 import postcssUrl from 'postcss-url';
+import postcssNested from 'postcss-nested';
 import postcssCustomProperties from 'postcss-custom-properties';
 import postcssCalc from 'postcss-calc';
 import postcssColorFunction from 'postcss-color-function';
@@ -41,15 +42,22 @@ const main = {
 
 const globs = {
   css: [
-    dirs.src + 'styles/*.css',
-    dirs.src + 'components/**/*.css',
+    dirs.src + 'styles/**/*.css',
     dirs.src + 'main.css'
   ],
   js: [
-    dirs.src + 'scripts/*.js',
-    dirs.src + 'components/**/*.js',
+    dirs.src + 'scripts/**/*.js',
     dirs.src + 'main.js'
-  ]
+  ],
+  svgCleaned: [
+    dirs.dest + 'svgs/**/*.svg',
+  ],
+  svgColor: [
+    dirs.src + 'assets/images/svgs/color/*.svg',
+  ],
+  svgMono: [
+    dirs.src + 'assets/images/svgs/monochrome/*.svg',
+  ],
 };
 
 // Build
@@ -58,6 +66,7 @@ gulp.task('build:css', () => {
     .pipe(postcss([
       postcssImport({ glob: true }),
       postcssUrl(),
+      postcssNested(),
       postcssCustomProperties(),
       postcssCalc(),
       postcssColorFunction(),
@@ -102,7 +111,7 @@ function compileJS(flag) {
 gulp.task('build:js', () => compileJS());
 
 gulp.task('svgmin-color', () => {
-  return gulp.src('**/*.svg', {cwd: 'assets/images/svgs/color/'})
+  return gulp.src(globs.svgColor)
     .pipe(plumber())
     .pipe(svgmin({
       plugins: [
@@ -113,7 +122,7 @@ gulp.task('svgmin-color', () => {
 });
 
 gulp.task('svgmin-mono', () => {
-  return gulp.src('**/*.svg', {cwd: 'assets/images/svgs/monochrome'})
+  return gulp.src(globs.svgMono)
     .pipe(plumber())
     .pipe(svgmin({
       plugins: [
@@ -132,7 +141,7 @@ gulp.task('build:svg-sprite', ['svgmin-color', 'svgmin-mono'], () => {
       symbol: {
         render: {
           css: {
-            template: 'svg-sprite-css.css'
+            template: '.svgSpriterc'
           }
         },
         prefix: ".Svg--%s",
@@ -142,7 +151,7 @@ gulp.task('build:svg-sprite', ['svgmin-color', 'svgmin-mono'], () => {
     }
   };
 
-  return gulp.src('**/*.svg', {cwd: dirs.dest + 'svgs/'})
+  return gulp.src(globs.svgCleaned)
     .pipe(plumber())
     .pipe(svgSprite(config)).on('error', error => { console.log(error); })
     .pipe(gulp.dest(dirs.dest + 'svg-sprite/'));

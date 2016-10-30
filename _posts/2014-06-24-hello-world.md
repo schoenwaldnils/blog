@@ -1,0 +1,27 @@
+---
+layout: post
+title:  Hello World!
+date:   2014-6-24 17:39:18 +0200
+categories: hello world
+---
+At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.
+Well, joking aside.
+
+## So what awaits you as a reader?
+
+I am front-end developer and am going to write here about my interests in this field. These mainly include CSS, CSS animation, Sass and dalliance with it on [codepen.io][codepen].
+To this, the beloved WordPress joins.
+
+Also very interesting and important, I find the area of ​​UX (user experience). Especially in terms of the mobile sector. There, little changes can cause large improvements.
+
+In general, I appreciate neat, clean code (well, who does not?)
+
+I think I’m not a gifted penpusher, but I will try to convey the thoughts understandable.
+
+So you can look forward to interesting articles.
+
+Enough said.
+
+End of line.
+
+[codepen]: http://codepen.io/schoenwaldnils/
