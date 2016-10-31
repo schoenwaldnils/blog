@@ -11,7 +11,7 @@ layout: default
       <date class="Post-date">{{ page.date | date: "%b %-d, %Y" }}</date>
       <div class="Post-tags">
         {% for tag in page.tags %}
-          <a class="Post-tag">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
+          <a class="Post-tag" href="/tag#{{ tag | slugify }}">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
         {% endfor %}
       </div>
     </div>
