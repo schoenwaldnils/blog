@@ -2,6 +2,7 @@
 
 .Content {
   flex-grow: 1;
+  padding-bottom: 3rem;
 }
 
 .Content-box {
