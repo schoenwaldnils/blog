@@ -20,9 +20,9 @@ layout: default
           {% endfor %}
         </div>
       </div>
-      <h1 class="Post-title">
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      </h1>
+      <a class="Post-link" href="{{ post.url | relative_url }}">
+        <h1 class="Post-title">{{ post.title }}</h1>
+      </a>
     </div>
   </div>
 {% endfor %}
