@@ -12,13 +12,13 @@ Well, joking aside.
 
 ## So what awaits you as a reader?
 
-I'm a frontend-developer based in hamburg and am going to write here about my interests in this field. These mainly include CSS, CSS animation, SCSS, PostCSS and dalliance with it on [codepen.io][codepen].
+I'm a frontend-developer based in [Hamburg][hamburg] and am going to write here about my interests in this field. These mainly include CSS, CSS animation, SCSS, PostCSS and dalliance with it on [codepen.io][codepen].
 
 Also very interesting and important, I find the area of ​​UX (user experience). Especially in terms of the mobile sector. There, little changes can cause large improvements.
 
-In general, I appreciate neat, clean code (well, who does not?)
+In general, I appreciate neat, clean code (well, who doesn't?)
 
-I think I’m not a gifted penpusher, but I will try to convey the thoughts understandable.
+I don't see myself as a gifted penpusher, but I'll try to convey the thoughts understandable.
 
 So you can look forward to interesting articles.
 
@@ -27,3 +27,4 @@ Enough said.
 End of line.
 
 [codepen]: http://codepen.io/schoenwaldnils/
+[hamburg]: https://www.finanzcheck.de
