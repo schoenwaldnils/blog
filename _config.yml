@@ -25,6 +25,7 @@ permalink: :title
 gems:
   - jekyll-feed
 exclude:
+  - vendor
   - package.json
   - README.md
   - .gitignore
