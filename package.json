@@ -8,7 +8,7 @@
     "build:css": "gulp build:css",
     "build:js": "gulp build:js",
     "build:svg-sprite": "gulp build:svg-sprite",
-    "build": "npm run build:jekyll gulp build",
+    "build": "gulp build && npm run build:jekyll",
     "lint:css": "gulp lint:css",
     "lint:js": "gulp lint:js",
     "lint": "gulp lint",
