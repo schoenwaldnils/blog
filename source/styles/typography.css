@@ -59,12 +59,27 @@ a:focus {
   }
 
   a {
+    position: relative;
     color: var(--link-color);
     text-decoration: none;
+    text-shadow: -2px 1px #fff, 2px 1px #fff;
+    z-index: 0;
+    transition: color var(--time-transition);
 
     &:hover,
     &:focus {
       color: var(--link-color-hover);
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      width: 100%;
+      z-index: -1;
+      border-bottom: 1px solid;
+      transition: width var(--time-transition);
+      content: '';
     }
   }
 }
