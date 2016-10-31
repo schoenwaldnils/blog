@@ -10,7 +10,7 @@
   --headline-color: var(--color-brandred);
 
   --body-background-color: var(--color-gray-lighter);
-  --body-gradient-size: 6vw;
+  --body-gradient-size: 5vw;
   --body-gradient-color: var(--color-gray-light);
 
   /**

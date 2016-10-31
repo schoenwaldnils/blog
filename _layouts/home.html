@@ -1,11 +1,4 @@
 ---
-layout: default
+layout: list
 ---
 {{ content }}
-{% for post in site.posts %}
-  <date>{{ post.date | date: "%b %-d, %Y" }}</date>
-
-  <h2>
-    <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-  </h2>
-{% endfor %}

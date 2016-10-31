@@ -31,6 +31,7 @@ body {
     linear-gradient(45deg,  transparent 50%, var(--body-gradient-color) 50%, var(--body-gradient-color) 51%, transparent 51%);
   background-size: var(--body-gradient-size) var(--body-gradient-size);
   background-color: var(--body-background-color);
+  background-position: center;
 }
 
 /**:focus {

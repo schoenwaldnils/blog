@@ -7,10 +7,7 @@
   padding-left: 5vw;
 }
 
-date {
-  display: inline-block;
-  font-family: 'Sanchez', serif;
-  font-weight: 200;
-  font-size: .8em;
-  margin-bottom: .5em;
+.u-whiteBox {
+  background: #fff;
+  border-bottom: .25rem solid #aaa;
 }

@@ -1,0 +1,46 @@
+/** @define Filter */
+
+:root {
+  --Filter-height: 3rem;
+}
+
+.Filter {
+  position: absolute;
+  width: 100%;
+  height: var(--Filter-height);
+  background-color: #fff;
+  z-index: -1;
+}
+
+.Filter-tag {
+  display: inline-flex;
+  align-items: center;
+  height: calc(var(--Filter-height) - 1.5rem);
+  margin-top: .75rem;
+  margin-right: .25rem;
+  margin-bottom: 2.75rem;
+  padding-right: .5em;
+  padding-left: .5em;
+  font-family: 'Sanchez', serif;
+  font-weight: 200;
+  font-size: .8em;
+  background-color: #aaa;
+  border-radius: .25rem;
+
+  &:nth-of-type(1) {
+    margin-left: .75rem;
+  }
+
+  &:target {
+    background-color: var(--color-brandred);
+  }
+
+  a& {
+    color: #fff;
+  }
+
+  &:target,
+  &:hover {
+    color: #fff;
+  }
+}

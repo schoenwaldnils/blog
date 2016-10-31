@@ -1,6 +1,21 @@
 ---
 layout: default
 ---
-<date>{{ page.date | date: "%b %-d, %Y" }}</date>
-<h1>{{ page.title }}</h1>
-{{ content }}
+<div class="Post">
+  <div class="Post-wrapImage">
+    <div class="Post-image" style="background-image: url('{{ page.image }}');">
+    </div>
+  </div>
+  <div class="Post-content u-richText">
+    <div class="Post-meta">
+      <date class="Post-date">{{ page.date | date: "%b %-d, %Y" }}</date>
+      <div class="Post-tags">
+        {% for tag in page.tags %}
+          <a class="Post-tag">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
+        {% endfor %}
+      </div>
+    </div>
+    <h1 class="Post-title">{{ page.title }}</h1>
+    {{ content }}
+  </div>
+</div>
