@@ -1,7 +1,5 @@
 language: node_js
 before_script:
-  - rvm install ruby-2.3.0
-  - rvm use 2.3.0
   - bundle install --jobs=3 --retry=3 --deployment
   - chmod +x ./deploy.sh
 script: bash ./deploy.sh
