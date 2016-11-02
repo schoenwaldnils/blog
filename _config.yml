@@ -37,5 +37,6 @@ exclude:
   - gulpfile.babel.js
   - npm-debug.log
   - node_modules
+  - deploy.sh
 
 google_analytics: UA-33721620-2
