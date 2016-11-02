@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - "5"
 before_script:
-  - rvm install ruby-2.2.0
-  - rvm use 2.2.0
   - \command \which 'curl' || echo 'NO CURL'
+  - rvm install ruby-2.3.0
+  - rvm use 2.3.0
   - bundle install --jobs=3 --retry=3 --deployment
   - chmod +x ./deploy.sh
 script: bash ./deploy.sh
