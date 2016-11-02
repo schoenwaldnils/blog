@@ -1,21 +1,9 @@
 ---
-layout: default
+layout: base
 ---
-<article class="Post u-whiteBox">
-  <div class="Post-wrapImage">
-    <div class="Post-image" style="background-image: url('{{ page.image }}');">
-    </div>
-  </div>
-  <div class="Post-content u-richText">
-    <div class="Post-meta">
-      <date class="Post-date">{{ page.date | date: "%b %-d, %Y" }}</date>
-      <div class="Post-tags">
-        {% for tag in page.tags %}
-          <a class="Post-tag" href="/tag#{{ tag | slugify }}">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
-        {% endfor %}
-      </div>
-    </div>
-    <h1 class="Post-title">{{ page.title }}</h1>
-    {{ content }}
-  </div>
-</article>
+{% include Post.html
+  title=page.title
+  image=page.image
+  date=page.date
+  tags=page.tags
+  content=page.content %}

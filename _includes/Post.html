@@ -1,0 +1,34 @@
+{% assign dataTags = "" %}
+{% for tag in post.tags %}
+  {% assign tag_sluggish = tag | strip | downcase | slugify %}
+  {% assign dataTags = dataTags | append:tag_sluggish | append:' ' %}
+{% endfor %}
+
+<article class="Post u-whiteBox" data-tag="{{ dataTags }}">
+  {% if include.image %}
+    <div class="Post-wrapImage">
+      <div class="Post-image" style="background-image: url('{{ include.image }}');">
+      </div>
+    </div>
+  {% endif %}
+  <div class="Post-content u-richText">
+    <div class="Post-meta">
+      <date class="Post-date">{{ include.date | date: "%b %-d, %Y" }}</date>
+      <div class="Post-tags">
+        {% for tag in include.tags %}
+          <a class="Post-tag" href="/tag#{{ tag | slugify }}">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
+        {% endfor %}
+      </div>
+    </div>
+      {% if include.url %}
+        <a class="Post-link" href="{{ include.url | relative_url }}">
+          <h1 class="Post-title">{{ include.title }}</h1>
+        </a>
+      {% else %}
+        <h1 class="Post-title">{{ include.title }}</h1>
+      {% endif %}
+    {% if include.content %}
+      {{ include.content }}
+    {% endif %}
+  </div>
+</article>
