@@ -6,8 +6,8 @@ layout: default
 
   {% assign dataTags = "" %}
   {% for tag in post.tags %}
-    {% assign tag = tag | slugify %}
-    {% assign dataTags = dataTags | append:tag | append:' ' %}
+    {% assign tag_sluggish = tag | strip | downcase | slugify %}
+    {% assign dataTags = dataTags | append:tag_sluggish | append:' ' %}
   {% endfor %}
 
   <article class="Post u-whiteBox" data-tag="{{ dataTags }}">
