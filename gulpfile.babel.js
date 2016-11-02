@@ -18,6 +18,7 @@ import browserify from 'browserify';
 import buffer from 'vinyl-buffer';
 import exit from 'gulp-exit';
 import source from 'vinyl-source-stream';
+import sourcemaps from 'gulp-sourcemaps';
 import watchify from 'watchify';
 
 // SVG
@@ -89,7 +90,10 @@ function compileJS(flag) {
       .pipe(plumber())
       .pipe(source(main.js))
       .pipe(buffer())
+      .pipe(sourcemaps.init({ loadMaps: true }))
+      .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(dirs.dest));
+      // .pipe(exit()); // REVIEW
   }
 
   if (flag) {
