@@ -1,9 +1,8 @@
 _site
+node_modules
 /build
-.env
 .sass-cache
 .jekyll-metadata
 npm-debug.log
-node_modules
 deploy_key
 deploy_key.pub
