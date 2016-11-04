@@ -6,6 +6,10 @@
   color: #fff;
   background-color: var(--Footer-background, #000);
   border-top: solid .25rem var(--color-brandred);
+
+  @media (--sm-viewport) {
+    height: 1.5rem;
+  }
 }
 
 .Footer-content {
@@ -15,19 +19,17 @@
   height: 100%;
 }
 
-.Footer-wrapSocialIcons {
+.Footer-socialIcons {
   flex-shrink: 0;
   display: flex;
   font-size: 2rem;
   line-height: 1;
-}
 
-@media (--sm-viewport) {
-  .Footer-wrapSocialIcons {
+  @media (--sm-viewport) {
     display: none;
   }
 }
 
-.Footer-wrapSocialIcons > *:not(:last-child) {
+.Footer-wrapSocialIcon:not(:last-child) {
   margin-right: .5em;
 }

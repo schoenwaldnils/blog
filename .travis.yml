@@ -6,6 +6,7 @@ before_script:
   - rvm use 2.3.0
   - bundle install --jobs=3 --retry=3 --deployment
   - chmod +x ./deploy.sh
+  - npm run lint
 script: bash ./deploy.sh
 branches:
   only:

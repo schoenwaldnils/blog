@@ -8,24 +8,24 @@
 }
 
 .SocialIcon::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   background-color: var(--SocialIcon-inset-color, #000);
-  content: '';
+  border-radius: 50%;
 }
 
 .SocialIcon-iconFront,
 .SocialIcon-iconBack {
   position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   font-size: .4em;

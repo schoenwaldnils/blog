@@ -22,8 +22,12 @@ h4 {
   font-family: 'Sanchez', serif;
   font-style: normal;
   font-weight: 400;
-  color:  var(--headline-color);
   line-height: 1.1;
+  color: var(--text-color);
+
+  &::first-letter {
+    color: var(--color-brandred);
+  }
 }
 
 a,
@@ -76,10 +80,10 @@ a:focus {
 
   a {
     position: relative;
+    z-index: 0;
     color: var(--link-color);
     text-decoration: none;
     text-shadow: -2px 1px #fff, 2px 1px #fff;
-    z-index: 0;
     transition: color var(--time-transition);
 
     &:hover,
@@ -88,14 +92,13 @@ a:focus {
     }
 
     &::after {
+      content: '';
       position: absolute;
       bottom: 1px;
       left: 0;
-      width: 100%;
       z-index: -1;
+      width: 100%;
       border-bottom: 1px solid;
-      transition: width var(--time-transition);
-      content: '';
     }
   }
 }

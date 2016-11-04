@@ -1,3 +1,5 @@
+/** @define Post */
+
 .Post {
   margin-bottom: 1rem;
 }
@@ -21,15 +23,17 @@
 .Post-meta {
   display: flex;
   justify-content: space-between;
-  font-family: 'Sanchez', serif;
-  font-weight: 200;
-  font-size: .8em;
   margin-bottom: .5em;
+  font-family: 'Sanchez', serif;
+  font-size: .8em;
+  font-weight: 200;
 }
 
 .Post-tagComma:last-child {
   display: none;
 }
+
+/* postcss-bem-linter: ignore */
 
 a.Post-link::after {
   content: none;

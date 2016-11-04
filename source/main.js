@@ -1,6 +1,6 @@
 ((window, document) => {
   // // Locales
-  const App = {};
+  // const App = {};
   // const MenuBar = require('./components/menu-bar/menu-bar.js');
   // const Btf = require('./components/btf/btf.js');
 
@@ -18,4 +18,4 @@
   if (document.addEventListener) {
     document.addEventListener('DOMContentLoaded', init);
   }
-})(window, document);
+})();

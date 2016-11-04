@@ -1,0 +1,13 @@
+<nav class="Nav">
+  <ul class="Nav-list">
+    {% for item in include.list[include.type] %}
+      {% assign itemClass = 'Nav-item' %}
+      {% if page.url == item.href %}
+        {% assign itemClass = itemClass | append: ' is-current' %}
+      {% endif %}
+      <li class="{{ itemClass }}">
+        <a href="{{ item.href }}" class="Nav-link">{{ item.text }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

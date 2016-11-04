@@ -1,4 +1,9 @@
 ---
 layout: base
 ---
-{{ content }}
+{% include Post.html
+  title=page.title
+  image=page.image
+  date=page.date
+  tags=page.tags
+  content=content %}

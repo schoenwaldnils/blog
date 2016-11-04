@@ -1,3 +1,3 @@
 {
-  "extends": "stylelint"
+  "extends": "stylelint-config-schoenwaldnils"
 }

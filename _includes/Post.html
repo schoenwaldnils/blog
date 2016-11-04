@@ -12,21 +12,27 @@
     </div>
   {% endif %}
   <div class="Post-content u-richText">
-    <div class="Post-meta">
-      <date class="Post-date">{{ include.date | date: "%b %-d, %Y" }}</date>
-      <div class="Post-tags">
-        {% for tag in include.tags %}
-          <a class="Post-tag" href="/tag#{{ tag | slugify }}">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
-        {% endfor %}
+    {% if include.date || include.tags %}
+      <div class="Post-meta">
+        {% if include.date %}
+          <date class="Post-date">{{ include.date | date: "%b %-d, %Y" }}</date>
+        {% endif %}
+        {% if include.tags %}
+          <div class="Post-tags">
+            {% for tag in include.tags %}
+              <a class="Post-tag" href="/tag#{{ tag | slugify }}">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
-    </div>
-      {% if include.url %}
-        <a class="Post-link" href="{{ include.url | relative_url }}">
-          <h1 class="Post-title">{{ include.title }}</h1>
-        </a>
-      {% else %}
+    {% endif %}
+    {% if include.url %}
+      <a class="Post-link" href="{{ include.url | relative_url }}">
         <h1 class="Post-title">{{ include.title }}</h1>
-      {% endif %}
+      </a>
+    {% else %}
+      <h1 class="Post-title">{{ include.title }}</h1>
+    {% endif %}
     {% if include.content %}
       {{ include.content }}
     {% endif %}

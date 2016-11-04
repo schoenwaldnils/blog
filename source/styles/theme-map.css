@@ -1,5 +1,4 @@
 :root {
-
   /**
    * base
    */
@@ -7,7 +6,6 @@
   --text-color: var(--color-gray-darkest);
   --link-color: var(--color-brandred);
   --link-color-hover: var(--text-color);
-  --headline-color: var(--color-brandred);
 
   --body-background-color: var(--color-gray-lighter);
   --body-gradient-size: 5vw;

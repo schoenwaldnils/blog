@@ -6,10 +6,10 @@
 
 .Filter {
   position: absolute;
+  z-index: -1;
   width: 100%;
   height: var(--Filter-height);
   background-color: #fff;
-  z-index: -1;
 }
 
 .Filter-tag {
@@ -22,8 +22,8 @@
   padding-right: .5em;
   padding-left: .5em;
   font-family: 'Sanchez', serif;
-  font-weight: 200;
   font-size: .8em;
+  font-weight: 200;
   background-color: #aaa;
   border-radius: .25rem;
 
@@ -35,12 +35,14 @@
     background-color: var(--color-brandred);
   }
 
-  a& {
-    color: #fff;
-  }
-
   &:target,
   &:hover {
     color: #fff;
   }
+}
+
+/* postcss-bem-linter: ignore */
+
+a.Filter-tag {
+  color: #fff;
 }

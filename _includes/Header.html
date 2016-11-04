@@ -5,13 +5,17 @@
       {% include Svg.html name='logo' %}
     </a>
 
-    <a class="Header-title" href="/">
-      {{ site.title }}
-    </a>
+    <div class="Header-wrapNav">
+      {% include Nav.html list=site.data.navigation type='header' %}
+    </div>
 
-    <div class="Header-wrapSocialIcons">
-      {% include SocialIcon.html name="Twitter" href="https://twitter.com/schoenwaldnils" %}
-      {% include SocialIcon.html name="GitHub" href="https://github.com/schoenwaldnils" %}
+    <div class="Header-socialIcons">
+      <div class="Header-wrapSocialIcon">
+        {% include SocialIcon.html name="Twitter" href="https://twitter.com/schoenwaldnils" %}
+      </div>
+      <div class="Header-wrapSocialIcon">
+        {% include SocialIcon.html name="GitHub" href="https://github.com/schoenwaldnils" %}
+      </div>
     </div>
 
   </div>

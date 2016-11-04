@@ -166,7 +166,7 @@ gulp.task('lint:css', () => {
   }));
 });
 
-gulp.task('lint:js', () => gulp.src([dirs.dest + main.js, 'gulpfile.js'])
+gulp.task('lint:js', () => gulp.src(globs.js)
   .pipe(plumber())
   .pipe(eslint())
   .pipe(eslint.format())
