@@ -29,6 +29,10 @@ import svgSprite from 'gulp-svg-sprite';
 import stylelint from 'gulp-stylelint';
 import eslint from 'gulp-eslint';
 
+// GH-PAGES
+import ghPages from 'gulp-gh-pages';
+
+
 const dirs = {
   src: 'source/',
   dest: 'build/'
@@ -181,3 +185,8 @@ gulp.task('watch:css', () => gulp.watch(globs.css, ['build:css']));
 gulp.task('watch:js', () => compileJS(true));
 
 gulp.task('watch', ['watch:css', 'watch:js']);
+
+gulp.task('deploy', () => {
+  gulp.src(`${dirs.dest}**/*`)
+    .pipe(ghPages());
+});
