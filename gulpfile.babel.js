@@ -187,6 +187,6 @@ gulp.task('watch:js', () => compileJS(true));
 gulp.task('watch', ['watch:css', 'watch:js']);
 
 gulp.task('deploy', () => {
-  gulp.src(`${dirs.dest}**/*`)
+  return gulp.src('./_site/**/*')
     .pipe(ghPages());
 });

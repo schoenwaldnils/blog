@@ -1,12 +1,7 @@
 <div class="Disqus u-whiteBox" id="disqus_thread"></div>
 <script>
-/**
- * RECOMMENDED CONFIGURATION VARIABLES:
- * EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
- * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
- */
-
   const disqus_config = () => {
+    this.page.title = '{{ page.title }}';
     this.page.url = '{{ site.url + page.url }}';
     this.page.identifier = '{{ site.url + page.url }}';
   };
