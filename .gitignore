@@ -7,3 +7,4 @@ node_modules
 npm-debug.log
 deploy_key
 deploy_key.pub
+faviconData.json
