@@ -17,7 +17,6 @@ title: schoenwald.media
 email: nils@schoenwald.media
 description: > # this means to ignore newlines until "baseurl:"
   Thoughts on CSS, JS, and overall clean code.
-baseurl: "" # the subpath of your site, e.g. /blog
 url: http://schoenwald.media # the base hostname & protocol for your site, e.g. http://example.com
 permalink: :title
 

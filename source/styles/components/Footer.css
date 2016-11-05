@@ -2,18 +2,17 @@
 
 .Footer {
   flex-shrink: 0;
-  height: 3.5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
   color: #fff;
+  text-transform: uppercase;
   background-color: var(--Footer-background, #000);
   border-top: solid .25rem var(--color-brandred);
-
-  @media (--sm-viewport) {
-    height: 1.5rem;
-  }
 }
 
 .Footer-content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -22,6 +21,7 @@
 .Footer-socialIcons {
   flex-shrink: 0;
   display: flex;
+  margin-bottom: .5rem;
   font-size: 2rem;
   line-height: 1;
 
@@ -32,4 +32,11 @@
 
 .Footer-wrapSocialIcon:not(:last-child) {
   margin-right: .5em;
+}
+
+.Footer-copy {
+  font-family: 'Sanchez', serif;
+  font-size: .5rem;
+  letter-spacing: .2em;
+  color: var(--color-gray-lighter);
 }
