@@ -3,11 +3,9 @@ layout: base
 ---
 {{ content }}
 {% for post in site.posts %}
-
   {% include Post.html
     title=post.title
     url=post.url
     date=post.date
     tags=post.tags %}
-
 {% endfor %}

@@ -18,4 +18,4 @@
   if (document.addEventListener) {
     document.addEventListener('DOMContentLoaded', init);
   }
-})();
+})(window, document);

@@ -1,5 +1,6 @@
 ---
 layout: base
+comments: true
 ---
 {% include Post.html
   title=page.title
@@ -7,3 +8,7 @@ layout: base
   date=page.date
   tags=page.tags
   content=page.content %}
+
+{% if layout.comments %}
+  {% include disqus.html %}
+{% endif %}
