@@ -1,6 +1,7 @@
 _site
 node_modules
 /build
+.publish
 .sass-cache
 .jekyll-metadata
 npm-debug.log
