@@ -4,8 +4,8 @@ title: About
 permalink: /about/
 ---
 
-[Twitter](https://twitter.com/schoenwaldnils){: target="_blank"}
+I'm a german frontend-developer based in Hamburg.
 
-[Github](https://github.com/schoenwaldnils){: target="_blank"}
+[CSStargate](http://csstargate.schoenwald.media/)
 
-[Codepen](https://codepen.io/schoenwaldnils){: target="_blank"}
+[Rückenwind Lübeck](http://www.rueckenwind-luebeck.de/)

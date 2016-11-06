@@ -23,6 +23,9 @@ permalink: :title
 # Build settings
 gems:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
 exclude:
   - vendor
   - package.json
@@ -38,4 +41,22 @@ exclude:
   - node_modules
   - deploy.sh
 
+extlinks:
+  attributes: {rel: nofollow, target: _blank}
+  rel_exclude: [ 'csstargate.schoenwald.media' , 'www.rueckenwind-luebeck.de']
+
 google_analytics: UA-33721620-2
+google_site_verification: 3IKbfK2vAsnTUjCZC9pv2weEqymiNiNd7_pdhAHm1Z4
+
+author:
+  twitter: schoenwaldnils
+
+logo: '/assets/images/logo.jpg'
+
+twitter:
+  username: schoenwaldnils
+
+facebook:
+  app_id: 481527111909443
+  publisher: schoenwaldnils
+  admins: schoenwaldnils

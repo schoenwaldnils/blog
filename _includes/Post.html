@@ -34,7 +34,7 @@
       <h1 class="Post-title">{{ include.title }}</h1>
     {% endif %}
     {% if include.content %}
-      {{ include.content }}
+      {{ include.content | extlinks }}
     {% endif %}
   </div>
 </article>

@@ -13,7 +13,7 @@
     "lint:js": "gulp lint:js",
     "lint": "gulp lint",
     "test": "npm run lint",
-    "serve": "bundle exec jekyll serve --watch",
+    "serve": "JEKYLL_ENV='production' jekyll serve --watch",
     "watch:css": "gulp watch:css",
     "watch:js": "gulp watch:js",
     "watch": "gulp watch"
