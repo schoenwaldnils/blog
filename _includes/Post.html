@@ -15,7 +15,7 @@
     {% if include.date || include.tags %}
       <div class="Post-meta">
         {% if include.date %}
-          <date class="Post-date">{{ include.date | date: "%b %-d, %Y" }}</date>
+          <time class="Post-date" datetime="{{ include.date | date: '%F'}}">{{ include.date | date: "%b %-d, %Y" }}</time>
         {% endif %}
         {% if include.tags %}
           <div class="Post-tags">
