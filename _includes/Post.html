@@ -33,6 +33,12 @@
     {% else %}
       <h1 class="Post-title">{{ include.title }}</h1>
     {% endif %}
+    {% if include.description %}
+      <p class="Post-description">
+        {{ include.description }}
+        <a class="Post-readMore" href="{{ include.url }}"> read more</a>
+      </p>
+    {% endif %}
     {% if include.content %}
       {{ include.content | extlinks }}
     {% endif %}
