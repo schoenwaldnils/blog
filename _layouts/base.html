@@ -13,5 +13,8 @@
     {% include Footer.html %}
     <script src="/build/main.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sanchez">
+    {% if jekyll.environment == 'production' %}
+      {% include analytics.html %}
+    {% endif %}
   </body>
 </html>
