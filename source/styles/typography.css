@@ -27,7 +27,7 @@ h4 {
 
   &::first-letter {
     letter-spacing: -.06em;
-    color: var(--color-brandred);
+    color: var(--color-brand);
   }
 }
 
@@ -71,7 +71,8 @@ a:focus {
   pre,
   table,
   fieldset,
-  hr {
+  hr,
+  .highlighter-rouge {
     &:not(:last-child) {
       margin-bottom: 1rem;
     }

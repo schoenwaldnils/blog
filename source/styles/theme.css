@@ -23,23 +23,36 @@
   /*
    * Colors
    */
-  --color-black: #000;
-  --color-gray-darkest: #272727;
-  --color-gray-darker: #444;
-  --color-gray-dark: #7c7c7c;
-  --color-gray: #888;
-  --color-gray-light: #bbb;
-  --color-gray-lighter: #ccc;
-  --color-gray-lightest: #f2f2f2;
-  --color-white: #fff;
 
-  --color-brandred: #ba3e48;
+  --cb0: #2d2d2d;
+  --cb1: #444;
+  --cb2: #515151;
+  --cb3: #7c7c7c;
+  --cb4: #b0b0b0;
+  --cb5: #ccc;
+  --cb6: #e6e6e6;
+  --cb7: #f2f2f2;
+  --cb8: #f2777a;
+  --cb9: #f99157;
+  --cbA: #fc6;
+  --cbB: #9c9;
+  --cbC: #6cc;
+  --cbD: #69c;
+  --cbE: #c9c;
+  --cbF: #d27b53;
 
-  --color-blue: #52a3d1;
-  --color-blue-light: #72bde9;
-  --color-green: #5ec261;
-  --color-red: #f76262;
-  --color-orange: #f79a46;
+  --color-brand: #ba3e48;
+  --color-error: #da2000;
+  --color-warning: #edba00;
+
+  --color-red: var(--cb8);
+  --color-orange: var(--cb9);
+  --color-wellow: var(--cbA);
+  --color-green: var(--cbB);
+  --color-cyan: var(--cbC);
+  --color-blue: var(--cbD);
+  --color-purple: var(--cbE);
+  --color-brown: var(--cbF);
 
   /*
    * Fonts

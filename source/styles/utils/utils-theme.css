@@ -9,5 +9,5 @@
 
 .u-whiteBox {
   background: #fff;
-  border-bottom: .25rem solid #aaa;
+  border-bottom: .25rem solid var(--cb3);
 }

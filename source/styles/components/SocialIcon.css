@@ -29,7 +29,6 @@
   width: 100%;
   height: 100%;
   font-size: .4em;
-  color: #fff;
   border-radius: 50%;
   transition: transform var(--time-animation);
   backface-visibility: hidden;
@@ -41,6 +40,7 @@
 
 .SocialIcon-iconBack {
   transform: rotateX(180deg);
+  color: #fff;
 }
 
 .SocialIcon--github .SocialIcon-iconFront,

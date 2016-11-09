@@ -7,7 +7,7 @@
   color: #fff;
   text-transform: uppercase;
   background-color: var(--Footer-background, #000);
-  border-top: solid .25rem var(--color-brandred);
+  border-top: solid .25rem var(--Footer-border-color, #f00);
 }
 
 .Footer-content {
@@ -38,5 +38,5 @@
   font-family: 'Sanchez', serif;
   font-size: .5rem;
   letter-spacing: .2em;
-  color: var(--color-gray-lighter);
+  color: var(--Footer-color);
 }

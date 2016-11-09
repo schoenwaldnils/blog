@@ -25,7 +25,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    border-bottom: 2px solid var(--color-brandred);
+    border-bottom: 2px solid var(--color-brand);
     opacity: 0;
     transform: translateY(-.15em);
     transition-duration: var(--time-transition);

@@ -52,6 +52,7 @@ DEPENDENCIES
   jekyll-seo-tag
   jekyll-sitemap
   nokogiri
+  rouge
 
 RUBY VERSION
    ruby 2.3.0p0

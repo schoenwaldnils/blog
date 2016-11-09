@@ -3,13 +3,13 @@
    * base
    */
 
-  --text-color: var(--color-gray-darkest);
-  --link-color: var(--color-brandred);
+  --text-color: var(--cb0);
+  --link-color: var(--color-brand);
   --link-color-hover: var(--text-color);
 
-  --body-background-color: var(--color-gray-lighter);
+  --body-background-color: var(--cb5);
   --body-gradient-size: 5vw;
-  --body-gradient-color: var(--color-gray-light);
+  --body-gradient-color: var(--cb4);
 
   /**
    * components-arrange
@@ -44,7 +44,10 @@
    * Components
    */
 
-  --Header-background: var(--color-gray-darker);
-  --Footer-background: var(--color-gray-darker);
-  --SocialIcon-inset-color: var(--color-gray-darkest);
+  --Header-background: var(--cb1);
+  --Header-color: #fff;
+  --Footer-background: var(--cb1);
+  --Footer-color: var(--cb4);
+  --Footer-border-color: var(--color-brand);
+  --SocialIcon-inset-color: #000;
 }

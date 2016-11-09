@@ -4,7 +4,7 @@
   flex-shrink: 0;
   height: 2.5rem;
   margin-bottom: 2.5rem;
-  color: #fff;
+  color: var(--Header-color, #0ff);
   background-color: var(--Header-background, #000);
 }
 

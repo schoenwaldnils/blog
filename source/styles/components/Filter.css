@@ -32,7 +32,7 @@
   }
 
   &:target {
-    background-color: var(--color-brandred);
+    background-color: var(--color-brand);
   }
 
   &:target,
