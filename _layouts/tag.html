@@ -27,6 +27,6 @@ http://csswizardry.com/2016/10/pure-css-content-filter/
 <a class="Filter-tag" href="#">reset</a>
 {% for tag in site.post_tags %}
   {% assign tagSlug = tag | slugify %}
-  <a class="Filter-tag" id="{{tagSlug}}" href="/tag#{{tagSlug}}">{{tag}}</a>
+  <a class="Filter-tag" id="{{tagSlug}}" href="/tag/#{{tagSlug}}">{{tag}}</a>
 {% endfor %}
 {{ content }}

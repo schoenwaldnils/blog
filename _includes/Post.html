@@ -20,7 +20,7 @@
         {% if include.tags %}
           <div class="Post-tags">
             {% for tag in include.tags %}
-              <a class="Post-tag" href="/tag#{{ tag | slugify }}">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
+              <a class="Post-tag" href="/tag/#{{ tag | slugify }}">{{ tag | strip }}</a><span class="Post-tagComma">, </span>
             {% endfor %}
           </div>
         {% endif %}
