@@ -78,12 +78,16 @@ a:focus {
     }
   }
 
+  /*
+   * [1] use text-shadow to generate optical margin to underline
+   */
+
   a {
     position: relative;
     z-index: 0;
     color: var(--link-color);
     text-decoration: none;
-    text-shadow: -2px 1px #fff, 2px 1px #fff;
+    text-shadow: -.05em .05em #fff, .05em .05em #fff; /* 1 */
     transition: color var(--time-transition);
 
     &:hover,

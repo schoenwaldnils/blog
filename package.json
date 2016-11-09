@@ -14,6 +14,7 @@
     "lint": "gulp lint",
     "test": "npm run lint",
     "serve": "JEKYLL_ENV='production' jekyll serve --watch",
+    "serve-drafts": "JEKYLL_ENV='production' jekyll serve --watch --drafts",
     "watch:css": "gulp watch:css",
     "watch:js": "gulp watch:js",
     "watch": "gulp watch"
