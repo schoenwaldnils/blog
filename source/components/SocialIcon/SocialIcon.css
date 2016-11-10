@@ -15,6 +15,7 @@
   width: 100%;
   height: 100%;
   background-color: var(--SocialIcon-inset-color, #000);
+  border: 1px solid var(--SocialIcon-background);
   border-radius: 50%;
 }
 
@@ -35,12 +36,12 @@
 }
 
 .SocialIcon-iconFront {
-  background-color: var(--Header-background);
+  background-color: var(--SocialIcon-background);
 }
 
 .SocialIcon-iconBack {
-  transform: rotateX(180deg);
   color: #fff;
+  transform: rotateX(180deg);
 }
 
 .SocialIcon--github .SocialIcon-iconFront,
@@ -58,7 +59,7 @@
 }
 
 .SocialIcon--twitter .SocialIcon-iconBack {
-  background-color: #55acee;
+  background-color: var(--color-twitter);
 }
 
 .SocialIcon--github .SocialIcon-iconBack {

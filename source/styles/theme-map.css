@@ -50,4 +50,5 @@
   --Footer-color: var(--cb4);
   --Footer-border-color: var(--color-brand);
   --SocialIcon-inset-color: #000;
+  --SocialIcon-background: var(--Header-background);
 }
