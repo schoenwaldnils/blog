@@ -18,6 +18,7 @@
 @import 'components/**/*.css';
 @import 'styles/typography.css';
 @import 'styles/utils/display/index.css';
+@import 'styles/utils/utils-theme.css';
 @import 'styles/utils/highlighting.css';
 
 /*

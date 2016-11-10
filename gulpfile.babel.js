@@ -46,7 +46,6 @@ const dirs = {
 
 const main = {
   css: 'main.css',
-  cssCritical: 'main-critical.css',
   js: 'main.js'
 }
 
@@ -88,19 +87,6 @@ gulp.task('build:css', () => {
     ]))
     .pipe(cssmin())
     .pipe(gulp.dest(dirs.dest));
-});
-
-gulp.task('build:cssCritical', () => {
-  return gulp.src(dirs.src + main.cssCritical)
-    .pipe(postcss([
-      postcssImport(),
-      postcssNested(),
-      postcssCustomProperties(),
-      postcssCustomMedia(),
-      autoprefixer()
-    ]))
-    .pipe(cssmin())
-    .pipe(gulp.dest('_includes/'));
 });
 
 function compileJS(flag) {
@@ -184,7 +170,7 @@ gulp.task('build:svg-sprite', ['svgmin-color', 'svgmin-mono'], () => {
     .pipe(gulp.dest(dirs.dest + 'svg-sprite/'));
 });
 
-gulp.task('build', ['build:css', 'build:cssCritical', 'build:js']);
+gulp.task('build', ['build:css', 'build:js']);
 
 // Lint
 gulp.task('lint:css', () => {
@@ -207,7 +193,7 @@ gulp.task('lint:js', () => gulp.src(globs.js)
 gulp.task('lint', ['lint:css', 'lint:js']);
 
 // Watch
-gulp.task('watch:css', () => gulp.watch(globs.css, ['build:css', 'build:cssCritical']));
+gulp.task('watch:css', () => gulp.watch(globs.css, ['build:css']));
 
 gulp.task('watch:js', () => compileJS(true));
 
