@@ -17,7 +17,8 @@
 @import 'styles/base.css';
 @import 'components/**/*.css';
 @import 'styles/typography.css';
-@import 'styles/utils/index.css';
+@import 'styles/utils/display/index.css';
+@import 'styles/utils/highlighting.css';
 
 /*
  * SVG-Sprite
