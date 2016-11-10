@@ -38,7 +38,3 @@
 a.Post-link::after {
   content: none;
 }
-
-.Post-content {
-  padding: 3.5vw 4vw;
-}

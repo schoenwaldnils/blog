@@ -15,9 +15,9 @@
 @import 'styles/theme.css';
 @import 'styles/theme-map.css';
 @import 'styles/base.css';
-@import 'styles/utils/index.css';
+@import 'components/**/*.css';
 @import 'styles/typography.css';
-@import 'styles/components/**/*.css';
+@import 'styles/utils/index.css';
 
 /*
  * SVG-Sprite

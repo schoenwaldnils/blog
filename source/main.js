@@ -1,8 +1,8 @@
+import { map } from 'lodash';
+import Filter from './components/Filter/Filter';
+
 ((window, document) => {
-  // // Locales
-  // const App = {};
-  // const MenuBar = require('./components/menu-bar/menu-bar.js');
-  // const Btf = require('./components/btf/btf.js');
+  const App = {};
 
   // Initialization
 
@@ -10,9 +10,9 @@
     /*
      * App registration
      */
-
-    // App.menuBar = new MenuBar(document.getElementById('js-MenuBar'));
-    // App.btf = new Btf(document.getElementById('beautiful-taxonomy-filters-fahrrad'));
+    map(document.getElementsByClassName('js-Filter'), (element) => {
+      App.filter = new Filter(element);
+    });
   };
 
   if (document.addEventListener) {

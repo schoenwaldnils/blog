@@ -1,32 +1,5 @@
 ---
 layout: list
 ---
-<!--
-Source for using css as filter
-http://csswizardry.com/2016/10/pure-css-content-filter/
--->
-<style>
-  .Filter-tag:not(:target) ~ .Post {
-    display: block;
-  }
-  .Filter-tag:target ~ .Post {
-    display: none;
-  }
-</style>
-
-{% for tag in site.post_tags %}
-  {% assign tag = tag | slugify %}
-  <style>
-    .Filter-tag[id="{{tag}}"]:target ~ .Post[data-tag~="{{tag}}"] {
-      display: block;
-    }
-  </style>
-{% endfor %}
-
-<div class="Filter u-whiteBox"></div>
-<a class="Filter-tag" href="#">reset</a>
-{% for tag in site.post_tags %}
-  {% assign tagSlug = tag | slugify %}
-  <a class="Filter-tag" id="{{tagSlug}}" href="/tag/#{{tagSlug}}">{{tag}}</a>
-{% endfor %}
+{% include Filter.html %}
 {{ content }}

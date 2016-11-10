@@ -11,3 +11,13 @@
   background: #fff;
   border-bottom: .25rem solid var(--cb3);
 }
+
+.u-boxPadding {
+  padding: 3.5vw 4vw;
+}
+
+@media (--lg-viewport) {
+  .u-boxPadding {
+    padding: 1.3125rem 1.5rem;
+  }
+}

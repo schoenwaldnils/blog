@@ -49,10 +49,12 @@ const main = {
 
 const globs = {
   css: [
+    dirs.src + 'components/**/*.css',
     dirs.src + 'styles/**/*.css',
     dirs.src + 'main.css'
   ],
   js: [
+    dirs.src + 'components/**/*.js',
     dirs.src + 'scripts/**/*.js',
     dirs.src + 'main.js'
   ],

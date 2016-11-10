@@ -1,0 +1,36 @@
+/** @define Filter */
+
+.Filter {
+  margin-bottom: 1rem;
+}
+
+.Filter-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -.25rem;
+}
+
+.Filter-item {
+  display: block;
+  margin-right: .25rem;
+  margin-bottom: .25rem;
+  padding: .25em .5em;
+  font-family: 'Sanchez', serif;
+  font-size: .8em;
+  font-weight: 200;
+  cursor: pointer;
+  background-color: var(--cb6);
+}
+
+.Filter-tag:checked + .Filter-label {
+  color: #fff;
+  background-color: var(--color-brand);
+}
+
+html:not([data-tag*='tag:']) .Post {
+  display: block;
+}
+
+html[data-tag*='tag:'] .Post {
+  display: none;
+}
