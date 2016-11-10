@@ -19,6 +19,7 @@ import buffer from 'vinyl-buffer';
 import exit from 'gulp-exit';
 import source from 'vinyl-source-stream';
 import watchify from 'watchify';
+import uglify from 'gulp-uglify';
 
 // SVG
 import plumber from 'gulp-plumber';
@@ -92,20 +93,24 @@ function compileJS(flag) {
   function rebundle() {
     return bundler
       .bundle()
-      .on('error', (err) => {
-        console.error(err);
-        this.emit('end');
-      })
       .pipe(plumber())
       .pipe(source(main.js))
       .pipe(buffer())
+      .pipe(uglify())
       .pipe(gulp.dest(dirs.dest));
   }
 
   if (flag) {
     bundler.on('update', (ids) => {
-      console.log(`-> bundling... ${ids}`);
+      console.log(`Changed: ${ids}`);
       rebundle();
+    });
+    bundler.on('log', (msg) => {
+      const date = new Date(Date.now());
+      // const time = date.toTimeString();
+      const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+      console.log(`${time} -> ${msg}`);
     });
 
     rebundle();
