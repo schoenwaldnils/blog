@@ -36,8 +36,6 @@ class Filter {
     };
 
     this.checkRadio = () => {
-      console.log(url);
-      console.log(url.indexOf('/tag/'));
       if (url.indexOf('/tag/') === -1) {
         return;
       }
@@ -54,7 +52,6 @@ class Filter {
     };
 
     this.reset = () => {
-      console.log('reset');
       html.removeAttribute('data-tag');
       window.history.replaceState({}, '', '#');
       map(this.elements.inputs, (input) => {
@@ -64,7 +61,7 @@ class Filter {
     };
 
     this.setOption = (key, value) => {
-      console.log(`key: ${key}, value: ${value}`);
+      // console.log(`key: ${key}, value: ${value}`);
       switch (key) {
         case 'currentTag':
           this.options[key] = value;
@@ -84,8 +81,9 @@ class Filter {
 
     if (url.indexOf('#') !== -1) {
       const id = url.substring(url.lastIndexOf('#') + 1);
-      console.log(id);
-      this.setOption('currentTag', id);
+      if (id !== '') {
+        this.setOption('currentTag', id);
+      }
     }
 
     map(this.elements.inputs, (input) => {
@@ -99,18 +97,5 @@ class Filter {
     });
   }
 }
-
-// Filter.prototype = {
-//   create: () => {
-//     console.log(this);
-//     const inputs = this.element.getElementsByClassName('js-Filter');
-//     console.log(inputs);
-//     const url = window.location.href;
-//     if (url.indexOf('#') !== -1) {
-//       const id = url.substring(url.lastIndexOf('#') + 1);
-//       console.log(id);
-//     }
-//   },
-// };
 
 export default Filter;
