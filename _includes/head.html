@@ -3,6 +3,9 @@
   <meta content="IE=edge" http-equiv=X-UA-Compatible>
   <meta content="width=device-width,initial-scale=1" name=viewport>
   {% seo %}
-  <link rel="stylesheet" href="/build/main.css">
+  <link rel="preload" href="/build/main.css" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="/build/main.css">
+  </noscript>
   {% include favicons.html %}
 </head>
