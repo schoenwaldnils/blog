@@ -1,11 +1,9 @@
-{% for tag in site.post_tags %}
-  {% assign tag = tag | slugify | strip %}
-    <style>
-      html[data-tag*='{{tag}}'] .Post[data-tag*='{{tag}}'] {
-        display: block;
-      }
-    </style>
-{% endfor %}
+<style>
+  {% for tag in site.post_tags %}
+    {% assign tag = tag | slugify | strip %}
+      html[data-tag*='{{tag}}'] .Post[data-tag*='{{tag}}'] { display: block; }
+  {% endfor %}
+</style>
 
 <form class="Filter js-Filter u-whiteBox u-boxPadding">
   <div class="Filter-items">
