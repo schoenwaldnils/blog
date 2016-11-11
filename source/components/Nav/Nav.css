@@ -1,5 +1,10 @@
 /** @define Nav */
 
+:root {
+  --Nav-link-padding-h: .5em;
+  --Nav-link-padding-v: .5em;
+}
+
 .Nav {
   font-family: 'Sanchez', serif;
   text-transform: lowercase;
@@ -7,24 +12,23 @@
 
 .Nav-list {
   display: flex;
+  margin-right: -var(--Nav-link-padding-h);
+  margin-left: -var(--Nav-link-padding-h);
   padding: 0;
   list-style-type: none;
-}
-
-.Nav-item:not(:last-child) {
-  margin-right: 1em;
 }
 
 .Nav-link {
   position: relative;
   display: block;
+  padding: var(--Nav-link-padding-v) var(--Nav-link-padding-h);
 
   &::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    right: var(--Nav-link-padding-h);
+    bottom: var(--Nav-link-padding-v);
+    left: var(--Nav-link-padding-h);
     border-bottom: 2px solid var(--color-brand);
     opacity: 0;
     transform: translateY(-.15em);
