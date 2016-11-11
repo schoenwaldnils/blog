@@ -29,6 +29,20 @@
   font-weight: 200;
 }
 
+.Post-tag,
+.Post-tagComma {
+  margin-top: -1em;
+  padding-top: 1em;
+}
+
+@media (--sm-viewport) {
+  .Post-tag,
+  .Post-tagComma {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
 .Post-tagComma:last-child {
   display: none;
 }
