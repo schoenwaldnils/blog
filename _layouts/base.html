@@ -16,5 +16,8 @@
     {% if jekyll.environment == 'production' %}
       {% include analytics.html %}
     {% endif %}
+    {% if page.has_codepen %}
+      <script src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+    {% endif %}
   </body>
 </html>

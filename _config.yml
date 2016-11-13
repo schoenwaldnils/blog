@@ -89,3 +89,11 @@ facebook:
   app_id: 481527111909443
   publisher: schoenwaldnils
   admins: schoenwaldnils
+
+codepen:
+  theme_id: 26304
+  default_height: 300
+  default_tabs: 'css,result'
+  user:
+    name: 'Nils Schönwald'
+    slug: schoenwaldnils

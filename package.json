@@ -17,7 +17,8 @@
     "serve-dev": "jekyll serve --drafts",
     "watch:css": "gulp watch:css",
     "watch:js": "gulp watch:js",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "deploy": "jekyll clean && npm run build && gulp deploy"
   },
   "repository": {
     "type": "git",
