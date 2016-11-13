@@ -1,7 +1,7 @@
 /** @define Nav */
 
 :root {
-  --Nav-link-padding-h: .5em;
+  --Nav-link-padding-h: 1em;
   --Nav-link-padding-v: .5em;
 }
 
@@ -12,6 +12,7 @@
 
 .Nav-list {
   display: flex;
+  justify-content: center;
   margin-right: -var(--Nav-link-padding-h);
   margin-left: -var(--Nav-link-padding-h);
   padding: 0;
