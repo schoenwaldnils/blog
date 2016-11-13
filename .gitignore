@@ -3,6 +3,7 @@ node_modules
 /build
 .publish
 .sass-cache
+.asset-cache
 .jekyll-metadata
 npm-debug.log
 deploy_key

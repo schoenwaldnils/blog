@@ -25,6 +25,7 @@ gems:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-assets
 
 exclude:
   - vendor
@@ -61,6 +62,13 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
+
+assets:
+  assets:
+    - "main.css"
+    - "main.js"
+  sources:
+    - build
 
 extlinks:
   attributes: {rel: nofollow, target: _blank}

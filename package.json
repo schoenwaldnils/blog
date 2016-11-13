@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:jekyll": "bundle exec jekyll build",
+    "build:jekyll": "JEKYLL_ENV='production' jekyll build",
     "build:css": "gulp build:css",
     "build:js": "gulp build:js",
     "build:svg-sprite": "gulp build:svg-sprite",
@@ -13,8 +13,8 @@
     "lint:js": "gulp lint:js",
     "lint": "gulp lint",
     "test": "npm run lint",
-    "serve": "JEKYLL_ENV='production' jekyll serve --watch",
-    "serve-drafts": "JEKYLL_ENV='production' jekyll serve --watch --drafts",
+    "serve-prod": "JEKYLL_ENV='production' jekyll serve",
+    "serve-dev": "jekyll serve --drafts",
     "watch:css": "gulp watch:css",
     "watch:js": "gulp watch:js",
     "watch": "gulp watch"
