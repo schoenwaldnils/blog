@@ -3,8 +3,8 @@
   max-width: var(--max-width);
   margin-right: auto;
   margin-left: auto;
-  padding-right: 5vw;
-  padding-left: 5vw;
+  padding-right: 2vw;
+  padding-left: 2vw;
 }
 
 .u-whiteBox {
@@ -13,7 +13,13 @@
 }
 
 .u-boxPadding {
-  padding: 3.5vw 4vw;
+  padding: 1.3rem;
+}
+
+@media (--sm-viewport) {
+  .u-boxPadding {
+    padding: 3.5vw 4vw;
+  }
 }
 
 @media (--lg-viewport) {

@@ -1,3 +1,7 @@
+:root {
+  --lineo-width: 1.5rem;
+}
+
 /* stylelint-disable */
 
 code.highlighter-rouge {
@@ -50,8 +54,8 @@ div.highlighter-rouge.language-php .code::after {
 }
 
 .Highlight {
-  width: calc(100% + 2rem);
-  margin-left: -2rem;
+  width: calc(100% + var(--lineo-width));
+  margin-left: -var(--lineo-width);
   font-size: .8rem;
   line-height: 2;
 }
@@ -72,12 +76,18 @@ div.highlighter-rouge.language-php .code::after {
 
 .Highlight td.gutter {
   flex-shrink: 0;
-  width: 2rem;
+  width: var(--lineo-width);
 }
 
 .Highlight .lineno {
-  padding: .25rem .25rem .25rem 0;
+  padding: .25rem .1rem .25rem 0;
   color: var(--cb5);
+}
+
+@media (--sm-viewport) {
+  .Highlight .lineno {
+    padding-right: .25rem;
+  }
 }
 
 .Highlight td.code {

@@ -13,10 +13,15 @@
 .Nav-list {
   display: flex;
   justify-content: center;
-  margin-right: -var(--Nav-link-padding-h);
-  margin-left: -var(--Nav-link-padding-h);
   padding: 0;
   list-style-type: none;
+}
+
+@media (--sm-viewport) {
+  .Nav-list {
+    margin-right: -var(--Nav-link-padding-h);
+    margin-left: -var(--Nav-link-padding-h);
+  }
 }
 
 .Nav-link {
