@@ -1,3 +1,7 @@
+:root {
+  --list-dot-size: .35em;
+}
+
 h1,
 h2,
 h3,
@@ -72,6 +76,7 @@ a:focus {
   table,
   fieldset,
   hr,
+  .cp_embed_wrapper,
   div.highlighter-rouge {
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -103,6 +108,48 @@ a:focus {
       z-index: -1;
       width: 100%;
       border-bottom: 1px solid;
+    }
+  }
+
+  ul,
+  ol {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  ol {
+    counter-reset: ol;
+  }
+
+  li {
+    position: relative;
+    padding-left: 1em;
+  }
+
+  ul > li::before {
+    content: '';
+    position: absolute;
+    top: calc(1em * 1.4 / 2);
+    left: 0;
+    width: var(--list-dot-size);
+    height: calc(var(--list-dot-size) * .25);
+    margin-top: calc(var(--list-dot-size) * -.5 * .25);
+    background-color: var(--color-brand);
+  }
+
+  ol > li {
+    counter-increment: ol;
+
+    &::before {
+      content: counter(ol);
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-family: 'Sanchez', serif;
+      font-size: .8em;
+      font-weight: 200;
+      line-height: calc(1.4em / .8);
+      color: var(--color-brand);
     }
   }
 }
