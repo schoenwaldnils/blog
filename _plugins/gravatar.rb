@@ -17,10 +17,7 @@ module Jekyll
       else
         mail = site.config['email']
       end
-      puts @markup
-      puts mail
       src = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(mail.strip) + '?s=200'
-      puts src
       src
     end
   end
