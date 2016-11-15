@@ -3,10 +3,12 @@ layout: base
 ---
 {{ content }}
 {% for post in site.posts %}
-  {% include Post.html
-    title=post.title
-    url=post.url
-    date=post.date
-    tags=post.tags
-    description=post.description %}
+  {% if post.hidden != true %}
+    {% include Post.html
+      title=post.title
+      url=post.url
+      date=post.date
+      tags=post.tags
+      description=post.description %}
+  {% endif %}
 {% endfor %}

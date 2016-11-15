@@ -67,8 +67,10 @@ assets:
   assets:
     - "main.css"
     - "main.js"
+    - "codepen.js"
   sources:
     - build
+    - assets/scripts
 
 extlinks:
   attributes: {rel: nofollow, target: _blank}

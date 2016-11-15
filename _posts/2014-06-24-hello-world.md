@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  Hello World!
+title: Hello World!
 description: At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.
-date:   2014-6-24 17:39:18 +0200
+date: 2014-6-24 17:39:18 +0200
 tags:
   - Hello
   - world

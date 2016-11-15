@@ -33,6 +33,10 @@ div.highlighter-rouge.language-ruby .code::after {
   content: 'ruby';
 }
 
+div.highlighter-rouge.language-html .code::after {
+  content: 'html';
+}
+
 div.highlighter-rouge.language-php .code::after {
   content: 'php';
 }

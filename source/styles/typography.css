@@ -72,7 +72,7 @@ a:focus {
   table,
   fieldset,
   hr,
-  .highlighter-rouge {
+  div.highlighter-rouge {
     &:not(:last-child) {
       margin-bottom: 1rem;
     }
