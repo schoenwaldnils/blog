@@ -11,7 +11,7 @@ code.highlighter-rouge {
   color: var(--cb1);
   white-space: nowrap;
   vertical-align: text-bottom;
-  background-color: var(--cb5);
+  background-color: var(--cb6);
 }
 
 div.highlighter-rouge[class*="language-"] .code {
