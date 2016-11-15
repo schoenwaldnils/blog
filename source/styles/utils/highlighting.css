@@ -52,8 +52,14 @@ div.highlighter-rouge.language-php .code::after {
 .Highlight {
   width: calc(100% + 2rem);
   margin-left: -2rem;
-  font-size: .6rem;
+  font-size: .8rem;
   line-height: 2;
+}
+
+@media (--sm-viewport) {
+  .Highlight {
+    font-size: .7rem;
+  }
 }
 
 .Highlight tr {
