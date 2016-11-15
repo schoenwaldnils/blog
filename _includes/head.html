@@ -3,13 +3,6 @@
   <meta content="IE=edge" http-equiv=X-UA-Compatible>
   <meta content="width=device-width,initial-scale=1" name=viewport>
   {% seo %}
-  {% if jekyll.environment == 'production' %}
-    <link rel="preload" href="/assets/{{ assets['main.css'].digest_path }}" as="style" onload="this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="/assets/{{ assets['main.css'].digest_path }}">
-    </noscript>
-  {% else %}
-    <link rel="stylesheet" href="/assets/{{ assets['main.css'].logical_path }}">
-  {% endif %}
+  {% css main %}
   {% include favicons.html %}
 </head>
