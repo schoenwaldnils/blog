@@ -25,7 +25,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: .5em;
-  font-family: 'Sanchez', serif;
+  font-family: var(--font-sanchez);
   font-size: .8em;
   font-weight: 200;
 }

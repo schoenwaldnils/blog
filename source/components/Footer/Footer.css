@@ -35,7 +35,7 @@
 }
 
 .Footer-copy {
-  font-family: 'Sanchez', serif;
+  font-family: var(--font-sanchez);
   font-size: .5rem;
   letter-spacing: .2em;
   color: var(--Footer-color);

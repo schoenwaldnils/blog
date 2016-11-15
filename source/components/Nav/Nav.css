@@ -6,7 +6,7 @@
 }
 
 .Nav {
-  font-family: 'Sanchez', serif;
+  font-family: var(--font-sanchez);
   text-transform: lowercase;
 }
 

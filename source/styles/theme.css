@@ -87,6 +87,12 @@
   --z-index-10: 1000;
 
   /*
+   * Fonts
+   */
+
+  --font-sanchez: 'Sanchez', courier, serif;
+
+  /*
    * Custom
    */
 
