@@ -21,3 +21,7 @@ User-agent: *
 User-agent: Twitterbot
 Disallow: *
 Allow: /assets/images
+
+User-agent: facebookexternalhit
+Disallow: *
+Allow: /assets/images
