@@ -97,6 +97,15 @@ facebook:
   publisher: schoenwaldnils
   admins: schoenwaldnils
 
+social:
+  name: 'Nils Schönwald'
+  links:
+    - https://twitter.com/schoenwaldnils
+    - https://github.com/schoenwaldnils
+    - https://www.facebook.com/schoenwaldnils
+    - https://www.linkedin.com/in/schoenwaldnils
+    - https://plus.google.com/+NilsSch%C3%B6nwald
+
 codepen:
   theme_id: 26304
   default_height: 300
