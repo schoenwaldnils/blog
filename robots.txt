@@ -17,3 +17,7 @@ User-agent: *
 {% else %}
   Disallow:
 {% endif %}
+
+User-agent: Twitterbot
+Disallow: *
+Allow: /assets/images
