@@ -14,7 +14,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: 'Sanchez', serif;
+  font-family: var(--font-sanchez);
   font-style: normal;
   font-weight: 400;
   line-height: 1.1;

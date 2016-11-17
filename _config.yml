@@ -72,6 +72,13 @@ assets:
     - build
     - assets/scripts
 
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      image: '/assets/images/logo.jpg'
+
 extlinks:
   attributes: {rel: nofollow, target: _blank}
   rel_exclude: [ 'csstargate.schoenwald.media' , 'www.rueckenwind-luebeck.de']
@@ -81,8 +88,6 @@ google_site_verification: 3IKbfK2vAsnTUjCZC9pv2weEqymiNiNd7_pdhAHm1Z4
 
 author:
   twitter: schoenwaldnils
-
-logo: '/assets/images/logo.jpg'
 
 twitter:
   username: schoenwaldnils

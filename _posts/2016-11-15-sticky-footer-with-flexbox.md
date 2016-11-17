@@ -23,7 +23,7 @@ At first we need the DOM. One wrapper, in this case the body-element itself, and
 ```
 
 And now give the `body` `display: flex` and `flex-direction: column` to stack the three child elements vertically.
-Also the `html` and `body` elements need to be at least `100vh` height.
+Also the `html` and `body` elements need to be at least `100vh` in height.
 
 ```css
 html,
