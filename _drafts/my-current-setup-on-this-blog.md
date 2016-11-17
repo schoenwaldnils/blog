@@ -15,7 +15,7 @@ tags:
 
 ## CSS Naming convention
 
-I use [Suit-CSS](suit) to name my css classes.
+I use [Suit-CSS](suit) to name my css classes.  
 Here an example:
 
 ```
