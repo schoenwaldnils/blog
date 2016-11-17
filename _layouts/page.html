@@ -1,13 +1,9 @@
 ---
 layout: base
 ---
-{% if page.header_image %}
-  {% assign image = page.image %}
-{% endif %}
-
 {% include Post.html
   title=page.title
-  image=image
+  image=page.header_image
   date=page.date
   tags=page.tags
   content=content %}

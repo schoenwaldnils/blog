@@ -6,8 +6,7 @@ date: 2014-6-24 17:39:18 +0200
 tags:
   - Hello
   - world
-image: https://source.unsplash.com/E0Spm6XXn2Y
-header_image: true
+header_image: https://source.unsplash.com/E0Spm6XXn2Y
 ---
 At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.
 Well, joking aside.
