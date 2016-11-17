@@ -56,3 +56,8 @@ And voilá your footer is at the bottom all the time.
 ## The complete result:
 
 {% codepen c00705534da233982aa90ed744e36377|610 %}
+
+## Related links:
+
+* <http://caniuse.com/#feat=viewport-units>
+* <http://caniuse.com/#feat=flexbox>
