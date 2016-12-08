@@ -15,11 +15,4 @@
 
   {% css main %}
   {% include favicons.html %}
-  <style>
-    @media print {
-      .Post-meta:after {
-        content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ page.url }}&choe=UTF-8');
-      }
-    }
-  </style>
 </head>

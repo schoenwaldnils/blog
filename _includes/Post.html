@@ -4,7 +4,14 @@
   {% assign dataTags = dataTags | append:tag_sluggish | append:' ' %}
 {% endfor %}
 
-<article class="Post u-whiteBox" data-tag="{{ dataTags }}">
+<style>
+  .Post--{{ include.slug | pascalize }} .Post-meta:after {
+    content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8');
+    display: none;
+  }
+</style>
+
+<article class="Post Post--{{ include.slug | pascalize }} u-whiteBox" data-tag="{{ dataTags }}">
   {% if include.image %}
     <div class="Post-wrapImage">
       <div class="Post-image" style="background-image: url('{{ include.image }}');">

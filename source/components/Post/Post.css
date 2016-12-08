@@ -5,6 +5,16 @@
   padding-bottom: 1rem;
 }
 
+@media print {
+  .Post {
+    page-break-inside: avoid;
+  }
+
+  .Post-meta::after {
+    display: block !important;
+  }
+}
+
 .Post-wrapImage {
   position: relative;
   height: 0;
