@@ -1,17 +1,5 @@
 import gulp from 'gulp';
-
-// CSS
-import postcss from 'gulp-postcss';
-import postcssImport from 'postcss-easy-import';
-import postcssUrl from 'postcss-url';
-import postcssNested from 'postcss-nested';
-import postcssCustomProperties from 'postcss-custom-properties';
-import postcssCalc from 'postcss-calc';
-import postcssColorFunction from 'postcss-color-function';
-import postcssCustomMedia from 'postcss-custom-media';
-import postcssPseudoelements from 'postcss-pseudoelements';
-import autoprefixer from 'autoprefixer';
-import cssmin from 'gulp-cssmin';
+const gulpRequireTasks = require('gulp-require-tasks');
 
 // JS
 import babel from 'babelify';
@@ -41,13 +29,13 @@ import fs from 'fs';
 
 const dirs = {
   src: 'source/',
-  dest: 'build/'
+  dest: 'build/',
 };
 
 const main = {
   css: 'main.css',
-  js: 'main.js'
-}
+  js: 'main.js',
+};
 
 const globs = {
   css: [
@@ -71,23 +59,9 @@ const globs = {
   ],
 };
 
+gulpRequireTasks();
+
 // Build
-gulp.task('build:css', () => {
-  return gulp.src(dirs.src + main.css)
-    .pipe(postcss([
-      postcssImport({ glob: true }),
-      postcssUrl(),
-      postcssNested(),
-      postcssCustomProperties(),
-      postcssCalc(),
-      postcssColorFunction(),
-      postcssCustomMedia(),
-      postcssPseudoelements(),
-      autoprefixer()
-    ]))
-    .pipe(cssmin())
-    .pipe(gulp.dest(dirs.dest));
-});
 
 function compileJS(flag) {
   const bundler = watchify(browserify(dirs.src + main.js, { debug: true }).transform(babel));
@@ -122,31 +96,6 @@ function compileJS(flag) {
 }
 
 gulp.task('build:js', () => compileJS());
-
-gulp.task('svgmin-color', () => {
-  return gulp.src(globs.svgColor)
-    .pipe(plumber())
-    .pipe(svgmin({
-      plugins: [
-        {removeTitle: true}
-      ]
-    })).on('error', error => { console.log(error); })
-    .pipe(gulp.dest(dirs.dest + 'svgs/'));
-});
-
-gulp.task('svgmin-mono', () => {
-  return gulp.src(globs.svgMono)
-    .pipe(plumber())
-    .pipe(svgmin({
-      plugins: [
-        {removeTitle: true},
-        {removeAttrs: {
-          attrs: 'fill'
-        }}
-      ]
-    })).on('error', error => { console.log(error); })
-    .pipe(gulp.dest(dirs.dest + 'svgs/'));
-});
 
 gulp.task('build:svg-sprite', ['svgmin-color', 'svgmin-mono'], () => {
   const config = {
