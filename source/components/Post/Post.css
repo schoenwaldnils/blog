@@ -31,6 +31,13 @@
 }
 
 @media print {
+  .Post-meta {
+    align-items: flex-end;
+  }
+}
+
+
+@media print {
   .Post-tags {
     display: none;
   }
