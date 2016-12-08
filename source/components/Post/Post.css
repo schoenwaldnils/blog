@@ -30,6 +30,12 @@
   font-weight: 200;
 }
 
+@media print {
+  .Post-tags {
+    display: none;
+  }
+}
+
 .Post-tag,
 .Post-tagComma {
   margin-top: -1em;

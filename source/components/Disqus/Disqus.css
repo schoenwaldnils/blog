@@ -1,6 +1,7 @@
 /** @define Disqus */
 
-/*
-.Disqus {
+@media print {
+  .Disqus {
+    display: none;
+  }
 }
-*/

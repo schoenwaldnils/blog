@@ -63,6 +63,12 @@ body {
   background-size: var(--body-gradient-size) var(--body-gradient-size);
 }
 
+@media print {
+  body {
+    background: none;
+  }
+}
+
 /*
 *:focus {
   outline: 0;

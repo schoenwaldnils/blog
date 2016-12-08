@@ -7,9 +7,22 @@
   padding-left: 2vw;
 }
 
+@media print {
+  .u-maxWidth {
+    max-width: none;
+  }
+}
+
 .u-whiteBox {
-  background: #fff;
+  background-color: #fff;
   border-bottom: .25rem solid var(--cb3);
+}
+
+@media print {
+  .u-whiteBox {
+    background-color: transparent;
+    border-bottom: 0;
+  }
 }
 
 .u-boxPadding {

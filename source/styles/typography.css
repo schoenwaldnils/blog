@@ -43,6 +43,12 @@ a:focus {
   cursor: pointer;
 }
 
+@media print {
+  a[href^='http']:not([href*='blog.schoenwald.media'])::after {
+    content: ' (' attr(href) ')';
+  }
+}
+
 .u-richText {
   h1,
   h2,
@@ -100,7 +106,7 @@ a:focus {
       color: var(--link-color-hover);
     }
 
-    &::after {
+    &::before {
       content: '';
       position: absolute;
       bottom: 1px;

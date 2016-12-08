@@ -8,6 +8,12 @@
   background-color: var(--Header-background, #000);
 }
 
+@media print {
+  .Header {
+    display: none;
+  }
+}
+
 .Header-content {
   display: flex;
   align-items: center;

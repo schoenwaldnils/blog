@@ -5,6 +5,12 @@
   padding-bottom: 2rem;
 }
 
+@media print {
+  .Content {
+    padding-bottom: 0;
+  }
+}
+
 .Content-box {
   position: relative;
 }

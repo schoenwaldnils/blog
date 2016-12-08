@@ -97,6 +97,13 @@ div.highlighter-rouge.language-php .code::after {
   background-color: var(--cb1);
 }
 
+@media print {
+  .Highlight td.code {
+    color: var(--cb1);
+    background-color: var(--cb7);
+  }
+}
+
 .Highlight table pre {
   margin: 0;
 }
@@ -176,6 +183,25 @@ div.highlighter-rouge {
   .vg { color: var(--cb8) } /* Name.Variable.Global */
   .vi { color: var(--cb8) } /* Name.Variable.Instance */
   .il { color: var(--cb9) } /* Literal.Number.Integer.Long */
+}
+
+@media print {
+  div.highlighter-rouge {
+    .o { color: var(--cb2) } /* Operator */
+    .p { color: var(--cb2) } /* Punctuation */
+    .gh { color: var(--cb2) } /* Generic.Heading */
+    .nb { color: var(--cb2) } /* Name.Builtin */
+    .ni { color: var(--cb2) } /* Name.Entity */
+    .nl { color: var(--cb2) } /* Name.Label */
+    .py { color: var(--cb2) } /* Name.Property */
+    .w { color: var(--cb2) } /* Text.Whitespace */
+    .sc { color: var(--cb2) } /* Literal.String.Char */
+    .bp { color: var(--cb2) } /* Name.Builtin.Pseudo */
+
+    .kt { color: var(--cbA-darken) } /* Keyword.Type */
+    .nc { color: var(--cbA-darken) } /* Name.Class */
+    .nn { color: var(--cbA-darken) } /* Name.Namespace */
+  }
 }
 
 div.highlighter-rouge.language-css {

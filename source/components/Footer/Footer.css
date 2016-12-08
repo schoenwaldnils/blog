@@ -10,6 +10,12 @@
   border-top: solid .25rem var(--Footer-border-color, #f00);
 }
 
+@media print {
+  .Footer {
+    display: none;
+  }
+}
+
 .Footer-content {
   display: flex;
   flex-direction: column;

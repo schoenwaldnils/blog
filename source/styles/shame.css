@@ -1,3 +1,13 @@
 /*
  * Shame CSS: for the stuff that didn't fit anywhere else.
  */
+
+@media print {
+  .cp_embed_wrapper > iframe {
+    display: none;
+  }
+
+  .cp_embed_wrapper::before {
+    content: 'Embeded Codepen';
+  }
+}
