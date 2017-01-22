@@ -14,4 +14,3 @@ More info will come.
 [CSStargate](http://csstargate.schoenwald.media/)
 
 [Rückenwind Lübeck](http://www.rueckenwind-luebeck.de/)
-

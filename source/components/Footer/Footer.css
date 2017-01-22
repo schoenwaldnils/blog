@@ -41,8 +41,8 @@
 }
 
 .Footer-copy {
-  font-family: var(--font-sanchez);
-  font-size: .5rem;
+  font-family: var(--font-rokkitt);
+  font-size: .6rem;
   letter-spacing: .2em;
   color: var(--Footer-color);
 }

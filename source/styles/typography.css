@@ -23,14 +23,13 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-sanchez);
+  font-family: var(--font-rokkitt);
   font-style: normal;
   font-weight: 400;
   line-height: 1.1;
   color: var(--text-color);
 
   &::first-letter {
-    letter-spacing: -.06em;
     color: var(--color-brand);
   }
 }
@@ -68,15 +67,15 @@ a:focus {
   }
 
   h1 {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
   h3 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   h4 {
@@ -161,7 +160,7 @@ a:focus {
       position: absolute;
       top: 0;
       left: 0;
-      font-family: var(--font-sanchez);
+      font-family: var(--font-rokkitt);
       font-size: .8em;
       font-weight: 200;
       line-height: calc(1.4em / .8);

@@ -42,6 +42,7 @@
 
 .Header-wrapNav {
   flex-grow: 1;
+  font-size: 1.2rem;
 }
 
 .Header-socialIcons {
