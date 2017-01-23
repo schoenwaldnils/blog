@@ -1,12 +1,16 @@
-language: node_js
+language: ruby
 node_js:
-  - 0.12.2
+  - 2.3
+
+before_install:
+  - nvm install node
+  - nvm use 6.1
+  - npm install
+
 before_script:
-  - rvm install ruby-2.3.0
-  - rvm use 2.3.0
-  - bundle install --jobs=3 --retry=3 --deployment
   - chmod +x ./deploy.sh
   - npm run lint
+
 script: bash ./deploy.sh
 branches:
   only:
