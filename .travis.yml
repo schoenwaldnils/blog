@@ -1,8 +1,8 @@
 language: ruby
-node_js:
-  - 2.3
+rvm:
+  - 2.3.0
 
-before_install:
+after_install:
   - nvm install node
   - npm install
 
