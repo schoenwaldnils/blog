@@ -1,29 +1,16 @@
-language: ruby
-rvm:
-  - 2.3.0
-  - 1.9.3
-
-env:
-  - TRAVIS_NODE_VERSION="0.12"
-  - TRAVIS_NODE_VERSION="4"
-
-install:
-  - rm -rf ~/.nvm && git clone git@github.com:schoenwaldnils/blog.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
-  - npm install
-
+language: node_js
+node_js:
+  - 0.12.2
 before_script:
   - rvm install ruby-2.3.0
   - rvm use 2.3.0
   - bundle install --jobs=3 --retry=3 --deployment
   - chmod +x ./deploy.sh
   - npm run lint
-
 script: bash ./deploy.sh
-
 branches:
   only:
     - master
-
 env:
   global:
     NOKOGIRI_USE_SYSTEM_LIBRARIES: true # speeds up installation of html-proofer
