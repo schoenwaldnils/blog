@@ -21,6 +21,16 @@ class Filter {
     const html = document.querySelector('html');
     const url = window.location.href;
 
+    const checkCi = () => {
+      if (!document || !window) {
+        return 500;
+      }
+
+      return false;
+    };
+
+    checkCi();
+
     forEach(elements, (value, key) => {
       if (this.element.getElementsByClassName(value).length > 1) {
         this.elements[key] = this.element.getElementsByClassName(value);

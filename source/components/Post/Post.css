@@ -76,3 +76,13 @@
 a.Post-link::after {
   content: none;
 }
+
+html:not([data-tag*='tag:']) .Post {
+  display: block;
+}
+
+/* postcss-bem-linter: ignore */
+
+html[data-tag*='tag:'] .Post {
+  display: none;
+}

@@ -10,9 +10,11 @@ import Filter from './components/Filter/Filter';
     /*
      * App registration
      */
-    map(document.getElementsByClassName('js-Filter'), (element) => {
-      App.filter = new Filter(element);
-    });
+    if (document) {
+      map(document.getElementsByClassName('js-Filter'), (element) => {
+        App.filter = new Filter(element);
+      });
+    }
   };
 
   if (document.addEventListener) {

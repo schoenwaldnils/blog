@@ -26,11 +26,3 @@
   color: #fff;
   background-color: var(--color-brand);
 }
-
-html:not([data-tag*='tag:']) .Post {
-  display: block;
-}
-
-html[data-tag*='tag:'] .Post {
-  display: none;
-}
