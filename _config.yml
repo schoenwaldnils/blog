@@ -65,6 +65,7 @@ kramdown:
 
 assets:
   assets:
+    - 'main_critical.css'
     - 'main.css'
     - 'main.js'
     - 'codepen.js'
