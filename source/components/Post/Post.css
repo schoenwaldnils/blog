@@ -71,8 +71,6 @@
   display: none;
 }
 
-/* postcss-bem-linter: ignore */
-
 a.Post-link::after {
   content: none;
 }
@@ -80,8 +78,6 @@ a.Post-link::after {
 html:not([data-tag*='tag:']) .Post {
   display: block;
 }
-
-/* postcss-bem-linter: ignore */
 
 html[data-tag*='tag:'] .Post {
   display: none;
