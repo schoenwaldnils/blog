@@ -8,7 +8,7 @@
     "build:css": "gulp build:css",
     "build:js": "gulp build:js",
     "build:svg-sprite": "gulp build:svg-sprite",
-    "build": "gulp build && npm run build:jekyll",
+    "build": "gulp build && npm run build:jekyll && node scripts/critical.js",
     "lint:css": "gulp lint:css",
     "lint:js": "gulp lint:js",
     "lint": "gulp lint",
@@ -31,13 +31,14 @@
     "url": "https://github.com/schoenwaldnils/blog/issues"
   },
   "homepage": "https://github.com/schoenwaldnils/blog#readme",
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer": "^6.5.1",
     "babel-core": "^6.18.2",
     "babel-preset-airbnb": "^2.1.1",
     "babel-preset-es2015": "^6.18.0",
     "babelify": "7.3.0",
     "browserify": "^13.1.1",
+    "critical": "^0.8.1",
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "12.0.0",
     "eslint-plugin-import": "^1.16.0",
@@ -56,6 +57,7 @@
     "gulp-svg-sprite": "^1.3.6",
     "gulp-svgmin": "^1.2.3",
     "gulp-uglify": "2.0.0",
+    "lodash": "^4.16.6",
     "postcss-calc": "^5.3.1",
     "postcss-color-function": "2.0.1",
     "postcss-custom-media": "5.0.1",
@@ -71,8 +73,5 @@
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0",
     "watchify": "3.7.0"
-  },
-  "dependencies": {
-    "lodash": "^4.16.6"
   }
 }
