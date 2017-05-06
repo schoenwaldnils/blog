@@ -33,7 +33,7 @@ module.exports = (flag) => {
       console.log(`${time} -> ${msg}`);
     });
 
-    rebundle();
+    rebundle().pipe(exit());
   } else {
     rebundle().pipe(exit()); // REVIEW
   }
