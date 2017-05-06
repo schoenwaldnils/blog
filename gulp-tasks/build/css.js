@@ -1,4 +1,3 @@
-// CSS
 import postcss from 'gulp-postcss';
 import postcssImport from 'postcss-easy-import';
 import postcssUrl from 'postcss-url';
@@ -10,8 +9,9 @@ import postcssCustomMedia from 'postcss-custom-media';
 import postcssPseudoelements from 'postcss-pseudoelements';
 import autoprefixer from 'autoprefixer';
 import cssmin from 'gulp-cssmin';
+import { dirs, main } from '../paths';
 
-module.exports = (gulp, callback) => gulp.src('source/main.css')
+module.exports = gulp => gulp.src(dirs.source + main.css)
   .pipe(postcss([
     postcssImport({ glob: true }),
     postcssUrl(),
@@ -24,4 +24,4 @@ module.exports = (gulp, callback) => gulp.src('source/main.css')
     autoprefixer(),
   ]))
   .pipe(cssmin())
-  .pipe(gulp.dest('build/'));
+  .pipe(gulp.dest(dirs.dest));

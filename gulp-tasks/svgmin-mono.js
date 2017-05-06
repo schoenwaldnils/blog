@@ -1,8 +1,9 @@
-// SVG-COLOR
+import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import svgmin from 'gulp-svgmin';
+import { dirs, globs } from '../paths';
 
-module.exports = (gulp, callback) => gulp.src('source/assets/images/svgs/mono/*.svg')
+module.exports = (gulp, callback) => gulp.src(globs.svgMono)
   .pipe(plumber())
   .pipe(svgmin({
     plugins: [
@@ -14,5 +15,5 @@ module.exports = (gulp, callback) => gulp.src('source/assets/images/svgs/mono/*.
       },
     ],
   })).on('error', (error) => { console.log(error); })
-  .pipe(gulp.dest('build/svgs/'));
+  .pipe(gulp.dest(dirs.dest + 'svgs/'));
 

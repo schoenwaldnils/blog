@@ -14,7 +14,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-sanchez);
+  font-family: var(--font-rokkitt);
   font-style: normal;
   font-weight: 400;
   line-height: 1.1;

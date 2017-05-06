@@ -46,7 +46,7 @@
 
   --Header-background: var(--cb1);
   --Header-color: #fff;
-  --Footer-background: var(--cb1);
+  --Footer-background: var(--Header-background);
   --Footer-color: var(--cb4);
   --Footer-border-color: var(--color-brand);
   --SocialIcon-inset-color: #000;
