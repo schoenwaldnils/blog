@@ -17,4 +17,4 @@ chmod 600 deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key
 
-./node_modules/.bin/gh-pages --dist build
+./node_modules/.bin/gh-pages --dist _site
