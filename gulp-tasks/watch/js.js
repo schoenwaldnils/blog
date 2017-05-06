@@ -1,3 +1,3 @@
-import compileJS from '../build/js'
+import compileJS from '../build/js';
 
-module.exports = () => compileJS(true));
+module.exports = () => compileJS(true);

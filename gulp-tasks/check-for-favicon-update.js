@@ -8,11 +8,11 @@ const FAVICON_DATA_FILE = '../faviconData.json';
 // released a new Touch icon along with the latest version of iOS).
 // Run this task from time to time. Ideally, make it part of your
 // continuous integration system.
-module.exports = done => {
+module.exports = () => {
   const currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
-  realFavicon.checkForUpdates(currentVersion, err => {
+  realFavicon.checkForUpdates(currentVersion, (err) => {
     if (err) {
       throw err;
     }
   });
-});
+};

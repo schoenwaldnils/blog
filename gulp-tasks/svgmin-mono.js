@@ -1,9 +1,9 @@
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import svgmin from 'gulp-svgmin';
-import { dirs, globs } from '../paths';
+import { dirs, globs } from './paths';
 
-module.exports = (gulp, callback) => gulp.src(globs.svgMono)
+module.exports = () => gulp.src(globs.svgMono)
   .pipe(plumber())
   .pipe(svgmin({
     plugins: [
@@ -15,5 +15,4 @@ module.exports = (gulp, callback) => gulp.src(globs.svgMono)
       },
     ],
   })).on('error', (error) => { console.log(error); })
-  .pipe(gulp.dest(dirs.dest + 'svgs/'));
-
+  .pipe(gulp.dest(`${dirs.dest}svgs/`));

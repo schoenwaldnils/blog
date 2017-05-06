@@ -1,3 +1,4 @@
+import gulp from 'gulp';
 import babel from 'babelify';
 import browserify from 'browserify';
 import buffer from 'vinyl-buffer';
@@ -5,12 +6,13 @@ import exit from 'gulp-exit';
 import source from 'vinyl-source-stream';
 import watchify from 'watchify';
 import uglify from 'gulp-uglify';
+import plumber from 'gulp-plumber';
 import { dirs, main } from '../paths';
 
 module.exports = (flag) => {
   const bundler = watchify(browserify(dirs.src + main.js, { debug: true }).transform(babel));
 
-  rebundle() => bundler
+  const rebundle = () => bundler
     .bundle()
     .pipe(plumber())
     .pipe(source(main.js))
@@ -35,4 +37,4 @@ module.exports = (flag) => {
   } else {
     rebundle().pipe(exit()); // REVIEW
   }
-}
+};

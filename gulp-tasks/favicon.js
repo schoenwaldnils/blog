@@ -1,5 +1,7 @@
+import gulp from 'gulp';
 import realFavicon from 'gulp-real-favicon';
 import fs from 'fs';
+import { dirs } from './paths';
 
 // File where the favicon markups are stored
 const FAVICON_DATA_FILE = '../faviconData.json';
@@ -8,7 +10,7 @@ const FAVICON_DATA_FILE = '../faviconData.json';
 // You should run it at least once to create the icons. Then,
 // you should run it whenever RealFaviconGenerator updates its
 // package (see the check-for-favicon-update task below).
-module.exports = done => {
+module.exports = (done) => {
   realFavicon.generateFavicon({
     masterPicture: `${dirs.src}assets/images/favicon.png`,
     dest: `${dirs.dest}favicons`,
@@ -22,8 +24,8 @@ module.exports = done => {
           ios6AndPriorIcons: false,
           ios7AndLaterIcons: false,
           precomposedIcons: false,
-          declareOnlyDefaultIcon: true
-        }
+          declareOnlyDefaultIcon: true,
+        },
       },
       desktopBrowser: {},
       windows: {
@@ -36,9 +38,9 @@ module.exports = done => {
             small: false,
             medium: true,
             big: false,
-            rectangle: false
-          }
-        }
+            rectangle: false,
+          },
+        },
       },
       androidChrome: {
         pictureAspect: 'noChange',
@@ -48,29 +50,31 @@ module.exports = done => {
           display: 'standalone',
           orientation: 'notSet',
           onConflict: 'override',
-          declared: true
+          declared: true,
         },
         assets: {
           legacyIcon: false,
-          lowResolutionIcons: false
-        }
-      }
+          lowResolutionIcons: false,
+        },
+      },
     },
     settings: {
       compression: 1,
       scalingAlgorithm: 'Mitchell',
-      errorOnImageTooSmall: false
+      errorOnImageTooSmall: false,
     },
     versioning: {
       paramName: 'v',
-      paramValue: 'm2d7xOWWzl'
+      paramValue: 'm2d7xOWWzl',
     },
-    markupFile: FAVICON_DATA_FILE
+    markupFile: FAVICON_DATA_FILE,
   }, () => {
     done();
   });
 
-  gulp.src([ '_includes/favicons.html' ])
-    .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
+  gulp.src(['_includes/favicons.html'])
+    .pipe(realFavicon.injectFaviconMarkups(
+      JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code
+    ))
     .pipe(gulp.dest('_includes'));
-});
+};

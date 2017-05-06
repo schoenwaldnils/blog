@@ -11,23 +11,23 @@ const paths = {
 
 paths.globs = {
   css: [
-    dirs.src + 'components/**/*.css',
-    dirs.src + 'styles/**/*.css',
-    dirs.src + 'main.css'
+    `${paths.dirs.src}components/**/*.css`,
+    `${paths.dirs.src}styles/**/*.css`,
+    `${paths.dirs.src}main.css`,
   ],
   js: [
-    dirs.src + 'components/**/*.js',
-    dirs.src + 'scripts/**/*.js',
-    dirs.src + 'main.js'
+    `${paths.dirs.src}components/**/*.js`,
+    `${paths.dirs.src}scripts/**/*.js`,
+    `${paths.dirs.src}main.js`,
   ],
   svgCleaned: [
-    dirs.dest + 'svgs/**/*.svg',
+    `${paths.dirs.dest}svgs/**/*.svg`,
   ],
   svgColor: [
-    dirs.src + 'assets/images/svgs/color/*.svg',
+    `${paths.dirs.src}assets/images/svgs/color/*.svg`,
   ],
   svgMono: [
-    dirs.src + 'assets/images/svgs/monochrome/*.svg',
+    `${paths.dirs.src}assets/images/svgs/monochrome/*.svg`,
   ],
 };
 
