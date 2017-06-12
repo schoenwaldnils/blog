@@ -11,7 +11,7 @@
     "build": "gulp build && npm run build:jekyll && node scripts/critical.js",
     "lint:css": "stylelint \"source/**/*.css\" --fix",
     "lint:js": "gulp lint:js",
-    "lint": "gulp lint",
+    "lint": "npm run lint:css && npm run lint:js",
     "test": "npm run lint",
     "serve-prod": "JEKYLL_ENV='production' jekyll serve",
     "serve-dev": "jekyll serve --drafts",
