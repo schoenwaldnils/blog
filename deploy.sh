@@ -7,7 +7,7 @@ then
   git config --global user.email "$COMMIT_AUTHOR_EMAIL"
 fi
 
-# Get the deploy key by using Travis's stored variables to decrypt id_rsa.enc
+# Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
 
 ENCRYPTED_KEY_VAR="encrypted_1d97a522c7ba_key"
 ENCRYPTED_IV_VAR="encrypted_1d97a522c7ba_iv"
