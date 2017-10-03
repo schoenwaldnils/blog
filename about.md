@@ -9,7 +9,7 @@ I'm a german frontend-developer based in Hamburg.
 
 More info will come.
 
-You can find me on [https://twitter.com/schoenwaldnils](Twitter)
+You can find me on [Twitter](https://twitter.com/schoenwaldnils)
 
 ## Things I did build:
 
