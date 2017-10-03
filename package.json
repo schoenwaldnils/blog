@@ -8,7 +8,7 @@
     "build:css": "gulp build:css",
     "build:js": "gulp build:js",
     "build:svg-sprite": "gulp build:svg-sprite",
-    "build": "gulp build && npm run build:jekyll",
+    "build": "gulp build && npm run build:jekyll && node scripts/critical.js",
     "lint:css": "stylelint \"source/**/*.css\" --fix --formatter verbose",
     "lint:js": "gulp lint:js",
     "lint": "npm run lint:css && npm run lint:js",
