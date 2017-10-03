@@ -11,7 +11,7 @@ import autoprefixer from 'autoprefixer';
 import cssmin from 'gulp-cssmin';
 import { dirs, main } from '../paths';
 
-module.exports = gulp => gulp.src(dirs.source + main.css)
+module.exports = gulp => gulp.src(dirs.src + main.css)
   .pipe(postcss([
     postcssImport({ glob: true }),
     postcssUrl(),
