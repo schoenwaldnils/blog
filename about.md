@@ -9,7 +9,9 @@ I'm a german frontend-developer based in Hamburg.
 
 More info will come.
 
-## Things I build:
+You can find me on [https://twitter.com/schoenwaldnils](Twitter)
+
+## Things I did build:
 
 [CSStargate](http://csstargate.schoenwald.media/)
 
