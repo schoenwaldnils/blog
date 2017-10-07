@@ -30,8 +30,10 @@
   margin-bottom: .5rem;
   font-size: 2rem;
   line-height: 1;
+}
 
-  @media (--sm-viewport) {
+@media (--sm-viewport) {
+  .Footer-socialIcons {
     display: none;
   }
 }

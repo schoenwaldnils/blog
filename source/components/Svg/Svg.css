@@ -1,6 +1,7 @@
 /** @define Svg */
 
 .Svg {
+  display: block;
   width: 100%;
   height: 1em;
   fill: currentColor;
@@ -8,4 +9,12 @@
 
 .Svg--twitter {
   margin-right: -.15em;
+}
+
+.Svg--smediaIcon {
+  width: 1em;
+}
+
+.Svg--smediaLogo {
+  width: 5.53em;
 }

@@ -1,31 +1,28 @@
-language: ruby
-rvm:
-  - 2.3.0
+language: node_js
+node_js:
+  - "8.4.0"
+
+services:
+  - docker
+
+after_install:
+  - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+script: npm run lint
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh
+  on:
+    branch: master
 
 branches:
   only:
     - master
 
-before_install:
-  - bundle install
-  - nvm install node
-  - npm install
-
-script: npm run lint
-
-before_deploy:
-  - npm run build
-
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: bash $TRAVIS_BUILD_DIR/deploy.sh
-  on:
-    branch: master
-
 env:
   global:
-    NOKOGIRI_USE_SYSTEM_LIBRARIES: true # speeds up installation of html-proofer
     ENCRYPTION_LABEL: 1d97a522c7ba
     COMMIT_AUTHOR_NAME: Travis
     COMMIT_AUTHOR_EMAIL: bot@schoenwald.media

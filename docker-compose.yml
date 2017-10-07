@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+
+  nextjs:
+    build:
+      context: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file: .env
+    command: npm run next

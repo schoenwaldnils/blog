@@ -1,9 +1,3 @@
-import {
-  merge,
-  forEach,
-  map,
-} from 'lodash';
-
 const defaults = {
   currentTag: false,
 };

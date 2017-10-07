@@ -1,46 +1,3 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing these this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: schoenwald.media
-email: nils@schoenwald.media
-description: > # this means to ignore newlines until "baseurl:"
-  Thoughts on CSS, JS, and overall clean code.
-url: http://blog.schoenwald.media # the base hostname & protocol for your site, e.g. http://example.com
-permalink: :title/
-
-# Build settings
-gems:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-assets
-
-exclude:
-  - vendor
-  - package.json
-  - README.md
-  - .gitignore
-  - .env
-  - blog
-  - source
-  - Gemfile
-  - Gemfile.lock
-  - gulpfile.babel.js
-  - npm-debug.log
-  - node_modules
-  - deploy.sh
 
 markdown: kramdown
 
@@ -63,26 +20,6 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-assets:
-  assets:
-    - 'main_critical.css'
-    - 'main.css'
-    - 'main.js'
-    - 'codepen.js'
-  sources:
-    - build
-    - assets/scripts
-
-defaults:
-  -
-    scope:
-      path: ''
-    values:
-      image:
-        path: '/assets/images/logo.jpg'
-        width: 200
-        height: 200
-
 extlinks:
   attributes: {rel: nofollow, target: _blank}
   rel_exclude: [ 'csstargate.schoenwald.media' , 'www.rueckenwind-luebeck.de']
@@ -90,11 +27,6 @@ extlinks:
 google_analytics: UA-33721620-2
 google_site_verification: 3IKbfK2vAsnTUjCZC9pv2weEqymiNiNd7_pdhAHm1Z4
 
-author:
-  twitter: schoenwaldnils
-
-twitter:
-  username: schoenwaldnils
 
 facebook:
   app_id: 481527111909443

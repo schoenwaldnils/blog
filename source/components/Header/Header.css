@@ -28,7 +28,7 @@
   width: 3.5rem;
   height: 3.5rem;
   margin-bottom: -2rem;
-  font-size: 1.75rem;
+  font-size: 3rem;
   line-height: 1;
   background-color: #fff;
   border-radius: 50%;
@@ -42,13 +42,15 @@
 
 .Header-wrapNav {
   flex-grow: 1;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .Header-socialIcons {
   display: none;
+}
 
-  @media (--sm-viewport) {
+@media (--sm-viewport) {
+  .Header-socialIcons {
     flex-shrink: 0;
     display: flex;
     font-size: 1.5rem;
