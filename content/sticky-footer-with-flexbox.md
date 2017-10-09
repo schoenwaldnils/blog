@@ -1,5 +1,5 @@
 ---
-layout: post
+type: post
 title: Sticky footer with flexbox
 description: With flexbox there is now a simple way to let your footer stick to the bottom.
 date: 2016-11-15 01:15:00 +0200
@@ -7,7 +7,7 @@ tags:
   - css
   - flexbox
   - footer
-has_codepen: true
+hasCodepen: true
 ---
 
 With flexbox there is now a simple way to let your footer stick to the bottom, when there is not enough content, and make it static when there is.

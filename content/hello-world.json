@@ -1,0 +1,18 @@
+{
+  "type": "post",
+  "image": "https://source.unsplash.com/E0Spm6XXn2Y",
+  "title": "Hello World!",
+  "description": "At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.",
+  "date": "2014-6-24 17:39:18 +0200",
+  "tags": [
+    "Hello",
+    "world"
+  ],
+  "bodyContent": "At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.\nWell, joking aside.\n\n## So what awaits you as a reader?\n\nI'm a frontend-developer based in [Hamburg][hamburg] and am going to write here about my interests in this field. These mainly include CSS, CSS animation, SCSS, PostCSS and dalliance with it on [codepen.io][codepen].\n\nAlso very interesting and important, I find the area of ​​UX (user experience). Especially in terms of the mobile sector. There, little changes can cause large improvements.\n\nIn general, I appreciate neat, clean code (well, who doesn't?)\n\nI don't see myself as a gifted penpusher, but I'll try to convey the thoughts understandable.\n\nSo you can look forward to interesting articles.\n\nEnough said.\n\nEnd of line.\n\n[codepen]: http://codepen.io/schoenwaldnils/\n[hamburg]: https://www.finanzcheck.de",
+  "bodyHtml": "<p>At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.\nWell, joking aside.</p>\n<h2 id=\"so-what-awaits-you-as-a-reader-\">So what awaits you as a reader?</h2>\n<p>I&#39;m a frontend-developer based in <a href=\"https://www.finanzcheck.de\">Hamburg</a> and am going to write here about my interests in this field. These mainly include CSS, CSS animation, SCSS, PostCSS and dalliance with it on <a href=\"http://codepen.io/schoenwaldnils/\">codepen.io</a>.</p>\n<p>Also very interesting and important, I find the area of ​​UX (user experience). Especially in terms of the mobile sector. There, little changes can cause large improvements.</p>\n<p>In general, I appreciate neat, clean code (well, who doesn&#39;t?)</p>\n<p>I don&#39;t see myself as a gifted penpusher, but I&#39;ll try to convey the thoughts understandable.</p>\n<p>So you can look forward to interesting articles.</p>\n<p>Enough said.</p>\n<p>End of line.</p>\n",
+  "dir": "content",
+  "base": "hello-world.json",
+  "ext": ".json",
+  "sourceBase": "hello-world.md",
+  "sourceExt": ".md"
+}

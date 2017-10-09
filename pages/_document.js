@@ -21,6 +21,9 @@ export default class SmediaDocument extends Document {
           <meta charSet="utf-8" />
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
           <meta content="width=device-width,initial-scale=1" name="viewport" />
+          <title>Schoenwald.media</title>
+          <meta name="description" content="Thoughts on CSS, JS, and overall clean code." />
+          <meta name="theme-color" content="#ba3e48" />
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
           {this.props.styleTags}
         </Head>
@@ -29,6 +32,7 @@ export default class SmediaDocument extends Document {
           <Content content={<Main />} />
           <Footer />
           <NextScript />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rokkitt" />
         </body>
       </html>
     );

@@ -1,12 +1,12 @@
 ---
-layout: post
+type: post
+image: https://source.unsplash.com/E0Spm6XXn2Y
 title: Hello World!
 description: At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.
 date: 2014-6-24 17:39:18 +0200
 tags:
   - Hello
   - world
-header_image: https://source.unsplash.com/E0Spm6XXn2Y
 ---
 At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.
 Well, joking aside.

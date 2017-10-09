@@ -6,6 +6,8 @@ const map = webpackPostcssTools.makeVarMap(path.resolve(__dirname, 'source/css/t
 module.exports = () => ({
   plugins: {
     'postcss-import': {},
+    'postcss-url': {},
+    'postcss-nested': {},
     'postcss-css-variables': {
       variables: map.vars,
     },
@@ -14,6 +16,7 @@ module.exports = () => ({
     },
     'postcss-color-function': {},
     'postcss-calc': {},
+    'postcss-pseudoelements': {},
     autoprefixer: {},
     'postcss-reporter': {
       clearMessages: true,

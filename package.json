@@ -8,6 +8,9 @@
     "next": "next dev",
     "dev": "babel-node server.js",
     "build": "next build",
+    "build:content": "processmd content/*.md --outputDir content --summaryOutput content/summary.json",
+    "build:content:watch": "processmd content/*.md --outputDir content --summaryOutput content/summary.json --watch",
+    "build:export": "npm run build && npm run export",
     "export": "NODE_ENV=production next build && next export",
     "start": "npm run dev",
     "lint": "stylelint \"app/**/*.css\" --formatter verbose --fix",
@@ -28,8 +31,10 @@
     "classnames": "^2.2.5",
     "contentful": "^4.5.0",
     "css-loader": "^0.28.7",
+    "date-fns": "~1.28.5",
     "express": "^4.15.3",
     "gh-pages": "^1.0.0",
+    "jsonfile": "~4.0.0",
     "marked": "^0.3.6",
     "md5": "~2.2.1",
     "next": "~4.0.0-beta.4",
@@ -42,7 +47,10 @@
     "postcss-custom-media": "^6.0.0",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.6",
+    "postcss-nested": "~2.1.2",
+    "postcss-pseudoelements": "~5.0.0",
     "postcss-reporter": "^5.0.0",
+    "postcss-url": "~7.1.2",
     "prop-types": "~15.6.0",
     "raw-loader": "^0.5.1",
     "react": "~16.0.0",
@@ -55,7 +63,8 @@
     "suitcss-utils": "~3.0.0",
     "url": "^0.11.0",
     "webpack": "^3.6.0",
-    "webpack-postcss-tools": "^1.1.2"
+    "webpack-postcss-tools": "^1.1.2",
+    "yaml-front-matter": "~3.4.0"
   },
   "devDependencies": {
     "babel-eslint": "~8.0.1",
@@ -65,6 +74,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-react": "^7.1.0",
-    "jest": "~21.2.1"
+    "jest": "~21.2.1",
+    "processmd": "~3.1.6"
   }
 }

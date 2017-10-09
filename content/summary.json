@@ -1,0 +1,59 @@
+{
+  "fileMap": {
+    "content/hello-world.json": {
+      "type": "post",
+      "image": "https://source.unsplash.com/E0Spm6XXn2Y",
+      "title": "Hello World!",
+      "description": "At some point everyone needs to plunge into the first step. This it is; the beginning of my illustrious blogging career.",
+      "date": "2014-6-24 17:39:18 +0200",
+      "tags": [
+        "Hello",
+        "world"
+      ],
+      "dir": "content",
+      "base": "hello-world.json",
+      "ext": ".json",
+      "sourceBase": "hello-world.md",
+      "sourceExt": ".md"
+    },
+    "content/imprint.json": {
+      "title": "Imprint",
+      "dir": "content",
+      "base": "imprint.json",
+      "ext": ".json",
+      "sourceBase": "imprint.md",
+      "sourceExt": ".md"
+    },
+    "content/sticky-footer-with-flexbox.json": {
+      "type": "post",
+      "title": "Sticky footer with flexbox",
+      "description": "With flexbox there is now a simple way to let your footer stick to the bottom.",
+      "date": "2016-11-15 01:15:00 +0200",
+      "tags": [
+        "css",
+        "flexbox",
+        "footer"
+      ],
+      "hasCodepen": true,
+      "dir": "content",
+      "base": "sticky-footer-with-flexbox.json",
+      "ext": ".json",
+      "sourceBase": "sticky-footer-with-flexbox.md",
+      "sourceExt": ".md"
+    },
+    "content/about.json": {
+      "title": "About",
+      "dir": "content",
+      "base": "about.json",
+      "ext": ".json",
+      "sourceBase": "about.md",
+      "sourceExt": ".md"
+    }
+  },
+  "sourceFileArray": [
+    "content/about.md",
+    "content/hello-world.md",
+    "content/imprint.md",
+    "content/sticky-footer-with-flexbox.md"
+  ]
+}

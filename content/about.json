@@ -1,0 +1,10 @@
+{
+  "title": "About",
+  "bodyContent": "I'm a german frontend-developer based in Hamburg.\n\nMore info will come.\n\n\nYou can find me on [Twitter](https://twitter.com/schoenwaldnils), [Github](https://github.com/schoenwaldnils) and [CodePen](https://codepen.io/schoenwaldnils)\n\n## Things I did build:\n\n[CSStargate](http://csstargate.schoenwald.media/)\n\n[Rückenwind Lübeck](http://www.rueckenwind-luebeck.de/)",
+  "bodyHtml": "<p>I&#39;m a german frontend-developer based in Hamburg.</p>\n<p>More info will come.</p>\n<p>You can find me on <a href=\"https://twitter.com/schoenwaldnils\">Twitter</a>, <a href=\"https://github.com/schoenwaldnils\">Github</a> and <a href=\"https://codepen.io/schoenwaldnils\">CodePen</a></p>\n<h2 id=\"things-i-did-build-\">Things I did build:</h2>\n<p><a href=\"http://csstargate.schoenwald.media/\">CSStargate</a></p>\n<p><a href=\"http://www.rueckenwind-luebeck.de/\">Rückenwind Lübeck</a></p>\n",
+  "dir": "content",
+  "base": "about.json",
+  "ext": ".json",
+  "sourceBase": "about.md",
+  "sourceExt": ".md"
+}

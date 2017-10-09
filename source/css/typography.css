@@ -28,10 +28,13 @@ h4 {
   font-weight: 400;
   line-height: 1.1;
   color: var(--text-color);
+}
 
-  &::first-letter {
-    color: var(--color-brand);
-  }
+h1::first-letter,
+h2::first-letter,
+h3::first-letter,
+h4::first-letter {
+  color: var(--color-brand);
 }
 
 @media print {
