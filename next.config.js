@@ -1,3 +1,6 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+
 module.exports = {
   exportPathMap() {
     return {
@@ -25,6 +28,12 @@ module.exports = {
       }
       return rule;
     });
+
+    config.plugins.push(
+      new FaviconsWebpackPlugin('./static/assets/images/favicon.png'),
+      new HtmlWebpackPlugin(),
+    );
+
     return config;
   },
   webpackDevMiddleware: (config) => {

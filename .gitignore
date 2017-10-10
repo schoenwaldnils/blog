@@ -11,3 +11,5 @@ build/
 out/
 .next/
 .env
+
+content/*.json

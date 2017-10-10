@@ -4,18 +4,18 @@ import Post from '../source/components/Post/Post';
 
 const Page = ({ url }) => {
   const summary = url.query.summary.fileMap;
-  console.log(url.query);
   return (
     <div className="Page">
       {Object.keys(summary).map((post) => {
         const postData = summary[post];
         if (postData.type === 'post') {
           return (<Post
-            url={postData.url}
+            url={`/${postData.base.replace('.json', '')}`}
             title={postData.title}
             date={postData.date}
             tags={postData.tags}
-            description={postData.description} />);
+            description={postData.description}
+            key={postData.base} />);
         }
         return false;
       })}

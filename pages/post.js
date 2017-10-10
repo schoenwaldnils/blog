@@ -18,7 +18,6 @@ const Page = ({ url }) => {
           title={postData.title}
           date={postData.date}
           tags={postData.tags}
-          description={postData.description}
           content={postData.bodyHtml} />
       </div>
     );

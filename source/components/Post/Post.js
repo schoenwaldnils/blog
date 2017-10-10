@@ -21,9 +21,9 @@ const Post = ({ url, image, title, date, tags, description, content }) => {
 
           {tags && <div className="Post-tags">
             {tags.map(tag => (
-              <div>
+              <span>
                 <a className="Post-tag" href={`/tag/${tag}`}>{tag}</a><span className="Post-tagComma">, </span>
-              </div>
+              </span>
             ))}
           </div>}
         </div>
@@ -32,7 +32,8 @@ const Post = ({ url, image, title, date, tags, description, content }) => {
 
         {description && <p className="Post-description">
           {description}
-          <a className="Post-readMore" href={url}> read more</a>
+          {' '}
+          <a className="Post-readMore" href={url}>read more</a>
         </p>}
 
         {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: content }} />}
