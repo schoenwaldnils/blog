@@ -10,9 +10,9 @@ const Header = () => (
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <div className="Header-content u-maxWidth">
 
-      <Link prefetch>
-        <a className="Header-logo" href="/">
-          <Svg name="smedia-icon" />
+      <Link href="/" prefetch>
+        <a className="Header-logo">
+          <Svg name="smedia-icon-old" />
         </a>
       </Link>
 

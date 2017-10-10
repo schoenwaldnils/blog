@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import { format } from 'date-fns';
 import stylesheet from './Post.css';
 
@@ -20,15 +21,21 @@ const Post = ({ url, image, title, date, tags, description, content }) => {
           </time>}
 
           {tags && <div className="Post-tags">
-            {tags.map(tag => (
-              <span>
-                <a className="Post-tag" href={`/tag/${tag}`}>{tag}</a><span className="Post-tagComma">, </span>
-              </span>
-            ))}
+            {tags.map(tag => [
+              <Link href={`/tag/${tag}`} key={tag}>
+                <a className="Post-tag">{tag}</a>
+              </Link>,
+              <span className="Post-tagComma" key={`${tag}-comma`}>, </span>,
+            ])}
           </div>}
         </div>
 
-        <h1 className="Post-title">{title}</h1>
+        {url ?
+          <Link href={url}>
+            <a><h1 className="Post-title">{title}</h1></a>
+          </Link> :
+          <h1 className="Post-title">{title}</h1>
+        }
 
         {description && <p className="Post-description">
           {description}
@@ -44,18 +51,21 @@ const Post = ({ url, image, title, date, tags, description, content }) => {
 };
 
 Post.defaultProps = {
+  url: null,
   image: null,
+  date: null,
   tags: [],
+  description: null,
   content: null,
 };
 
 Post.propTypes = {
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   image: PropTypes.string,
   title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.string,
   tags: PropTypes.array,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   content: PropTypes.string,
 };
 
