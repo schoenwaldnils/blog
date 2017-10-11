@@ -14,7 +14,7 @@
 @import '../components/Svg/Svg.css';
 @import 'utils/display/index.css';
 @import 'utils/utils-theme.css';
-@import 'utils/highlighting.css';
+@import 'utils/highlight-js.css';
 
 /*
  * Shame

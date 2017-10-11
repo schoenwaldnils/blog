@@ -1,0 +1,119 @@
+code {
+  display: inline-flex;
+  align-items: center;
+  padding-right: .5em;
+  padding-left: .5em;
+  font-size: .7em;
+  line-height: 1.6;
+  color: var(--cb1);
+  vertical-align: text-bottom;
+  background-color: var(--cb6);
+}
+
+.hljs {
+  display: block;
+  padding: .5em 1em;
+  overflow-x: auto;
+  line-height: 1.8;
+  color: var(--cb7);
+  background: var(--cb1);
+}
+
+.hljs.css,
+.hljs.ruby,
+.hljs.html,
+.hljs.php {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: .15rem;
+    right: .5rem;
+    color: var(--cb3);
+  }
+}
+
+.hljs.css::after {
+  content: 'css';
+}
+
+.hljs.ruby::after {
+  content: 'ruby';
+}
+
+.hljs.html::after {
+  content: 'html';
+}
+
+.hljs.php::after {
+  content: 'php';
+}
+
+
+/* Atelier-Cave Comment */
+.hljs-comment,
+.hljs-quote {
+  color: var(--cb3);
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute,
+.hljs-regexp,
+.hljs-link,
+.hljs-tag,
+.hljs-selector-id {
+  color: var(--cb7);
+}
+
+.hljs-attr,
+.hljs-selector-class,
+.hljs-number,
+.hljs-meta,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params {
+  color: var(--cb9);
+}
+
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet {
+  color: var(--cbB);
+}
+
+.hljs-title,
+.hljs-section {
+  color: var(--cbD);
+}
+
+.hljs-keyword,
+.hljs-name,
+.hljs-selector-tag {
+  color: var(--cb8);
+}
+
+.hljs-deletion,
+.hljs-addition {
+  display: inline-block;
+  width: 100%;
+  color: #19171c;
+}
+
+.hljs-deletion {
+  background-color: var(--cbE);
+}
+
+.hljs-addition {
+  background-color: var(--cbF);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
