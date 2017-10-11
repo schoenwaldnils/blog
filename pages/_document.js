@@ -18,7 +18,6 @@ export default class SmediaDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <meta charSet="utf-8" />
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
           <meta content="width=device-width,initial-scale=1" name="viewport" />
           <title>Schoenwald.media</title>

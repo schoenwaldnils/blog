@@ -21,8 +21,8 @@ const Nav = () => (
     <ul className="Nav-list">
       {navItems.map(item => (
         <li className={classNames('Nav-item', { 'is-current': isCurrent })} key={item.text}>
-          <Link prefetch>
-            <a href={item.href} className="Nav-link">{item.text}</a>
+          <Link href={item.href} prefetch>
+            <a className="Nav-link">{item.text}</a>
           </Link>
         </li>
       ))}
