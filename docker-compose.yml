@@ -2,17 +2,7 @@ version: '3'
 
 services:
 
-  processmd:
-    build:
-      context: .
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    command: npm run build:content:watch
-
   nextjs:
-    depends_on:
-      - processmd
     build:
       context: .
     volumes:

@@ -1,11 +1,31 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const { client } = require('./scripts/contentful');
 
 module.exports = {
-  exportPathMap() {
-    return {
-      '/': { page: '/' },
-    };
+  async exportPathMap() {
+    const pages = {};
+
+    try {
+      const pagesData = await client.getEntries({
+        content_type: 'page',
+        select: 'sys.id,fields.slug',
+      });
+
+      pagesData.items.map((item) => {
+        pages[`/${item.fields.slug}`] = {
+          page: '/page',
+          query: {
+            id: item.sys.id,
+          },
+        };
+        return true;
+      });
+    } catch (exception) {
+      console.error(exception);
+    }
+
+    return pages;
   },
   webpack: (config, { dev }) => {
     config.module.rules.push({
@@ -29,10 +49,14 @@ module.exports = {
       return rule;
     });
 
-    config.plugins.push(
-      new FaviconsWebpackPlugin('./static/assets/images/favicon.png'),
-      new HtmlWebpackPlugin(),
-    );
+    // config.plugins.push(
+    //   new FaviconsWebpackPlugin({
+    //     logo: './static/assets/images/favicon.png',
+    //     statsFilename: 'iconstats.json',
+    //     inject: true,
+    //   }),
+    //   new HtmlWebpackPlugin(),
+    // );
 
     return config;
   },

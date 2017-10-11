@@ -1,30 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getFields } from '../scripts/contentful';
 import Post from '../source/components/Post/Post';
 
-const Page = ({ url }) => {
-  const summary = url.query.summary.fileMap;
+
+const Page = ({ posts }) => {
   return (
     <div className="Page">
-      {Object.keys(summary).map((post) => {
-        const postData = summary[post];
-        if (postData.type === 'post') {
-          return (<Post
-            url={`/${postData.base.replace('.json', '')}`}
-            title={postData.title}
-            date={postData.date}
-            tags={postData.tags}
-            description={postData.description}
-            key={postData.base} />);
-        }
-        return false;
-      })}
+      {posts.map(post => (<Post {...post} key={post.slug} />))}
     </div>
   );
 };
 
+Page.getInitialProps = async ({ query }) => {
+  const posts = await Promise.all(query.posts.map(async (post) => {
+    const postFields = await getFields(post.id);
+    if (postFields.image) delete postFields.image;
+    if (postFields.content) delete postFields.content;
+    postFields.url = post.url;
+    return postFields;
+  }));
+
+  return {
+    posts,
+  };
+};
+
 Page.propTypes = {
-  url: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
 };
 
 export default Page;

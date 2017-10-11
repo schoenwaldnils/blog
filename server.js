@@ -1,54 +1,63 @@
 const express = require('express');
 const next = require('next');
-const jf = require('jsonfile');
+const { client, getEntries } = require('./scripts/contentful');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
+app.prepare().then(async () => {
   const server = express();
-
-  // custom route for index
-  server.get('/', (req, res) =>
-    jf.readFile('./content/summary.json', (err, obj) => {
-      if (err) {
-        return handle(req, res);
-      }
-      return app.render(req, res, '/index', {
-        summary: obj,
+  try {
+    // CUSTOM ROUTES GO HERE
+    const contentfulPages = await getEntries('page');
+    contentfulPages.map((item) => {
+      const { id, url } = item;
+      server.get(url, (req, res) => {
+        return app.render(req, res, '/page', { id });
       });
-    }),
-  );
-
-  // custom route for tags
-  server.get('/tag/:slug', (req, res) =>
-    jf.readFile('./content/summary.json', (err, obj) => {
-      if (err) {
-        return handle(req, res);
-      }
-      return app.render(req, res, '/tag', {
-        tag: req.params.slug,
-        summary: obj,
-      });
-    }),
-  );
-
-  server.get('*', (req, res) => {
-    const url = req.originalUrl.replace(/\/$/, '');
-    return jf.readFile(`./content${url}.json`, (err, obj) => {
-      if (err) {
-        return handle(req, res);
-      }
-      return app.render(req, res, '/post', {
-        post: req.params.slug,
-        postData: obj,
-      });
+      return true;
     });
+
+    const contentfulPosts = await getEntries('post');
+    contentfulPosts.map((item) => {
+      const { id, url } = item;
+      server.get(url, (req, res) => {
+        return app.render(req, res, '/page', { id });
+      });
+      return true;
+    });
+  } catch (exception) {
+    console.error(exception);
+  }
+
+  server.get('/', async (req, res) =>
+    app.render(req, res, '/index', { posts: await getEntries('post') }),
+  );
+
+  server.get('/tag/:slug', async (req, res) => {
+    try {
+      const postsWithTag = await client.getEntries({
+        content_type: 'post',
+        'fields.tags[in]': req.params.slug,
+      });
+      return app.render(req, res, '/tag', {
+        posts: postsWithTag,
+      });
+    } catch (exception) {
+      console.error(exception);
+    }
   });
 
-  server.listen(3000, (err) => {
+  // THIS IS THE DEFAULT ROUTE, DON'T EDIT THIS
+  server.get('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  const port = 3000;
+
+  server.listen(port, (err) => {
     if (err) throw err;
-    console.log('> Ready on http://localhost:3000');
+    console.warn(`> Ready on port ${port}...`);
   });
 });
