@@ -5,14 +5,23 @@ const client = contentful.createClient({
   accessToken: process.env.CONTENTFUL_TOKEN,
 });
 
-async function getEntries(type) {
+async function getEntries(type, tag = false) {
   const posts = [];
 
   try {
-    const res = await client.getEntries({
-      content_type: type,
-      select: 'sys.id,fields.slug',
-    });
+    let res;
+    if (tag) {
+      res = await client.getEntries({
+        content_type: type,
+        select: 'sys.id,fields.slug',
+        'fields.tags[in]': tag,
+      });
+    } else {
+      res = await client.getEntries({
+        content_type: type,
+        select: 'sys.id,fields.slug',
+      });
+    }
 
     res.items.map((item) => {
       posts.push({
@@ -37,6 +46,32 @@ async function getFields(id) {
   }
 }
 
+async function getTags() {
+  const tags = [];
+
+  try {
+    const res = await client.getEntries({
+      content_type: 'post',
+      select: 'sys.id,fields.tags',
+    });
+
+    res.items.map((item) => {
+      item.fields.tags.map((tag) => {
+        if (!tags.includes(tag)) {
+          tags.push(tag);
+          return true;
+        }
+        return false;
+      });
+      return true;
+    });
+  } catch (exception) {
+    console.error(exception);
+  }
+  return tags;
+}
+
 exports.client = client;
 exports.getEntries = getEntries;
 exports.getFields = getFields;
+exports.getTags = getTags;

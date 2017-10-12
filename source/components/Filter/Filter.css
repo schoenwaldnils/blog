@@ -22,7 +22,7 @@
   background-color: var(--cb6);
 }
 
-.Filter-tag:checked + .Filter-label {
+.Filter-label.is-current {
   color: #fff;
   background-color: var(--color-brand);
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const next = require('next');
-const { client, getEntries } = require('./scripts/contentful');
+const { getEntries, getTags } = require('./scripts/contentful');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -32,22 +32,16 @@ app.prepare().then(async () => {
   }
 
   server.get('/', async (req, res) =>
-    app.render(req, res, '/index', { posts: await getEntries('post') }),
-  );
+    app.render(req, res, '/index', { posts: await getEntries('post') }));
 
-  server.get('/tag/:slug', async (req, res) => {
-    try {
-      const postsWithTag = await client.getEntries({
-        content_type: 'post',
-        'fields.tags[in]': req.params.slug,
-      });
-      return app.render(req, res, '/tag', {
-        posts: postsWithTag,
-      });
-    } catch (exception) {
-      console.error(exception);
-    }
-  });
+  console.log('await tags: ' + await getTags());
+
+  server.get('/tag/:slug', async (req, res) =>
+    app.render(req, res, '/tag', {
+      tag: req.params.slug,
+      tags: await getTags(),
+      posts: await getEntries('post', req.params.slug),
+    }));
 
   // THIS IS THE DEFAULT ROUTE, DON'T EDIT THIS
   server.get('*', (req, res) => {

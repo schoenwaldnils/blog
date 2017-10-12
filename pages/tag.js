@@ -1,31 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getFields } from '../scripts/contentful';
 import Post from '../source/components/Post/Post';
+import Filter from '../source/components/Filter/Filter';
 
-const Page = ({ url }) => {
-  const summary = url.query.summary.fileMap;
-  const tag = url.query.tag;
-  return (
+const Page = ({ activeTag, tags, posts }) => {
+  console.log(tags);
+  console.log('activeTag: ' + activeTag);
+  return [
+    <Filter activeTag={activeTag} tags={tags} />,
     <div className="Page">
-      {Object.keys(summary).map((post) => {
-        const postData = summary[post];
-        if (postData.type === 'post' && postData.tags.includes(tag)) {
-          return (<Post
-            url={`/${postData.base.replace('.json', '')}`}
-            title={postData.title}
-            date={postData.date}
-            tags={postData.tags}
-            description={postData.description}
-            key={postData.base} />);
-        }
-        return false;
-      })}
-    </div>
-  );
+      {posts.map(post => (<Post {...post} key={post.slug} />))}
+    </div>,
+  ];
+};
+
+Page.getInitialProps = async ({ query }) => {
+  const posts = await Promise.all(query.posts.map(async (post) => {
+    const postFields = await getFields(post.id);
+    if (postFields.image) delete postFields.image;
+    if (postFields.content) delete postFields.content;
+    postFields.url = post.url;
+    return postFields;
+  }));
+
+  return {
+    posts,
+    activeTag: query.tag || null,
+    tags: query.tags || null,
+  };
 };
 
 Page.propTypes = {
-  url: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
 };
 
 export default Page;
