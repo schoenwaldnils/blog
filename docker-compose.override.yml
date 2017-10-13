@@ -7,4 +7,5 @@ services:
       - ${PORT}:3000
     extra_hosts:
       - ${HOST}:172.18.0.1
+    env_file: .env
     restart: always
