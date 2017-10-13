@@ -24,4 +24,7 @@ chmod 600 deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key
 
+touch out/.nojekyll
+cp CNAME out/
+
 ./node_modules/.bin/gh-pages --repo $SSH_REPO --dist out
