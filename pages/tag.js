@@ -5,8 +5,6 @@ import Post from '../source/components/Post/Post';
 import Filter from '../source/components/Filter/Filter';
 
 const Page = ({ activeTag, tags, posts }) => {
-  console.log(tags);
-  console.log('activeTag: ' + activeTag);
   return [
     <Filter activeTag={activeTag} tags={tags} />,
     <div className="Page">

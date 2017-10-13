@@ -34,8 +34,6 @@ app.prepare().then(async () => {
   server.get('/', async (req, res) =>
     app.render(req, res, '/index', { posts: await getEntries('post') }));
 
-  console.log('await tags: ' + await getTags());
-
   server.get('/tag/:slug', async (req, res) =>
     app.render(req, res, '/tag', {
       tag: req.params.slug,
