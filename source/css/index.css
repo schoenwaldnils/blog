@@ -9,6 +9,7 @@
  * Styles
  */
 
+@import 'theme.css';
 @import 'base.css';
 @import 'typography.css';
 @import '../components/Svg/Svg.css';

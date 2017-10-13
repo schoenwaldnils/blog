@@ -15,7 +15,7 @@
   width: 100%;
   height: 100%;
   background-color: var(--SocialIcon-inset-color, #000);
-  border: 1px solid var(--SocialIcon-background);
+  border: 1px solid var(--background-color, --SocialIcon-background);
   border-radius: 50%;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .SocialIcon-iconFront {
-  background-color: var(--SocialIcon-background);
+  background-color: var(--background-color, --SocialIcon-background);
 }
 
 .SocialIcon-iconBack {

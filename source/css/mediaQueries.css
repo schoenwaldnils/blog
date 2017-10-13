@@ -1,0 +1,13 @@
+/*
+ * Media Queries
+ */
+
+@custom-media --sm-viewport (min-width: 481px);
+@custom-media --md-viewport (min-width: 621px);
+@custom-media --lg-viewport (min-width: 769px);
+@custom-media --sm-viewport-max (max-width: 480px);
+@custom-media --md-viewport-max (max-width: 620px);
+@custom-media --lg-viewport-max (max-width: 768px);
+@custom-media --sm-viewport-only (min-width: 481px) and (max-width: 620px);
+@custom-media --md-viewport-only (min-width: 621px) and (max-width: 768px);
+@custom-media --lg-viewport-only (min-width: 769px) and (max-width: 1024px);
