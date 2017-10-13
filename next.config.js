@@ -1,44 +1,78 @@
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const { client } = require('./scripts/contentful');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+const { getEntries, getTags } = require('./scripts/contentful');
 
 module.exports = {
   async exportPathMap() {
-    const pages = {};
+    const pathMap = {};
 
     try {
-      const pagesData = await client.getEntries({
-        content_type: 'page',
-        select: 'sys.id,fields.slug',
-      });
+      const pages = await getEntries('page');
+      const posts = await getEntries('post');
+      const tags = await getTags();
 
-      pagesData.items.map((item) => {
-        pages[`/${item.fields.slug}`] = {
+      // index
+      pathMap['/'] = {
+        page: '/index',
+        query: {
+          posts,
+        },
+      };
+
+      pages.map((item) => {
+        pathMap[item.url] = {
           page: '/page',
           query: {
-            id: item.sys.id,
+            id: item.id,
           },
         };
         return true;
       });
+
+      posts.map((item) => {
+        pathMap[item.url] = {
+          page: '/page',
+          query: {
+            id: item.id,
+          },
+        };
+        return true;
+      });
+
+      await Promise.all(tags.map(async (tag) => {
+        const tagPosts = await getEntries('post', tag);
+        pathMap[`/tag/${tag}`] = {
+          page: '/tag',
+          query: {
+            tag,
+            tags,
+            posts: tagPosts,
+          },
+        };
+        return true;
+      }));
     } catch (exception) {
       console.error(exception);
     }
 
-    return pages;
+    return pathMap;
   },
   webpack: (config, { dev }) => {
-    config.module.rules.push({
-      test: /\.css$/,
-      loader: 'emit-file-loader',
-      options: {
-        name: 'dist/[path][name].[ext]',
+    config.module.rules.push(
+      {
+        test: /\.css$/,
+        loader: 'emit-file-loader',
+        options: {
+          name: 'dist/[path][name].[ext]',
+        },
       },
-    },
-    {
-      test: /\.css$/,
-      use: ['babel-loader', 'raw-loader', 'postcss-loader'],
-    });
+      {
+        test: /\.css$/,
+        use: ['babel-loader', 'raw-loader', 'postcss-loader'],
+      },
+    );
 
     console.warn(dev ? 'Enviroment: DEVELOPMENT' : 'Enviroment: PRODUCTION');
 
@@ -57,6 +91,8 @@ module.exports = {
     //   }),
     //   new HtmlWebpackPlugin(),
     // );
+
+    if (!dev) config.plugins.push(new UglifyJSPlugin());
 
     return config;
   },

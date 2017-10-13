@@ -1,6 +1,8 @@
 /** @define Footer */
 
 .Footer {
+  --background-color: var(--Footer-background, #000);
+
   flex-shrink: 0;
   padding-top: .75rem;
   padding-bottom: .75rem;

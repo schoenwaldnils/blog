@@ -10,7 +10,7 @@ const Filter = ({ tags, activeTag }) => [
     <div className="Filter-items">
       <div className="Filter-item Filter-reset">all</div>
       {tags && tags.map(tag => (
-        <Link href={`/tag/${tag}`} >
+        <Link href={`/tag/${tag}`} key={tag} >
           <a className={classNames('Filter-item', 'Filter-label', { 'is-current': tag === activeTag })}>{tag}</a>
         </Link>
       ))}

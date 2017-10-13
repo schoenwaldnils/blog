@@ -8,8 +8,13 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(async () => {
   const server = express();
+
+  // index
+  server.get('/', async (req, res) =>
+    app.render(req, res, '/index', { posts: await getEntries('post') }));
+
   try {
-    // CUSTOM ROUTES GO HERE
+    // Custom Pages
     const contentfulPages = await getEntries('page');
     contentfulPages.map((item) => {
       const { id, url } = item;
@@ -19,6 +24,7 @@ app.prepare().then(async () => {
       return true;
     });
 
+    // Custom Posts
     const contentfulPosts = await getEntries('post');
     contentfulPosts.map((item) => {
       const { id, url } = item;
@@ -31,9 +37,7 @@ app.prepare().then(async () => {
     console.error(exception);
   }
 
-  server.get('/', async (req, res) =>
-    app.render(req, res, '/index', { posts: await getEntries('post') }));
-
+  // Custom Tags
   server.get('/tag/:slug', async (req, res) =>
     app.render(req, res, '/tag', {
       tag: req.params.slug,

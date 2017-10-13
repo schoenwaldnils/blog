@@ -59,6 +59,7 @@
     "suitcss-base": "~4.0.0",
     "suitcss-utils": "~3.0.0",
     "url": "^0.11.0",
+    "uglifyjs-webpack-plugin": "~1.0.0-beta.3",
     "webpack": "~3.7.1",
     "webpack-postcss-tools": "^1.1.2",
     "yaml-front-matter": "~3.4.0"
