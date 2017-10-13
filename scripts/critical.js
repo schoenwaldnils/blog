@@ -1,7 +1,7 @@
 const critical = require('critical');
 
-const base = '_site';
-const dest = '../_site/build/main_critical.css';
+const base = 'out';
+const dest = '../out/build/main_critical.css';
 
 critical.generate({
   base,

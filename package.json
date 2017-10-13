@@ -1,6 +1,10 @@
 {
   "name": "blog",
   "version": "2.0.0",
+  "author": {
+    "name": "Nils Schönwald",
+    "email" "nils@schoenwald.media"
+  },
   "description": "Nils Blog",
   "main": "index.js",
   "scripts": {
