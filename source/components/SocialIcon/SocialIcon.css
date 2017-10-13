@@ -41,7 +41,7 @@
 
 .SocialIcon-iconBack {
   color: #fff;
-  transform: rotateX(180deg);
+  transform: rotateY(180deg);
 }
 
 .SocialIcon--github .SocialIcon-iconFront,
@@ -51,11 +51,11 @@
 
 
 .SocialIcon:hover .SocialIcon-iconFront {
-  transform: rotateX(180deg);
+  transform: rotateY(180deg);
 }
 
 .SocialIcon:hover .SocialIcon-iconBack {
-  transform: rotateX(0deg);
+  transform: rotateY(0deg);
 }
 
 .SocialIcon--twitter .SocialIcon-iconBack {
