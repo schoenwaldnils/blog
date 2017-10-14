@@ -29,4 +29,4 @@ sudo cp CNAME out/
 
 ls -a out
 
-./node_modules/.bin/gh-pages --repo $SSH_REPO --dist out --src ['**/*', '**/.*']
+./node_modules/.bin/gh-pages --dist out --src '{**/*.*, **/.*}'
