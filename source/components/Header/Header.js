@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import stylesheet from './Header.css';
 import Svg from '../Svg/Svg';
 import Nav from '../Nav/Nav';
@@ -10,11 +9,9 @@ const Header = () => (
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <div className="Header-content u-maxWidth">
 
-      <Link href="/" prefetch>
-        <a className="Header-logo">
-          <Svg name="smedia-icon-old" />
-        </a>
-      </Link>
+      <a className="Header-logo" href="/">
+        <Svg name="smedia-icon-old" />
+      </a>
 
       <div className="Header-wrapNav">
         <Nav />

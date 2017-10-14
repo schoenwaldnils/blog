@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import classNames from 'classnames';
 import stylesheet from './Nav.css';
 
@@ -21,9 +20,7 @@ const Nav = () => (
     <ul className="Nav-list">
       {navItems.map(item => (
         <li className={classNames('Nav-item', { 'is-current': isCurrent })} key={item.text}>
-          <Link href={item.href} prefetch>
-            <a className="Nav-link">{item.text}</a>
-          </Link>
+          <a className="Nav-link" href={item.href}>{item.text}</a>
         </li>
       ))}
     </ul>

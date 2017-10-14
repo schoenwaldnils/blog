@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { format } from 'date-fns';
 import stylesheet from './Post.css';
 
@@ -27,18 +26,14 @@ const Post = ({
           {tags &&
             <div className="Post-tags">
               {tags.map(tag => [
-                <Link href={`/tag/${tag}`} key={tag} prefetch>
-                  <a className="Post-tag">{tag}</a>
-                </Link>,
+                <a className="Post-tag" href={`/tag/${tag}`} key={tag}>{tag}</a>,
                 <span className="Post-tagComma" key={`${tag}-comma`}>, </span>,
               ])}
             </div>}
         </div>
 
         {url ?
-          <Link href={url}>
-            <a><h1 className="Post-title">{title}</h1></a>
-          </Link> :
+          <a href={url}><h1 className="Post-title">{title}</h1></a> :
           <h1 className="Post-title">{title}</h1>
         }
 
