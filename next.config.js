@@ -15,7 +15,7 @@ module.exports = {
 
       // index
       pathMap['/'] = {
-        page: '/index',
+        page: '/',
         query: {
           posts,
         },
@@ -57,6 +57,7 @@ module.exports = {
       console.error(exception);
     }
 
+    console.log('pathMap: ' + JSON.stringify(pathMap));
     return pathMap;
   },
   webpack: (config, { dev }) => {
