@@ -19,7 +19,7 @@ const Post = ({
       <div className="Post-content u-richText u-boxPadding">
         <div className="Post-meta">
           {date &&
-            <time className="Post-date" dateTime="{{ include.date | date: '%F'}}">
+            <time className="Post-date" dateTime={format(date, 'YYYY-MM-DD HH:mm')}>
               {format(date, 'MMM DD, YYYY')}
             </time>}
 
