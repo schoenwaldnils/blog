@@ -6,9 +6,9 @@ import stylesheet from './Post.css';
 const Post = ({
   url, image, title, date, tags, description, content,
 }) => {
-  return (
+  return [
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
     <article className="Post u-whiteBox">
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
 
       {image &&
@@ -41,14 +41,14 @@ const Post = ({
           <p className="Post-description">
             {description}
             {' '}
-            <a className="Post-readMore" href={url}>read more</a>
+            <a className="Post-readMore" href={url}>to the full article</a>
           </p>}
 
         {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: content }} />}
 
       </div>
-    </article>
-  );
+    </article>,
+  ];
 };
 
 Post.defaultProps = {

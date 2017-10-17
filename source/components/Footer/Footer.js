@@ -2,9 +2,9 @@ import React from 'react';
 import stylesheet from './Footer.css';
 import SocialIcon from '../SocialIcon/SocialIcon';
 
-const Footer = () => (
+const Footer = () => [
+  <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
   <footer className="Footer">
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <div className="Footer-content u-maxWidth">
       <div className="Footer-socialIcons">
         <div className="Footer-wrapSocialIcon">
@@ -18,7 +18,7 @@ const Footer = () => (
         © {(new Date()).getFullYear()} Nils Schönwald – <a href="/imprint/" title="Imprint">Imprint</a>
       </div>
     </div>
-  </footer>
-);
+  </footer>,
+];
 
 export default Footer;

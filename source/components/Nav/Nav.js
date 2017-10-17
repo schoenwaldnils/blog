@@ -14,9 +14,9 @@ const navItems = [
 
 const isCurrent = false;
 
-const Nav = () => (
+const Nav = () => [
+  <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
   <nav className="Nav">
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <ul className="Nav-list">
       {navItems.map(item => (
         <li className={classNames('Nav-item', { 'is-current': isCurrent })} key={item.text}>
@@ -24,6 +24,6 @@ const Nav = () => (
         </li>
       ))}
     </ul>
-  </nav>
-);
+  </nav>,
+];
 export default Nav;

@@ -4,9 +4,9 @@ import Svg from '../Svg/Svg';
 import Nav from '../Nav/Nav';
 import SocialIcon from '../SocialIcon/SocialIcon';
 
-const Header = () => (
+const Header = () => [
+  <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
   <header className="Header">
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     <div className="Header-content u-maxWidth">
 
       <a className="Header-logo" href="/">
@@ -27,7 +27,7 @@ const Header = () => (
       </div>
 
     </div>
-  </header>
-);
+  </header>,
+];
 
 export default Header;

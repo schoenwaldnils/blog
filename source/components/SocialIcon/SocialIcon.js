@@ -5,17 +5,17 @@ import Svg from '../Svg/Svg';
 
 const SocialIcon = ({ name, href }) => {
   const lowerCaseName = name.toLowerCase();
-  return (
+  return [
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
     <a className={`SocialIcon SocialIcon--${lowerCaseName}`} href={href} target="_blank" title={`Show ${name}-profile`} rel="noopener">
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       <span className="SocialIcon-iconFront">
         <Svg name={lowerCaseName} />
       </span>
       <span className="SocialIcon-iconBack">
         <Svg name={lowerCaseName} />
       </span>
-    </a>
-  );
+    </a>,
+  ];
 };
 
 SocialIcon.propTypes = {
