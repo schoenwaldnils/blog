@@ -15,14 +15,14 @@
   margin-right: .25rem;
   margin-bottom: .25rem;
   padding: .25em .5em;
-  font-family: var(--font-rokkitt);
+  font-family: var(--font-second);
   font-size: .8em;
   font-weight: 200;
   cursor: pointer;
   background-color: var(--cb6);
 }
 
-.Filter-label.is-current {
+.Filter-item.is-current {
   color: #fff;
   background-color: var(--color-brand, deeppink);
 }

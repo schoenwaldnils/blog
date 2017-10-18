@@ -21,6 +21,15 @@ module.exports = {
         },
       };
 
+      pathMap['/tag'] = {
+        page: '/',
+        query: {
+          tags,
+          posts,
+        },
+      };
+
+
       pages.map((item) => {
         pathMap[item.url] = {
           page: '/page',

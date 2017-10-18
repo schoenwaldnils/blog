@@ -28,14 +28,14 @@
   width: 100%;
   height: 100%;
   background-position: center 60%;
-  background-size: cover;
+  object-fit: cover;
 }
 
 .Post-meta {
   display: flex;
   justify-content: space-between;
   margin-bottom: .5em;
-  font-family: var(--font-rokkitt);
+  font-family: var(--font-second);
   font-size: 1em;
   font-weight: 200;
 }
@@ -71,14 +71,10 @@
   display: none;
 }
 
+.Post-readMore {
+  white-space: nowrap;
+}
+
 a.Post-link::after {
   content: none;
-}
-
-html:not([data-tag*='tag:']) .Post {
-  display: block;
-}
-
-html[data-tag*='tag:'] .Post {
-  display: none;
 }

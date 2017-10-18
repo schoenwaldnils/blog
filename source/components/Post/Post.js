@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import stylesheet from './Post.css';
+import { viewportsJs } from '../../js/viewports';
 
 const Post = ({
   url, image, title, date, tags, description, content,
@@ -13,7 +14,11 @@ const Post = ({
 
       {image &&
         <div className="Post-wrapImage">
-          <div className="Post-image" style={{ backgroundImage: `url('${image}')` }} />
+          <picture>
+            <source srcSet={`${image.url}?w=1000&fl=progressive`} media={viewportsJs.sm} />
+            <source srcSet={`${image.url}?w=840&fl=progressive`} />
+            <img className="Post-image" src={`${image.url}`} alt={image.alt} />
+          </picture>
         </div>}
 
       <div className="Post-content u-richText u-boxPadding">
@@ -41,7 +46,7 @@ const Post = ({
           <p className="Post-description">
             {description}
             {' '}
-            <a className="Post-readMore" href={url}>to the full article</a>
+            <a className="Post-readMore" href={url}>read the full article</a>
           </p>}
 
         {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: content }} />}
@@ -62,7 +67,7 @@ Post.defaultProps = {
 
 Post.propTypes = {
   url: PropTypes.string,
-  image: PropTypes.string,
+  image: PropTypes.object,
   title: PropTypes.string.isRequired,
   date: PropTypes.string,
   tags: PropTypes.array,

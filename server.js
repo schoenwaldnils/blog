@@ -11,7 +11,13 @@ app.prepare().then(async () => {
 
   // index
   server.get('/', async (req, res) =>
-    app.render(req, res, '/index', { posts: await getEntries('post') }));
+    app.render(req, res, '/', { posts: await getEntries('post') }));
+
+  server.get('/tag', async (req, res) =>
+    app.render(req, res, '/', {
+      posts: await getEntries('post'),
+      tags: await getTags(),
+    }));
 
   try {
     // Custom Pages
@@ -39,10 +45,10 @@ app.prepare().then(async () => {
 
   // Custom Tags
   server.get('/tag/:slug', async (req, res) =>
-    app.render(req, res, '/tag', {
-      tag: req.params.slug,
-      tags: await getTags(),
+    app.render(req, res, '/', {
       posts: await getEntries('post', req.params.slug),
+      tags: await getTags(),
+      tag: req.params.slug,
     }));
 
   // THIS IS THE DEFAULT ROUTE, DON'T EDIT THIS

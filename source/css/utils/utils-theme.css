@@ -15,7 +15,7 @@
 
 .u-whiteBox {
   background-color: #fff;
-  border-bottom: .25rem solid var(--cb3);
+  border-bottom: 2px solid var(--cb3);
 }
 
 @media print {

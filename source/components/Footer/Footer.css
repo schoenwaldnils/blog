@@ -9,7 +9,7 @@
   color: #fff;
   text-transform: uppercase;
   background-color: var(--Footer-background, #000);
-  border-top: solid .25rem var(--Footer-border-color, #f00);
+  border-bottom: solid 2px var(--Footer-border-color, #f00);
 }
 
 @media print {
@@ -45,7 +45,7 @@
 }
 
 .Footer-copy {
-  font-family: var(--font-rokkitt);
+  font-family: var(--font-second);
   font-size: .6rem;
   letter-spacing: .2em;
   color: var(--Footer-color);

@@ -24,7 +24,7 @@ chmod 600 deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key
 
-sudo cp .nojekyll out/
+sudo touch out/.nojekyll
 sudo cp CNAME out/
 
 ls -a out

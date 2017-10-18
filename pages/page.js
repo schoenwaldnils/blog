@@ -25,11 +25,15 @@ const Page = ({ fields }) => [
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
+  console.log(fields.image);
   return {
     fields: {
       title: fields.title,
       url: `/${fields.slug}`,
-      image: fields.image ? fields.image.fields.file.url : null,
+      image: fields.image ? {
+        url: fields.image.fields.file.url,
+        alt: fields.image.fields.title,
+      } : null,
       description: fields.description,
       date: fields.date || null,
       tags: fields.tags || null,

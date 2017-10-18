@@ -11,7 +11,7 @@
    */
 
   --cb0: #2d2d2d;
-  --cb1: #444;
+  --cb1: #424242;
   --cb2: #515151;
   --cb3: #7c7c7c;
   --cb4: #bbb;
@@ -51,7 +51,7 @@
   --font-size: 1rem;
   --font-family: 'Open Sans', sans-serif;
   --font-weight: 300;
-  --line-height: 1.4;
+  --line-height: 1.5;
 
   --text-color: var(--cb0);
   --link-color: var(--color-brand);
@@ -61,7 +61,7 @@
    * Fonts
    */
 
-  --font-rokkitt: 'Rokkitt', serif;
+  --font-second: 'Karla', sans-serif;
 
   /*
    * Spacing
@@ -79,7 +79,7 @@
   --body-gradient-size: 4rem;
   --body-gradient-color: var(--cb4);
 
-  --max-width: 34rem;
+  --max-width: 42rem;
 
   --time-animation: 300ms;
   --time-transition: 150ms;

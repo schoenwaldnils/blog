@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html class="no-js" lang="{{ page.lang | default: site.lang | default: "en" }}">
-  {% include head.html %}
-  <body>
-    {% include Header.html %}
-    <section class="Content" role="main">
-      <div class="u-maxWidth">
-        <div class="Content-box">
-          {{ content }}
-        </div>
-      </div>
-    </section>
-    {% include Footer.html %}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rokkitt">
-    {% js main %}
     {% if jekyll.environment == 'production' %}
       {% include analytics.html %}
     {% endif %}
@@ -25,5 +10,3 @@
         Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
       </noscript>
     {% endif %}
-  </body>
-</html>

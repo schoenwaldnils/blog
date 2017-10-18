@@ -31,7 +31,7 @@ export default class SmediaDocument extends Document {
           <Content content={<Main />} />
           <Footer />
           <NextScript />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Rokkitt" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Karla" />
         </body>
       </html>
     );

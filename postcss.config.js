@@ -1,7 +1,4 @@
-const path = require('path');
-const webpackPostcssTools = require('webpack-postcss-tools');
-
-const map = webpackPostcssTools.makeVarMap(path.resolve(__dirname, 'source/css/mediaQueries.css'));
+const { viewportsCss } = require('./source/js/viewports');
 
 module.exports = () => ({
   plugins: {
@@ -9,7 +6,7 @@ module.exports = () => ({
     'postcss-url': {},
     'postcss-nested': {},
     'postcss-custom-media': {
-      extensions: map.media,
+      extensions: viewportsCss,
     },
     'postcss-calc': {},
     'postcss-pseudoelements': {},

@@ -2,7 +2,7 @@
 
 .Svg {
   display: block;
-  width: 100%;
+  width: auto;
   height: 1em;
   fill: currentColor;
 }
