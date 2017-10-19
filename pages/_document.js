@@ -20,7 +20,7 @@ export default class SmediaDocument extends Document {
         <Head>
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
           <meta content="width=device-width,initial-scale=1" name="viewport" />
-          <title>Schoenwald.media</title>
+          <title>Schönwald</title>
           <meta name="description" content="Thoughts on CSS, JS, and overall clean code." />
           <meta name="theme-color" content="#ba3e48" />
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />

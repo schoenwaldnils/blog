@@ -11,3 +11,12 @@
     content: 'Embeded Codepen';
   }
 }
+
+.logo-icon {
+  transform-origin: 80px 50%;
+  transition: transform var(--time-animation);
+}
+
+.Header-logo:hover .logo-icon {
+  transform: rotateY(180deg);
+}

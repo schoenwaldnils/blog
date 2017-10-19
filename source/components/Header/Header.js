@@ -4,7 +4,7 @@ import Svg from '../Svg/Svg';
 import SocialIcon from '../SocialIcon/SocialIcon';
 
 const Header = () => [
-  <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
+  <style jsx>{stylesheet}</style>,
   <header className="Header">
     <div className="Header-content u-maxWidth">
 

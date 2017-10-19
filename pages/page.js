@@ -5,6 +5,7 @@ import marked from 'marked';
 import highlightJs from 'highlight.js';
 import { getFields } from '../scripts/contentful';
 import Post from '../source/components/Post/Post';
+import Disqus from '../source/components/Disqus/Disqus';
 
 marked.setOptions({
   langPrefix: 'hljs ',
@@ -21,11 +22,11 @@ const Page = ({ fields }) => [
   <Post
     {...fields}
     description={null} />,
+  <Disqus title={fields.title} pageUrl={fields.url} />,
 ];
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
-  console.log(fields.image);
   return {
     fields: {
       title: fields.title,
