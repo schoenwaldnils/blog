@@ -1,11 +1,15 @@
 import React from 'react';
+import { renderToString } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import marked from 'marked';
 import highlightJs from 'highlight.js';
+import queryString from 'query-string';
+import { decodeHTML } from 'entities';
 import { getFields } from '../scripts/contentful';
 import Post from '../source/components/Post/Post';
 import Disqus from '../source/components/Disqus/Disqus';
+import Picture from '../source/components/Picture/Picture';
 
 marked.setOptions({
   langPrefix: 'hljs ',
@@ -13,6 +17,19 @@ marked.setOptions({
     return highlightJs.highlight(language, code).value;
   },
 });
+
+const renderer = new marked.Renderer();
+
+renderer.image = (href, title, text) => {
+  const src = decodeHTML(href).split('?');
+  const params = queryString.parse(src[1]);
+  return renderToString(<Picture
+    imageSrc={src[0]}
+    imageAlt={text}
+    title={title}
+    width={parseInt(params.w, 10)} />);
+};
+
 
 const Page = ({ type, fields }) => [
   <Head key="page-head">
@@ -41,7 +58,7 @@ Page.getInitialProps = async ({ query }) => {
       description: fields.description,
       date: fields.date || null,
       tags: fields.tags || null,
-      content: marked(fields.content),
+      content: marked(fields.content, { renderer }),
     },
   };
 };
