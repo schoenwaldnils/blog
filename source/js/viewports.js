@@ -1,15 +1,24 @@
-export const viewportsCss = {
-  '--sm-viewport': '(min-width: 481px)',
-  '--md-viewport': '(min-width: 621px)',
-  '--lg-viewport': '(min-width: 769px)',
+export const viewports = {
+  sm: 481,
+  md: 621,
+  lg: 769,
 };
 
 export const viewportsJs = {};
 
-Object.keys(viewportsCss).map((key) => {
-  viewportsJs[key.replace('--', '').replace('-viewport', '')] = viewportsCss[key];
+Object.keys(viewports).map((key) => {
+  viewportsJs[key] = `(min-width: ${viewports[key]}px)`;
   return true;
 });
+
+
+export const viewportsCss = {};
+
+Object.keys(viewportsJs).map((key) => {
+  viewportsCss[`--${key}-viewport`] = viewportsJs[key];
+  return true;
+});
+
 
 export default {
   viewportsCss,

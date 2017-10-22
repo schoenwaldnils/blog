@@ -2,59 +2,53 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import stylesheet from './Post.css';
-import { viewportsJs } from '../../js/viewports';
+import Picture from '../Picture/Picture';
 
 const Post = ({
   url, image, title, date, tags, description, content,
-}) => {
-  return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
-    <article className="Post u-whiteBox">
-      {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
+}) => [
+  <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="post-style" />,
+  <article className="Post u-whiteBox" key="post-article">
+    {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
 
-      {image &&
-        <div className="Post-wrapImage">
-          <picture>
-            <source srcSet={`${image.url}?w=1000&fl=progressive`} media={viewportsJs.sm} />
-            <source srcSet={`${image.url}?w=840&fl=progressive`} />
-            <img className="Post-image" src={`${image.url}`} alt={image.alt} />
-          </picture>
-        </div>}
+    {image &&
+      <div className="Post-wrapImage">
+        <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} />
+      </div>}
 
-      <div className="Post-content u-richText u-boxPadding">
-        <div className="Post-meta">
-          {date &&
-            <time className="Post-date" dateTime={format(date, 'YYYY-MM-DD HH:mm')}>
-              {format(date, 'MMM DD, YYYY')}
-            </time>}
+    <div className="Post-content u-richText u-boxPadding">
+      <div className="Post-meta">
+        {date &&
+          <time className="Post-date">
+            {format(date, 'MMM DD, YYYY')}
+          </time>}
 
-          {tags &&
-            <div className="Post-tags">
-              {tags.map(tag => [
-                <a className="Post-tag" href={`/tag/${tag}`} key={tag}>{tag}</a>,
-                <span className="Post-tagComma" key={`${tag}-comma`}>, </span>,
-              ])}
-            </div>}
-        </div>
-
-        {url ?
-          <a href={url}><h1 className="Post-title">{title}</h1></a> :
-          <h1 className="Post-title">{title}</h1>
-        }
-
-        {description &&
-          <p className="Post-description">
-            {description}
-            {' '}
-            <a className="Post-readMore" href={url}>read the full article</a>
-          </p>}
-
-        {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: content }} />}
-
+        {tags &&
+          <div className="Post-tags">
+            {tags.map(tag => [
+              <a className="Post-tag" href={`/tag/${tag}`} key={tag}>{tag}</a>,
+              <span className="Post-tagComma" key={`${tag}-comma`}>, </span>,
+            ])}
+          </div>}
       </div>
-    </article>,
-  ];
-};
+
+      {url ?
+        <a href={url}><h1 className="Post-title">{title}</h1></a> :
+        <h1 className="Post-title">{title}</h1>
+      }
+
+      {description &&
+        <p className="Post-description">
+          {description}
+          {' '}
+          <a className="Post-readMore" href={url}>read the full article</a>
+        </p>}
+
+      {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: content }} />}
+
+    </div>
+  </article>,
+];
 
 Post.defaultProps = {
   url: null,
