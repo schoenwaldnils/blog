@@ -25,7 +25,10 @@ app.prepare().then(async () => {
     contentfulPages.map((item) => {
       const { id, url } = item;
       server.get(url, (req, res) => {
-        return app.render(req, res, '/page', { id });
+        return app.render(req, res, '/page', {
+          id,
+          type: 'page',
+        });
       });
       return true;
     });
@@ -35,7 +38,10 @@ app.prepare().then(async () => {
     contentfulPosts.map((item) => {
       const { id, url } = item;
       server.get(url, (req, res) => {
-        return app.render(req, res, '/page', { id });
+        return app.render(req, res, '/page', {
+          id,
+          type: 'post',
+        });
       });
       return true;
     });

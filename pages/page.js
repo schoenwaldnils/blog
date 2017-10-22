@@ -14,22 +14,25 @@ marked.setOptions({
   },
 });
 
-const Page = ({ fields }) => [
-  <Head>
+const Page = ({ type, fields }) => [
+  <Head key="page-head">
     <title>{fields.title}</title>
     <meta name="description" content={fields.description} />
   </Head>,
   <Post
     {...fields}
-    description={null} />,
-  <Disqus title={fields.title} pageUrl={fields.url} />,
+    description={null}
+    key="page-post" />,
+  <Disqus type={type} title={fields.title} pageUrl={fields.slug} key="page-disqus" />,
 ];
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
   return {
+    type: query.type,
     fields: {
       title: fields.title,
+      slug: fields.slug,
       url: `/${fields.slug}`,
       image: fields.image ? {
         url: fields.image.fields.file.url,
@@ -44,6 +47,7 @@ Page.getInitialProps = async ({ query }) => {
 };
 
 Page.propTypes = {
+  type: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
 };
 

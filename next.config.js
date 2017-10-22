@@ -35,6 +35,7 @@ module.exports = {
           page: '/page',
           query: {
             id: item.id,
+            type: 'page',
           },
         };
         return true;
@@ -45,6 +46,7 @@ module.exports = {
           page: '/page',
           query: {
             id: item.id,
+            type: 'post',
           },
         };
         return true;

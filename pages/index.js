@@ -6,8 +6,8 @@ import Filter from '../source/components/Filter/Filter';
 
 const Page = ({ posts, tags, activeTag }) => {
   return [
-    <Filter activeTag={activeTag} tags={tags} />,
-    <div className="Page">
+    <Filter activeTag={activeTag} tags={tags} key="index-filter" />,
+    <div className="Page" key="index-page">
       {posts.map(post => (<Post {...post} key={post.slug} />))}
     </div>,
   ];
