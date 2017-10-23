@@ -24,6 +24,7 @@ export default class SmediaDocument extends Document {
           <title>Schönwald</title>
           <meta name="description" content="Thoughts on CSS, JS, and overall clean code." />
           <meta name="theme-color" content="#ba3e48" />
+          <link rel="manifest" href="/static/manifest.json" />
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
           {this.props.styleTags}
           {prod && <script dangerouslySetInnerHTML={{

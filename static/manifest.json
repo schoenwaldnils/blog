@@ -1,0 +1,16 @@
+{
+  "name": "Schönwald",
+  "short_name": "Schönwald",
+  "start_url": "/",
+  "theme_color": "#ba3e48",
+  "background_color": "#424242",
+  "display": "browser",
+  "icons": [
+    {
+      "src": "/static/assets/images/icons/icon-960x960.png",
+      "sizes": "960x960",
+      "type": "image/png"
+    }
+  ],
+  "splash_pages": null
+}
