@@ -52,7 +52,6 @@ Page.getInitialProps = async ({ query }) => {
     fields: {
       title: fields.title,
       slug: fields.slug,
-      url: `/${fields.slug}`,
       image: fields.image ? {
         url: fields.image.fields.file.url,
         alt: fields.image.fields.title,
