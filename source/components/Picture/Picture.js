@@ -1,42 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { viewports, viewportsJs } from '../../js/viewports';
+
+const pictureViewports = [
+  700,
+  600,
+  500,
+  400,
+];
 
 const Picture = ({
   className, imageSrc, imageAlt, title, width, align,
 }) => (
   <picture>
-    { width >= viewports.sm &&
+    { width >= 400 && [
+      pictureViewports.map((viewport) => {
+        if (viewport >= width) return null;
+        return (
+          <source
+            srcSet={`
+              ${imageSrc}?w=${(viewport + 100)}&fl=progressive 1x,
+              ${imageSrc}?w=${(viewport + 100) * 2}&fl=progressive 2x
+            `}
+            media={`(min-width: ${viewport}px)`} />
+        );
+      }),
       <source
-        srcSet={`${imageSrc}?w=${width * 2}&fl=progressive`}
-        media={`${viewportsJs.sm}, (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)`} />
-    }
+        srcSet={`
+          ${imageSrc}?w=${400}&fl=progressive 1x,
+          ${imageSrc}?w=${400 * 2}&fl=progressive 2x
+        `} />,
+    ]}
 
-    { width >= viewports.sm ?
+    { width < 400 && [
       <source
-        srcSet={`${imageSrc}?w=962&fl=progressive`}
-        media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)" /> :
-      <source
-        srcSet={`${imageSrc}?w=${width * 2}&fl=progressive`}
-        media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)" />
-    }
-
-
-    { width >= viewports.sm &&
-      <source
-        srcSet={`${imageSrc}?w=${width * 1.5}&fl=progressive`}
-        media={`${viewportsJs.sm}, (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)`} />
-    }
-
-    { width >= viewports.sm ?
-      <source
-        srcSet={`${imageSrc}?w=722&fl=progressive`}
-        media="(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)" /> :
-      <source
-        srcSet={`${imageSrc}?w=${width * 1.5}&fl=progressive`}
-        media="(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)" />
-    }
+        srcSet={`
+          ${imageSrc}?w=${width}&fl=progressive 1x,
+          ${imageSrc}?w=${width * 2}&fl=progressive 2x
+        `} />,
+    ]}
 
     <img
       className={className}
