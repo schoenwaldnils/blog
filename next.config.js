@@ -55,7 +55,7 @@ module.exports = {
       await Promise.all(tags.map(async (tag) => {
         const tagPosts = await getEntries('post', tag);
         pathMap[`/tag/${tag}`] = {
-          page: '/tag',
+          page: '/',
           query: {
             tag,
             tags,

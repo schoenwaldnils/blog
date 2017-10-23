@@ -1,10 +1,10 @@
-export const viewports = {
+const viewports = {
   sm: 481,
   md: 621,
   lg: 769,
 };
 
-export const viewportsJs = {};
+const viewportsJs = {};
 
 Object.keys(viewports).map((key) => {
   viewportsJs[key] = `(min-width: ${viewports[key]}px)`;
@@ -12,15 +12,13 @@ Object.keys(viewports).map((key) => {
 });
 
 
-export const viewportsCss = {};
+const viewportsCss = {};
 
 Object.keys(viewportsJs).map((key) => {
   viewportsCss[`--${key}-viewport`] = viewportsJs[key];
   return true;
 });
 
-
-export default {
-  viewportsCss,
-  viewportsJs,
-};
+exports.viewports = viewports;
+exports.viewportsJs = viewportsJs;
+exports.viewportsCss = viewportsCss;
