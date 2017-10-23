@@ -4,10 +4,9 @@
   --background-color: var(--Footer-background, #000);
 
   flex-shrink: 0;
-  padding-top: .75rem;
-  padding-bottom: .75rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   color: #fff;
-  text-transform: uppercase;
   background-color: var(--Footer-background, #000);
   border-bottom: solid 2px var(--Footer-border-color, #f00);
 }
@@ -29,7 +28,7 @@
 .Footer-socialIcons {
   flex-shrink: 0;
   display: flex;
-  margin-bottom: .5rem;
+  margin-bottom: .75rem;
   font-size: 2rem;
   line-height: 1;
 }
@@ -40,13 +39,25 @@
   }
 }
 
-.Footer-wrapSocialIcon:not(:last-child) {
-  margin-right: .5em;
+.Footer-wrapSocialIcon {
+  margin-right: .25em;
+  margin-left: .25em;
 }
 
-.Footer-copy {
+.Footer-nav {
+  display: flex;
+  margin-bottom: .5rem;
+}
+
+.Footer-navItem {
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+.Footer-text {
   font-family: var(--font-second);
   font-size: .6rem;
   letter-spacing: .2em;
   color: var(--Footer-color);
+  text-transform: uppercase;
 }

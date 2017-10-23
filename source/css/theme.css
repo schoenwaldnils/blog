@@ -67,9 +67,9 @@
    * Spacing
    */
 
-  --space-small-px: 10px;
-  --space-medium-px: 20px;
-  --space-large-px: 30px;
+  --space-small-px: 8px;
+  --space-medium-px: 16px;
+  --space-large-px: 32px;
 
   /*
    * Custom
