@@ -21,13 +21,15 @@ marked.setOptions({
 const renderer = new marked.Renderer();
 
 renderer.image = (href, title, text) => {
-  const src = decodeHTML(href).split('?');
-  const params = queryString.parse(src[1]);
+  const src = decodeHTML(href).split(/[?|#]/);
+  const params = src[1] && queryString.parse(src[1]);
+  const options = src[2] && queryString.parse(src[2]);
   return renderToString(<Picture
     imageSrc={src[0]}
     imageAlt={text}
     title={title}
-    width={parseInt(params.w, 10)} />);
+    width={params.w && parseInt(params.w, 10)}
+    align={options.align} />);
 };
 
 

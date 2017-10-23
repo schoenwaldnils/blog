@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { viewports, viewportsJs } from '../../js/viewports';
 
 const Picture = ({
-  className, imageSrc, imageAlt, title, width,
+  className, imageSrc, imageAlt, title, width, align,
 }) => (
   <picture>
     { width >= viewports.sm &&
@@ -50,6 +50,7 @@ Picture.defaultProps = {
   className: null,
   title: null,
   width: 700,
+  align: null,
 };
 
 Picture.propTypes = {
@@ -58,8 +59,11 @@ Picture.propTypes = {
   imageAlt: PropTypes.string.isRequired,
   title: PropTypes.string,
   width: PropTypes.number,
+  align: PropTypes.string,
 };
 
 export default styled(Picture)`
-  max-width: ${props => props.width}px;
+  max-width: ${props => props.width && `${props.width}px`};
+  float: ${props => props.align};
+  margin-left: ${props => props.align === 'right' && 'var(--space-medium-px)'};
 `;
