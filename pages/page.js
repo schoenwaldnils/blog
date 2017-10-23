@@ -36,7 +36,13 @@ renderer.image = (href, title, text) => {
 const Page = ({ type, fields }) => [
   <Head key="page-head">
     <title>{fields.title}</title>
-    <meta name="description" content={fields.description} />
+    <meta property="og:title" content={fields.title} />
+
+    {fields.description && [
+      <meta name="description" content={fields.description} />,
+      <meta property="og:description" content={fields.description} />,
+    ]}
+    {fields.image && <meta property="og:image" content={`${fields.image.url}?w=382&h=200&fit=fill`} />}
   </Head>,
   <Post
     {...fields}

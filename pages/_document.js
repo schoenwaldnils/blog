@@ -22,7 +22,13 @@ export default class SmediaDocument extends Document {
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
           <meta content="width=device-width,initial-scale=1" name="viewport" />
           <title>Schönwald</title>
+          <meta property="og:title" content="Schönwald" />
           <meta name="description" content="Thoughts on CSS, JS, and overall clean code." />
+          <meta property="og:description" content="Thoughts on CSS, JS, and overall clean code." />
+          <meta property="og:site_name" content="Schönwald" />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@schoenwaldnils" />
+          <meta name="twitter:creator" content="@schoenwaldnils" />
           <meta name="theme-color" content="#ba3e48" />
           <link rel="manifest" href="/static/manifest.json" />
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
