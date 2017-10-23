@@ -68,7 +68,6 @@ module.exports = {
       console.error(exception);
     }
 
-    console.log('pathMap: ' + JSON.stringify(pathMap));
     return pathMap;
   },
   webpack: (config, { dev }) => {
