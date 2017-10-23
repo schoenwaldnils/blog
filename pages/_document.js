@@ -27,6 +27,15 @@ export default class SmediaDocument extends Document {
           <link rel="manifest" href="/static/manifest.json" />
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
           {this.props.styleTags}
+        </Head>
+        <body>
+          <Header />
+          <Content>
+            <Main />
+          </Content>
+          <Footer />
+          <NextScript />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Karla" />
           {prod && <script dangerouslySetInnerHTML={{
             __html: `
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -37,13 +46,6 @@ export default class SmediaDocument extends Document {
             ga('create', 'UA-33721620-2', 'auto');
             ga('send', 'pageview');`,
           }} />}
-        </Head>
-        <body>
-          <Header />
-          <Content content={<Main />} />
-          <Footer />
-          <NextScript />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Karla" />
         </body>
       </html>
     );
