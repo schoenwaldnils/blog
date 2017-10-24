@@ -7,6 +7,7 @@ import highlightJs from 'highlight.js';
 import queryString from 'query-string';
 import { decodeHTML } from 'entities';
 import { getFields } from '../scripts/contentful';
+import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
 import Disqus from '../source/components/Disqus/Disqus';
 import Picture from '../source/components/Picture/Picture';
@@ -34,16 +35,11 @@ renderer.image = (href, title, text) => {
 
 
 const Page = ({ type, fields }) => [
-  <Head key="page-head">
-    <title>{fields.title}</title>
-    <meta property="og:title" content={fields.title} />
-
-    {fields.description && [
-      <meta name="description" content={fields.description} />,
-      <meta property="og:description" content={fields.description} />,
-    ]}
-    {fields.image && <meta property="og:image" content={`${fields.image.url}?w=382&h=200&fit=fill`} />}
-  </Head>,
+  <Meta
+    title={fields.title}
+    description={fields.description}
+    image={fields.image ? fields.image.url : undefined}
+    key="page-meta" />,
   <Post
     {...fields}
     description={null}
