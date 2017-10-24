@@ -8,18 +8,22 @@ const Meta = ({ title, description, image }) => {
     <Head>
       <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
       <meta content="width=device-width,initial-scale=1" name="viewport" />
+
       <title>{ title }</title>
-      <meta property="og:title" content={title} />
       <meta name="description" content={description} />
+
+      <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content="Schönwald" />
       <meta property="og:image" content={alteredImage} />
       <meta property="og:image:width" content="200" />
       <meta property="og:image:height" content="200" />
-      <meta name="theme-color" content="#ba3e48" />
+
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@schoenwaldnils" />
       <meta name="twitter:creator" content="@schoenwaldnils" />
+
+      <meta name="theme-color" content="#ba3e48" />
     </Head>
   );
 };
@@ -27,7 +31,7 @@ const Meta = ({ title, description, image }) => {
 Meta.defaultProps = {
   title: 'Schönwald',
   description: 'Thoughts on CSS, JS, and overall clean code.',
-  image: '//schoenwald.media/static/assets/images/icon-on-black.png',
+  image: 'http://schoenwald.media/static/assets/images/icon-on-black.png',
 };
 
 Meta.propTypes = {
