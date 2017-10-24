@@ -27,7 +27,7 @@ const Meta = ({ title, description, image }) => {
 Meta.defaultProps = {
   title: 'Schönwald',
   description: 'Thoughts on CSS, JS, and overall clean code.',
-  image: '/static/assets/images/icon-on-black.png',
+  image: '//schoenwald.media/static/assets/images/icon-on-black.png',
 };
 
 Meta.propTypes = {
