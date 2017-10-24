@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getFields } from '../scripts/contentful';
+import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
 import Filter from '../source/components/Filter/Filter';
 
 const Page = ({ posts, tags, activeTag }) => {
   return [
+    <Meta key="page-meta" />,
     <Filter activeTag={activeTag} tags={tags} key="index-filter" />,
     <div className="Page" key="index-page">
       {posts.map(post => (<Post {...post} key={post.slug} />))}

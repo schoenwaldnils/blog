@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
 import marked from 'marked';
 import highlightJs from 'highlight.js';
 import queryString from 'query-string';
