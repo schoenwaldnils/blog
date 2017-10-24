@@ -35,6 +35,8 @@ renderer.image = (href, title, text) => {
 
 const Page = ({ type, fields }) => [
   <Meta
+    url={`http://schoenwald.media/${fields.slug}/`}
+    type="article"
     title={fields.title}
     description={fields.description}
     image={fields.image ? fields.image.url : undefined}
