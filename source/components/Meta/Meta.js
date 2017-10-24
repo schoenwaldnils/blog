@@ -14,6 +14,8 @@ const Meta = ({ title, description, image }) => {
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content="Schönwald" />
       <meta property="og:image" content={alteredImage} />
+      <meta property="og:image:width" content="200" />
+      <meta property="og:image:height" content="200" />
       <meta name="theme-color" content="#ba3e48" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@schoenwaldnils" />
