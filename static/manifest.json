@@ -7,8 +7,13 @@
   "display": "browser",
   "icons": [
     {
-      "src": "/static/assets/images/icons/icon-960x960.png",
-      "sizes": "960x960",
+      "src": "/static/assets/images/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/assets/images/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],

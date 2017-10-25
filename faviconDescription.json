@@ -1,0 +1,62 @@
+{
+	"masterPicture": "static/assets/images/favicon.png",
+	"iconsPath": "/static/assets/images/favicons",
+	"design": {
+		"ios": {
+			"pictureAspect": "backgroundAndMargin",
+			"backgroundColor": "#424242",
+			"margin": "25%",
+			"assets": {
+				"ios6AndPriorIcons": false,
+				"ios7AndLaterIcons": false,
+				"precomposedIcons": false,
+				"declareOnlyDefaultIcon": true
+			},
+			"appName": "Schönwald"
+		},
+		"desktopBrowser": {},
+		"windows": {
+			"pictureAspect": "noChange",
+			"backgroundColor": "#ba3e48",
+			"onConflict": "override",
+			"assets": {
+				"windows80Ie10Tile": false,
+				"windows10Ie11EdgeTiles": {
+					"small": false,
+					"medium": true,
+					"big": false,
+					"rectangle": false
+				}
+			},
+			"appName": "Schönwald"
+		},
+		"androidChrome": {
+			"pictureAspect": "noChange",
+			"themeColor": "#ba3e48",
+			"manifest": {
+				"name": "Schönwald",
+				"display": "browser",
+				"orientation": "notSet",
+				"onConflict": "override",
+				"declared": true
+			},
+			"assets": {
+				"legacyIcon": false,
+				"lowResolutionIcons": false
+			}
+		},
+    "safariPinnedTab": {
+			"pictureAspect": "blackAndWhite",
+			"threshold": 50,
+			"themeColor": "#ba3e48"
+		}
+	},
+	"settings": {
+		"scalingAlgorithm": "Mitchell",
+		"errorOnImageTooSmall": false
+	},
+	"versioning": {
+		"paramName": "v",
+		"paramValue": "1"
+	}
+}

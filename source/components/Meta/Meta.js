@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import Parser from 'html-react-parser';
+import faviconData from '../../../faviconData.json';
+
+const faviconHtml = faviconData && faviconData.favicon.html_code;
+const Favicons = () => Parser(faviconHtml);
 
 const Meta = ({
   url, type, title, description, image,
@@ -29,7 +34,7 @@ const Meta = ({
       <meta name="twitter:site" content="@schoenwaldnils" />
       <meta name="twitter:creator" content="@schoenwaldnils" />
 
-      <meta name="theme-color" content="#ba3e48" />
+      <Favicons />
     </Head>
   );
 };
