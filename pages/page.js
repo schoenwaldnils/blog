@@ -29,7 +29,7 @@ renderer.image = (href, title, text) => {
     imageAlt={text}
     title={title}
     width={params.w && parseInt(params.w, 10)}
-    align={options.align} />);
+    float={options.float} />);
 };
 
 
