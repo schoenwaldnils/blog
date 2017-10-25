@@ -27,9 +27,9 @@
                         <use xlink:href="#path-1"></use>
                     </mask>
                     <use id="Oval" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
-                    <polygon id="Rectangle" fill="var(--color-brand, #BA3E48)" fill-rule="nonzero" mask="url(#mask-2)" points="64 128 96 128 96 160 64 160"></polygon>
+                    <polygon id="Rectangle" fill="#BA3E48" fill-rule="nonzero" mask="url(#mask-2)" points="64 128 96 128 96 160 64 160"></polygon>
                     <path d="M80,144 C44.653776,144 16,115.346224 16,80 C16,44.653776 44.653776,16 80,16 C115.346224,16 144,44.653776 144,80 C144,115.346224 115.346224,144 80,144 Z" id="Path" fill="#FFFFFF" mask="url(#mask-2)"></path>
-                    <path d="M80,135 C110.375661,135 135,110.375661 135,80 C135,49.6243388 110.375661,25 80,25 C49.6243388,25 25,49.6243388 25,80 C25,110.375661 49.6243388,135 80,135 Z" id="Oval" fill="var(--color-brand, #BA3E48)" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                    <path d="M80,135 C110.375661,135 135,110.375661 135,80 C135,49.6243388 110.375661,25 80,25 C49.6243388,25 25,49.6243388 25,80 C25,110.375661 49.6243388,135 80,135 Z" id="Oval" fill="#BA3E48" fill-rule="nonzero" mask="url(#mask-2)"></path>
                 </g>
             </g>
         </g>

@@ -75,9 +75,7 @@
    * Custom
    */
 
-  --body-background-color: var(--cb5);
-  --body-gradient-size: 4rem;
-  --body-gradient-color: var(--cb4);
+  --body-background-color: var(--cb3);
 
   --max-width: 42rem;
 
