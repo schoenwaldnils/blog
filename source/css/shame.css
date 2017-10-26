@@ -20,3 +20,8 @@
 .Header-logo:hover .logo-icon {
   transform: rotateY(180deg);
 }
+
+#drift-widget {
+  right: 0 !important;
+  bottom: 0 !important;
+}
