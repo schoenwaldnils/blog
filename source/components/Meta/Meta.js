@@ -8,7 +8,6 @@ const faviconHtml = faviconData && faviconData.favicon.html_code;
 const Favicons = () => Parser(faviconHtml, {
   replace(domNode) {
     if (domNode.attribs && domNode.attribs.rel === 'manifest') {
-      console.log(domNode.attribs);
       return <link rel="manifest" href="/static/site.webmanifest" />;
     }
     // TODO: fix for https://sonarwhal.com/docs/user-guide/rules/apple-touch-icons/
