@@ -6,10 +6,6 @@
 
 html {
   min-height: 100vh;
-  font-family: var(--font-family);
-  font-size: 16px;
-  font-weight: var(--font-weight);
-  line-height: var(--line-height);
   background-color: var(--Header-background);
 }
 
@@ -18,7 +14,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  color: var(--text-color);
   background-color: var(--body-background-color);
   background-position: center;
   background-size: var(--body-gradient-size) var(--body-gradient-size);
