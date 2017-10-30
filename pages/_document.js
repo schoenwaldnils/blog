@@ -6,6 +6,8 @@ import Header from '../source/components/Header/Header';
 import Content from '../source/components/Content/Content';
 import Footer from '../source/components/Footer/Footer';
 
+const DRIFT_ID = '4r7cns5dxyfi';
+
 export default class SmediaDocument extends Document {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
@@ -21,6 +23,7 @@ export default class SmediaDocument extends Document {
         <Head>
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
           {this.props.styleTags}
+          {prod && <script src={`https://js.driftt.com/include/${Math.ceil(new Date() / 3e5)}/${DRIFT_ID}.js`} type="text/javascript" async="" />}
         </Head>
         <body>
           <Header />
@@ -41,31 +44,6 @@ export default class SmediaDocument extends Document {
 
             ga('create', 'UA-33721620-2', 'auto');
             ga('send', 'pageview');`,
-          }} />}
-
-          {/* Drift codeblock */}
-          {prod && <script dangerouslySetInnerHTML={{
-            __html: `
-            !function() {
-              var t;
-              if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0,
-              t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
-              t.factory = function(e) {
-                return function() {
-                  var n;
-                  return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
-                };
-              }, t.methods.forEach(function(e) {
-                t[e] = t.factory(e);
-              }), t.load = function(t) {
-                var e, n, o, i;
-                e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"),
-                o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js",
-                n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
-              });
-            }();
-            drift.SNIPPET_VERSION = '0.3.1';
-            drift.load('4r7cns5dxyfi');`,
           }} />}
         </body>
       </html>
