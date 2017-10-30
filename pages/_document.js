@@ -19,7 +19,8 @@ export default class SmediaDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <link rel="manifest" href="/static/manifest.json" />
+          <meta charSet="utf-8" />
+          <link rel="manifest" href="/static/site.webmanifest" />
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
           {this.props.styleTags}
         </Head>
