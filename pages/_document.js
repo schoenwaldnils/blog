@@ -23,7 +23,6 @@ export default class SmediaDocument extends Document {
         <Head>
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
           {this.props.styleTags}
-          {prod && <script src={`https://js.driftt.com/include/${Math.ceil(new Date() / 3e5)}/${DRIFT_ID}.js`} type="text/javascript" async="" />}
         </Head>
         <body>
           <Header />
@@ -45,6 +44,8 @@ export default class SmediaDocument extends Document {
             ga('create', 'UA-33721620-2', 'auto');
             ga('send', 'pageview');`,
           }} />}
+
+          {prod && <script src={`https://js.driftt.com/include/${Math.ceil(new Date() / 3e5)}/${DRIFT_ID}.js`} type="text/javascript" async="" />}
         </body>
       </html>
     );
