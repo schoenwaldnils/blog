@@ -20,7 +20,7 @@ const Meta = ({
   const alteredImage = image.includes('contentful') ? `https:${image}?w=200&h=200&fit=fill` : image;
   return (
     <Head>
-      <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+      <meta content="ie=edge" httpEquiv="x-ua-compatible" />
       <meta content="width=device-width,initial-scale=1" name="viewport" />
 
       <title>{ title }</title>
