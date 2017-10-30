@@ -1,7 +1,8 @@
 import React from 'react';
 import stylesheet from './Header.css';
-import Svg from '../Svg/Svg';
 import SocialIcon from '../SocialIcon/SocialIcon';
+import SchoenwaldLogo from '../Svg/svgs/schoenwald-logo.svg';
+
 
 const Header = () => [
   <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
@@ -9,7 +10,7 @@ const Header = () => [
     <div className="Header-content u-maxWidth">
 
       <a className="Header-logo" href="/">
-        <Svg name="schoenwald-logo" />
+        <SchoenwaldLogo className="Svg" />
       </a>
 
       <div className="Header-socialIcons">
@@ -17,7 +18,7 @@ const Header = () => [
           <SocialIcon name="Twitter" href="https://twitter.com/schoenwaldnils" />
         </div>
         <div className="Header-wrapSocialIcon">
-          <SocialIcon name="GitHub" href="https://github.com/schoenwaldnils" />
+          <SocialIcon name="Github" href="https://github.com/schoenwaldnils" />
         </div>
       </div>
 
