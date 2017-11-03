@@ -54,10 +54,9 @@ renderer.image = (href, title, text) => {
 
 const Page = ({ fields }) => {
   fields.handleChangeField = handleChangeField;
-  fields.handleClickSubmit = handleClickSubmit;
 
   return [
-    <button onClick={() => handleClickSubmit(fields.id)}>Save</button>,
+    <button onClick={() => handleClickSubmit(fields.id)} key="page-save">Save</button>,
     <Meta
       url={`http://schoenwald.media/${fields.slug}/`}
       type="article"
@@ -74,7 +73,6 @@ const Page = ({ fields }) => {
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
-  console.log(fields);
   return {
     type: query.type,
     fields: {
