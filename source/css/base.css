@@ -40,3 +40,8 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+*[contentEditable]:hover,
+*[contentEditable]:focus {
+  outline: 1px solid var(--color-blue);
+}

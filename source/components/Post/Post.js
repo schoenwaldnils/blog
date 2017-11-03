@@ -1,11 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import debounce from 'debounce-promise';
 import stylesheet from './Post.css';
 import Picture from '../Picture/Picture';
+import { updateField, publishField } from '../../../scripts/contentful-management';
+
+const debouncedUpdateField = debounce(updateField, 500);
+
+const handleChangeField = async ({ id, originalValue, event }) => {
+  const newValue = event.target.textContent;
+  if (originalValue !== newValue) {
+    const res = await debouncedUpdateField(id, 'title', newValue);
+    // TODO: show saved change indictor.
+    return res;
+  }
+};
+
+const handleClickSubmit = async (id) => {
+  const res = await publishField(id);
+  // TODO: show published indictor.
+  return res;
+};
 
 const Post = ({
-  url, image, title, date, tags, description, content,
+  id, url, image, title, date, tags, description, content,
 }) => [
   <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="post-style" />,
   <article className="Post u-whiteBox" key="post-article">
@@ -51,6 +70,7 @@ const Post = ({
 ];
 
 Post.defaultProps = {
+  id: null,
   url: null,
   image: null,
   date: null,
@@ -60,6 +80,7 @@ Post.defaultProps = {
 };
 
 Post.propTypes = {
+  id: PropTypes.string,
   url: PropTypes.string,
   image: PropTypes.object,
   title: PropTypes.string.isRequired,

@@ -5,11 +5,30 @@ import marked from 'marked';
 import highlightJs from 'highlight.js';
 import queryString from 'query-string';
 import { decodeHTML } from 'entities';
-import { getFields } from '../scripts/contentful';
+import debounce from 'debounce-promise';
+import { getFields } from '../scripts/contentful-preview';
 import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
-import Disqus from '../source/components/Disqus/Disqus';
 import Picture from '../source/components/Picture/Picture';
+import { updateField, publishField } from '../scripts/contentful-management';
+
+const debouncedUpdateField = debounce(updateField, 500);
+
+const handleChangeField = async ({ id, originalValue, event }) => {
+  const newValue = event.target.textContent;
+  if (originalValue !== newValue) {
+    const res = await debouncedUpdateField(id, 'title', newValue);
+    // TODO: show saved change indictor.
+    return res;
+  }
+};
+
+const handleClickSubmit = async (id) => {
+  const res = await publishField(id);
+  // TODO: show published indictor.
+  return res;
+};
+
 
 marked.setOptions({
   langPrefix: 'hljs ',
@@ -33,23 +52,29 @@ renderer.image = (href, title, text) => {
 };
 
 
-const Page = ({ type, fields }) => [
-  <Meta
-    url={`http://schoenwald.media/${fields.slug}/`}
-    type="article"
-    title={fields.title}
-    description={fields.description}
-    image={fields.image ? fields.image.url : undefined}
-    key="page-meta" />,
-  <Post
-    {...fields}
-    description={null}
-    key="page-post" />,
-  <Disqus type={type} title={fields.title} pageUrl={fields.slug} key="page-disqus" />,
-];
+const Page = ({ fields }) => {
+  fields.handleChangeField = handleChangeField;
+  fields.handleClickSubmit = handleClickSubmit;
+
+  return [
+    <button onClick={() => handleClickSubmit(fields.id)}>Save</button>,
+    <Meta
+      url={`http://schoenwald.media/${fields.slug}/`}
+      type="article"
+      title={fields.title}
+      description={fields.description}
+      image={fields.image ? fields.image.url : undefined}
+      key="page-meta" />,
+    <Post
+      {...fields}
+      description={null}
+      key="page-post" />,
+  ];
+};
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
+  console.log(fields);
   return {
     type: query.type,
     fields: {

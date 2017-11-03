@@ -5,10 +5,9 @@ import marked from 'marked';
 import highlightJs from 'highlight.js';
 import queryString from 'query-string';
 import { decodeHTML } from 'entities';
-import { getFields } from '../scripts/contentful';
+import { getFields } from '../scripts/contentful-preview';
 import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
-import Disqus from '../source/components/Disqus/Disqus';
 import Picture from '../source/components/Picture/Picture';
 
 marked.setOptions({
@@ -33,7 +32,7 @@ renderer.image = (href, title, text) => {
 };
 
 
-const Page = ({ type, fields }) => [
+const Page = ({ fields }) => [
   <Meta
     url={`http://schoenwald.media/${fields.slug}/`}
     type="article"
@@ -45,11 +44,11 @@ const Page = ({ type, fields }) => [
     {...fields}
     description={null}
     key="page-post" />,
-  <Disqus type={type} title={fields.title} pageUrl={fields.slug} key="page-disqus" />,
 ];
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
+  console.log(fields);
   return {
     type: query.type,
     fields: {
