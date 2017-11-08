@@ -9,8 +9,6 @@ services:
 install:
   - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 
-script: npm run lint
-
 deploy:
   skip_cleanup: true
   provider: script
