@@ -9,6 +9,8 @@ services:
 install:
   - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 
+script: echo "nothing to see here"
+
 deploy:
   skip_cleanup: true
   provider: script
