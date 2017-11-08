@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cn from 'classnames';
 import stylesheet from './Grid.css';
 
 export const Grid = ({ withGutter, children }) => (
-  <div className={classNames('Grid', { 'Grid--withGutter': withGutter })}>
+  <div className={cn('Grid', { 'Grid--withGutter': withGutter })}>
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     { children }
   </div>
@@ -20,7 +20,7 @@ Grid.propTypes = {
 };
 
 export const GridCell = ({ sm, children }) => (
-  <div className={classNames('Grid-cell', { [`u-sm-size${sm}`]: sm })}>
+  <div className={cn('Grid-cell', { [`u-sm-size${sm}`]: sm })}>
     { children }
   </div>
 );
