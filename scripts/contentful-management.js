@@ -21,10 +21,8 @@ async function updateField(id, field, value) {
     const entry = await space.getEntry(id);
     entry.fields[field]['en-US'] = value;
     const res = await entry.update();
-    console.log('Updated');
     console.log(res);
-    console.log(res.isPublished());
-    console.log(res.isUpdated());
+    console.log('updated', res.isUpdated());
     return res;
   } catch (exception) {
     return console.error(exception);
@@ -36,9 +34,8 @@ async function publishEntry(id) {
     const space = await client.getSpace(process.env.CONTENTFUL_SPACE);
     const entry = await space.getEntry(id);
     const res = await entry.publish();
-    console.log('Published');
     console.log(res);
-    console.log(res.isPublished());
+    console.log('published', res.isPublished());
     return res;
   } catch (exception) {
     return console.error(exception);

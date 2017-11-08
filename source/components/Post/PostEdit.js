@@ -30,7 +30,6 @@ const PostEdit = ({
       originalValue: content,
       content: event.target.value,
     });
-    console.log(event.target);
     changeContent(event.target.value);
   };
   return [

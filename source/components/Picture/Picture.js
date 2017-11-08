@@ -10,7 +10,7 @@ const pictureViewports = [
 ];
 
 const Picture = ({
-  className, imageSrc, imageAlt, title, width, float,
+  className, imageSrc, imageAlt, title, width,
 }) => (
   <picture>
     { width >= 400 && [

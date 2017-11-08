@@ -68,7 +68,11 @@ a:focus {
 }
 
 @media print {
-  a[href^='http']:not([href*='blog.schoenwald.media'])::after {
+  a[href^='http']:not([href*='schoenwald.media']) {
+    white-space: nowrap;
+  }
+
+  a[href^='http']:not([href*='schoenwald.media'])::after {
     content: ' (' attr(href) ')';
   }
 }
