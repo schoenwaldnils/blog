@@ -78,3 +78,33 @@
 a.Post-link::after {
   content: none;
 }
+
+.Post-editHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Post-editTabList {
+  display: flex;
+}
+
+.Post-editTab,
+.Post-save {
+  margin-bottom: .25rem;
+  padding: .35em .75em;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.Post-editTab + .Post-editTab {
+  margin-left: .25rem;
+}
+
+.Post-save {
+  justify-self: flex-end;
+}
+
+.Post-textarea {
+  width: 100%;
+  height: 50rem;
+}

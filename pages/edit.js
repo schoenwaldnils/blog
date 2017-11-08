@@ -1,75 +1,76 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import marked from 'marked';
-import highlightJs from 'highlight.js';
-import queryString from 'query-string';
-import { decodeHTML } from 'entities';
-import debounce from 'debounce-promise';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { getFields } from '../scripts/contentful-preview';
-import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
-import Picture from '../source/components/Picture/Picture';
-import { updateField, publishField } from '../scripts/contentful-management';
-
-const debouncedUpdateField = debounce(updateField, 500);
-
-const handleChangeField = async ({ id, originalValue, event }) => {
-  const newValue = event.target.textContent;
-  if (originalValue !== newValue) {
-    const res = await debouncedUpdateField(id, 'title', newValue);
-    // TODO: show saved change indictor.
-    return res;
-  }
-};
+import PostEdit from '../source/components/Post/PostEdit';
+import { publishEntry } from '../scripts/contentful-management';
 
 const handleClickSubmit = async (id) => {
-  const res = await publishField(id);
+  const res = await publishEntry(id);
   // TODO: show published indictor.
   return res;
 };
 
 
-marked.setOptions({
-  langPrefix: 'hljs ',
-  highlight: (code, language) => {
-    return highlightJs.highlight(language, code).value;
-  },
-});
+class Page extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabIndex: 0,
+      content: props.fields.content,
+    };
+  }
 
-const renderer = new marked.Renderer();
+  render() {
+    const { fields } = this.props;
+    delete fields.description;
 
-renderer.image = (href, title, text) => {
-  const src = decodeHTML(href).split(/[?|#]/);
-  const params = src[1] && queryString.parse(src[1]);
-  const options = src[2] && queryString.parse(src[2]);
-  return renderToString(<Picture
-    imageSrc={src[0]}
-    imageAlt={text}
-    title={title}
-    width={params.w && parseInt(params.w, 10)}
-    float={options.float} />);
-};
+    const fieldsEdit = fields;
+    delete fieldsEdit.image;
 
+    fieldsEdit.content = this.state.content;
 
-const Page = ({ fields }) => {
-  fields.handleChangeField = handleChangeField;
+    console.log(this.state.content);
 
-  return [
-    <button onClick={() => handleClickSubmit(fields.id)} key="page-save">Save</button>,
-    <Meta
-      url={`http://schoenwald.media/${fields.slug}/`}
-      type="article"
-      title={fields.title}
-      description={fields.description}
-      image={fields.image ? fields.image.url : undefined}
-      key="page-meta" />,
-    <Post
-      {...fields}
-      description={null}
-      key="page-post" />,
-  ];
-};
+    return [
+      <Tabs
+        className="Post-editTabs"
+        selectedTabClassName="is-active"
+        selectedTabPanelClassName="is-active"
+        disabledTabClassName="is-disabled"
+        selectedIndex={this.state.tabIndex}
+        onSelect={tabIndex => this.setState({ tabIndex })}>
+        <div className="Post-editHeader">
+          <TabList className="Post-editTabList">
+            <Tab className="Post-editTab">Editor</Tab>
+            <Tab className="Post-editTab">Preview</Tab>
+          </TabList>
+          <button
+            className="Post-save"
+            onClick={() => handleClickSubmit(fields.id)}
+            key="page-save">
+            Save
+          </button>
+        </div>
+
+        <TabPanel
+          className="Post-editTabPanel"
+          selectedClassName="is-active">
+          <PostEdit
+            {...fieldsEdit}
+            changeContent={content => this.setState({ content })} />
+        </TabPanel>
+        <TabPanel
+          className="Post-editTabPanel"
+          selectedClassName="is-active">
+          <Post
+            {...fields} />
+        </TabPanel>
+      </Tabs>,
+    ];
+  }
+}
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
@@ -86,7 +87,7 @@ Page.getInitialProps = async ({ query }) => {
       description: fields.description,
       date: fields.date || null,
       tags: fields.tags || null,
-      content: marked(fields.content, { renderer }),
+      content: fields.content,
     },
   };
 };

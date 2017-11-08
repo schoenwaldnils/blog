@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import stylesheet from './Post.css';
 import Picture from '../Picture/Picture';
+import marked from '../../js/utils/marked';
 
 const Post = (props) => {
   const {
-    id,
     url,
     image,
     title,
@@ -14,7 +14,6 @@ const Post = (props) => {
     tags,
     description,
     content,
-    handleChangeField,
   } = props;
 
   return [
@@ -43,26 +42,13 @@ const Post = (props) => {
           </div>}
         </div>
 
-        {!handleChangeField && url &&
+        {url &&
         <a href={url} key="post-title">
           <h1 className="Post-title">{title}</h1>
         </a>}
 
-        {!handleChangeField && !url &&
+        {!url &&
         <h1 className="Post-title" key="post-title">{title}</h1>}
-
-        {handleChangeField &&
-        <h1
-          className="Post-title"
-          onInput={event => handleChangeField({
-            id,
-            originalValue: title,
-            event,
-          })}
-          data-origvalue={title}
-          contentEditable
-          dangerouslySetInnerHTML={{ __html: title }}
-          key="post-title" />}
 
         {description &&
         <p className="Post-description">
@@ -71,7 +57,7 @@ const Post = (props) => {
           <a className="Post-readMore" href={url}>read the full article</a>
         </p>}
 
-        {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: content }} />}
+        {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: marked(content) }} />}
 
       </div>
     </article>,
@@ -79,7 +65,6 @@ const Post = (props) => {
 };
 
 Post.defaultProps = {
-  id: null,
   url: null,
   image: null,
   date: null,
@@ -89,7 +74,6 @@ Post.defaultProps = {
 };
 
 Post.propTypes = {
-  id: PropTypes.string,
   url: PropTypes.string,
   image: PropTypes.object,
   title: PropTypes.string.isRequired,

@@ -31,7 +31,7 @@ async function updateField(id, field, value) {
   }
 }
 
-async function publishField(id) {
+async function publishEntry(id) {
   try {
     const space = await client.getSpace(process.env.CONTENTFUL_SPACE);
     const entry = await space.getEntry(id);
@@ -47,4 +47,4 @@ async function publishField(id) {
 
 // exports.getEditorInterfaceForContentType = getEditorInterfaceForContentType;
 exports.updateField = updateField;
-exports.publishField = publishField;
+exports.publishEntry = publishEntry;
