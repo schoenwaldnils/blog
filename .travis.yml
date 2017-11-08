@@ -5,10 +5,10 @@ node_js:
 services:
   - docker
 
-script: npm run lint
-
-before_deploy:
+before_install:
   - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+
+script: npm run lint
 
 deploy:
   skip_cleanup: true
