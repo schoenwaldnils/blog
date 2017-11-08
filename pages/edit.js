@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { getFields } from '../scripts/contentful-preview';
+import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
 import PostEdit from '../source/components/Post/PostEdit';
 import { publishEntry } from '../scripts/contentful-management';
+import Button from '../source/components/Button/Button';
 
 const handleClickSubmit = async (id) => {
   const res = await publishEntry(id);
@@ -24,41 +26,35 @@ class Page extends Component {
 
   render() {
     const { fields } = this.props;
-    delete fields.description;
-
-    const fieldsEdit = fields;
-    delete fieldsEdit.image;
-
-    fieldsEdit.content = this.state.content;
-
-    console.log(this.state.content);
+    fields.content = this.state.content;
 
     return [
+      <Meta key="page-meta" />,
       <Tabs
         className="Post-editTabs"
         selectedTabClassName="is-active"
         selectedTabPanelClassName="is-active"
         disabledTabClassName="is-disabled"
         selectedIndex={this.state.tabIndex}
-        onSelect={tabIndex => this.setState({ tabIndex })}>
+        onSelect={tabIndex => this.setState({ tabIndex })}
+        key="post-tabs">
         <div className="Post-editHeader">
           <TabList className="Post-editTabList">
-            <Tab className="Post-editTab">Editor</Tab>
-            <Tab className="Post-editTab">Preview</Tab>
+            <Tab className="Post-editTab Button">Editor</Tab>
+            <Tab className="Post-editTab Button">Preview</Tab>
           </TabList>
-          <button
+          <Button
             className="Post-save"
-            onClick={() => handleClickSubmit(fields.id)}
-            key="page-save">
+            onClick={() => handleClickSubmit(fields.id)}>
             Save
-          </button>
+          </Button>
         </div>
 
         <TabPanel
           className="Post-editTabPanel"
           selectedClassName="is-active">
           <PostEdit
-            {...fieldsEdit}
+            {...fields}
             changeContent={content => this.setState({ content })} />
         </TabPanel>
         <TabPanel

@@ -1,0 +1,18 @@
+/** @define Button */
+
+.Button {
+  display: inline-block;
+  padding: .35em .75em;
+  cursor: pointer;
+  transition-duration: var(--time-transition);
+  transition-property: color, background-color;
+}
+
+.Button:hover {
+  color: #fff;
+  background-color: var(--color-brand);
+}
+
+.Button--edit {
+  margin-bottom: .25rem;
+}

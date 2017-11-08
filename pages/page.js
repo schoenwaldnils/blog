@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { getFields } from '../scripts/contentful';
 import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
+import Button from '../source/components/Button/Button';
 import Disqus from '../source/components/Disqus/Disqus';
 
 const Page = ({ type, fields }) => [
-  <a href={`/edit?type=${type}&id=${fields.id}`} key="page-edit">Edit</a>,
+  <Button id="edit" href={`/edit?type=${type}&id=${fields.id}`} key="page-edit">Edit</Button>,
   <Meta
     url={`http://schoenwald.media/${fields.slug}/`}
     type="article"
