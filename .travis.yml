@@ -1,24 +1,25 @@
 sudo: required
 
 language: node_js
-node_js: 8.9.1
+node_js:
+  - "8.4.0"
+
+services:
+  - docker
 
 cache:
   directories:
     - docker
 
-services:
-  - docker
+script: npm run lint
 
-install:
-  - echo "no install"
-
-script: echo "nothing to see here"
+before_deploy:
+  - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 
 deploy:
   skip_cleanup: true
   provider: script
-  script: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+  script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh
   on:
     branch: master
 
