@@ -14,7 +14,7 @@ script: echo "nothing to see here"
 deploy:
   skip_cleanup: true
   provider: script
-  script: docker-compose exec nextjs bash $TRAVIS_BUILD_DIR/scripts/deploy.sh
+  script: docker-compose -f docker-compose.yml -f docker-compose.prod.yml exec nextjs bash $TRAVIS_BUILD_DIR/scripts/deploy.sh
   on:
     branch: master
 
