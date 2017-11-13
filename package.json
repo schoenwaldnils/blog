@@ -9,6 +9,8 @@
     "dev": "babel-node server.js",
     "build": "next build",
     "export": "NODE_ENV=production next build && next export",
+    "gh-pages": "gh-pages --repo git@github.com:schoenwaldnils/blog.git --dist out --dotfiles",
+    "deploy": "npm run export && npm run gh-pages",
     "start": "npm run dev",
     "stylelint": "stylelint \"source/**/*.css\" --formatter verbose --fix",
     "lint": "npm run stylelint",
