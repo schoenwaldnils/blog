@@ -25,3 +25,8 @@
   right: 0 !important;
   bottom: 0 !important;
 }
+
+.page-edit {
+  display: inline-block;
+  margin-bottom: .25rem;
+}

@@ -91,9 +91,6 @@ a.Post-link::after {
 .Post-editTab,
 .Post-save {
   margin-bottom: .25rem;
-  padding: .35em .75em;
-  cursor: pointer;
-  background-color: #fff;
 }
 
 .Post-editTab + .Post-editTab {

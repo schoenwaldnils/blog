@@ -15,7 +15,7 @@ const Button = ({
 
   return [
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
-    <a className={classNameList} {...props}>{children}</a>,
+    <button className={classNameList} {...props}>{children}</button>,
   ];
 };
 
