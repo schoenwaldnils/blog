@@ -40,8 +40,12 @@ class Page extends Component {
         key="post-tabs">
         <div className="Post-editHeader">
           <TabList className="Post-editTabList">
-            <Tab className="Post-editTab Button">Editor</Tab>
-            <Tab className="Post-editTab Button">Preview</Tab>
+            <Tab className="Post-editTab">
+              <Button>Editor</Button>
+            </Tab>
+            <Tab className="Post-editTab">
+              <Button>Preview</Button>
+            </Tab>
           </TabList>
           <Button
             className="Post-save"

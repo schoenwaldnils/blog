@@ -1,5 +1,5 @@
 # Dockerfile (tag: v3)
-FROM mhart/alpine-node:8.4.0
+FROM mhart/alpine-node:8.9.1
 
 # ----- install git -----
 RUN apk update && apk upgrade && \
