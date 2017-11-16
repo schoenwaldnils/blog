@@ -10,6 +10,7 @@ services:
 cache:
   directories:
     - docker
+    - node_modules
 
 script: npm run lint
 
