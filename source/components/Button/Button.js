@@ -4,27 +4,27 @@ import cn from 'classnames';
 import stylesheet from './Button.css';
 
 const Button = ({
-  children, id, className, ...props
+  children, type, className, ...props
 }) => {
   const classNameList = cn(
     'Button',
-    { [`Button--${id}`]: id },
+    { [`Button--${type}`]: type },
     [className],
     'u-whiteBox',
   );
 
   return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
-    <button className={classNameList} {...props}>{children}</button>,
+    <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="button-style" />,
+    <button className={classNameList} {...props} key="button-button">{children}</button>,
   ];
 };
 
 Button.defaultProps = {
-  id: null,
+  type: null,
 };
 
 Button.propTypes = {
-  id: PropTypes.string,
+  type: PropTypes.string,
   children: PropTypes.any.isRequired,
 };
 
