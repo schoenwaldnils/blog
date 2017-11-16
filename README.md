@@ -2,6 +2,8 @@
 
 # Blog
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/schoenwaldnils/blog.svg)](https://greenkeeper.io/)
+
 Using [zeit/next.js](https://github.com/zeit/next.js)
 
 

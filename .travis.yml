@@ -27,6 +27,7 @@ deploy:
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 
 env:
   global:
