@@ -25,6 +25,11 @@ deploy:
   on:
     branch: master
 
+branches:
+  only:
+    - master
+    - /^greenkeeper/.*$/
+
 env:
   global:
     ENCRYPTION_LABEL: 1d97a522c7ba
