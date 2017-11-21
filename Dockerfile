@@ -12,7 +12,8 @@ RUN apk update && apk upgrade && \
 WORKDIR /usr/src/app
 
 COPY package.json package.json
+COPY yarn.lock yarn.lock
 
-RUN npm install --no-optional
+RUN yarn install
 
 CMD [ "npm", "run", "production" ]
