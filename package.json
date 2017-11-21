@@ -15,7 +15,7 @@
     "stylelint": "stylelint \"source/**/*.css\" --formatter verbose --fix",
     "lint": "npm run stylelint",
     "deploy": "/bin/bash scripts/deploy.sh",
-    "htmlhint": "htmlhint ./out",
+    "htmlhint": "htmlhint out",
     "test": "npm run lint && npm run htmlhint",
     "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons"
   },
