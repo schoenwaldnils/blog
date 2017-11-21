@@ -12,10 +12,10 @@ cache:
     - docker
     - node_modules
 
-script: npm run lint
-
-before_deploy:
+before_script:
   - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+
+script: npm run test
 
 deploy:
   skip_cleanup: true
@@ -23,11 +23,6 @@ deploy:
   script: bash $TRAVIS_BUILD_DIR/scripts/deploy.sh
   on:
     branch: master
-
-branches:
-  only:
-    - master
-    - /^greenkeeper/.*$/
 
 env:
   global:
