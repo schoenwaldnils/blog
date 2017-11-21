@@ -25,5 +25,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+
       # run tests!
       - run: yarn test
