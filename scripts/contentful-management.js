@@ -16,6 +16,10 @@ const client = createClient({
 // }
 
 async function updateField(id, field, value) {
+  if (!id) return console.error('missing id');
+  if (!field) return console.error('missing field');
+  if (!value) return console.error('missing value');
+
   try {
     const space = await client.getSpace(process.env.CONTENTFUL_SPACE);
     const entry = await space.getEntry(id);

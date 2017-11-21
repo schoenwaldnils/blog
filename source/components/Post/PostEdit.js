@@ -42,7 +42,7 @@ const PostEdit = ({
             id,
             field: 'title',
             originalValue: title,
-            event,
+            content: event.target.innerText,
           })}
           data-origvalue={title}
           contentEditable
