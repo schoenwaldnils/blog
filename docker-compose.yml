@@ -3,8 +3,7 @@ version: '3'
 services:
 
   nextjs:
-    build:
-      context: .
+    image: circleci/node:8.9.1
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
