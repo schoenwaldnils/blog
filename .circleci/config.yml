@@ -15,7 +15,7 @@ machine:
     - docker
 
 jobs:
-  build:
+  build-job:
     docker:
       # specify the version you desire here
       - image: circleci/node:8.9.1
@@ -62,3 +62,23 @@ jobs:
       - run:
           name: Lint HTML
           command: npm run htmlhint
+
+  deploy-job:
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Deploy to Server
+          command: scp ./out/* deployer@5.35.245.22:/var/www/site/
+
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build-job
+      - deploy-job:
+          requires:
+            - build-job
+          filters:
+            branches:
+              only: master
