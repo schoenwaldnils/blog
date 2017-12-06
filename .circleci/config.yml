@@ -64,6 +64,7 @@ jobs:
           command: npm run htmlhint
 
   deploy-job:
+    machine: true
     working_directory: ~/repo
     steps:
       - run:
