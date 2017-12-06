@@ -3,6 +3,13 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+
+general:
+  branches:
+    only:
+     - master # list of branches to build
+     - /feature/.*/ # or regexes
+
 machine:
   pre:
     - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
@@ -41,6 +48,17 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
+          name: Install Docker Compose
+          command: |
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
+
+      - save_cache:
+          paths:
+            - /usr/local/bin/docker-compose
+
+      - run:
           name: Lint CSS
           command: npm run stylelint
 
@@ -49,13 +67,13 @@ jobs:
       #     command: npm run eslint
 
       - run:
+          name: Export static files
+          command: |
+            set -x
+            docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+            pwd
+            ls -a out
+
+      - run:
           name: Lint HTML
           command: npm run htmlhint
-
-      - run:
-          name: Export static files
-          command: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
-
-      - run:
-          name: Show generated files
-          command: pwd && ls -a out
