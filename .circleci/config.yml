@@ -41,21 +41,21 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-        name: Lint CSS
-        command: npm run stylelint
+          name: Lint CSS
+          command: npm run stylelint
 
       # - run:
-      #   name: Lint JS
-      #   command: npm run eslint
+      #     name: Lint JS
+      #     command: npm run eslint
 
       - run:
-        name: Lint HTML
-        command: npm run htmlhint
+          name: Lint HTML
+          command: npm run htmlhint
 
       - run:
-        name: Export static files
-        command: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+          name: Export static files
+          command: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 
       - run:
-        name: Show generated files
-        command: pwd && ls -a out
+          name: Show generated files
+          command: pwd && ls -a out
