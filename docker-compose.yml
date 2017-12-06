@@ -4,6 +4,4 @@ services:
 
   nextjs:
     image: circleci/node:8.9.1
-    volumes:
-      - .:.
     command: npm run dev
