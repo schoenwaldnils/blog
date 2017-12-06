@@ -5,6 +5,5 @@ services:
   nextjs:
     image: circleci/node:8.9.1
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:.
     command: npm run dev
