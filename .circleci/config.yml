@@ -19,6 +19,9 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:8.9.1
+      - environment:
+          CONTENTFUL_SPACE: ${CONTENTFUL_SPACE}
+          CONTENTFUL_TOKEN: ${CONTENTFUL_TOKEN}
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -52,23 +55,11 @@ jobs:
       #     name: Lint JS
       #     command: npm run eslint
 
-      - setup_remote_docker
-
-      - run:
-          name: Install Docker & Docker-compose
-          command: |
-            set -x
-            curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-
       - run:
           name: Export static files
           command: |
             set -x
-            docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
-            pwd
+            npm run export
             ls -a out
 
       - run:
