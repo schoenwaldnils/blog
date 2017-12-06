@@ -52,6 +52,8 @@ jobs:
       #     name: Lint JS
       #     command: npm run eslint
 
+      - setup_remote_docker
+
       - run:
           name: Install Docker & Docker-compose
           command: |
