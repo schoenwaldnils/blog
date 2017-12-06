@@ -6,4 +6,4 @@ services:
     environment:
       CONTENTFUL_SPACE: ${CONTENTFUL_SPACE}
       CONTENTFUL_TOKEN: ${CONTENTFUL_TOKEN}
-    command: npm run export
+    command: ls -a && npm run export
