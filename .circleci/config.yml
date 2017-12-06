@@ -1,0 +1,61 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+    - pip install docker-compose
+  services:
+    - docker
+
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.9.1
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+        name: Lint CSS
+        command: npm run stylelint
+
+      # - run:
+      #   name: Lint JS
+      #   command: npm run eslint
+
+      - run:
+        name: Lint HTML
+        command: npm run htmlhint
+
+      - run:
+        name: Export static files
+        command: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+
+      - run:
+        name: Show generated files
+        command: pwd && ls -a out

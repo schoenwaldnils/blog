@@ -16,4 +16,4 @@ COPY yarn.lock yarn.lock
 
 RUN yarn install
 
-CMD [ "npm", "run", "production" ]
+CMD [ "npm", "run", "export" ]
