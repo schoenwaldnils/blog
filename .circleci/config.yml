@@ -15,7 +15,7 @@ machine:
     - docker
 
 defaults: &defaults
-  working_directory: ~/repo
+  working_directory: /tmp
   docker:
     - image: circleci/node:8.9.1
 
@@ -24,7 +24,7 @@ jobs:
   checkout:
     <<: *defaults
     steps:
-      - run: mkdir -p tmp
+      - run: mkdir -p workspace
       - checkout
 
       # Download and cache dependencies
@@ -42,14 +42,14 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - persist_to_workspace:
-          root: tmp
+          root: workspace
 
 
   test-css:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: tmp
+          at: workspace
       - run:
           name: Lint CSS
           command: npm run stylelint
@@ -58,7 +58,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: tmp
+          at: workspace
       - run:
           name: Lint JS
           command: npm run eslint
@@ -74,13 +74,13 @@ jobs:
             ls -a out
 
       - persist_to_workspace:
-          root: tmp
+          root: workspace
 
   test-html:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: tmp
+          at: workspace
       - run:
           name: Lint HTML
           command: npm run htmlhint
@@ -89,7 +89,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: tmp
+          at: workspace
       - run:
           name: Show files
           command: ls -a
