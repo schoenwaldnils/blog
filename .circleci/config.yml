@@ -24,6 +24,10 @@ jobs:
   checkout:
     <<: *defaults
     steps:
+      - run: mkdir -p /tmp/workspace
+      - attach_workspace:
+          at: /tmp/workspace
+
       - checkout
 
       # Download and cache dependencies
@@ -40,7 +44,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: mkdir -p /tmp/workspace
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
@@ -67,6 +70,9 @@ jobs:
   build:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
+
       - run:
           name: Export static files
           command: |
