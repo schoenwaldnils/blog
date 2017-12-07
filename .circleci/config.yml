@@ -77,7 +77,7 @@ jobs:
             ls -a out
 
       - persist_to_workspace:
-          root: workspace
+          root: ~/repo
           paths:
             - out
 
