@@ -96,10 +96,6 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run:
-          name: Show files
-          command: ls -a
-
-      - run:
           name: Deploy to Server
           command: scp ./out/* deployer@5.35.245.22:/var/www/site/
 
