@@ -65,7 +65,7 @@ Picture.propTypes = {
   imageAlt: PropTypes.string.isRequired,
   title: PropTypes.string,
   width: PropTypes.number,
-  float: PropTypes.string,
+  float: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 };
 
 export default styled(Picture)`
