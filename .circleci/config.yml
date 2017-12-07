@@ -43,15 +43,12 @@ jobs:
       - run: mkdir -p workspace
       - persist_to_workspace:
           root: workspace
-          paths:
-            - '*'
-
 
   test-css:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: workspace
+          at: ~/repo
       - run:
           name: Lint CSS
           command: npm run stylelint
@@ -60,7 +57,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: workspace
+          at: ~/repo
       - run:
           name: Lint JS
           command: npm run eslint
@@ -84,7 +81,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: workspace
+          at: ~/repo
       - run:
           name: Lint HTML
           command: npm run htmlhint
@@ -93,7 +90,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: workspace
+          at: ~/repo
       - run:
           name: Show files
           command: ls -a
