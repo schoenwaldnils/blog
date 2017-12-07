@@ -24,9 +24,6 @@ jobs:
   checkout:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-
       - checkout
 
       # Download and cache dependencies
@@ -43,9 +40,15 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - persist_to_workspace:
+          root: ~/repo
+
+
   test-css:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Lint CSS
           command: npm run stylelint
@@ -53,6 +56,8 @@ jobs:
   test-js:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Lint JS
           command: npm run eslint
@@ -60,9 +65,6 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-
       - run:
           name: Export static files
           command: |
@@ -70,9 +72,14 @@ jobs:
             npm run export
             ls -a out
 
+      - persist_to_workspace:
+          root: ~/repo
+
   test-html:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Lint HTML
           command: npm run htmlhint
@@ -80,6 +87,8 @@ jobs:
   deploy:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Show files
           command: ls -a
