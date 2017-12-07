@@ -43,6 +43,8 @@ jobs:
       - run: mkdir -p workspace
       - persist_to_workspace:
           root: workspace
+          paths:
+            - *
 
 
   test-css:
@@ -75,6 +77,8 @@ jobs:
 
       - persist_to_workspace:
           root: workspace
+          paths:
+            - out
 
   test-html:
     <<: *defaults
