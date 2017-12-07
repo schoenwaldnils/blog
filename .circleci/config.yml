@@ -24,6 +24,9 @@ jobs:
   checkout:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/repo
+
       - checkout
 
       # Download and cache dependencies
@@ -57,6 +60,9 @@ jobs:
   build:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/repo
+
       - run:
           name: Export static files
           command: |
