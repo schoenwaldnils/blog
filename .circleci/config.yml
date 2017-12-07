@@ -40,16 +40,16 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: mkdir -p /tmp/workspace
+      - run: mkdir -p ~/repo
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: ~/repo
           paths: .
 
   test-css:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/repo
       - run:
           name: Lint CSS
           command: npm run stylelint
@@ -58,7 +58,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/repo
       - run:
           name: Lint JS
           command: npm run eslint
@@ -67,7 +67,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/repo
 
       - run:
           name: Export static files
@@ -85,7 +85,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/repo
       - run:
           name: Lint HTML
           command: npm run htmlhint
@@ -94,7 +94,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/repo
       - run:
           name: Show files
           command: ls -a
