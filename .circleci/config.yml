@@ -15,7 +15,7 @@ machine:
     - docker
 
 defaults: &defaults
-  working_directory: /tmp
+  working_directory: ~/repo
   docker:
     - image: circleci/node:8.9.1
 
@@ -24,7 +24,6 @@ jobs:
   checkout:
     <<: *defaults
     steps:
-      - run: mkdir -p workspace
       - checkout
 
       # Download and cache dependencies
@@ -41,6 +40,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: mkdir -p workspace
       - persist_to_workspace:
           root: workspace
 
