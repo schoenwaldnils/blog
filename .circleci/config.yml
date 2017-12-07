@@ -24,6 +24,7 @@ jobs:
   checkout:
     <<: *defaults
     steps:
+      - run: mkdir -p tmp
       - checkout
 
       # Download and cache dependencies
@@ -41,14 +42,14 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - persist_to_workspace:
-          root: ~/repo
+          root: tmp
 
 
   test-css:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: tmp
       - run:
           name: Lint CSS
           command: npm run stylelint
@@ -57,7 +58,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: tmp
       - run:
           name: Lint JS
           command: npm run eslint
@@ -73,13 +74,13 @@ jobs:
             ls -a out
 
       - persist_to_workspace:
-          root: ~/repo
+          root: tmp
 
   test-html:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: tmp
       - run:
           name: Lint HTML
           command: npm run htmlhint
@@ -88,7 +89,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: tmp
       - run:
           name: Show files
           command: ls -a
