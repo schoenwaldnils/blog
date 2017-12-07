@@ -95,11 +95,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run:
-          name: Add Host
-          command: |
-            touch ~/.ssh/known_hosts
-            ssh-keyscan -H 5.35.245.22 >> ~/.ssh/known_hosts
+      - add_ssh_keys
       - run:
           name: Deploy to Server
           command: scp ./out/* deployer@5.35.245.22:/var/www/vhosts/lvps5-35-245-22.dedicated.hosteurope.de/projects/schoenwald/live
