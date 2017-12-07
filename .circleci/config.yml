@@ -99,9 +99,9 @@ jobs:
           name: Show files
           command: ls -a
 
-      # - run:
-      #     name: Deploy to Server
-      #     command: scp ./out/* deployer@5.35.245.22:/var/www/site/
+      - run:
+          name: Deploy to Server
+          command: scp ./out/* deployer@5.35.245.22:/var/www/site/
 
 
 workflows:
@@ -121,7 +121,7 @@ workflows:
       - test-html:
           requires:
             - build
-      - deploy-job:
+      - deploy:
           requires:
             - test-html
           filters:
