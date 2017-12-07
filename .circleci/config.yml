@@ -97,7 +97,7 @@ jobs:
           at: ~/repo
       - run:
           name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host hosteurope.de\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
           name: Deploy to Server
           command: scp ./out/* deployer@5.35.245.22:/var/www/vhosts/lvps5-35-245-22.dedicated.hosteurope.de/projects/schoenwald/live
