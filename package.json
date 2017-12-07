@@ -12,6 +12,7 @@
     "deploy": "/bin/bash scripts/deploy.sh",
     "start": "npm run dev",
     "stylelint": "stylelint \"source/**/*.css\" --formatter verbose --fix",
+    "eslint": "eslint source/.",
     "lint": "npm run stylelint",
     "htmlhint": "htmlhint out",
     "test": "npm run lint && npm run htmlhint",
