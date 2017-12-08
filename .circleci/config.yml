@@ -99,9 +99,14 @@ jobs:
           name: Avoid hosts unknown for hosteurope
           command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
+          name: Install rsync
+          command: sudo apt install rsync
+      - run:
           name: Deploy to Server
           # command: scp -r ./out/* schoenwald@5.35.245.22:www/production
-          command: rsync -v --delete ./out/* schoenwald@5.35.245.22:www/production
+          command: |
+            mv out production
+            rsync -avr --delete ./production schoenwald@5.35.245.22:www
 
 
 workflows:
