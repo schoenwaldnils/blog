@@ -100,7 +100,8 @@ jobs:
           command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
           name: Deploy to Server
-          command: scp -r ./out/* schoenwald@5.35.245.22:www/production
+          # command: scp -r ./out/* schoenwald@5.35.245.22:www/production
+          command: rsync -v --delete ./out/* schoenwald@5.35.245.22:www/production
 
 
 workflows:
