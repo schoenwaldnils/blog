@@ -50,11 +50,11 @@ const Meta = ({
 };
 
 Meta.defaultProps = {
-  url: 'http://schoenwald.media',
+  url: '//schoenwald.media',
   type: 'website',
   title: 'Schönwald',
   description: 'Thoughts on CSS, JS, and overall clean code.',
-  image: 'http://schoenwald.media/static/assets/images/icon-on-black.png',
+  image: '//schoenwald.media/static/assets/images/icon-on-black.png',
 };
 
 Meta.propTypes = {

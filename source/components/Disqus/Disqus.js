@@ -22,7 +22,7 @@ const Disqus = ({
 };
 
 Disqus.defaultProps = {
-  siteUrl: 'http://schoenwald.media/',
+  siteUrl: '//schoenwald.media/',
 };
 
 Disqus.propTypes = {
