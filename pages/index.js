@@ -8,7 +8,7 @@ import Filter from '../source/components/Filter/Filter';
 const Page = ({ posts, tags, activeTag }) => {
   return [
     <Meta
-      url={activeTag ? `//schoenwald.media/${activeTag}/` : undefined}
+      url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined}
       key="page-meta" />,
     <Filter activeTag={activeTag} tags={tags} key="index-filter" />,
     <div className="Page" key="index-page">

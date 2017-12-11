@@ -45,7 +45,7 @@ export default class SmediaDocument extends Document {
             ga('send', 'pageview');`,
           }} />}
 
-          {prod && <script src={`https://js.driftt.com/include/${Math.ceil(new Date() / 3e5)}/${DRIFT_ID}.js`} type="text/javascript" async="" />}
+          {false && <script src={`https://js.driftt.com/include/${Math.ceil(new Date() / 3e5)}/${DRIFT_ID}.js`} type="text/javascript" async="" />}
         </body>
       </html>
     );
