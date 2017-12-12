@@ -23,7 +23,6 @@ const Meta = ({
   const alteredImage = image.includes('contentful') ? `https:${image}?w=200&h=200&fit=fill` : image;
   return (
     <Head>
-      <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       <meta content="width=device-width,initial-scale=1" name="viewport" />
 
       <title>{ title }</title>
@@ -50,11 +49,11 @@ const Meta = ({
 };
 
 Meta.defaultProps = {
-  url: '//schoenwald.media',
+  url: 'https://schoenwald.media',
   type: 'website',
   title: 'Schönwald',
   description: 'Thoughts on CSS, JS, and overall clean code.',
-  image: '//schoenwald.media/static/assets/images/icon-on-black.png',
+  image: 'https://schoenwald.media/static/assets/images/icon-on-black.png',
 };
 
 Meta.propTypes = {

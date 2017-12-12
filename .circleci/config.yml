@@ -40,7 +40,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: mkdir -p ~/repo
       - persist_to_workspace:
           root: ~/repo
           paths: .
@@ -103,7 +102,6 @@ jobs:
           command: sudo apt install rsync
       - run:
           name: Deploy to Server
-          # command: scp -r ./out/* schoenwald@5.35.245.22:www/production
           command: |
             mv out production
             rsync -avr --delete ./production schoenwald@5.35.245.22:www
