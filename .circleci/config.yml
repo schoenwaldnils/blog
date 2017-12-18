@@ -73,6 +73,7 @@ jobs:
           command: |
             set -x
             npm run export
+            npm run minify-html
             ls -a out
 
       - persist_to_workspace:
@@ -121,6 +122,7 @@ workflows:
       - build:
           requires:
             - test-css
+            - test-js
       - test-html:
           requires:
             - build
