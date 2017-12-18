@@ -16,7 +16,7 @@
     "lint": "npm run stylelint && npm run eslint",
     "htmlhint": "htmlhint out",
     "test": "npm run lint && npm run htmlhint",
-    "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html",
+    "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html --minify-css",
     "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons"
   },
   "keywords": [],
