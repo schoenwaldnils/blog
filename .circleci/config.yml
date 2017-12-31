@@ -73,8 +73,11 @@ jobs:
           command: |
             set -x
             npm run export
+
+      - run:
+          name: Minify html
+          command: |
             npm run minify-html
-            ls -a out
 
       - persist_to_workspace:
           root: ~/repo
