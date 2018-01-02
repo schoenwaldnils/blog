@@ -77,6 +77,18 @@ a:focus {
   }
 }
 
+.u-richText ul,
+.u-richText ol,
+.u-richText dd,
+.u-richText p,
+.u-richText figure,
+.u-richText pre,
+.u-richText table,
+.u-richText fieldset,
+.u-richText hr {
+  margin-bottom: 1rem;
+}
+
 .u-richText h1,
 .u-richText h2,
 .u-richText h3,
