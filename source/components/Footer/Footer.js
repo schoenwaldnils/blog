@@ -22,7 +22,7 @@ const Footer = () => [
           <SocialIcon name="Twitter" href="https://twitter.com/schoenwaldnils" />
         </div>
         <div className="Footer-wrapSocialIcon">
-          <SocialIcon name="GitHub" href="https://github.com/schoenwaldnils" />
+          <SocialIcon name="Github" href="https://github.com/schoenwaldnils" />
         </div>
       </div>
       <nav className="Footer-nav Footer-text">
