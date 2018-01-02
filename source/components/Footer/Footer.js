@@ -16,7 +16,7 @@ const footerNav = [
 const Footer = () => [
   <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
   <footer className="Footer">
-    <div className="Footer-content u-maxWidth">
+    <div className="Footer-content u-maxWidth u-widthPadding">
       <div className="Footer-socialIcons">
         <div className="Footer-wrapSocialIcon">
           <SocialIcon name="Twitter" href="https://twitter.com/schoenwaldnils" />

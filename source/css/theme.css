@@ -82,6 +82,9 @@
   --time-animation: 300ms;
   --time-transition: 150ms;
 
+  --u-box-padding-v: 1.3rem;
+  --u-box-padding-h: var(--u-box-padding-v);
+  --u-box-padding: var(--u-box-padding-v) var(--u-box-padding-h);
 
   /**
    * Components

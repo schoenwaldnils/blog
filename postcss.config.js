@@ -3,7 +3,6 @@ const { viewportsCss } = require('./source/js/viewports');
 module.exports = () => ({
   plugins: {
     'postcss-import': {},
-    'postcss-selector-matches': {},
     'postcss-url': {},
     'postcss-nested': {},
     'postcss-custom-media': {

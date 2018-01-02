@@ -77,25 +77,15 @@ a:focus {
   }
 }
 
-.u-richText :matches(
-ul,
-ol,
-dd,
-p,
-figure,
-pre,
-table,
-fieldset,
-hr):not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.u-richText :matches(h1, h2, h3, h4) {
+.u-richText h1,
+.u-richText h2,
+.u-richText h3,
+.u-richText h4 {
   margin-bottom: .75rem;
 }
 
 .u-richText h1 {
-  font-size: 2.25rem;
+  font-size: 2rem;
 }
 
 .u-richText h2 {
@@ -121,65 +111,64 @@ hr):not(:last-child) {
   text-decoration: none;
   text-shadow: -.05em .05em #fff, .05em .05em #fff; /* 1 */
   transition: color var(--time-transition);
-
-  &:hover,
-  &:focus {
-    color: var(--link-color-hover);
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 1px;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    border-bottom: 1px solid;
-  }
 }
 
-.u-richText {
-  ul,
-  ol {
-    padding-left: 0;
-    list-style: none;
-  }
+.u-richText a:hover,
+.u-richText a:focus {
+  color: var(--link-color-hover);
+}
 
-  ol {
-    counter-reset: ol;
-  }
+.u-richText a::before {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  border-bottom: 1px solid;
+}
 
-  li {
-    position: relative;
-    padding-left: 1em;
-  }
+.u-richText ol {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: ol;
+}
 
-  ul > li::before {
-    content: '';
-    position: absolute;
-    top: calc(1em * 1.4 / 2);
-    left: 0;
-    width: var(--list-dot-size);
-    height: calc(var(--list-dot-size) * .25);
-    margin-top: calc(var(--list-dot-size) * -.5 * .25);
-    background-color: var(--color-brand);
-  }
+.u-richText ul {
+  padding-left: 0;
+  list-style: none;
+}
 
-  ol > li {
-    counter-increment: ol;
+.u-richText li {
+  position: relative;
+  padding-left: 1em;
+}
 
-    &::before {
-      content: counter(ol);
-      position: absolute;
-      top: 0;
-      left: 0;
-      font-family: var(--font-second);
-      font-size: .8em;
-      font-weight: 200;
-      line-height: calc(1.4em / .8);
-      color: var(--color-brand);
-    }
-  }
+.u-richText ol > li {
+  counter-increment: ol;
+}
+
+.u-richText ol > li::before {
+  content: counter(ol);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-second);
+  font-size: .8em;
+  font-weight: 200;
+  line-height: calc(1.4em / .8);
+  color: var(--color-brand);
+}
+
+.u-richText ul > li::before {
+  content: '';
+  position: absolute;
+  top: calc(1em * 1.4 / 2);
+  left: 0;
+  width: var(--list-dot-size);
+  height: calc(var(--list-dot-size) * .25);
+  margin-top: calc(var(--list-dot-size) * -.5 * .25);
+  background-color: var(--color-brand);
 }
 
 ::selection {

@@ -7,7 +7,7 @@ import SchoenwaldLogo from '../Svg/svgs/schoenwald-logo.svg';
 const Header = () => [
   <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
   <header className="Header">
-    <div className="Header-content u-maxWidth">
+    <div className="Header-content u-maxWidth u-widthPadding">
 
       <a className="Header-logo" href="/">
         <SchoenwaldLogo className="Svg" />

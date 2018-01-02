@@ -3,8 +3,6 @@
   max-width: var(--max-width);
   margin-right: auto;
   margin-left: auto;
-  padding-right: 2vw;
-  padding-left: 2vw;
 }
 
 @media print {
@@ -26,17 +24,24 @@
 }
 
 .u-boxPadding {
-  padding: 1.3rem;
+  padding: var(--u-box-padding);
 }
 
-@media (--sm-viewport) {
-  .u-boxPadding {
-    padding: 3.5vw 4vw;
+.u-boxPadding pre,
+.u-boxPadding .cp_embed_wrapper {
+  margin-right: calc(var(--u-box-padding-h) * -1);
+  margin-left: calc(var(--u-box-padding-h) * -1);
+}
+
+@media (--md-viewport) {
+  .u-boxPadding pre,
+  .u-boxPadding .cp_embed_wrapper {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 
-@media (--lg-viewport) {
-  .u-boxPadding {
-    padding: 1.3125rem 1.5rem;
-  }
+.u-widthPadding {
+  padding-right: 2vw;
+  padding-left: 2vw;
 }
