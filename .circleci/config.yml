@@ -108,7 +108,7 @@ jobs:
           name: Deploy to Server
           command: |
             mv out production
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./production schoenwald@5.35.245.22:www
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./production schoenwald@5.35.245.22:www/schoenwald
 
 
 workflows:
