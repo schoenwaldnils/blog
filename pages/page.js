@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getFields } from '../scripts/contentful';
 import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
-import Button from '../source/components/Button/Button';
+// import Button from '../source/components/Button/Button';
 import Disqus from '../source/components/Disqus/Disqus';
 
 const Page = ({ type, fields }) => [
