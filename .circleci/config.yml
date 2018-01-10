@@ -153,7 +153,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: production
+              only: /^v.*/
       - deploy-test:
           requires:
             - test-html
@@ -161,4 +161,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: test
+              only: /^test.*/
