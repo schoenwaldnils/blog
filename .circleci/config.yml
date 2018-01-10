@@ -132,7 +132,10 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - checkout
+      - checkout:
+          filters:
+            tags:
+              only: /.*/
       - test-css:
           requires:
             - checkout
