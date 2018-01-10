@@ -150,11 +150,15 @@ workflows:
           requires:
             - test-html
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: production
       - deploy-test:
           requires:
             - test-html
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: test
