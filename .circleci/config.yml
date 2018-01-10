@@ -93,7 +93,7 @@ jobs:
           name: Lint HTML
           command: npm run htmlhint
 
-  deploy:
+  deploy-production:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -109,6 +109,23 @@ jobs:
           command: |
             mv out production
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./production schoenwald@5.35.245.22:www/schoenwald
+
+  deploy-test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Avoid hosts unknown for hosteurope
+          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
+          name: Install rsync
+          command: sudo apt install rsync
+      - run:
+          name: Deploy to Server
+          command: |
+            mv out production
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./test schoenwald@5.35.245.22:www/schoenwald
 
 
 workflows:
@@ -129,9 +146,15 @@ workflows:
       - test-html:
           requires:
             - build
-      - deploy:
+      - deploy-production:
           requires:
             - test-html
           filters:
-            branches:
-              only: master
+            tags:
+              only: production
+      - deploy-test:
+          requires:
+            - test-html
+          filters:
+            tags:
+              only: test
