@@ -124,7 +124,7 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            mv out production
+            mv out test
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./test schoenwald@5.35.245.22:www/schoenwald
 
 
