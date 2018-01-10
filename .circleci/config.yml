@@ -28,8 +28,6 @@ jobs:
           name: Echo
           command: |
             echo $CIRCLE_BRANCH
-            echo $CIRCLE_PULL_REQUEST
-            echo "$CIRCLE_PULL_REQUEST"
 
   checkout:
     <<: *defaults
@@ -137,6 +135,23 @@ jobs:
             mv out test
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./test schoenwald@5.35.245.22:www/schoenwald
 
+  deploy-pr:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Avoid hosts unknown for hosteurope
+          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
+          name: Install rsync
+          command: sudo apt install rsync
+      - run:
+          name: Deploy to Server
+          command: |
+            mv out $CIRCLE_BRANCH
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$CIRCLE_BRANCH schoenwald@5.35.245.22:www/schoenwald/feature
+
 
 workflows:
   version: 2
@@ -194,3 +209,9 @@ workflows:
               ignore: /.*/
             tags:
               only: /^test.*/
+      - deploy-pr:
+          requires:
+            - test-html
+          filters:
+            branches:
+              only: /feature\/.*/
