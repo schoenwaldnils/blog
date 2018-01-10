@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import stylesheet from './Post.css';
 import Picture from '../Picture/Picture';
 import marked from '../../js/utils/marked';
-import { viewports, viewportsJs } from '../../js/viewports';
 
 const Post = (props) => {
   const {
     image,
     title,
-    date,
+    // date,
     tags,
     content,
   } = props;

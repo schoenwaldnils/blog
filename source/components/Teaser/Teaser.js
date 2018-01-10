@@ -12,8 +12,6 @@ const Teaser = (props) => {
     tags,
   } = props;
 
-  console.log(props);
-
   return [
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="Teaser-style" />,
     <article className="Teaser" key="Teaser-article" data-tags={tags}>
