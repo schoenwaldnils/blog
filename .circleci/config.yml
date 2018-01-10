@@ -142,7 +142,10 @@ workflows:
   version: 2
   echo:
     jobs:
-      - echo
+      - echo:
+          filters:
+            branches:
+              only: /feature\/.*/
 
   build-deploy:
     jobs:
