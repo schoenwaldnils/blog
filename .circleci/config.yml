@@ -21,6 +21,16 @@ defaults: &defaults
 
 
 jobs:
+  echo:
+    <<: *defaults
+    steps:
+      - run:
+          name: Echo
+          command: |
+            echo $CIRCLE_BRANCH
+            echo $CIRCLE_PULL_REQUEST
+            echo "$CIRCLE_PULL_REQUEST"
+
   checkout:
     <<: *defaults
     steps:
@@ -130,6 +140,10 @@ jobs:
 
 workflows:
   version: 2
+  echo:
+    jobs:
+      - echo
+
   build-deploy:
     jobs:
       - checkout:
