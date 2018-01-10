@@ -149,6 +149,7 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
+            mkdir feature
             mv out $CIRCLE_BRANCH
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$CIRCLE_BRANCH schoenwald@5.35.245.22:www/schoenwald/feature
 
