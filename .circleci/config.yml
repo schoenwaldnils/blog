@@ -21,14 +21,6 @@ defaults: &defaults
 
 
 jobs:
-  echo:
-    <<: *defaults
-    steps:
-      - run:
-          name: Echo
-          command: |
-            echo $CIRCLE_BRANCH
-
   checkout:
     <<: *defaults
     steps:
@@ -149,20 +141,21 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            mkdir feature
-            mv out $CIRCLE_BRANCH
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$CIRCLE_BRANCH schoenwald@5.35.245.22:www/schoenwald/feature
+            BRANCH_NAME=${$CIRCLE_BRANCH##feature/}
+            echo BRANCH_NAME = $BRANCH_NAME
+            mv out $BRANCH_NAME
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/feature
+      - run:
+          name: Create subdomain
+          command: |
+            BRANCH_NAME=${CIRCLE_BRANCH##feature/}
+            DOMAIN_NAME=schoenwald.media
+            echo BRANCH_NAME = $BRANCH_NAME
+            ssh -o SendEnv=BRANCH_NAME -o SendEnv=DOMAIN_NAME root@5.35.245.22 scripts/manage-subdomain.sh
 
 
 workflows:
   version: 2
-  echo:
-    jobs:
-      - echo:
-          filters:
-            branches:
-              only: /feature\/.*/
-
   build-deploy:
     jobs:
       - checkout:
