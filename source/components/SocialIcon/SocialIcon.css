@@ -1,6 +1,8 @@
 /** @define SocialIcon */
 
 .SocialIcon {
+  --SocialIcon-icon-color: var(--color-white, #fff);
+
   position: relative;
   display: block;
   width: 1em;
@@ -40,7 +42,7 @@
 }
 
 .SocialIcon-iconBack {
-  color: #fff;
+  color: var(--SocialIcon-icon-color);
   transform: rotateY(180deg);
 }
 

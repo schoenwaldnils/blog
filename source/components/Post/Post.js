@@ -4,15 +4,14 @@ import { format } from 'date-fns';
 import stylesheet from './Post.css';
 import Picture from '../Picture/Picture';
 import marked from '../../js/utils/marked';
+import { viewports, viewportsJs } from '../../js/viewports';
 
 const Post = (props) => {
   const {
-    url,
     image,
     title,
     date,
     tags,
-    description,
     content,
   } = props;
 
@@ -23,63 +22,42 @@ const Post = (props) => {
 
       {image &&
       <div className="Post-wrapImage">
-        <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} />
+        <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} width={1980} />
+        <div className="Post-meta">
+          <h1 className="Post-title" key="post-title">{title}</h1>
+        </div>
       </div>}
 
-      <div className="Post-content u-richText u-boxPadding">
-        <div className="Post-meta">
-          {date &&
-          <time className="Post-date">
-            {format(date, 'MMM DD, YYYY')}
-          </time>}
+      <div className="u-boxPadding u-maxWidth">
+        {content && <div className="Post-content u-richText" dangerouslySetInnerHTML={{ __html: marked(content) }} />}
 
-          {tags &&
+        {tags &&
           <div className="Post-tags">
-            {tags.map(tag => [
-              <a className="Post-tag" href={`/tag/${tag}`} key={tag}>{tag}</a>,
-              <span className="Post-tagComma" key={`${tag}-comma`}>, </span>,
-            ])}
+            {tags.map(tag => (
+              <a className="Post-tagLink" href={`/tag/${tag}`} key={tag}>
+                <button className="Post-tag">
+                  {tag}
+                </button>
+              </a>
+            ))}
           </div>}
-        </div>
-
-        {url &&
-        <a href={url} key="post-title">
-          <h1 className="Post-title">{title}</h1>
-        </a>}
-
-        {!url &&
-        <h1 className="Post-title" key="post-title">{title}</h1>}
-
-        {description &&
-        <p className="Post-description">
-          {description}
-          {' '}
-          <a className="Post-readMore" href={url}>read the full article</a>
-        </p>}
-
-        {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: marked(content) }} />}
-
       </div>
     </article>,
   ];
 };
 
 Post.defaultProps = {
-  url: null,
   image: null,
   date: null,
   tags: [],
-  description: null,
   content: null,
 };
 
 Post.propTypes = {
-  url: PropTypes.string,
   image: PropTypes.object,
   title: PropTypes.string.isRequired,
   date: PropTypes.string,
   tags: PropTypes.array,
-  description: PropTypes.string,
   content: PropTypes.string,
 };
 

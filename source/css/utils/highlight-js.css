@@ -5,32 +5,29 @@ code {
   padding-left: .5em;
   font-size: .9em;
   line-height: 1.5;
-  color: var(--cb1);
+  color: var(--color-black);
   vertical-align: text-bottom;
-  background-color: var(--cb6);
+  background-color: var(--color-white);
 }
 
 .hljs {
+  position: relative;
   display: block;
   padding: .5em 1em;
   overflow-x: auto;
   line-height: 1.8;
-  color: var(--cb7);
-  background: var(--cb1);
+  color: var(--color-white);
+  background: var(--color-black);
 }
 
-.hljs.css,
-.hljs.ruby,
-.hljs.html,
-.hljs.php {
-  position: relative;
-
-  &::after {
-    position: absolute;
-    top: .15rem;
-    right: .5rem;
-    color: var(--cb3);
-  }
+.hljs.css::after,
+.hljs.ruby::after,
+.hljs.html::after,
+.hljs.php::after {
+  position: absolute;
+  top: .15rem;
+  right: .5rem;
+  color: var(--color-disabled-on-black);
 }
 
 .hljs.css::after {
@@ -53,19 +50,18 @@ code {
 /* Atelier-Cave Comment */
 .hljs-comment,
 .hljs-quote {
-  color: var(--cb3);
+  color: var(--color-black-lighten);
 }
 
-.hljs-variable,
-.hljs-template-variable,
 .hljs-attribute,
 .hljs-regexp,
 .hljs-link,
 .hljs-tag,
 .hljs-selector-id {
-  color: var(--cb7);
+  color: var(--color-white);
 }
 
+.hljs-addition,
 .hljs-attr,
 .hljs-selector-class,
 .hljs-number,
@@ -75,24 +71,26 @@ code {
 .hljs-literal,
 .hljs-type,
 .hljs-params {
-  color: var(--cb9);
+  color: var(--color-orange);
 }
 
 .hljs-string,
 .hljs-symbol,
 .hljs-bullet {
-  color: var(--cbB);
+  color: var(--color-green);
 }
 
 .hljs-title,
-.hljs-section {
-  color: var(--cbD);
+.hljs-section,
+.hljs-variable,
+.hljs-template-variable {
+  color: var(--color-blue);
 }
 
 .hljs-keyword,
 .hljs-name,
 .hljs-selector-tag {
-  color: var(--cb8);
+  color: var(--color-red);
 }
 
 .hljs-deletion,
@@ -103,11 +101,7 @@ code {
 }
 
 .hljs-deletion {
-  background-color: var(--cbE);
-}
-
-.hljs-addition {
-  background-color: var(--cbF);
+  background-color: var(--color-purple);
 }
 
 .hljs-emphasis {

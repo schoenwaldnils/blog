@@ -2,60 +2,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const pictureViewports = [
-  700,
-  600,
-  500,
-  400,
-];
+const getParams = (width, height = false, retina = false) => {
+  const paramWidth = `w=${retina ? width * 2 : width}`;
+  const paramHeight = height ? `h=${retina ? height * 2 : height}` : '';
+  const paramCrop = height ? 'fit=fill' : '';
+  const paramsAdditional = 'fl=progressive';
 
-const Picture = ({
-  className, imageSrc, imageAlt, title, width,
-}) => (
-  <picture>
-    { width >= 400 && [
-      pictureViewports.map((viewport) => {
-        if (viewport >= width) return null;
-        return (
-          <source
-            srcSet={`
-              ${imageSrc}?w=${(viewport + 100)}&fl=progressive 1x,
-              ${imageSrc}?w=${(viewport + 100) * 2}&fl=progressive 2x
-            `}
-            media={`(min-width: ${viewport}px)`}
-            key={viewport} />
-        );
-      }),
+  const params = [
+    paramWidth,
+    paramHeight,
+    paramCrop,
+    paramsAdditional,
+  ].join('&');
+
+  return params;
+};
+
+const Picture = (props) => {
+  const {
+    className,
+    imageSrc,
+    imageAlt,
+    title,
+    width,
+    height,
+  } = props;
+
+  return (
+    <picture>
       <source
         srcSet={`
-          ${imageSrc}?w=${400}&fl=progressive 1x,
-          ${imageSrc}?w=${400 * 2}&fl=progressive 2x
+          ${imageSrc}?${getParams(width, height)} 1x,
+          ${imageSrc}?${getParams(width, height, true)} 2x
         `}
-        key={400} />,
-    ]}
+        key={width} />
 
-    { width < 400 && [
-      <source
-        srcSet={`
-          ${imageSrc}?w=${width}&fl=progressive 1x,
-          ${imageSrc}?w=${width * 2}&fl=progressive 2x
-        `}
-        key={width} />,
-    ]}
-
-    <img
-      className={className}
-      src={`${imageSrc}?w=${width}&fl=progressive`}
-      alt={imageAlt}
-      title={title}
-      key="img" />
-  </picture>
-);
+      <img
+        className={className}
+        src={`${imageSrc}?${getParams(width, height)}`}
+        alt={imageAlt}
+        title={title}
+        key="img" />
+    </picture>
+  );
+};
 
 Picture.defaultProps = {
   className: null,
   title: null,
-  width: 700,
+  width: 1920,
+  height: null,
   float: null,
 };
 
@@ -65,11 +61,12 @@ Picture.propTypes = {
   imageAlt: PropTypes.string.isRequired,
   title: PropTypes.string,
   width: PropTypes.number,
+  height: PropTypes.number,
   float: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 };
 
 export default styled(Picture)`
-  max-width: ${props => props.width && `${props.width}px`};
+  width: ${props => props.width && `${props.width}px`};
   float: ${props => props.float};
   margin-right: ${props => props.float === 'left' && '8px'};
   margin-bottom: ${props => props.float && '8px'};

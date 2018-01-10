@@ -1,8 +1,8 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import stylesheet from '../source/css/index.css';
-import Header from '../source/components/Header/Header';
+import Main from '../source/components/Main/Main';
 import Content from '../source/components/Content/Content';
 import Footer from '../source/components/Footer/Footer';
 
@@ -25,7 +25,6 @@ export default class SmediaDocument extends Document {
           {this.props.styleTags}
         </Head>
         <body>
-          <Header />
           <Content>
             <Main />
           </Content>

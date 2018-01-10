@@ -1,8 +1,8 @@
 {
   "presets": [
+    "env",
     "next/babel",
-    "stage-0",
-    "env"
+    "stage-0"
   ],
   "plugins": [
     "inline-react-svg",

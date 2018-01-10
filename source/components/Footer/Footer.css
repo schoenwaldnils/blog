@@ -7,7 +7,7 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   color: #fff;
-  background-color: var(--Footer-background, #000);
+  background-color: var(--background-color);
   border-bottom: solid 2px var(--Footer-border-color, #f00);
 }
 
@@ -31,12 +31,6 @@
   margin-bottom: .75rem;
   font-size: 2rem;
   line-height: 1;
-}
-
-@media (--sm-viewport) {
-  .Footer-socialIcons {
-    display: none;
-  }
 }
 
 .Footer-wrapSocialIcon {
