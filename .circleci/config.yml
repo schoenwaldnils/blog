@@ -93,7 +93,7 @@ jobs:
           name: Lint HTML
           command: npm run htmlhint
 
-  deploy:
+  deploy-production:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -110,28 +110,102 @@ jobs:
             mv out production
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./production schoenwald@5.35.245.22:www/schoenwald
 
+  deploy-test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Avoid hosts unknown for hosteurope
+          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
+          name: Install rsync
+          command: sudo apt install rsync
+      - run:
+          name: Deploy to Server
+          command: |
+            mv out test
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./test schoenwald@5.35.245.22:www/schoenwald
+
+  deploy-pr:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Avoid hosts unknown for hosteurope
+          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
+          name: Install rsync
+          command: sudo apt install rsync
+      - run:
+          name: Deploy to Server
+          command: |
+            BRANCH_NAME=${CIRCLE_BRANCH##feature/}
+            echo BRANCH_NAME = $BRANCH_NAME
+            mv out $BRANCH_NAME
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/feature
+      # - run:
+      #     name: Create subdomain
+      #     command: |
+      #       BRANCH_NAME=${CIRCLE_BRANCH##feature/}
+      #       DOMAIN_NAME=schoenwald.media
+      #       echo BRANCH_NAME = $BRANCH_NAME
+      #       ssh -o SendEnv=BRANCH_NAME -o SendEnv=DOMAIN_NAME circleci@5.35.245.22 scripts/manage-subdomain.sh
+
 
 workflows:
   version: 2
   build-deploy:
     jobs:
-      - checkout
+      - checkout:
+          filters:
+            tags:
+              only: /.*/
       - test-css:
           requires:
             - checkout
+          filters:
+            tags:
+              only: /.*/
       - test-js:
           requires:
             - checkout
+          filters:
+            tags:
+              only: /.*/
       - build:
           requires:
             - test-css
             - test-js
+          filters:
+            tags:
+              only: /.*/
       - test-html:
           requires:
             - build
-      - deploy:
+          filters:
+            tags:
+              only: /.*/
+      - deploy-production:
           requires:
             - test-html
           filters:
             branches:
-              only: master
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+      - deploy-test:
+          requires:
+            - test-html
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^test.*/
+      - deploy-pr:
+          requires:
+            - test-html
+          filters:
+            branches:
+              only: /feature\/.*/
