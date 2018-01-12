@@ -21,6 +21,12 @@ module.exports = {
         },
       };
 
+      // preview
+      pathMap['/preview'] = {
+        page: '/preview',
+      };
+
+      // tag overview
       pathMap['/tag'] = {
         page: '/',
         query: {
@@ -29,7 +35,7 @@ module.exports = {
         },
       };
 
-
+      // contentful pages
       pages.map((item) => {
         pathMap[item.url] = {
           page: '/page',
@@ -41,6 +47,7 @@ module.exports = {
         return true;
       });
 
+      // contentful posts
       posts.map((item) => {
         pathMap[item.url] = {
           page: '/page',
@@ -52,6 +59,7 @@ module.exports = {
         return true;
       });
 
+      // post tags
       await Promise.all(tags.map(async (tag) => {
         const tagPosts = await getEntries('post', tag);
         pathMap[`/tag/${tag}`] = {

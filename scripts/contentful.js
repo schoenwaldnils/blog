@@ -6,7 +6,7 @@ const client = contentful.createClient({
 });
 
 async function getEntries(type, tag = false) {
-  const posts = [];
+  const entries = [];
 
   try {
     let res;
@@ -24,7 +24,7 @@ async function getEntries(type, tag = false) {
     }
 
     res.items.map((item) => {
-      posts.push({
+      entries.push({
         id: item.sys.id,
         url: `/${item.fields.slug}`,
       });
@@ -33,14 +33,14 @@ async function getEntries(type, tag = false) {
   } catch (exception) {
     console.error(exception);
   }
-  return posts;
+  return entries;
 }
 
 async function getFields(id) {
   try {
     const res = await client.getEntries({ 'sys.id': id });
-    const pageFields = res.items[0].fields;
-    return pageFields;
+    const entryFields = res.items[0].fields;
+    return entryFields;
   } catch (exception) {
     return console.error(exception);
   }
