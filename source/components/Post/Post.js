@@ -16,7 +16,7 @@ const Post = (props) => {
 
   return [
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="post-style" />,
-    <article className="Post u-whiteBox" key="post-article">
+    <article className="Post" key="post-article">
       {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
 
       {image &&
@@ -29,18 +29,23 @@ const Post = (props) => {
 
       <div className="u-boxPadding u-maxWidth">
         {content && <div className="Post-content u-richText" dangerouslySetInnerHTML={{ __html: marked(content) }} />}
-
-        {tags &&
-          <div className="Post-tags">
-            {tags.map(tag => (
-              <a className="Post-tagLink" href={`/tag/${tag}`} key={tag}>
-                <button className="Post-tag">
-                  {tag}
-                </button>
-              </a>
-            ))}
-          </div>}
       </div>
+
+      {tags &&
+        <div className="Post-hr">
+          <div className="u-boxPadding u-maxWidth">
+            Related tags:
+            <div className="Post-tags">
+              {tags.map(tag => (
+                <a className="Post-tagLink" href={`/tag/${tag}`} key={tag}>
+                  <button className="Post-tag">
+                    {tag}
+                  </button>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>}
     </article>,
   ];
 };

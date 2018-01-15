@@ -2,6 +2,7 @@
 
 .Post-wrapImage {
   position: relative;
+  margin-bottom: 2rem;
   background-color: #888;
 }
 
@@ -47,10 +48,15 @@
   }
 }
 
+.Post-hr {
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+
 .Post-tags {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 3rem;
+  margin-top: .5rem;
 }
 
 .Post-tagLink {
