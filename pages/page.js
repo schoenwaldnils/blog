@@ -32,6 +32,7 @@ Page.getInitialProps = async ({ query }) => {
       title: fields.title,
       slug: fields.slug,
       image: fields.image ? {
+        color: fields.image.fields.file.details.color || null,
         url: fields.image.fields.file.url,
         alt: fields.image.fields.title,
       } : null,

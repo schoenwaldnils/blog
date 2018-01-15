@@ -52,6 +52,7 @@ Picture.defaultProps = {
   title: null,
   width: 1920,
   height: null,
+  color: null,
   float: null,
 };
 
@@ -62,6 +63,7 @@ Picture.propTypes = {
   title: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
+  color: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   float: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 };
 
@@ -71,4 +73,5 @@ export default styled(Picture)`
   margin-right: ${props => props.float === 'left' && '8px'};
   margin-bottom: ${props => props.float && '8px'};
   margin-left: ${props => props.float === 'right' && '8px'};
+  background-color: ${props => props.color};
 `;

@@ -1,4 +1,5 @@
 const contentful = require('contentful');
+const Vibrant = require('node-vibrant');
 
 const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE,
@@ -40,6 +41,10 @@ async function getFields(id) {
   try {
     const res = await client.getEntries({ 'sys.id': id });
     const entryFields = res.items[0].fields;
+    if (entryFields.image && entryFields.image.fields.file.details) {
+      const imageColor = await Vibrant.from(`https:${entryFields.image.fields.file.url}`).getPalette();
+      entryFields.image.fields.file.details.color = imageColor.Muted.getHex();
+    }
     return entryFields;
   } catch (exception) {
     return console.error(exception);
