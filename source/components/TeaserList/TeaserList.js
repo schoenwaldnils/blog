@@ -10,7 +10,7 @@ const TeaserList = ({ children }) => [
 ];
 
 TeaserList.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 export default TeaserList;

@@ -7,15 +7,17 @@ const Disqus = ({
 }) => {
   if (type !== 'post') return null;
   return [
-    <script dangerouslySetInnerHTML={{
-      __html: `
-        function disqus_config() {
-          this.page.title = '${title}';
-          this.page.url = '${siteUrl}${pageUrl}';
-          this.page.identifier = '${pageUrl}';
-        }`,
-    }} />,
-    <script defer src="//schoenwaldmedia.disqus.com/embed.js" data-timestamp={new Date()} />,
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+          function disqus_config() {
+            this.page.title = '${title}';
+            this.page.url = '${siteUrl}${pageUrl}';
+            this.page.identifier = '${pageUrl}';
+          }`,
+      }}
+      key="disqus-script" />,
+    <script defer src="//schoenwaldmedia.disqus.com/embed.js" data-timestamp={new Date()} key="disqus-script2" />,
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="disqus-style" />,
     <div className="Disqus u-whiteBox u-boxPadding" id="disqus_thread" key="disqus-body" />,
   ];
