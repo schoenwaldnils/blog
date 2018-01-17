@@ -14,22 +14,30 @@ const Post = (props) => {
     content,
   } = props;
 
+  console.log(title);
+
+
   return [
     <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="post-style" />,
     <article className="Post" key="post-article">
       {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
 
-      {image &&
-      <div className="Post-wrapImage">
-        <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} color={image.color} />
-        <div className="Post-meta">
-          <h1 className="Post-title" key="post-title">{title}</h1>
+      {(image || title) &&
+        <div className="Post-wrapImage">
+          {image && <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} color={image.color} />}
+          {title &&
+            <div className="Post-meta">
+              <h1 className="Post-title">{title}</h1>
+            </div>
+          }
         </div>
-      </div>}
+      }
 
-      <div className="u-boxPadding u-maxWidth">
-        {content && <div className="Post-content u-richText" dangerouslySetInnerHTML={{ __html: marked(content) }} />}
-      </div>
+      {content &&
+        <div className="u-boxPadding u-maxWidth">
+          <div className="Post-content u-richText" dangerouslySetInnerHTML={{ __html: marked(content) }} />
+        </div>
+      }
 
       {tags &&
         <div className="Post-hr">
@@ -45,7 +53,8 @@ const Post = (props) => {
               ))}
             </div>
           </div>
-        </div>}
+        </div>
+      }
     </article>,
   ];
 };

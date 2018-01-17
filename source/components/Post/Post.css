@@ -9,6 +9,7 @@
 .Post-image {
   display: block;
   mix-blend-mode: multiply;
+  width: 100%;
   height: 80vh;
   object-fit: cover;
 }

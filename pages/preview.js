@@ -17,7 +17,6 @@ const Page = (props) => {
     } else {
       fields[param] = params[param];
     }
-    return true;
   });
 
   console.log(fields);
