@@ -7,21 +7,25 @@ import Post from '../source/components/Post/Post';
 // import Button from '../source/components/Button/Button';
 import Disqus from '../source/components/Disqus/Disqus';
 
-const Page = ({ type, fields }) => [
-  // <a className="page-edit" href={`/edit?type=${type}&id=${fields.id}`} key="page-edit"><Button>Edit</Button></a>,
-  <Meta
-    url={`https://schoenwald.media/${fields.slug}/`}
-    type="article"
-    title={fields.title}
-    description={fields.description}
-    image={fields.image ? fields.image.url : undefined}
-    key="page-meta" />,
-  <Header className="Header--post" key="page-header" />,
-  <Post
-    {...fields}
-    key="page-post" />,
-  <Disqus type={type} title={fields.title} pageUrl={fields.slug} key="page-disqus" />,
-];
+const Page = (props) => {
+  console.log(props);
+  const { type, fields } = props;
+  return [
+    // <a className="page-edit" href={`/edit?type=${type}&id=${fields.id}`} key="page-edit"><Button>Edit</Button></a>,
+    <Meta
+      url={`https://schoenwald.media/${fields.slug}/`}
+      type="article"
+      title={fields.title}
+      description={fields.description}
+      image={fields.image ? fields.image.url : undefined}
+      key="page-meta" />,
+    <Header className="Header--post" key="page-header" />,
+    <Post
+      {...fields}
+      key="page-post" />,
+    <Disqus type={type} title={fields.title} pageUrl={fields.slug} key="page-disqus" />,
+  ];
+};
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);

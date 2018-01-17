@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { viewports, viewportsJs } from '../../js/viewports';
 
 const getParams = (width, height = false, retina = false) => {
-  const paramWidth = `w=${retina ? width * 2 : width}`;
-  const paramHeight = height ? `h=${retina ? height * 2 : height}` : '';
-  const paramCrop = height ? 'fit=fill' : '';
+  const paramWidth = width && `w=${retina ? width * 2 : width}`;
+  const paramHeight = height && `h=${retina ? height * 2 : height}`;
+  const paramCrop = height && 'fit=fill';
   const paramsAdditional = 'fl=progressive';
 
   const params = [
@@ -13,7 +14,7 @@ const getParams = (width, height = false, retina = false) => {
     paramHeight,
     paramCrop,
     paramsAdditional,
-  ].join('&');
+  ].filter(val => val).join('&');
 
   return params;
 };
@@ -28,18 +29,41 @@ const Picture = (props) => {
     height,
   } = props;
 
+  const ratio = height && height / width;
+
   return (
     <picture>
-      <source
+
+      { Object.keys(viewports).map((identifier, key) => {
+        const maxWidth = width || 2560;
+        const currentViewport = viewports[identifier];
+        const nextViewport = Object.keys(viewports)[key + 1] || null;
+        const imageSize = viewports[nextViewport] || null;
+
+
+        if (currentViewport >= maxWidth) return null;
+        return (
+          <source
+            srcSet={`
+            ${imageSrc}?${getParams(imageSize, Math.round(imageSize * ratio))} 1x,
+            ${imageSrc}?${getParams(imageSize, Math.round(imageSize * ratio), true)} 2x
+            `}
+            media={viewportsJs[identifier]}
+            key={imageSize + width} />
+        );
+      })}
+
+      {width && <source
         srcSet={`
-          ${imageSrc}?${getParams(width, height)} 1x,
-          ${imageSrc}?${getParams(width, height, true)} 2x
+        ${imageSrc}?${getParams(width, height)} 1x,
+        ${imageSrc}?${getParams(width, height, true)} 2x
         `}
         key={width} />
+      }
 
       <img
         className={className}
-        src={`${imageSrc}?${getParams(width, height)}`}
+        src={`${imageSrc}?${getParams(null, null)}`}
         alt={imageAlt}
         title={title}
         key="img" />
@@ -50,7 +74,7 @@ const Picture = (props) => {
 Picture.defaultProps = {
   className: null,
   title: null,
-  width: 1920,
+  width: null,
   height: null,
   color: null,
   float: null,

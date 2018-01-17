@@ -21,7 +21,7 @@ const Post = (props) => {
 
       {image &&
       <div className="Post-wrapImage">
-        <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} color={image.color} width={1980} />
+        <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} color={image.color} />
         <div className="Post-meta">
           <h1 className="Post-title" key="post-title">{title}</h1>
         </div>
@@ -53,7 +53,7 @@ const Post = (props) => {
 Post.defaultProps = {
   image: null,
   date: null,
-  tags: [],
+  tags: null,
   content: null,
 };
 
