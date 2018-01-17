@@ -1,4 +1,5 @@
 const contentful = require('contentful');
+const Vibrant = require('node-vibrant');
 
 const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE,
@@ -38,8 +39,6 @@ async function getEntries(type, tag = false) {
 }
 
 async function getFields(id) {
-  console.log(id);
-
   if (!id) return {};
   try {
     const res = await client.getEntries({ 'sys.id': id });
