@@ -201,6 +201,7 @@ workflows:
           filters:
             branches:
               ignore: /.*/
+              only: 'redesign'
             tags:
               only: /^test.*/
       - deploy-pr:
@@ -208,4 +209,6 @@ workflows:
             - test-html
           filters:
             branches:
-              only: /feature\/.*/
+              only:
+                - /feature\/.*/
+                - /issue.*/
