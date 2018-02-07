@@ -6,11 +6,6 @@
   ],
   "plugins": [
     "inline-react-svg",
-    [ "wrap-in-js", {
-      "extensions": [
-        ".css$"
-      ]
-    }],
     [ "styled-components", {
       "ssr": true,
       "displayName": true,
