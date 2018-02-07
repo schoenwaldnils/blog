@@ -209,4 +209,7 @@ workflows:
             - test-html
           filters:
             branches:
-              only: /feature\/.*/
+              only:
+                - /feature\/.*/
+            tags:
+              only: /^issue.*/
