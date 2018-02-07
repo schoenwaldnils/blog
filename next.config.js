@@ -22,11 +22,6 @@ module.exports = withCSS({
         },
       };
 
-      // preview
-      pathMap['/preview'] = {
-        page: '/preview',
-      };
-
       // tag overview
       pathMap['/tag'] = {
         page: '/',
@@ -99,6 +94,11 @@ module.exports = withCSS({
     // );
 
     if (!dev) config.plugins.push(new UglifyJSPlugin());
+
+    if (config.resolve.alias) {
+      delete config.resolve.alias.react;
+      delete config.resolve.alias['react-dom'];
+    }
 
     return config;
   },

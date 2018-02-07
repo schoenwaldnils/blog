@@ -1,5 +1,5 @@
 import React from 'react';
-import { server } from 'react-dom';
+import { renderToString } from 'react-dom/server';
 import { decodeHTML } from 'entities';
 import marked from 'marked';
 import highlightJs from 'highlight.js';
@@ -19,7 +19,7 @@ renderer.image = (href, title, text) => {
   const src = decodeHTML(href).split(/[?|#]/);
   const params = src[1] && queryString.parse(src[1]);
   const options = src[2] && queryString.parse(src[2]);
-  return server.renderToString(<Picture
+  return renderToString(<Picture
     imageSrc={src[0]}
     imageAlt={text}
     title={title}

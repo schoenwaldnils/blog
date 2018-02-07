@@ -34,9 +34,13 @@ Page.getInitialProps = async ({ query }) => {
   };
 };
 
+Page.defaultProps = {
+  activeTag: null,
+};
+
 Page.propTypes = {
   posts: PropTypes.array.isRequired,
-  tags: PropTypes.array,
+  tags: PropTypes.array.isRequired,
   activeTag: PropTypes.string,
 };
 
