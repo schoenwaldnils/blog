@@ -19,7 +19,7 @@ const Page = ({ type, fields }) => (
       key="page-meta" />
     <LayoutBase>
       <Post {...fields} description={null} />
-      <Disqus type={type} title={fields.title} pageUrl={fields.slug} />
+      { type === 'post' && <Disqus title={fields.title} pageUrl={fields.slug} />}
     </LayoutBase>
   </Fragment>
 );

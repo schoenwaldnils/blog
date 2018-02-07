@@ -60,22 +60,13 @@ const PostEdit = ({
 
 PostEdit.defaultProps = {
   id: null,
-  url: null,
-  image: null,
-  date: null,
-  tags: [],
-  description: null,
 };
 
 PostEdit.propTypes = {
   id: PropTypes.string,
-  url: PropTypes.string,
-  image: PropTypes.object,
   title: PropTypes.string.isRequired,
-  date: PropTypes.string,
-  tags: PropTypes.array,
-  description: PropTypes.string,
   content: PropTypes.string.isRequired,
+  changeContent: PropTypes.func.isRequired,
 };
 
 export default PostEdit;
