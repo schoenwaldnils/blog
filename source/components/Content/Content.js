@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import stylesheet from './Content.css';
+import './Content.css';
 
-const Content = ({ children }) => [
-  <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
+const Content = ({ children }) => (
   <section className="Content" role="main">
     <div className="Content-box u-maxWidth">
       {children}
     </div>
-  </section>,
-];
+  </section>
+);
 
 Content.propTypes = {
   children: PropTypes.object.isRequired,

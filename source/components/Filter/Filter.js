@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import stylesheet from './Filter.css';
+import './Filter.css';
 
 const Filter = ({ tags, activeTag }) => {
   if (!tags) return false;
-  return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="filter-style" />,
-    <form className="Filter js-Filter u-whiteBox u-boxPadding" key="filter" >
+  return (
+    <form className="Filter js-Filter u-whiteBox u-boxPadding">
       <div className="Filter-items">
         <a className={cn('Filter-item', { 'is-current': !activeTag })} href="/tag">all</a>
         {tags && tags.map(tag => (
@@ -19,8 +18,8 @@ const Filter = ({ tags, activeTag }) => {
           </a>
         ))}
       </div>
-    </form>,
-  ];
+    </form>
+  );
 };
 
 Filter.propTypes = {

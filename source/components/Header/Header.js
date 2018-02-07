@@ -1,11 +1,10 @@
 import React from 'react';
-import stylesheet from './Header.css';
+import './Header.css';
 import SocialIcon from '../SocialIcon/SocialIcon';
 import SchoenwaldLogo from '../Svg/svgs/schoenwald-logo.svg';
 
 
-const Header = () => [
-  <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
+const Header = () => (
   <header className="Header">
     <div className="Header-content u-maxWidth u-widthPadding">
 
@@ -23,7 +22,7 @@ const Header = () => [
       </div>
 
     </div>
-  </header>,
-];
+  </header>
+);
 
 export default Header;

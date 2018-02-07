@@ -26,6 +26,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@zeit/next-css": "0.0.7",
     "autoprefixer": "~7.2.3",
     "babel-cli": "^6.24.1",
     "babel-plugin-inline-react-svg": "~0.5.1",

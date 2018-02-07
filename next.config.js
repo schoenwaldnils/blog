@@ -1,10 +1,11 @@
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const withCSS = require('@zeit/next-css');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const { getEntries, getTags } = require('./scripts/contentful');
 
-module.exports = {
+module.exports = withCSS({
   async exportPathMap() {
     const pathMap = {};
 
@@ -79,20 +80,6 @@ module.exports = {
     return pathMap;
   },
   webpack: (config, { dev }) => {
-    config.module.rules.push(
-      {
-        test: /\.css$/,
-        loader: 'emit-file-loader',
-        options: {
-          name: 'dist/[path][name].[ext]',
-        },
-      },
-      {
-        test: /\.css$/,
-        use: ['babel-loader', 'raw-loader', 'postcss-loader'],
-      },
-    );
-
     console.warn(dev ? 'Enviroment: DEVELOPMENT' : 'Enviroment: PRODUCTION');
 
     config.module.rules = config.module.rules.map((rule) => {
@@ -123,4 +110,4 @@ module.exports = {
     };
     return config;
   },
-};
+});
