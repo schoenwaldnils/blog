@@ -93,6 +93,8 @@ module.exports = withCSS({
     //   new HtmlWebpackPlugin(),
     // );
 
+    config.devtool = 'source-map';
+
     if (!dev) config.plugins.push(new UglifyJSPlugin());
 
     if (config.resolve.alias) {
