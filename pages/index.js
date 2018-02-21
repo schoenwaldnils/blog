@@ -10,7 +10,7 @@ const Page = ({ posts, tags, activeTag }) => (
   <Fragment>
     <Meta url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined} />
     <LayoutBase>
-      <Filter activeTag={activeTag} tags={tags} />
+      {tags && <Filter activeTag={activeTag} tags={tags} />}
       <div className="Page">
         {posts.map(post => (<Post {...post} key={post.slug} />))}
       </div>
