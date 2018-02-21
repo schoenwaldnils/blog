@@ -78,7 +78,7 @@
     "suitcss-base": "~4.0.0",
     "suitcss-utils-display": "~1.0.2",
     "suitcss-utils-size": "~2.0.0",
-    "uglifyjs-webpack-plugin": "~1.1.5",
+    "uglifyjs-webpack-plugin": "~1.2.0",
     "url": "^0.11.0",
     "webpack": "~3.10.0",
     "yaml-front-matter": "~3.4.0"
