@@ -74,6 +74,7 @@ module.exports = withCSS({
 
     return pathMap;
   },
+
   webpack: (config, { dev }) => {
     console.warn(dev ? 'Enviroment: DEVELOPMENT' : 'Enviroment: PRODUCTION');
 

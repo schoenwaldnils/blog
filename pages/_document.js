@@ -17,7 +17,8 @@ export default class SmediaDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          {prod && <link rel="stylesheet" href="/_next/static/style.css" />}
+          {!prod && <link rel="stylesheet" href="/_next/static/style.css" />}
+          {prod && <link rel="stylesheet" href="/static/style.css" />}
           {this.props.styleTags}
         </Head>
         <body>

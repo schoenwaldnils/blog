@@ -9,3 +9,4 @@ services:
       - ${HOST}:172.18.0.1
     env_file: .env
     restart: always
+    command: npm run dev
