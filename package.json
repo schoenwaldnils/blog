@@ -37,7 +37,7 @@
     "browserslist": "~3.1.1",
     "classnames": "^2.2.5",
     "contentful": "^5.0.2",
-    "contentful-management": "~4.2.0",
+    "contentful-management": "~4.3.0",
     "css-loader": "^0.28.7",
     "date-fns": "~1.29.0",
     "debounce-promise": "~3.1.0",
