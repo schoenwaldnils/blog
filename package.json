@@ -26,7 +26,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "autoprefixer": "~8.0.0",
+    "autoprefixer": "~8.1.0",
     "babel-cli": "^6.24.1",
     "babel-plugin-inline-react-svg": "~0.5.1",
     "babel-plugin-styled-components": "~1.5.0",
