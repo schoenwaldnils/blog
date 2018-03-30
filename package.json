@@ -34,7 +34,7 @@
     "babel-plugin-wrap-in-js": "^1.1.1",
     "babel-preset-env": "~1.6.0",
     "babel-preset-stage-0": "^6.24.1",
-    "browserslist": "~3.1.1",
+    "browserslist": "~3.2.4",
     "classnames": "^2.2.5",
     "contentful": "^5.0.2",
     "contentful-management": "~4.2.0",
