@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'debounce-promise';
-import stylesheet from './Post.css';
+import './Post.css';
 import { updateField } from '../../../scripts/contentful-management';
 
 const debouncedUpdateField = debounce(updateField, 500);
@@ -32,9 +32,8 @@ const PostEdit = ({
     });
     changeContent(event.target.value);
   };
-  return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="post-style" />,
-    <article className="Post Post--editor u-whiteBox" key="post-article">
+  return (
+    <article className="Post Post--editor u-whiteBox">
       <div className="Post-content u-richText u-boxPadding">
         <h1
           className="Post-title"
@@ -55,28 +54,19 @@ const PostEdit = ({
           onChange={event => handleContentChange(event)} />}
 
       </div>
-    </article>,
-  ];
+    </article>
+  );
 };
 
 PostEdit.defaultProps = {
   id: null,
-  url: null,
-  image: null,
-  date: null,
-  tags: [],
-  description: null,
 };
 
 PostEdit.propTypes = {
   id: PropTypes.string,
-  url: PropTypes.string,
-  image: PropTypes.object,
   title: PropTypes.string.isRequired,
-  date: PropTypes.string,
-  tags: PropTypes.array,
-  description: PropTypes.string,
   content: PropTypes.string.isRequired,
+  changeContent: PropTypes.func.isRequired,
 };
 
 export default PostEdit;
