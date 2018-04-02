@@ -2,6 +2,13 @@
  * Shame CSS: for the stuff that didn't fit anywhere else.
  */
 
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
 @media print {
   .cp_embed_wrapper > iframe {
     display: none;

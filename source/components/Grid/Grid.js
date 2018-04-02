@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import stylesheet from './Grid.css';
+import './Grid.css';
 
 export const Grid = ({ withGutter, children }) => (
   <div className={cn('Grid', { 'Grid--withGutter': withGutter })}>
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
     { children }
   </div>
 );

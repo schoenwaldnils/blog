@@ -1,10 +1,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import stylesheet from '../source/css/index.css';
-import Header from '../source/components/Header/Header';
-import Content from '../source/components/Content/Content';
-import Footer from '../source/components/Footer/Footer';
 
 const DRIFT_ID = '4r7cns5dxyfi';
 
@@ -21,17 +17,13 @@ export default class SmediaDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
+          <link rel="stylesheet" href="/_next/static/style.css" />
           {this.props.styleTags}
         </Head>
         <body>
-          <Header />
-          <Content>
-            <Main />
-          </Content>
-          <Footer />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Karla" />
+          <Main />
           <NextScript />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Karla" />
 
           {/* Google Analytics codeblock */}
           {prod && <script dangerouslySetInnerHTML={{
