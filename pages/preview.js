@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import marked from 'marked';
@@ -6,6 +6,7 @@ import highlightJs from 'highlight.js';
 import queryString from 'query-string';
 import { decodeHTML } from 'entities';
 import { getFields } from '../scripts/contentful-preview';
+import LayoutBase from '../source/components/Layout/LayoutBase';
 import Meta from '../source/components/Meta/Meta';
 import Post from '../source/components/Post/Post';
 import Picture from '../source/components/Picture/Picture';
@@ -32,19 +33,23 @@ renderer.image = (href, title, text) => {
 };
 
 
-const Page = ({ fields }) => [
-  <Meta
-    url={`https://schoenwald.media/${fields.slug}/`}
-    type="article"
-    title={fields.title}
-    description={fields.description}
-    image={fields.image ? fields.image.url : undefined}
-    key="page-meta" />,
-  <Post
-    {...fields}
-    description={null}
-    key="page-post" />,
-];
+const Page = ({ fields }) => (
+  <Fragment>
+    <Meta
+      url={`https://schoenwald.media/${fields.slug}/`}
+      type="article"
+      title={fields.title}
+      description={fields.description}
+      image={fields.image ? fields.image.url : undefined}
+      key="page-meta" />
+    <LayoutBase>
+      <Post
+        {...fields}
+        description={null}
+        key="page-post" />
+    </LayoutBase>
+  </Fragment>
+);
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
