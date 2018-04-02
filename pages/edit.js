@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { getFields } from '../scripts/contentful-preview';
 import Meta from '../source/components/Meta/Meta';
+import LayoutBase from '../source/components/Layout/LayoutBase';
 import Post from '../source/components/Post/Post';
 import PostEdit from '../source/components/Post/PostEdit';
 import { publishEntry } from '../scripts/contentful-management';
@@ -28,47 +29,51 @@ class Page extends Component {
     const { fields } = this.props;
     fields.content = this.state.content;
 
-    return [
-      <Meta key="page-meta" />,
-      <Tabs
-        className="Post-editTabs"
-        selectedTabClassName="is-active"
-        selectedTabPanelClassName="is-active"
-        disabledTabClassName="is-disabled"
-        selectedIndex={this.state.tabIndex}
-        onSelect={tabIndex => this.setState({ tabIndex })}
-        key="post-tabs">
-        <div className="Post-editHeader">
-          <TabList className="Post-editTabList">
-            <Tab className="Post-editTab">
-              <Button>Editor</Button>
-            </Tab>
-            <Tab className="Post-editTab">
-              <Button>Preview</Button>
-            </Tab>
-          </TabList>
-          <Button
-            className="Post-save"
-            onClick={() => handleClickSubmit(fields.id)}>
-            Save
-          </Button>
-        </div>
+    return (
+      <Fragment>
+        <Meta key="page-meta" />
+        <LayoutBase>
+          <Tabs
+            className="Post-editTabs"
+            selectedTabClassName="is-active"
+            selectedTabPanelClassName="is-active"
+            disabledTabClassName="is-disabled"
+            selectedIndex={this.state.tabIndex}
+            onSelect={tabIndex => this.setState({ tabIndex })}
+            key="post-tabs">
+            <div className="Post-editHeader">
+              <TabList className="Post-editTabList">
+                <Tab className="Post-editTab">
+                  <Button>Editor</Button>
+                </Tab>
+                <Tab className="Post-editTab">
+                  <Button>Preview</Button>
+                </Tab>
+              </TabList>
+              <Button
+                className="Post-save"
+                onClick={() => handleClickSubmit(fields.id)}>
+                Save
+              </Button>
+            </div>
 
-        <TabPanel
-          className="Post-editTabPanel"
-          selectedClassName="is-active">
-          <PostEdit
-            {...fields}
-            changeContent={content => this.setState({ content })} />
-        </TabPanel>
-        <TabPanel
-          className="Post-editTabPanel"
-          selectedClassName="is-active">
-          <Post
-            {...fields} />
-        </TabPanel>
-      </Tabs>,
-    ];
+            <TabPanel
+              className="Post-editTabPanel"
+              selectedClassName="is-active">
+              <PostEdit
+                {...fields}
+                changeContent={content => this.setState({ content })} />
+            </TabPanel>
+            <TabPanel
+              className="Post-editTabPanel"
+              selectedClassName="is-active">
+              <Post
+                {...fields} />
+            </TabPanel>
+          </Tabs>
+        </LayoutBase>
+      </Fragment>
+    );
   }
 }
 
