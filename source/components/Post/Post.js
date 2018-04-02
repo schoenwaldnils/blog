@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import stylesheet from './Post.css';
+import './Post.css';
 import Picture from '../Picture/Picture';
 import marked from '../../js/utils/marked';
 
@@ -16,9 +16,8 @@ const Post = (props) => {
     content,
   } = props;
 
-  return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="post-style" />,
-    <article className="Post u-whiteBox" key="post-article">
+  return (
+    <article className="Post u-whiteBox">
       {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
 
       {image &&
@@ -60,8 +59,8 @@ const Post = (props) => {
         {content && <div className="Post-content" dangerouslySetInnerHTML={{ __html: marked(content) }} />}
 
       </div>
-    </article>,
-  ];
+    </article>
+  );
 };
 
 Post.defaultProps = {
