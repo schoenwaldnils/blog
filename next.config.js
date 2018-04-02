@@ -1,10 +1,11 @@
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const withCSS = require('@zeit/next-css');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const { getEntries, getTags } = require('./scripts/contentful');
 
-module.exports = {
+module.exports = withCSS({
   async exportPathMap() {
     const pathMap = {};
 
@@ -19,11 +20,6 @@ module.exports = {
         query: {
           posts,
         },
-      };
-
-      // preview
-      pathMap['/preview'] = {
-        page: '/preview',
       };
 
       // tag overview
@@ -78,21 +74,8 @@ module.exports = {
 
     return pathMap;
   },
-  webpack: (config, { dev }) => {
-    config.module.rules.push(
-      {
-        test: /\.css$/,
-        loader: 'emit-file-loader',
-        options: {
-          name: 'dist/[path][name].[ext]',
-        },
-      },
-      {
-        test: /\.css$/,
-        use: ['babel-loader', 'raw-loader', 'postcss-loader'],
-      },
-    );
 
+  webpack: (config, { dev }) => {
     console.warn(dev ? 'Enviroment: DEVELOPMENT' : 'Enviroment: PRODUCTION');
 
     config.module.rules = config.module.rules.map((rule) => {
@@ -111,7 +94,14 @@ module.exports = {
     //   new HtmlWebpackPlugin(),
     // );
 
+    config.devtool = 'source-map';
+
     if (!dev) config.plugins.push(new UglifyJSPlugin());
+
+    if (config.resolve.alias) {
+      delete config.resolve.alias.react;
+      delete config.resolve.alias['react-dom'];
+    }
 
     return config;
   },
@@ -123,4 +113,4 @@ module.exports = {
     };
     return config;
   },
-};
+});
