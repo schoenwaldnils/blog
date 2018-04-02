@@ -1,5 +1,5 @@
 import React from 'react';
-import stylesheet from './Footer.css';
+import './Footer.css';
 import SocialIcon from '../SocialIcon/SocialIcon';
 
 const footerNav = [
@@ -13,8 +13,7 @@ const footerNav = [
   },
 ];
 
-const Footer = () => [
-  <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
+const Footer = () => (
   <footer className="Footer">
     <div className="Footer-content u-maxWidth u-widthPadding">
       <div className="Footer-socialIcons">
@@ -34,7 +33,7 @@ const Footer = () => [
         © {(new Date()).getFullYear()} Nils Schönwald
       </div>
     </div>
-  </footer>,
-];
+  </footer>
+);
 
 export default Footer;
