@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FaTwitter from 'react-icons/lib/fa/twitter';
 import FaGithub from 'react-icons/lib/fa/github';
-import stylesheet from './SocialIcon.css';
+import './SocialIcon.css';
 
 const SocialIcon = ({ name, href }) => {
   const lowerCaseName = name && name.toLowerCase();
@@ -17,8 +17,7 @@ const SocialIcon = ({ name, href }) => {
     default:
   }
   if (!Icon) return null;
-  return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
+  return (
     <a
       className={`SocialIcon SocialIcon--${lowerCaseName}`}
       href={href}
@@ -31,8 +30,8 @@ const SocialIcon = ({ name, href }) => {
       <span className="SocialIcon-iconBack">
         { Icon }
       </span>
-    </a>,
-  ];
+    </a>
+  );
 };
 
 SocialIcon.propTypes = {

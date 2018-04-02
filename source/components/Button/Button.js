@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import stylesheet from './Button.css';
+import './Button.css';
 
 const Button = ({
   children, type, className, ...props
@@ -13,18 +13,19 @@ const Button = ({
     'u-whiteBox',
   );
 
-  return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="button-style" />,
-    <button className={classNameList} {...props} key="button-button">{children}</button>,
-  ];
+  return (
+    <button className={classNameList} {...props}>{children}</button>
+  );
 };
 
 Button.defaultProps = {
   type: null,
+  className: null,
 };
 
 Button.propTypes = {
   type: PropTypes.string,
+  className: PropTypes.string,
   children: PropTypes.any.isRequired,
 };
 
