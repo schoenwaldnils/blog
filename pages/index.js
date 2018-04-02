@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { getFields } from '../scripts/contentful';
 import Meta from '../source/components/Meta/Meta';
@@ -8,16 +8,18 @@ import TeaserList from '../source/components/TeaserList/TeaserList';
 import Teaser from '../source/components/Teaser/Teaser';
 
 const Page = ({ posts, tags, activeTag }) => {
-  return [
-    <Meta
-      url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined}
-      key="page-meta" />,
-    <Header className="Header--postList" key="index-header" />,
-    <Filter activeTag={activeTag} tags={tags} key="index-filter" />,
-    <TeaserList key="index-page">
-      {posts.map(post => (<Teaser {...post} key={post.slug} />))}
-    </TeaserList>,
-  ];
+  return (
+    <Fragment>
+      <Meta
+        url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined}
+        key="page-meta" />,
+      <Header className="Header--postList" key="index-header" />,
+      <Filter activeTag={activeTag} tags={tags} key="index-filter" />,
+      <TeaserList key="index-page">
+        {posts.map(post => (<Teaser {...post} key={post.slug} />))}
+      </TeaserList>,
+    </Fragment>
+  );
 };
 
 Page.getInitialProps = async ({ query }) => {
@@ -42,9 +44,13 @@ Page.getInitialProps = async ({ query }) => {
   };
 };
 
+Page.defaultProps = {
+  activeTag: null,
+};
+
 Page.propTypes = {
   posts: PropTypes.array.isRequired,
-  tags: PropTypes.array,
+  tags: PropTypes.array.isRequired,
   activeTag: PropTypes.string,
 };
 

@@ -25,7 +25,7 @@ renderer.image = (href, title, text) => {
     title={title}
     width={params.w && parseInt(params.w, 10)}
     float={options.float} />);
-};
+}; // https://github.com/zeit/next.js/issues/3711#issuecomment-363855132
 
 export default function (content) {
   return marked(content, { renderer });

@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import stylesheet from './Content.css';
+import './Content.css';
 
-const Content = ({ children }) => [
-  <style dangerouslySetInnerHTML={{ __html: stylesheet }} />,
+const Content = ({ children }) => (
   <section className="Content" role="main">
     {children}
-  </section>,
-];
+  </section>
+);
 
 Content.propTypes = {
   children: PropTypes.object.isRequired,

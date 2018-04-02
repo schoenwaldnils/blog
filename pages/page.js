@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { getFields } from '../scripts/contentful';
 import Meta from '../source/components/Meta/Meta';
@@ -10,21 +10,25 @@ import Disqus from '../source/components/Disqus/Disqus';
 const Page = (props) => {
   console.log(props);
   const { type, fields } = props;
-  return [
-    // <a className="page-edit" href={`/edit?type=${type}&id=${fields.id}`} key="page-edit"><Button>Edit</Button></a>,
-    <Meta
-      url={`https://schoenwald.media/${fields.slug}/`}
-      type="article"
-      title={fields.title}
-      description={fields.description}
-      image={fields.image ? fields.image.url : undefined}
-      key="page-meta" />,
-    <Header className="Header--post" key="page-header" />,
-    <Post
-      {...fields}
-      key="page-post" />,
-    <Disqus type={type} title={fields.title} pageUrl={fields.slug} key="page-disqus" />,
-  ];
+  return (
+    <Fragment>
+      {/* <a className="page-edit" href={`/edit?type=${type}&id=${fields.id}`} key="page-edit">
+        <Button>Edit</Button>
+      </a> */}
+      <Meta
+        url={`https://schoenwald.media/${fields.slug}/`}
+        type="article"
+        title={fields.title}
+        description={fields.description}
+        image={fields.image ? fields.image.url : undefined}
+        key="page-meta" />,
+      <Header className="Header--post" key="page-header" />
+      <Post
+        {...fields}
+        key="page-post" />
+      <Disqus type={type} title={fields.title} pageUrl={fields.slug} key="page-disqus" />
+    </Fragment>
+  );
 };
 
 Page.getInitialProps = async ({ query }) => {

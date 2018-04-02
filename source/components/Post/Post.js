@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { format } from 'date-fns';
-import stylesheet from './Post.css';
+import './Post.css';
 import Picture from '../Picture/Picture';
 import marked from '../../js/utils/marked';
 
@@ -14,11 +14,8 @@ const Post = (props) => {
     content,
   } = props;
 
-  console.log(title);
 
-
-  return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="post-style" />,
+  return (
     <article className="Post" key="post-article">
       {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
 
@@ -55,13 +52,13 @@ const Post = (props) => {
           </div>
         </div>
       }
-    </article>,
-  ];
+    </article>
+  );
 };
 
 Post.defaultProps = {
   image: null,
-  date: null,
+  // date: null,
   tags: null,
   content: null,
 };
@@ -69,7 +66,7 @@ Post.defaultProps = {
 Post.propTypes = {
   image: PropTypes.object,
   title: PropTypes.string.isRequired,
-  date: PropTypes.string,
+  // date: PropTypes.string,
   tags: PropTypes.array,
   content: PropTypes.string,
 };

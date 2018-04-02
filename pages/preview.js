@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'qs';
 import Meta from '../source/components/Meta/Meta';
@@ -11,7 +11,7 @@ const Page = (props) => {
   const fields = props.fields || {};
   const params = qs.parse(url.asPath.replace(/.*\?/g, ''));
 
-  Object.keys(params).map((param) => {
+  Object.keys(params).forEach((param) => {
     if (param === 'image') {
       fields[param] = params[param];
     } else {
@@ -21,19 +21,21 @@ const Page = (props) => {
 
   console.log(fields);
 
-  return [
-    <Meta
-      url={`https://schoenwald.media/${fields.slug}/`}
-      type="article"
-      title={fields.title}
-      description={fields.description}
-      image={fields.image ? fields.image.url : undefined}
-      key="page-meta" />,
-    <Header className="Header--post" key="page-header" />,
-    <Post
-      {...fields}
-      key="page-post" />,
-  ];
+  return (
+    <Fragment>
+      <Meta
+        url={`https://schoenwald.media/${fields.slug}/`}
+        type="article"
+        title={fields.title}
+        description={fields.description}
+        image={fields.image ? fields.image.url : undefined}
+        key="page-meta" />,
+      <Header className="Header--post" key="page-header" />
+      <Post
+        {...fields}
+        key="page-post" />
+    </Fragment>
+  );
 };
 
 Page.getInitialProps = async () => {
@@ -44,6 +46,7 @@ Page.getInitialProps = async () => {
 };
 
 Page.propTypes = {
+  url: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
 };
 

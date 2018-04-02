@@ -9,14 +9,13 @@ const Header = ({ className }) => {
     'Header',
     className,
   );
-  return [
-    <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="header-styles" />,
+  return (
     <header className={classNames} key="header-content">
       <a className="Header-logo" href="/">
         <SchoenwaldLogo className="Svg" />
       </a>
-    </header>,
-  ];
+    </header>
+  );
 };
 
 Header.defaultProps = {
@@ -26,6 +25,5 @@ Header.defaultProps = {
 Header.propTypes = {
   className: PropTypes.string,
 };
-
 
 export default Header;
