@@ -1,23 +1,23 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { getFields } from '../scripts/contentful';
+
+import '../source/css/index.css';
+
 import Meta from '../source/components/Meta/Meta';
-import Header from '../source/components/Header/Header';
-import Filter from '../source/components/Filter/Filter';
 import TeaserList from '../source/components/TeaserList/TeaserList';
 import Teaser from '../source/components/Teaser/Teaser';
+import Layout from '../source/components/Layout/Layout';
 
 const Page = ({ posts, tags, activeTag }) => {
   return (
     <Fragment>
-      <Meta
-        url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined}
-        key="page-meta" />,
-      <Header className="Header--postList" key="index-header" />,
-      <Filter activeTag={activeTag} tags={tags} key="index-filter" />,
-      <TeaserList key="index-page">
-        {posts.map(post => (<Teaser {...post} key={post.slug} />))}
-      </TeaserList>,
+      <Meta url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined} />
+      <Layout type="postList" {...{ tags, activeTag }}>
+        <TeaserList>
+          {posts.map(post => (<Teaser {...post} key={post.slug} />))}
+        </TeaserList>
+      </Layout>
     </Fragment>
   );
 };
@@ -26,7 +26,6 @@ Page.getInitialProps = async ({ query }) => {
   const posts = await Promise.all(query.posts.map(async (post) => {
     const postFields = await getFields(post.id);
     if (postFields.content) delete postFields.content;
-    postFields.url = post.url;
     const altImage = {
       url: postFields.image.fields.file.url,
       alt: postFields.image.fields.title,
@@ -34,7 +33,10 @@ Page.getInitialProps = async ({ query }) => {
     delete postFields.image;
     postFields.image = altImage;
 
-    return postFields;
+    return {
+      ...postFields,
+      url: post.url,
+    };
   }));
 
   return {

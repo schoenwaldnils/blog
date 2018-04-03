@@ -12,14 +12,8 @@ const Page = (props) => {
   const params = qs.parse(url.asPath.replace(/.*\?/g, ''));
 
   Object.keys(params).forEach((param) => {
-    if (param === 'image') {
-      fields[param] = params[param];
-    } else {
-      fields[param] = params[param];
-    }
+    fields[param] = params[param];
   });
-
-  console.log(fields);
 
   return (
     <Fragment>

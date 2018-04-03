@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { decodeHTML } from 'entities';
 import marked from 'marked';
 import highlightJs from 'highlight.js';
-import queryString from 'query-string';
+import queryString from 'qs';
 import Picture from '../../../source/components/Picture/Picture';
 
 marked.setOptions({

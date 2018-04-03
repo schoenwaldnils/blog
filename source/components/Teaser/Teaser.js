@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import stylesheet from './Teaser.css';
 import Picture from '../Picture/Picture';
+import './Teaser.css';
 
 const Teaser = (props) => {
   const {
@@ -14,7 +14,6 @@ const Teaser = (props) => {
 
   return (
     <article className="Teaser" key="Teaser-article" data-tags={tags}>
-      <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="Teaser-style" />
       {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
       <a className="Teaser-link" href={url}>
         {image &&

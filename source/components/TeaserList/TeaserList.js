@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import stylesheet from './TeaserList.css';
+import './TeaserList.css';
 
-const TeaserList = ({ children }) => [
-  <style dangerouslySetInnerHTML={{ __html: stylesheet }} key="TeaserList-style" />,
+const TeaserList = ({ children }) => (
   <div className="TeaserList" key="TeaserList-div">
     {children}
-  </div>,
-];
+  </div>
+);
 
 TeaserList.propTypes = {
   children: PropTypes.any.isRequired,

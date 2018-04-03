@@ -1,11 +1,6 @@
 import React from 'react';
-import Document, { Head, NextScript } from 'next/document';
+import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-
-import '../source/css/index.css';
-import Main from '../source/components/Main/Main';
-import Content from '../source/components/Content/Content';
-import Footer from '../source/components/Footer/Footer';
 
 const DRIFT_ID = '4r7cns5dxyfi';
 
@@ -26,10 +21,7 @@ export default class SmediaDocument extends Document {
           {this.props.styleTags}
         </Head>
         <body>
-          <Content>
-            <Main />
-          </Content>
-          <Footer />
+          <Main />
           <NextScript />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Karla" />
 

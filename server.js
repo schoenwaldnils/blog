@@ -11,7 +11,9 @@ app.prepare().then(async () => {
 
   // index
   server.get('/', async (req, res) =>
-    app.render(req, res, '/', { posts: await getEntries('post') }));
+    app.render(req, res, '/', {
+      posts: await getEntries('post'),
+    }));
 
   server.get('/tag', async (req, res) =>
     app.render(req, res, '/', {

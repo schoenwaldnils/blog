@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import stylesheet from './Header.css';
+import './Header.css';
 import SchoenwaldLogo from '../Svg/svgs/schoenwald-logo.svg';
 
 const Header = ({ className }) => {

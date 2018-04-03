@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { format } from 'date-fns';
-import './Post.css';
-import Picture from '../Picture/Picture';
 import marked from '../../js/utils/marked';
+
+import Picture from '../Picture/Picture';
+import './Post.css';
 
 const Post = (props) => {
   const {
@@ -14,6 +15,7 @@ const Post = (props) => {
     content,
   } = props;
 
+  console.log(tags);
 
   return (
     <article className="Post" key="post-article">

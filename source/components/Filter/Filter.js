@@ -4,7 +4,7 @@ import cn from 'classnames';
 import './Filter.css';
 
 const Filter = ({ tags, activeTag }) => (
-  <form className="Filter js-Filter u-whiteBox u-boxPadding">
+  <form className="Filter js-Filter u-maxWidth">
     <div className="Filter-items">
       <a className={cn('Filter-item', { 'is-current': !activeTag })} href="/tag">all</a>
       {tags && tags.map(tag => (
