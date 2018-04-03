@@ -9,14 +9,20 @@
     "build": "next build",
     "export": "NODE_ENV=production next build && next export",
     "start": "npm run dev",
-    "stylelint": "stylelint \"source/**/*.css\" --formatter verbose --fix",
-    "eslint": "eslint source/.",
-    "lint": "npm run stylelint && npm run eslint",
-    "htmlhint": "htmlhint out",
-    "test": "npm run lint && npm run htmlhint",
+    "test": "npm run lint",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint:css": "stylelint \"source/**/*.css\" --formatter verbose",
+    "lint:css:fix": "stylelint \"source/**/*.css\" --formatter verbose --fix",
+    "lint:js": "eslint source/.",
+    "lint:js:fix": "eslint source/. --fix",
+    "lint:html": "htmlhint out",
     "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html --minify-css",
     "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons"
   },
+  "pre-commit": [
+    "lint:js",
+    "lint:css"
+  ],
   "keywords": [],
   "author": {
     "name": "Nils Schönwald",
