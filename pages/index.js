@@ -5,7 +5,7 @@ import { getFields } from '../scripts/contentful';
 import '../source/css/index.css';
 
 import Meta from '../source/components/Meta/Meta';
-import TeaserList from '../source/components/TeaserList/TeaserList';
+import { TeaserList, TeaserListChild } from '../source/components/TeaserList/TeaserList';
 import Teaser from '../source/components/Teaser/Teaser';
 import Layout from '../source/components/Layout/Layout';
 
@@ -15,7 +15,11 @@ const Page = ({ posts, tags, activeTag }) => {
       <Meta url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined} />
       <Layout type="postList" {...{ tags, activeTag }}>
         <TeaserList>
-          {posts.map(post => (<Teaser {...post} key={post.slug} />))}
+          {posts.map(post => (
+            <TeaserListChild>
+              <Teaser {...post} key={post.slug} />
+            </TeaserListChild>
+          ))}
         </TeaserList>
       </Layout>
     </Fragment>

@@ -21,7 +21,7 @@ const Teaser = (props) => {
           <Picture className="Teaser-image" imageSrc={image.url} imageAlt={image.alt} width={1980} height={1020} />
         </div>}
 
-        <div className="u-boxPadding">
+        <div className="Teaser-content">
           <h1 className="Teaser-title" key="Teaser-title">{title}</h1>
           {description &&
           <div className="Teaser-description">

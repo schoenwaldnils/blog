@@ -1,15 +1,24 @@
 /** @define Teaser */
 
-.Teaser {
-  max-width: 30rem;
-}
-
 .Teaser-wrapImage {
   position: relative;
 }
 
 .Teaser-image {
   display: block;
+}
+
+.Teaser-content {
+  padding-top: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media (--viewport-sm) {
+  .Teaser-content {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 .Teaser-title {

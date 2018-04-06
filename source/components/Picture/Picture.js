@@ -29,17 +29,26 @@ const Picture = (props) => {
     height,
   } = props;
 
+  const viewportKeys = Object.keys(viewports).reverse();
+
   const ratio = height && height / width;
 
   return (
     <picture>
+      {width < viewports.sm && <source
+        srcSet={`
+        ${imageSrc}?${getParams(width, height)} 1x,
+        ${imageSrc}?${getParams(width, height, true)} 2x
+        `}
+        key={width} />
+      }
 
-      { Object.keys(viewports).map((identifier, key) => {
+      {width >= viewports.sm && viewportKeys.map((identifier, key) => {
         const maxWidth = width || 2560;
         const currentViewport = viewports[identifier];
-        const nextViewport = Object.keys(viewports)[key + 1] || null;
-        const imageSize = viewports[nextViewport] || null;
-
+        const nextViewport = viewportKeys[key - 1] || null;
+        const imageSize = viewports[nextViewport] || maxWidth;
+        console.log(imageSize);
 
         if (currentViewport >= maxWidth) return null;
         return (
@@ -49,17 +58,9 @@ const Picture = (props) => {
             ${imageSrc}?${getParams(imageSize, Math.round(imageSize * ratio), true)} 2x
             `}
             media={viewportsJs[identifier]}
-            key={imageSize + width} />
+            key={imageSize + maxWidth} />
         );
       })}
-
-      {width && <source
-        srcSet={`
-        ${imageSrc}?${getParams(width, height)} 1x,
-        ${imageSrc}?${getParams(width, height, true)} 2x
-        `}
-        key={width} />
-      }
 
       <img
         className={className}
@@ -72,12 +73,12 @@ const Picture = (props) => {
 };
 
 Picture.defaultProps = {
-  className: null,
-  title: null,
-  width: null,
-  height: null,
-  color: null,
-  float: null,
+  className: undefined,
+  title: undefined,
+  width: undefined,
+  height: undefined,
+  color: undefined,
+  float: undefined,
 };
 
 Picture.propTypes = {

@@ -3,12 +3,12 @@
 .Header {
   display: flex;
   justify-content: center;
-  font-size: 10vw;
+  font-size: 2rem;
 }
 
-@media (--viewport-sm) {
+@media (--viewport-lg) {
   .Header {
-    font-size: 3vw;
+    font-size: 3rem;
   }
 }
 

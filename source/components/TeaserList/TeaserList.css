@@ -6,3 +6,21 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (--viewport-sm) {
+  .TeaserList {
+    padding-top: 2rem;
+  }
+}
+
+.TeaserList-item {
+  max-width: 30rem;
+  margin-bottom: 2rem;
+}
+
+@media (--viewport-sm) {
+  .TeaserList-item {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}

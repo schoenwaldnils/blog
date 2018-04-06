@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TeaserList.css';
 
-const TeaserList = ({ children }) => (
-  <div className="TeaserList" key="TeaserList-div">
+export const TeaserList = ({ children }) => (
+  <div className="TeaserList">
     {children}
   </div>
 );
@@ -12,4 +12,12 @@ TeaserList.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-export default TeaserList;
+export const TeaserListChild = ({ children }) => (
+  <div className="TeaserList-item">
+    {children}
+  </div>
+);
+
+TeaserListChild.propTypes = {
+  children: PropTypes.any.isRequired,
+};
