@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { getFields } from '../scripts/contentful-preview';
 import Meta from '../source/components/Meta/Meta';
-import LayoutBase from '../source/components/Layout/LayoutBase';
+import Layout from '../source/components/Layout/Layout';
 import Post from '../source/components/Post/Post';
 import PostEdit from '../source/components/Post/PostEdit';
 import { publishEntry } from '../scripts/contentful-management';
@@ -32,7 +32,7 @@ class Page extends Component {
     return (
       <Fragment>
         <Meta key="page-meta" />
-        <LayoutBase>
+        <Layout type="postEdit">
           <Tabs
             className="Post-editTabs"
             selectedTabClassName="is-active"
@@ -71,7 +71,7 @@ class Page extends Component {
                 {...fields} />
             </TabPanel>
           </Tabs>
-        </LayoutBase>
+        </Layout>
       </Fragment>
     );
   }
@@ -86,6 +86,7 @@ Page.getInitialProps = async ({ query }) => {
       title: fields.title,
       slug: fields.slug,
       image: fields.image ? {
+        color: fields.image.fields.file.details.color || null,
         url: fields.image.fields.file.url,
         alt: fields.image.fields.title,
       } : null,

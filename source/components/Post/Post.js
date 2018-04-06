@@ -15,8 +15,6 @@ const Post = (props) => {
     content,
   } = props;
 
-  console.log(tags);
-
   return (
     <article className="Post">
       {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}

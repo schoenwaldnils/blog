@@ -48,7 +48,6 @@ const Picture = (props) => {
         const currentViewport = viewports[identifier];
         const nextViewport = viewportKeys[key - 1] || null;
         const imageSize = viewports[nextViewport] || maxWidth;
-        console.log(imageSize);
 
         if (currentViewport >= maxWidth) return null;
         return (
