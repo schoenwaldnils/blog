@@ -1,16 +1,29 @@
 {
   "presets": [
-    "env",
-    "next/babel",
-    "stage-0"
+    "next/babel"
   ],
   "plugins": [
-    "inline-react-svg",
-    [ "styled-components", {
-      "ssr": true,
-      "displayName": true,
-      "preprocess": false
+    ["inline-react-svg", {
+      "svgo": {
+        "plugins": [
+          {
+            "cleanupIDs": false
+          }
+        ]
+      }
     }],
     [ "transform-define", "./env-config.js" ]
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    },
+    "production": {
+      "presets": [
+        ["env", { "modules": "commonjs" }]
+      ]
+    }
+  }
 }

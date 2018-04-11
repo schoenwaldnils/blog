@@ -16,8 +16,8 @@ const Page = ({ posts, tags, activeTag }) => {
       <Layout type="postList" {...{ tags, activeTag }}>
         <TeaserList>
           {posts.map(post => (
-            <TeaserListChild>
-              <Teaser {...post} key={post.slug} />
+            <TeaserListChild key={post.slug}>
+              <Teaser {...post} />
             </TeaserListChild>
           ))}
         </TeaserList>

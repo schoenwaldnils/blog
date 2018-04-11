@@ -21,6 +21,7 @@ body {
 }
 
 @media print {
+  html,
   body {
     background: none;
   }

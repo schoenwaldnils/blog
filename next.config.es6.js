@@ -2,6 +2,7 @@
 // import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import withCSS from '@zeit/next-css';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 import { getEntries, getTags } from './scripts/contentful';
 
@@ -98,19 +99,14 @@ export default withCSS({
 
     if (!dev) config.plugins.push(new UglifyJSPlugin());
 
-    // if (config.resolve.alias) {
-    //   delete config.resolve.alias.react;
-    //   delete config.resolve.alias['react-dom'];
-    // }
-
     return config;
   },
   webpackDevMiddleware: (config) => {
-    // config.watchOptions = {
-    //   ignored: /node_modules/,
-    //   poll: 1000,
-    //   aggregateTimeout: 1000,
-    // };
+    config.watchOptions = {
+      ignored: /node_modules/,
+      poll: 1000,
+      aggregateTimeout: 1000,
+    };
     return config;
   },
 });
