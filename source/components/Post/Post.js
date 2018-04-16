@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 // import { format } from 'date-fns';
 import marked from '../../js/utils/marked';
 
@@ -8,6 +9,7 @@ import './Post.css';
 
 const Post = (props) => {
   const {
+    type,
     image,
     title,
     // date,
@@ -15,10 +17,15 @@ const Post = (props) => {
     content,
   } = props;
 
-  return (
-    <article className="Post">
-      {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
+  const classNames = cn(
+    'Post',
+    {[`Post--${type}`]: type},
+  );
 
+  // const qr = `https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl=${url}&choe=UTF-8`;
+
+  return (
+    <article className={classNames}>
       {(image || title) &&
         <div className="Post-wrapImage">
           {image && <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} color={image.color} />}
@@ -57,13 +64,15 @@ const Post = (props) => {
 };
 
 Post.defaultProps = {
-  image: null,
-  // date: null,
-  tags: null,
-  content: null,
+  type: undefined,
+  image: undefined,
+  // date: undefined,
+  tags: undefined,
+  content: undefined,
 };
 
 Post.propTypes = {
+  type: PropTypes.string,
   image: PropTypes.object,
   title: PropTypes.string.isRequired,
   // date: PropTypes.string,

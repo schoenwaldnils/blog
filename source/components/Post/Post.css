@@ -2,7 +2,6 @@
 
 .Post-wrapImage {
   position: relative;
-  margin-bottom: 2rem;
   background-color: #888;
 }
 
@@ -14,8 +13,18 @@
   object-fit: cover;
 }
 
+.Post--list .Post-image {
+  height: 100vw;
+}
+
 @media (--viewport-sm) {
   .Post-image {
+    height: 28vw;
+  }
+}
+
+@media (--viewport-lg) {
+  .Post--list .Post-image {
     height: 28vw;
   }
 }
@@ -46,6 +55,10 @@
     max-width: 50vw;
     font-size: 5vw;
   }
+}
+
+.Post-content {
+  padding-top: 2rem;
 }
 
 .Post-hr {

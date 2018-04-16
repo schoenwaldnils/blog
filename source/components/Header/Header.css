@@ -3,34 +3,14 @@
 .Header {
   display: flex;
   justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   font-size: 2rem;
+  background-color: var(--color-black);
 }
 
 @media (--viewport-lg) {
   .Header {
     font-size: 3rem;
-  }
-}
-
-.Header--postList {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: var(--color-black);
-}
-
-.Header--post {
-  position: absolute;
-  top: 12vw;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  padding-right: .5em;
-}
-
-@media (--viewport-sm) {
-  .Header--post {
-    top: 3vw;
-    left: 3vw;
-    justify-content: flex-start;
   }
 }

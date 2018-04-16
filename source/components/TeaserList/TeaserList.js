@@ -12,12 +12,13 @@ TeaserList.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-export const TeaserListChild = ({ children }) => (
-  <div className="TeaserList-item">
+export const TeaserListChild = ({ children, href }) => (
+  <a className="TeaserList-item" href={href}>
     {children}
-  </div>
+  </a>
 );
 
 TeaserListChild.propTypes = {
   children: PropTypes.any.isRequired,
+  href: PropTypes.any.isRequired,
 };

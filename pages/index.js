@@ -6,7 +6,7 @@ import '../source/css/index.css';
 
 import Meta from '../source/components/Meta/Meta';
 import { TeaserList, TeaserListChild } from '../source/components/TeaserList/TeaserList';
-import Teaser from '../source/components/Teaser/Teaser';
+import Post from '../source/components/Post/Post';
 import Layout from '../source/components/Layout/Layout';
 
 const Page = ({ posts, tags, activeTag }) => {
@@ -16,8 +16,8 @@ const Page = ({ posts, tags, activeTag }) => {
       <Layout type="postList" {...{ tags, activeTag }}>
         <TeaserList>
           {posts.map(post => (
-            <TeaserListChild key={post.slug}>
-              <Teaser {...post} />
+            <TeaserListChild href={post.url} key={post.slug}>
+              <Post {...post} type="list" />
             </TeaserListChild>
           ))}
         </TeaserList>
@@ -30,6 +30,7 @@ Page.getInitialProps = async ({ query }) => {
   const posts = await Promise.all(query.posts.map(async (post) => {
     const postFields = await getFields(post.id);
     if (postFields.content) delete postFields.content;
+    if (postFields.tags) delete postFields.tags;
     const altImage = {
       url: postFields.image.fields.file.url,
       alt: postFields.image.fields.title,
