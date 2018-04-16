@@ -1,22 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import qs from 'qs';
 import { viewports, viewportsJs } from '../../js/viewports';
 
 const getParams = (width, height = false, retina = false) => {
-  const paramWidth = width && `w=${retina ? width * 2 : width}`;
-  const paramHeight = height && `h=${retina ? height * 2 : height}`;
-  const paramCrop = height && 'fit=fill';
-  const paramsAdditional = 'fl=progressive';
+  const retinaFactor = 1.5;
+  const params = {
+    fm: 'jpg', // format
+    q: retina ? 50 : 60, // quality
+    fl: 'progressive',
+  };
 
-  const params = [
-    paramWidth,
-    paramHeight,
-    paramCrop,
-    paramsAdditional,
-  ].filter(val => val).join('&');
+  if (width) {
+    params.w = retina ? width * retinaFactor : width;
+  }
 
-  return params;
+  if (height) {
+    params.h = retina ? width * retinaFactor : width;
+    params.fit = 'fill';
+  }
+
+  const string = qs.stringify(params, { skipNulls: true });
+
+  return string;
 };
 
 const Picture = (props) => {
@@ -30,6 +37,7 @@ const Picture = (props) => {
   } = props;
 
   const viewportKeys = Object.keys(viewports).reverse();
+  const maxWidth = width || 1366;
 
   const ratio = height && height / width;
 
@@ -43,8 +51,7 @@ const Picture = (props) => {
         key={width} />
       }
 
-      {width >= viewports.sm && viewportKeys.map((identifier, key) => {
-        const maxWidth = width || 2560;
+      {maxWidth >= viewports.sm && viewportKeys.map((identifier, key) => {
         const currentViewport = viewports[identifier];
         const nextViewport = viewportKeys[key - 1] || null;
         const imageSize = viewports[nextViewport] || maxWidth;
@@ -75,7 +82,7 @@ Picture.defaultProps = {
   className: undefined,
   title: undefined,
   width: undefined,
-  height: undefined,
+  height: false,
   color: undefined,
   float: undefined,
 };
