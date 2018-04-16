@@ -18,7 +18,7 @@ const Teaser = (props) => {
       <a className="Teaser-link" href={url}>
         {image &&
         <div className="Teaser-wrapImage">
-          <Picture className="Teaser-image" imageSrc={image.url} imageAlt={image.alt} width={1980} height={1020} />
+          <Picture className="Teaser-image" imageSrc={image.url} imageAlt={image.alt} width={450} height={232} />
         </div>}
 
         <div className="Teaser-content">
