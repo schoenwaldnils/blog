@@ -19,7 +19,7 @@ const Post = (props) => {
 
   const classNames = cn(
     'Post',
-    {[`Post--${type}`]: type},
+    { [`Post--${type}`]: type },
   );
 
   // const qr = `https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl=${url}&choe=UTF-8`;
