@@ -40,7 +40,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "browserslist": "~3.2.4",
     "classnames": "^2.2.5",
-    "contentful": "^5.0.2",
+    "contentful": "^6.0.0",
     "contentful-management": "~4.2.0",
     "css-loader": "^0.28.7",
     "date-fns": "~1.29.0",
