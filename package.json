@@ -75,7 +75,7 @@
     "react-dom": "~16.3.0",
     "react-icons": "~2.2.7",
     "react-tabs": "~2.2.1",
-    "style-loader": "~0.20.1",
+    "style-loader": "~0.21.0",
     "styled-components": "~3.2.5",
     "stylelint": "~9.2.0",
     "stylelint-config-schoenwaldnils": "~2.0.0",
