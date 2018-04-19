@@ -13,11 +13,11 @@ const getParams = (width, height = false, retina = false) => {
   };
 
   if (width) {
-    params.w = retina ? width * retinaFactor : width;
+    params.w = retina ? Math.floor(width * retinaFactor) : width;
   }
 
   if (height) {
-    params.h = retina ? width * retinaFactor : width;
+    params.h = retina ? Math.floor(width * retinaFactor) : width;
     params.fit = 'fill';
   }
 
