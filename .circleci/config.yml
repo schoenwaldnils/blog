@@ -51,7 +51,7 @@ jobs:
           at: ~/repo
       - run:
           name: Lint CSS
-          command: npm run stylelint
+          command: npm run lint:css
 
   test-js:
     <<: *defaults
@@ -60,7 +60,7 @@ jobs:
           at: ~/repo
       - run:
           name: Lint JS
-          command: npm run eslint
+          command: npm run lint:js
 
   build:
     <<: *defaults
@@ -91,7 +91,7 @@ jobs:
           at: ~/repo
       - run:
           name: Lint HTML
-          command: npm run htmlhint
+          command: npm run lint:html
 
   deploy-production:
     <<: *defaults
