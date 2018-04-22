@@ -7,6 +7,11 @@ const {
   CIRCLE_PR_REPONAME,
   CIRCLE_PROJECT_USERNAME,
   CIRCLE_PROJECT_REPONAME,
+  CI_PULL_REQUEST,
+  CI_PULL_REQUESTS,
+  CIRCLE_PULL_REQUEST,
+  CIRCLE_PULL_REQUESTS,
+  CIRCLE_BRANCH,
 } = process.env;
 
 console.log('CIRCLE_SHA1', CIRCLE_SHA1);
@@ -15,6 +20,12 @@ console.log('CIRCLE_PR_NUMBER', CIRCLE_PR_NUMBER);
 console.log('CIRCLE_PR_REPONAME', CIRCLE_PR_REPONAME);
 console.log('CIRCLE_PROJECT_USERNAME', CIRCLE_PROJECT_USERNAME);
 console.log('CIRCLE_PROJECT_REPONAME', CIRCLE_PROJECT_REPONAME);
+
+console.log('CI_PULL_REQUEST', CI_PULL_REQUEST);
+console.log('CI_PULL_REQUESTS', CI_PULL_REQUESTS);
+console.log('CIRCLE_PULL_REQUEST', CIRCLE_PULL_REQUEST);
+console.log('CIRCLE_PULL_REQUESTS', CIRCLE_PULL_REQUESTS);
+console.log('CIRCLE_BRANCH', CIRCLE_BRANCH);
 
 // const testUrl = 'http://test.schoenwald.media/'; // FIXME: url static
 // const githubUrl = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${CIRCLE_SHA1}`;
