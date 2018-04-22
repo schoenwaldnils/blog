@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const {
+  CIRCLE_SHA1,
   CIRCLE_REPOSITORY_URL,
   CIRCLE_PR_NUMBER,
   CIRCLE_PR_REPONAME,
@@ -8,6 +9,7 @@ const {
   CIRCLE_PROJECT_REPONAME,
 } = process.env;
 
+console.log('CIRCLE_SHA1', CIRCLE_SHA1);
 console.log('CIRCLE_REPOSITORY_URL', CIRCLE_REPOSITORY_URL);
 console.log('CIRCLE_PR_NUMBER', CIRCLE_PR_NUMBER);
 console.log('CIRCLE_PR_REPONAME', CIRCLE_PR_REPONAME);
