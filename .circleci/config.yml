@@ -53,6 +53,15 @@ jobs:
           name: Lint CSS
           command: npm run lint:css
 
+  test-psi:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Test PSI
+          command: npm run test-psi
+
   test-js:
     <<: *defaults
     steps:
@@ -163,6 +172,12 @@ workflows:
             tags:
               only: /.*/
       - test-css:
+          requires:
+            - checkout
+          filters:
+            tags:
+              only: /.*/
+      - test-psi:
           requires:
             - checkout
           filters:
