@@ -46,6 +46,7 @@
     "date-fns": "~1.29.0",
     "debounce-promise": "~3.1.0",
     "entities": "~1.1.1",
+    "eslint-config-schoenwaldnils": "^1.0.1",
     "express": "~4.16.2",
     "favicons-webpack-plugin": "0.0.9",
     "gh-pages": "^1.0.0",
