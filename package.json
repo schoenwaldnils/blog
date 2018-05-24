@@ -10,19 +10,28 @@
     "export": "NODE_ENV=production next build && next export",
     "start": "npm run dev",
     "test": "npm run lint",
-    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
-    "lint:css": "stylelint \"source/**/*.css\" --formatter verbose",
-    "lint:css:fix": "stylelint \"source/**/*.css\" --formatter verbose --fix",
-    "lint:js": "eslint source/.",
-    "lint:js:fix": "eslint source/. --fix",
+    "lint": "npm run lint:css && npm run lint:sc && npm run lint:js",
+    "lint:css": "stylelint \"**/*.css\" --formatter verbose",
+    "lint:css:fix": "stylelint \"**/*.css\" --formatter verbose --fix",
+    "lint:sc": "stylelint \"**/*.js\" --formatter verbose --config .stylelintrc-sc",
+    "lint:js": "eslint \"**/*.js\"",
+    "lint:js:fix": "eslint \"**/*.js\" --fix",
     "lint:html": "htmlhint out",
     "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html --minify-css",
-    "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons"
+    "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons",
+    "precommit": "lint-staged"
   },
-  "pre-commit": [
-    "lint:js",
-    "lint:css"
-  ],
+  "lint-staged": {
+    "**/*.js": [
+      "npm run lint:js:fix",
+      "npm run lint:sc",
+      "git add"
+    ],
+    "**/*.css": [
+      "npm run lint:css",
+      "git add"
+    ]
+  },
   "keywords": [],
   "author": {
     "name": "Nils Schönwald",
@@ -41,11 +50,12 @@
     "browserslist": "~3.2.4",
     "classnames": "^2.2.5",
     "contentful": "^6.0.0",
-    "contentful-management": "~5.0.0",
+    "contentful-management": "~5.1.3",
     "css-loader": "^0.28.7",
     "date-fns": "~1.29.0",
     "debounce-promise": "~3.1.0",
     "entities": "~1.1.1",
+    "eslint-config-schoenwaldnils": "^1.0.1",
     "express": "~4.16.2",
     "favicons-webpack-plugin": "0.0.9",
     "gh-pages": "^1.0.0",
@@ -54,7 +64,9 @@
     "html-react-parser": "~0.4.0",
     "html-webpack-plugin": "~3.2.0",
     "htmlhint": "~0.9.13",
-    "marked": "~0.3.9",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.1.2",
+    "marked": "~0.4.0",
     "md5": "~2.2.1",
     "next": "~5.1.0",
     "next-routes": "~1.4.1",
@@ -79,6 +91,8 @@
     "styled-components": "~3.2.5",
     "stylelint": "~9.2.0",
     "stylelint-config-schoenwaldnils": "~2.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.3.1",
     "suitcss-base": "~4.0.0",
     "suitcss-utils-display": "~1.0.2",
     "suitcss-utils-size": "~2.0.0",
