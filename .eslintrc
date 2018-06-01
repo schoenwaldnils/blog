@@ -1,0 +1,6 @@
+{
+  "extends": "eslint-config-schoenwaldnils",
+  "rules": {
+    "max-len": ["error", { "code": 120 }]
+  }
+}
