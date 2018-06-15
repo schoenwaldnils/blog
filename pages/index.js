@@ -18,30 +18,39 @@ const Page = ({ posts, tags, activeTag }) => (
   </Fragment>
 );
 
-Page.getInitialProps = async ({ query }) => {
-  const posts = await Promise.all(query.posts.map(async (post) => {
-    const postFields = await getFields(post.id);
-    if (postFields.image) delete postFields.image;
-    if (postFields.content) delete postFields.content;
-    postFields.url = post.url;
-    return postFields;
-  }));
+Page.getInitialProps = async ({ query: { posts, tag, tags } }) => {
+  const handeledPosts = [];
+  await Promise.all(posts.map(async (post) => {
+    try {
+      const postFields = await getFields(post.id);
+
+      if (postFields.image) delete postFields.image;
+      if (postFields.content) delete postFields.content;
+      postFields.url = post.url;
+
+      handeledPosts.push(postFields);
+      return;
+    } catch (error) {
+      throw error;
+    }
+  })).catch(err => console.error(err));
 
   return {
-    posts,
-    tags: query.tags || null,
-    activeTag: query.tag || null,
+    posts: handeledPosts,
+    activeTag: tag || undefined,
+    tags: tags || undefined,
   };
 };
 
 Page.defaultProps = {
-  activeTag: null,
+  activeTag: undefined,
+  tags: undefined,
 };
 
 Page.propTypes = {
   posts: PropTypes.array.isRequired,
-  tags: PropTypes.array.isRequired,
   activeTag: PropTypes.string,
+  tags: PropTypes.array,
 };
 
 export default Page;
