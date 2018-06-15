@@ -18,7 +18,10 @@ const Post = (props) => {
 
   return (
     <article className="Post u-whiteBox">
-      {/* content: url('https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl={{ site.url }}{{ include.url }}&choe=UTF-8'); */}
+      {false && <img
+        className="Post-qr"
+        src={`https://chart.googleapis.com/chart?cht=qr&chs=80x80&chld=L|0&chl=${url}&choe=UTF-8`}
+        alt="qr-code" />}
 
       {image &&
       <div className="Post-wrapImage">

@@ -1,0 +1,13 @@
+{
+  processors: [
+    "stylelint-processor-styled-components"
+  ],
+  extends: [
+    "stylelint-config-schoenwaldnils",
+    "stylelint-config-styled-components"
+  ],
+  "ignoreFiles": [
+    "out/**/*.js",
+    "node_modules/**/*.js"
+  ]
+}
