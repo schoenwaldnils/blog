@@ -82,7 +82,7 @@ Picture.defaultProps = {
   className: undefined,
   title: undefined,
   width: undefined,
-  height: false,
+  height: undefined,
   color: undefined,
   float: undefined,
 };
