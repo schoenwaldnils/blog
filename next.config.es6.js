@@ -4,8 +4,6 @@ import { getEntries, getTags } from './scripts/contentful';
 
 export default withCSS({
   serverRuntimeConfig: { // Will only be available on the server side
-    contentfulSpace: process.env.CONTENTFUL_SPACE,
-    contentfulToken: process.env.CONTENTFUL_TOKEN,
   },
   publicRuntimeConfig: { // Will be available on both server and client
   },
@@ -88,16 +86,16 @@ export default withCSS({
     //   return rule;
     // });
 
-    config.devtool = 'source-map';
+    // config.devtool = 'source-map';
 
     return config;
   },
   webpackDevMiddleware: (config) => {
-    config.watchOptions = {
-      ignored: /node_modules/,
-      poll: 1000,
-      aggregateTimeout: 1000,
-    };
+    // config.watchOptions = {
+    //   ignored: /node_modules/,
+    //   poll: 1000,
+    //   aggregateTimeout: 1000,
+    // };
     return config;
   },
 });

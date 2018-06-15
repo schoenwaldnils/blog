@@ -1,16 +1,10 @@
 import { createClient } from 'contentful';
-import getConfig from 'next/config';
-
-const {
-  serverRuntimeConfig: {
-    contentfulSpace,
-    contentfulToken,
-  } = {},
-} = getConfig() || {};
 
 export const client = createClient({
-  space: contentfulSpace,
-  accessToken: contentfulToken,
+  space: process.env.CONTENTFUL_SPACE,
+  accessToken: process.env.CONTENTFUL_PREVIEW ?
+    process.env.CONTENTFUL_PREVIEW_TOKEN : process.env.CONTENTFUL_TOKEN,
+  host: process.env.CONTENTFUL_PREVIEW && 'preview.contentful.com',
 });
 
 export async function getEntries(type, tag = false) {
