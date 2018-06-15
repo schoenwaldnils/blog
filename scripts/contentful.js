@@ -1,11 +1,13 @@
-const contentful = require('contentful');
+import { createClient } from 'contentful';
 
-const client = contentful.createClient({
+export const client = createClient({
   space: process.env.CONTENTFUL_SPACE,
-  accessToken: process.env.CONTENTFUL_TOKEN,
+  accessToken: process.env.CONTENTFUL_PREVIEW ?
+    process.env.CONTENTFUL_PREVIEW_TOKEN : process.env.CONTENTFUL_TOKEN,
+  host: process.env.CONTENTFUL_PREVIEW && 'preview.contentful.com',
 });
 
-async function getEntries(type, tag = false) {
+export async function getEntries(type, tag = false) {
   const entries = [];
 
   try {
@@ -36,7 +38,7 @@ async function getEntries(type, tag = false) {
   return entries;
 }
 
-async function getFields(id) {
+export async function getFields(id) {
   try {
     const res = await client.getEntries({ 'sys.id': id });
     const entryFields = res.items[0].fields;
@@ -46,7 +48,7 @@ async function getFields(id) {
   }
 }
 
-async function getTags() {
+export async function getTags() {
   const tags = [];
 
   try {
@@ -70,8 +72,3 @@ async function getTags() {
   }
   return tags;
 }
-
-exports.client = client;
-exports.getEntries = getEntries;
-exports.getFields = getFields;
-exports.getTags = getTags;
