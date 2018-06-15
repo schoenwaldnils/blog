@@ -11,6 +11,7 @@ marked.setOptions({
   highlight: (code, lang) => {
     return highlightJs.highlight(lang, code).value;
   },
+  headerIds: false,
 });
 
 const renderer = new marked.Renderer();

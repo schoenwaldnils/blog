@@ -41,6 +41,7 @@ export async function getEntries(type, tag = false) {
 
 export async function getFields(id) {
   if (!id) return {};
+
   try {
     const res = await client.getEntries({
       'sys.id': id,

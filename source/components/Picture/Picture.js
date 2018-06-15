@@ -99,8 +99,8 @@ Picture.propTypes = {
 };
 
 export default styled(Picture)`
-  width: ${props => props.width && `${props.width}px`};
   float: ${props => props.float};
+  width: ${props => props.width && `${props.width}px`};
   margin-right: ${props => props.float === 'left' && '8px'};
   margin-bottom: ${props => props.float && '8px'};
   margin-left: ${props => props.float === 'right' && '8px'};

@@ -1,12 +1,12 @@
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
-// import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import withCSS from '@zeit/next-css';
-import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 import { getEntries, getTags } from './scripts/contentful';
 
 export default withCSS({
+  serverRuntimeConfig: { // Will only be available on the server side
+  },
+  publicRuntimeConfig: { // Will be available on both server and client
+  },
   async exportPathMap() {
     const pathMap = {};
 
@@ -86,27 +86,16 @@ export default withCSS({
     //   return rule;
     // });
 
-    // config.plugins.push(
-    //   new FaviconsWebpackPlugin({
-    //     logo: './static/assets/images/favicon.png',
-    //     statsFilename: 'iconstats.json',
-    //     inject: true,
-    //   }),
-    //   new HtmlWebpackPlugin(),
-    // );
-
-    config.devtool = 'source-map';
-
-    if (!dev) config.plugins.push(new UglifyJSPlugin());
+    // config.devtool = 'source-map';
 
     return config;
   },
   webpackDevMiddleware: (config) => {
-    config.watchOptions = {
-      ignored: /node_modules/,
-      poll: 1000,
-      aggregateTimeout: 1000,
-    };
+    // config.watchOptions = {
+    //   ignored: /node_modules/,
+    //   poll: 1000,
+    //   aggregateTimeout: 1000,
+    // };
     return config;
   },
 });

@@ -26,8 +26,8 @@ const Page = ({ posts, tags, activeTag }) => {
   );
 };
 
-Page.getInitialProps = async ({ query }) => {
-  const posts = await Promise.all(query.posts.map(async (post) => {
+Page.getInitialProps = async ({ query: { posts, tag, tags } }) => {
+  const handeledPosts = await Promise.all(posts.map(async (post) => {
     const postFields = await getFields(post.id);
     if (postFields.content) delete postFields.content;
     if (postFields.tags) delete postFields.tags;
@@ -45,20 +45,21 @@ Page.getInitialProps = async ({ query }) => {
   }));
 
   return {
-    posts,
-    tags: query.tags || null,
-    activeTag: query.tag || null,
+    posts: handeledPosts,
+    activeTag: tag || undefined,
+    tags: tags || undefined,
   };
 };
 
 Page.defaultProps = {
-  activeTag: null,
+  activeTag: undefined,
+  tags: undefined,
 };
 
 Page.propTypes = {
   posts: PropTypes.array.isRequired,
-  tags: PropTypes.array.isRequired,
   activeTag: PropTypes.string,
+  tags: PropTypes.array,
 };
 
 export default Page;

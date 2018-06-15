@@ -1,3 +1,4 @@
+/* eslint-disable */
 const critical = require('critical');
 
 const base = 'out';

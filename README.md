@@ -1,8 +1,7 @@
-[![Travis](https://img.shields.io/travis/schoenwaldnils/blog.svg?style=flat-square)](https://travis-ci.org/schoenwaldnils/blog)
+[![Coverage Status](https://coveralls.io/repos/github/schoenwaldnils/blog/badge.svg)](https://coveralls.io/github/schoenwaldnils/blog) [![Greenkeeper badge](https://badges.greenkeeper.io/schoenwaldnils/blog.svg)](https://greenkeeper.io/)
 
 # Blog
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/schoenwaldnils/blog.svg)](https://greenkeeper.io/)
 
 Using [zeit/next.js](https://github.com/zeit/next.js)
 
