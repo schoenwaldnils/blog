@@ -80,7 +80,7 @@
     "postcss-url": "^7.3.2",
     "prop-types": "^15.6.1",
     "pygmentize-bundled": "~2.3.0",
-    "query-string": "^6.1.0",
+    "qs": "^6.5.2",
     "raw-loader": "^0.5.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
