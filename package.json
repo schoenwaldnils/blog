@@ -73,6 +73,7 @@
     "normalize.css": "^8.0.0",
     "postcss-calc": "~6.0.1",
     "postcss-custom-media": "^6.0.0",
+    "postcss-easing-gradients": "^3.0.0",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "postcss-nested": "~3.0.0",

@@ -9,6 +9,7 @@ module.exports = () => ({
       extensions: viewportsCss,
     },
     'postcss-calc': {},
+    'postcss-easing-gradients': {},
     'postcss-pseudoelements': {},
     autoprefixer: {},
     'postcss-reporter': {
