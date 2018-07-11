@@ -7,7 +7,7 @@ returnCode=$?
 
 if [ $returnCode != 0 ]
 then
-  plesk bin subdomain --create $BRANCH_NAME -domain $DOMAIN_NAME -ssl true -ssl-redirect true -empty-document-root true -www-root www/schoenwald/feature/$BRANCH_NAME
+  plesk bin subdomain --create $BRANCH_NAME -domain $DOMAIN_NAME -ssl true -ssl-redirect true -empty-document-root true -www-root www/schoenwald/$BRANCH_NAME
 
   # sleep 20s
 
