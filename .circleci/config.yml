@@ -137,13 +137,13 @@ jobs:
           command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
           name: Install rsync
-          command: sudo apt-get install rsync
+          command: sudo apt-get install rsync --fix-missing
       - run:
           name: Deploy to Server
           command: |
             BRANCH_NAME=${CIRCLE_BRANCH##feature/}
             echo BRANCH_NAME = $BRANCH_NAME
-            mv out $BRANCH_NAME
+            mv test $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/feature
       - run:
           name: Create subdomain
@@ -168,26 +168,26 @@ workflows:
             - checkout
           filters:
             tags:
-              only: /.*/
+              # only: /.*/
       - test-js:
           requires:
             - checkout
           filters:
             tags:
-              only: /.*/
+              # only: /.*/
       - build:
           requires:
             - test-css
             - test-js
           filters:
             tags:
-              only: /.*/
+              # only: /.*/
       - test-html:
           requires:
             - build
           filters:
             tags:
-              only: /.*/
+              # only: /.*/
       - deploy-production:
           requires:
             - test-html
@@ -207,9 +207,10 @@ workflows:
               only: /^test.*/
       - deploy-pr:
           requires:
-            - test-html
+            # - test-html
           filters:
             branches:
               only:
                 - /feature\/.*/
+                - /greenkeeper\/.*/
                 - /issue.*/
