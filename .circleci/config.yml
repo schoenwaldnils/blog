@@ -163,51 +163,8 @@ workflows:
           filters:
             tags:
               only: /.*/
-      # - test-css:
-      #     requires:
-      #       - checkout
-      #     filters:
-      #       tags:
-      #         only: /.*/
-      # - test-js:
-      #     requires:
-      #       - checkout
-      #     filters:
-      #       tags:
-      #         only: /.*/
-      # - build:
-      #     requires:
-      #       - test-css
-      #       - test-js
-      #     filters:
-      #       tags:
-      #         only: /.*/
-      # - test-html:
-      #     requires:
-      #       - build
-      #     filters:
-      #       tags:
-      #         only: /.*/
-      # - deploy-production:
-      #     requires:
-      #       - test-html
-      #     filters:
-      #       branches:
-      #         ignore: /.*/
-      #       tags:
-      #         only: /^v.*/
-      # - deploy-test:
-      #     requires:
-      #       - test-html
-      #     filters:
-      #       branches:
-      #         ignore: /.*/
-      #         only: 'redesign'
-      #       tags:
-      #         only: /^test.*/
       - deploy-pr:
           requires:
-            # - test-html
             - checkout
           filters:
             branches:
