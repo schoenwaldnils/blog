@@ -148,7 +148,7 @@ jobs:
             BRANCH_NAME=${CIRCLE_BRANCH/\//-}
             DOMAIN_NAME=schoenwald.media
             echo BRANCH_NAME = $BRANCH_NAME
-            ssh -o SendEnv=BRANCH_NAME -o SendEnv=DOMAIN_NAME root@5.35.245.22 ls -a
+            ssh -o SendEnv=BRANCH_NAME -o SendEnv=DOMAIN_NAME root@5.35.245.22 ls -a scripts ; pwa
 
 
 workflows:
