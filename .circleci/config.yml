@@ -145,11 +145,11 @@ jobs:
       - run:
           name: Create subdomain
           command: |
-            LC_BRANCH_NAME=${CIRCLE_BRANCH/\//-}
-            LC_DOMAIN_NAME=schoenwald.media
-            echo LC_BRANCH_NAME = $LC_BRANCH_NAME
-            echo LC_DOMAIN_NAME = $LC_DOMAIN_NAME
-            ssh -o SendEnv=LC_BRANCH_NAME -o SendEnv=LC_DOMAIN_NAME root@5.35.245.22 scripts/manage-subdomain.sh
+            BRANCH_NAME=${CIRCLE_BRANCH/\//-}
+            DOMAIN_NAME=schoenwald.media
+            echo BRANCH_NAME = $BRANCH_NAME
+            echo DOMAIN_NAME = $DOMAIN_NAME
+            ssh -o SendEnv=BRANCH_NAME -o SendEnv=DOMAIN_NAME root@5.35.245.22 scripts/manage-subdomain.sh
 
 
 workflows:
