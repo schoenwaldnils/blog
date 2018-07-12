@@ -32,8 +32,3 @@ GridCell.propTypes = {
   sm: PropTypes.string,
   children: PropTypes.func.isRequired,
 };
-
-export default {
-  Grid,
-  GridCell,
-};

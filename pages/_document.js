@@ -1,3 +1,5 @@
+import { createHash } from 'crypto';
+
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
@@ -13,11 +15,23 @@ export default class SmediaDocument extends Document {
   }
 
   render() {
+    const { buildManifest } = this.props;
+    const { css } = buildManifest;
+
     const prod = process.env.NODE_ENV === 'production';
+
+    let version = '';
+    if (!prod) {
+      const hash = createHash('sha256');
+      version = `?v=${hash.digest('hex').substr(0, 8)}`;
+    }
+
     return (
       <html lang="en">
         <Head>
-          <link rel="stylesheet" href="/_next/static/style.css" />
+          {css.map((file) => {
+            return <link rel="stylesheet" href={`/_next/${file}${version}`} key={file} />;
+          })}
           {this.props.styleTags}
         </Head>
         <body>
@@ -37,7 +51,10 @@ export default class SmediaDocument extends Document {
             ga('send', 'pageview');`,
           }} />}
 
-          {false && <script src={`https://js.driftt.com/include/${Math.ceil(new Date() / 3e5)}/${DRIFT_ID}.js`} type="text/javascript" async="" />}
+          {false && <script
+            src={`https://js.driftt.com/include/${Math.ceil(new Date() / 3e5)}/${DRIFT_ID}.js`}
+            type="text/javascript"
+            async="" />}
         </body>
       </html>
     );
