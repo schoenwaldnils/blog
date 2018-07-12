@@ -140,7 +140,7 @@ jobs:
           command: |
             BRANCH_NAME=${CIRCLE_BRANCH/\//-}
             echo BRANCH_NAME = $BRANCH_NAME
-            mv test $BRANCH_NAME
+            mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
       - run:
           name: Create subdomain
@@ -160,12 +160,52 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - deploy-pr:
+      - test-css:
           requires:
             - checkout
           filters:
+            tags:
+              only: /.*/
+      - test-js:
+          requires:
+            - checkout
+          filters:
+            tags:
+              only: /.*/
+      - build:
+          requires:
+            - test-css
+            - test-js
+          filters:
+            tags:
+              only: /.*/
+      - test-html:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
+      - deploy-production:
+          requires:
+            - test-html
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+      - deploy-test:
+          requires:
+            - test-html
+          filters:
+            branches:
+              ignore: /.*/
+              only: 'redesign'
+            tags:
+              only: /^test.*/
+      - deploy-pr:
+          requires:
+            - test-html
+          filters:
             branches:
               only:
-                - /feature\/.*/
-                - /greenkeeper\/.*/
-                - /issue.*/
+                - /.*\/.*/
