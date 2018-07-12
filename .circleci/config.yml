@@ -17,7 +17,7 @@ machine:
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:8.9.1
+    - image: schoenwaldnils/circleci-node:8.9.1-rsync
 
 
 jobs:
@@ -102,9 +102,6 @@ jobs:
           name: Avoid hosts unknown for hosteurope
           command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
-          name: Install rsync
-          command: sudo apt install rsync
-      - run:
           name: Deploy to Server
           command: |
             mv out production
@@ -118,9 +115,6 @@ jobs:
       - run:
           name: Avoid hosts unknown for hosteurope
           command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-      - run:
-          name: Install rsync
-          command: sudo apt install rsync
       - run:
           name: Deploy to Server
           command: |
@@ -136,22 +130,20 @@ jobs:
           name: Avoid hosts unknown for hosteurope
           command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
-          name: Install rsync
-          command: sudo apt install rsync
-      - run:
           name: Deploy to Server
           command: |
-            BRANCH_NAME=${CIRCLE_BRANCH##feature/}
+            BRANCH_NAME=${CIRCLE_BRANCH/\//-}
             echo BRANCH_NAME = $BRANCH_NAME
             mv out $BRANCH_NAME
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/feature
-      # - run:
-      #     name: Create subdomain
-      #     command: |
-      #       BRANCH_NAME=${CIRCLE_BRANCH##feature/}
-      #       DOMAIN_NAME=schoenwald.media
-      #       echo BRANCH_NAME = $BRANCH_NAME
-      #       ssh -o SendEnv=BRANCH_NAME -o SendEnv=DOMAIN_NAME circleci@5.35.245.22 scripts/manage-subdomain.sh
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
+      - run:
+          name: Create subdomain
+          command: |
+            export BRANCH_NAME=${CIRCLE_BRANCH/\//-}
+            export DOMAIN_NAME=schoenwald.media
+            echo BRANCH_NAME = $BRANCH_NAME
+            echo DOMAIN_NAME = $DOMAIN_NAME
+            sh scripts/manage-subdomain.sh
 
 
 workflows:
@@ -210,5 +202,4 @@ workflows:
           filters:
             branches:
               only:
-                - /feature\/.*/
-                - /issue.*/
+                - /.*\/.*/
