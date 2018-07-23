@@ -139,7 +139,7 @@ jobs:
       - run:
           name: Create subdomain
           command: |
-            export BRANCH_NAME=${CIRCLE_BRANCH/\//-}
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             export DOMAIN_NAME=schoenwald.media
             echo BRANCH_NAME = $BRANCH_NAME
             echo DOMAIN_NAME = $DOMAIN_NAME
