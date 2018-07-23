@@ -17,7 +17,7 @@ machine:
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: schoenwaldnils/circleci-node:8.9.1-rsync
+    - image: schoenwaldnils/circleci-node:9.11.2-rsync
 
 
 jobs:
