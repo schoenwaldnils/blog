@@ -132,7 +132,7 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            BRANCH_NAME=${CIRCLE_BRANCH/\//-}
+            BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             echo BRANCH_NAME = $BRANCH_NAME
             mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
