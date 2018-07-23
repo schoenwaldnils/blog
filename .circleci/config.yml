@@ -132,14 +132,14 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            BRANCH_NAME=${CIRCLE_BRANCH/\//-}
+            BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             echo BRANCH_NAME = $BRANCH_NAME
             mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
       - run:
           name: Create subdomain
           command: |
-            export BRANCH_NAME=${CIRCLE_BRANCH/\//-}
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             export DOMAIN_NAME=schoenwald.media
             echo BRANCH_NAME = $BRANCH_NAME
             echo DOMAIN_NAME = $DOMAIN_NAME
