@@ -54,7 +54,7 @@
     "date-fns": "~1.29.0",
     "debounce-promise": "~3.1.0",
     "entities": "~1.1.1",
-    "eslint": "^5.0.1",
+    "eslint": "^5.2.0",
     "eslint-config-schoenwaldnils": "^1.0.2",
     "express": "^4.16.3",
     "favicons-webpack-plugin": "0.0.9",
