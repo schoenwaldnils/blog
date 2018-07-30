@@ -14,7 +14,7 @@ echo 'CIRCLE_PR_NUMBER:' $CIRCLE_PR_NUMBER;
 
 if [ $CIRCLE_PULL_REQUEST ] ; then
   echo "Is PR!";
-  BOT_COMMENT_ID=$(curl -H "Authorization: token $BOT_GITHUB_TOKEN" -X GET "https://api.github.com/repos/$REPO_SLUG/issues/$CIRCLE_PR_NUMBER/comments" | jq -c ".[] | select(.user | select(.login | contains($BOT_USERNAME)))" | jq -c '.id');
+  BOT_COMMENT_ID=$(curl -H "Authorization: token $BOT_GITHUB_TOKEN" -X GET "https://api.github.com/repos/$REPO_SLUG/issues/$CIRCLE_PR_NUMBER/comments" | jq -c ".[] | select(.user | select(.login | contains('$BOT_USERNAME')))" | jq -c '.id');
 
   echo $BOT_COMMENT_ID;
 
