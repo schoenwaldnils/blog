@@ -41,11 +41,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run:
-          name: Setup Environment Variables
-          command: |
-            echo 'export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}' >> $BASH_ENV
-
       - persist_to_workspace:
           root: ~/repo
           paths: .
@@ -133,26 +128,24 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run:
-          name: Load environment variables
-          command: |
-            env
-            echo $BRANCH_NAME
-            source $BASH_ENV
-      - run:
           name: Avoid hosts unknown for hosteurope
           command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run:
           name: Deploy to Server
           command: |
-            echo $BRANCH_NAME
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
       - run:
           name: Create subdomain
-          command: sh .infrastructure/manage-subdomain.sh
+          command: |
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
+            sh .infrastructure/manage-subdomain.sh
       - run:
           name: Post preview comment
-          command: sh ./.infrastructure/comment_on_pr.sh
+          command: |
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
+            sh ./.infrastructure/comment_on_pr.sh
 
 
 workflows:
