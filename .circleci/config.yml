@@ -35,7 +35,7 @@ jobs:
             echo 'CIRCLE_PR_NUMBER:' $CIRCLE_PR_NUMBER
             echo 'CIRCLE_REPOSITORY_URL:' $CIRCLE_REPOSITORY_URL
             echo 'CIRCLE_PR_NUMBER:' $CIRCLE_PR_NUMBER
-            sh .infrastructure/comment_on_pr.sh
+            sh ./.infrastructure/comment_on_pr.sh
 
       - checkout
 
