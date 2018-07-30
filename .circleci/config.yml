@@ -19,8 +19,6 @@ defaults: &defaults
   docker:
     - image: schoenwaldnils/circleci-node:9.11.2-rsync
       environment:
-        BRANCH_NAME: ${CIRCLE_BRANCH//[\/|.]/-}
-        CIRCLE_PR_NUMBER: ${CIRCLE_PULL_REQUEST##*/}
         DOMAIN_NAME: schoenwald.media
 
 jobs:
@@ -30,11 +28,13 @@ jobs:
       - run:
           name: Post preview comment
           command: |
+            BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
+            CIRCLE_PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
             echo $BRANCH_NAME
-            echo $DOMAIN_NAME
-            echo 'CIRCLE_PR_NUMBER: ' + $CIRCLE_PR_NUMBER
-            echo 'CIRCLE_REPOSITORY_URL: ' + $CIRCLE_REPOSITORY_URL
-            echo 'CIRCLE_PR_NUMBER: ' + $CIRCLE_PR_NUMBER
+            echo 'CI_PULL_REQUEST:' $CI_PULL_REQUEST;
+            echo 'CIRCLE_PR_NUMBER:' $CIRCLE_PR_NUMBER
+            echo 'CIRCLE_REPOSITORY_URL:' $CIRCLE_REPOSITORY_URL
+            echo 'CIRCLE_PR_NUMBER:' $CIRCLE_PR_NUMBER
             sh .infrastructure/comment_on_pr.sh
 
       - checkout
