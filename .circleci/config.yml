@@ -34,18 +34,6 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run:
-          name: Post preview comment
-          command: |
-            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
-            CIRCLE_PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
-            echo $BRANCH_NAME
-            echo 'CI_PULL_REQUEST:' $CI_PULL_REQUEST;
-            echo 'CIRCLE_PR_NUMBER:' $CIRCLE_PR_NUMBER
-            echo 'CIRCLE_REPOSITORY_URL:' $CIRCLE_REPOSITORY_URL
-            echo 'CIRCLE_PR_NUMBER:' $CIRCLE_PR_NUMBER
-            sh ./.infrastructure/comment_on_pr.sh
-
       - run: yarn install
 
       - save_cache:
@@ -145,14 +133,17 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
+            BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
       - run:
           name: Create subdomain
           command: sh .infrastructure/manage-subdomain.sh
-      # - run:
-      #     name: Post preview comment
-      #     command: sh .infrastructure/comment_on_pr.sh
+      - run:
+          name: Post preview comment
+          command: |
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
+            sh ./.infrastructure/comment_on_pr.sh
 
 
 workflows:
