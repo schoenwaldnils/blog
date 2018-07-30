@@ -25,6 +25,15 @@ jobs:
   checkout:
     <<: *defaults
     steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
       - run:
           name: Post preview comment
           command: |
@@ -36,15 +45,6 @@ jobs:
             echo 'CIRCLE_REPOSITORY_URL:' $CIRCLE_REPOSITORY_URL
             echo 'CIRCLE_PR_NUMBER:' $CIRCLE_PR_NUMBER
             sh ./.infrastructure/comment_on_pr.sh
-
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
 
       - run: yarn install
 
