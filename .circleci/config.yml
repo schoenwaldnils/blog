@@ -20,7 +20,6 @@ defaults: &defaults
     - image: schoenwaldnils/circleci-node:9.11.2-rsync
       environment:
         DOMAIN_NAME: schoenwald.media
-        BRANCH_NAME: "${CIRCLE_BRANCH//[\/|.]/-}"
 
 jobs:
   checkout:
@@ -41,6 +40,11 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Setup Environment Variables
+          command: |
+            echo 'export CIRCLE_BRANCH=${CIRCLE_BRANCH//[\/|.]/-}' >> $BASH_ENV
 
       - persist_to_workspace:
           root: ~/repo
