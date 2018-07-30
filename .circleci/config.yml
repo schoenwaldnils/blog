@@ -138,7 +138,9 @@ jobs:
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
       - run:
           name: Create subdomain
-          command: sh .infrastructure/manage-subdomain.sh
+          command: |
+            BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
+            sh .infrastructure/manage-subdomain.sh
       - run:
           name: Post preview comment
           command: |
