@@ -18,7 +18,8 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: schoenwaldnils/circleci-node:9.11.2-rsync
-
+      environment:
+        DOMAIN_NAME: schoenwald.media
 
 jobs:
   checkout:
@@ -132,18 +133,19 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
-            echo BRANCH_NAME = $BRANCH_NAME
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
       - run:
           name: Create subdomain
           command: |
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
-            export DOMAIN_NAME=schoenwald.media
-            echo BRANCH_NAME = $BRANCH_NAME
-            echo DOMAIN_NAME = $DOMAIN_NAME
-            sh scripts/manage-subdomain.sh
+            sh .infrastructure/manage-subdomain.sh
+      - run:
+          name: Post preview comment
+          command: |
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
+            sh ./.infrastructure/comment_on_pr.sh
 
 
 workflows:
