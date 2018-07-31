@@ -22,20 +22,24 @@ console.log('BRANCH_NAME', BRANCH_NAME);
 console.log('CIRCLE_PR_NUMBER', CIRCLE_PR_NUMBER);
 
 const testUrl = `https://${BRANCH_NAME}.schoenwald.media/`;
-const githubUrl = `https://api.github.com/repos/${REPO_SLUG}/statuses/${CIRCLE_SHA1}`;
 
 
 const client = github.client(BOT_GITHUB_TOKEN);
 const ghrepo = client.repo(REPO_SLUG);
 
+console.log(client);
+console.log(ghrepo);
+
 ghrepo.status(CIRCLE_SHA1, {
   state: 'pending',
   target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=mobile`,
   description: 'PSI test mobile pending',
-}, () => console.log('Github status set \'PSI test mobile pending\'')); // created status
+  context: 'PSI',
+}, (data) => console.log('Github status set \'PSI test mobile pending\'', data)); // created status
 
 ghrepo.status(CIRCLE_SHA1, {
   state: 'pending',
   target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=desktop`,
-  description: 'PSI test desktop pending',
-}, () => console.log('Github status set \'PSI test desktop pending\'')); // created status
+  description: 'PSI test desktop',
+  context: 'PSI',
+}, (data) => console.log('Github status set \'PSI test desktop pending\'', data)); // created status
