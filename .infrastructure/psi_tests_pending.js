@@ -15,6 +15,7 @@ const CIRCLE_PR_NUMBER = CIRCLE_PULL_REQUEST.match(/[^/]+$/) && CIRCLE_PULL_REQU
 const BRANCH_NAME = CIRCLE_BRANCH.replace(/\//, '-');
 
 
+console.log('CIRCLE_SHA1', CIRCLE_SHA1);
 console.log('REPO_SLUG', REPO_SLUG);
 console.log('CIRCLE_PULL_REQUEST', CIRCLE_PULL_REQUEST);
 console.log('CIRCLE_BRANCH', CIRCLE_BRANCH);
@@ -27,8 +28,7 @@ const testUrl = `https://${BRANCH_NAME}.schoenwald.media/`;
 const client = github.client(BOT_GITHUB_TOKEN);
 const ghrepo = client.repo(REPO_SLUG);
 
-console.log(client);
-console.log(ghrepo);
+console.log(ghrepo.status());
 
 const staturCallback = (data, message) => {
   const { statusCode } = data;
@@ -38,8 +38,6 @@ const staturCallback = (data, message) => {
 
   return console.log(message);
 }
-
-ghrepo.info((data) => console.log(data));
 
 ghrepo.status(CIRCLE_SHA1, {
   state: 'pending',
