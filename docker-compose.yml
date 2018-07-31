@@ -3,6 +3,7 @@ version: '3'
 services:
 
   nextjs:
+    tty: true
     image: circleci/node:8.9.1
     working_dir: /usr/src/app
     volumes:
