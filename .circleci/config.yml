@@ -189,15 +189,6 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-      - deploy-test:
-          requires:
-            - test-html
-          filters:
-            branches:
-              ignore: /.*/
-              only: 'redesign'
-            tags:
-              only: /^test.*/
       - deploy-pr:
           requires:
             - test-html

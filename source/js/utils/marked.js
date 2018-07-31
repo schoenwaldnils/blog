@@ -8,8 +8,8 @@ import Picture from '../../../source/components/Picture/Picture';
 
 marked.setOptions({
   langPrefix: 'hljs ',
-  highlight: (code, language) => {
-    return highlightJs.highlight(language, code).value;
+  highlight: (code, lang) => {
+    return highlightJs.highlight(lang, code).value;
   },
   headerIds: false,
 });

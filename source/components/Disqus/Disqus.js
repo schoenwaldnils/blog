@@ -4,16 +4,18 @@ import './Disqus.css';
 
 const Disqus = ({ title, siteUrl, pageUrl }) => (
   <Fragment>
-    <script dangerouslySetInnerHTML={{
-      __html: `
-        function disqus_config() {
-          this.page.title = '${title}';
-          this.page.url = '${siteUrl}${pageUrl}';
-          this.page.identifier = '${pageUrl}';
-        }`,
-    }} />
-    <script defer src="//schoenwaldmedia.disqus.com/embed.js" data-timestamp={new Date()} />
-    <div className="Disqus u-whiteBox u-boxPadding" id="disqus_thread" />
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+          function disqus_config() {
+            this.page.title = '${title}';
+            this.page.url = '${siteUrl}${pageUrl}';
+            this.page.identifier = '${pageUrl}';
+          }`,
+      }}
+      key="disqus-script" />
+    <script defer src="//schoenwaldmedia.disqus.com/embed.js" data-timestamp={new Date()} key="disqus-script2" />
+    <div className="Disqus u-boxPadding u-maxWidth" id="disqus_thread" key="disqus-body" />
   </Fragment>
 );
 

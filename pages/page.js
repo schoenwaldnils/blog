@@ -1,30 +1,34 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { getFields } from '../scripts/contentful';
+
+import '../source/css/index.css';
+
 import Meta from '../source/components/Meta/Meta';
-import LayoutBase from '../source/components/Layout/LayoutBase';
+import Layout from '../source/components/Layout/Layout';
 import Post from '../source/components/Post/Post';
 // import Button from '../source/components/Button/Button';
 import Disqus from '../source/components/Disqus/Disqus';
 
-const Page = ({ type, fields }) => (
-  <Fragment>
-    {/* <a className="page-edit" href={`/edit?type=${type}&id=${fields.id}`}>
-      <Button>Edit</Button>
-    </a> */}
-    <Meta
-      url={`https://schoenwald.media/${fields.slug}/`}
-      type="article"
-      title={fields.title}
-      description={fields.description}
-      image={fields.image ? fields.image.url : undefined}
-      key="page-meta" />
-    <LayoutBase>
-      <Post {...fields} description={null} />
-      { type === 'post' && <Disqus title={fields.title} pageUrl={fields.slug} />}
-    </LayoutBase>
-  </Fragment>
-);
+const Page = ({ type, fields }) => {
+  return (
+    <Fragment>
+      {/* <a className="page-edit" href={`/edit?type=${type}&id=${fields.id}`}>
+        <Button>Edit</Button>
+      </a> */}
+      <Meta
+        url={`https://schoenwald.media/${fields.slug}/`}
+        type="article"
+        title={fields.title}
+        description={fields.description}
+        image={fields.image ? fields.image.url : undefined} />
+      <Layout type={type}>
+        <Post {...fields} />
+        {type === 'post' && <Disqus title={fields.title} pageUrl={fields.slug} />}
+      </Layout>
+    </Fragment>
+  );
+};
 
 Page.getInitialProps = async ({ query }) => {
   const fields = await getFields(query.id);
@@ -35,6 +39,7 @@ Page.getInitialProps = async ({ query }) => {
       title: fields.title,
       slug: fields.slug,
       image: fields.image ? {
+        color: fields.image.fields.file.details.color || null,
         url: fields.image.fields.file.url,
         alt: fields.image.fields.title,
       } : null,

@@ -1,62 +1,90 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import qs from 'qs';
+import { viewports, viewportsJs } from '../../js/viewports';
 
-const pictureViewports = [
-  700,
-  600,
-  500,
-  400,
-];
+const getParams = (width, height = false, retina = false) => {
+  const retinaFactor = 1.5;
+  const params = {
+    fm: 'jpg', // format
+    q: retina ? 50 : 60, // quality
+    fl: 'progressive',
+  };
 
-const Picture = ({
-  className, imageSrc, imageAlt, title, width,
-}) => (
-  <picture>
-    { width >= 400 && [
-      pictureViewports.map((viewport) => {
-        if (viewport >= width) return null;
+  if (width) {
+    params.w = retina ? Math.floor(width * retinaFactor) : width;
+  }
+
+  if (height) {
+    params.h = retina ? Math.floor(width * retinaFactor) : width;
+    params.fit = 'fill';
+  }
+
+  const string = qs.stringify(params, { skipNulls: true });
+
+  return string;
+};
+
+const Picture = (props) => {
+  const {
+    className,
+    imageSrc,
+    imageAlt,
+    title,
+    width,
+    height,
+  } = props;
+
+  const viewportKeys = Object.keys(viewports).reverse();
+  const maxWidth = width || 1366;
+
+  const ratio = height && height / width;
+
+  return (
+    <picture>
+      {width < viewports.sm && <source
+        srcSet={`
+        ${imageSrc}?${getParams(width, height)} 1x,
+        ${imageSrc}?${getParams(width, height, true)} 2x
+        `}
+        key={width} />
+      }
+
+      {maxWidth >= viewports.sm && viewportKeys.map((identifier, key) => {
+        const currentViewport = viewports[identifier];
+        const nextViewport = viewportKeys[key - 1] || null;
+        const imageSize = viewports[nextViewport] || maxWidth;
+
+        if (currentViewport >= maxWidth) return null;
         return (
           <source
             srcSet={`
-              ${imageSrc}?w=${(viewport + 100)}&fl=progressive 1x,
-              ${imageSrc}?w=${(viewport + 100) * 2}&fl=progressive 2x
+            ${imageSrc}?${getParams(imageSize, Math.round(imageSize * ratio))} 1x,
+            ${imageSrc}?${getParams(imageSize, Math.round(imageSize * ratio), true)} 2x
             `}
-            media={`(min-width: ${viewport}px)`}
-            key={viewport} />
+            media={viewportsJs[identifier]}
+            key={imageSize + maxWidth} />
         );
-      }),
-      <source
-        srcSet={`
-          ${imageSrc}?w=${400}&fl=progressive 1x,
-          ${imageSrc}?w=${400 * 2}&fl=progressive 2x
-        `}
-        key={400} />,
-    ]}
+      })}
 
-    { width < 400 && [
-      <source
-        srcSet={`
-          ${imageSrc}?w=${width}&fl=progressive 1x,
-          ${imageSrc}?w=${width * 2}&fl=progressive 2x
-        `}
-        key={width} />,
-    ]}
-
-    <img
-      className={className}
-      src={`${imageSrc}?w=${width}&fl=progressive`}
-      alt={imageAlt}
-      title={title}
-      key="img" />
-  </picture>
-);
+      <img
+        className={className}
+        src={`${imageSrc}?${getParams(null, null)}`}
+        alt={imageAlt}
+        title={title}
+        key="img" />
+    </picture>
+  );
+};
 
 Picture.defaultProps = {
-  className: null,
-  title: null,
-  width: 700,
-  float: null,
+  className: undefined,
+  title: undefined,
+  width: undefined,
+  height: undefined,
+  color: undefined,
+  float: undefined,
 };
 
 Picture.propTypes = {
@@ -65,13 +93,16 @@ Picture.propTypes = {
   imageAlt: PropTypes.string.isRequired,
   title: PropTypes.string,
   width: PropTypes.number,
+  height: PropTypes.number,
+  color: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   float: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 };
 
 export default styled(Picture)`
   float: ${props => props.float};
-  max-width: ${props => props.width && `${props.width}px`};
+  width: ${props => props.width && `${props.width}px`};
   margin-right: ${props => props.float === 'left' && '8px'};
   margin-bottom: ${props => props.float && '8px'};
   margin-left: ${props => props.float === 'right' && '8px'};
+  background-color: ${props => props.color};
 `;

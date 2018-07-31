@@ -10,16 +10,16 @@ html {
 }
 
 body {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
   background-color: var(--body-background-color);
-  background-position: center;
-  background-size: var(--body-gradient-size) var(--body-gradient-size);
 }
 
 @media print {
+  html,
   body {
     background: none;
   }

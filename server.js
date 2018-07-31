@@ -1,6 +1,6 @@
-const express = require('express');
-const next = require('next');
-const { getEntries, getTags } = require('./scripts/contentful');
+import express from 'express';
+import next from 'next';
+import { getEntries, getTags } from './scripts/contentful';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -11,7 +11,9 @@ app.prepare().then(async () => {
 
   // index
   server.get('/', async (req, res) =>
-    app.render(req, res, '/', { posts: await getEntries('post') }));
+    app.render(req, res, '/', {
+      posts: await getEntries('post'),
+    }));
 
   server.get('/tag', async (req, res) =>
     app.render(req, res, '/', {

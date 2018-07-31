@@ -10,40 +10,34 @@
    * Colors
    */
 
-  --cb0: #2d2d2d;
-  --cb1: #424242;
-  --cb2: #515151;
-  --cb3: #7c7c7c;
-  --cb4: #bbb;
-  --cb5: #ccc;
-  --cb6: #e0e0e0;
-  --cb7: #f2f2f2;
-  --cb8: #f2777a;
-  --cb9: #f99157;
-  --cbA: #fc6;
-  --cbB: #9c9;
-  --cbC: #6cc;
-  --cbD: #69c;
-  --cbE: #c9c;
-  --cbF: #d27b53;
+  --color-black: #323537;
+  --color-black-lighten: #545a5e;
 
-  --cbA-darken: #e0b320;
+  --color-white: #fdfcff;
+  --color-white-darken: #dee3e5;
 
+  --color-disabled-on-white: #686868;
+  --color-disabled-on-black: #9d9d9d;
 
   --color-brand: #ba3e48;
-  --color-error: #da2000;
-  --color-warning: #edba00;
+
+  --color-error: #c61010;
+  --color-success: #3eba43;
 
   --color-twitter: #55acee;
 
-  --color-red: var(--cb8);
-  --color-orange: var(--cb9);
-  --color-wellow: var(--cbA);
-  --color-green: var(--cbB);
-  --color-cyan: var(--cbC);
-  --color-blue: var(--cbD);
-  --color-purple: var(--cbE);
-  --color-brown: var(--cbF);
+  --color-interactive-2plus: #95c6ed;
+  --color-interactive-1plus: #66a2d4;
+  --color-interactive: #3e83ba;
+  --color-interactive-1minus: #2d6da1;
+  --color-interactive-2minus: #1f5887;
+
+  --color-red: #ff2c6d;
+  --color-orange: #ffb86c;
+  --color-green: #19f9d8;
+  --color-blue: #45a9f9;
+  --color-purple: #b084eb;
+  --color-pink: #ff9ac1;
 
   /*
    * Fonts
@@ -53,9 +47,9 @@
   --font-weight: 300;
   --line-height: 1.5;
 
-  --text-color: var(--cb0);
-  --link-color: var(--color-brand);
-  --link-color-hover: var(--text-color);
+  --text-color: var(--color-black);
+  --link-color: var(--color-interactive);
+  --link-color-hover: var(--color-brand);
 
   /*
    * Fonts
@@ -75,14 +69,14 @@
    * Custom
    */
 
-  --body-background-color: var(--cb6);
+  --body-background-color: var(--color-white);
 
   --max-width: 42rem;
 
   --time-animation: 300ms;
   --time-transition: 150ms;
 
-  --u-box-padding-v: 1.3rem;
+  --u-box-padding-v: 1rem;
   --u-box-padding-h: var(--u-box-padding-v);
   --u-box-padding: var(--u-box-padding-v) var(--u-box-padding-h);
 
@@ -92,10 +86,11 @@
 
   --Grid-gutter-size: var(--space-medium-px);
   --Arrange-gutter-size: var(--space-small-px);
-  --Header-background: var(--cb1);
-  --Header-color: #fff;
+
+  --Header-background: var(--color-black);
+  --Header-color: var(--color-white);
   --Footer-background: var(--Header-background);
-  --Footer-color: var(--cb4);
+  --Footer-color: var(--black-lighten);
   --Footer-border-color: var(--color-brand);
   --SocialIcon-inset-color: #000;
 }
