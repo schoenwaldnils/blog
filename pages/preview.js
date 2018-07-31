@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'qs';
+import { getFields } from '../scripts/contentful-preview';
 import Meta from '../source/components/Meta/Meta';
 import Header from '../source/components/Header/Header';
 import Post from '../source/components/Post/Post';
