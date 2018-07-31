@@ -54,15 +54,6 @@ jobs:
           name: Lint CSS
           command: npm run lint:css
 
-  test-psi:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Test PSI
-          command: npm run test-psi
-
   test-js:
     <<: *defaults
     steps:
@@ -156,6 +147,16 @@ jobs:
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             sh ./.infrastructure/comment_on_pr.sh
 
+  test-psi:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Test PSI
+          command: npm run test-psi
+
+
 
 workflows:
   version: 2
@@ -168,18 +169,14 @@ workflows:
       - test-css:
           requires:
             - checkout
-          filters:
-            tags:
-              only: /.*/
-      - test-psi:
-          requires:
-            - checkout
+            - test-psi
           filters:
             tags:
               only: /.*/
       - test-js:
           requires:
             - checkout
+            - test-psi
           filters:
             tags:
               only: /.*/
@@ -220,3 +217,9 @@ workflows:
             branches:
               only:
                 - /.*\/.*/
+      - test-psi:
+          requires:
+            - checkout
+          filters:
+            tags:
+              only: /.*/
