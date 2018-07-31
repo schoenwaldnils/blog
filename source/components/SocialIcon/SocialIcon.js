@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FaTwitter from 'react-icons/lib/fa/twitter';
-import FaGithub from 'react-icons/lib/fa/github';
+import { FaTwitter, FaGithub } from 'react-icons/fa';
 import './SocialIcon.css';
 
 const SocialIcon = ({ name, href }) => {
