@@ -48,3 +48,5 @@ console.log('CIRCLE_BRANCH', CIRCLE_BRANCH);
 //     },
 //   },
 // );
+
+exit(0);
