@@ -40,8 +40,10 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.42",
-    "@babel/register": "^7.0.0-beta.42",
+    "@babel/core": "7.0.0-beta.42",
+    "@babel/node": "7.0.0-beta.42",
+    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.42",
+    "@babel/register": "7.0.0-beta.42",
     "@zeit/next-css": "^0.2.0",
     "autoprefixer": "^9.0.1",
     "babel-plugin-inline-react-svg": "^0.5.2",
@@ -102,7 +104,6 @@
     "yaml-front-matter": "~4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.55",
     "babel-eslint": "^8.2.3",
     "cli-real-favicon": "0.0.6",
     "enzyme": "~3.3.0"
