@@ -28,11 +28,7 @@ const testUrl = `https://${BRANCH_NAME}.schoenwald.media/`;
 const client = github.client(BOT_GITHUB_TOKEN);
 const ghrepo = client.repo(REPO_SLUG);
 
-client.get('/user', {}, function (err, status, body, headers) {
-  console.log(body); //json object
-});
-
-console.log(client.me());
+console.log(ghrepo.issues(data => console.log(data)));
 
 const statusCallback = (data, message) => {
   const { statusCode } = data;
