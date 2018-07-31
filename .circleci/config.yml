@@ -36,6 +36,10 @@ jobs:
 
       - run: yarn install
 
+      - run:
+          name: Test PSI
+          command: npm run test-psi-pending
+
       - save_cache:
           paths:
             - node_modules
@@ -147,16 +151,6 @@ jobs:
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             sh ./.infrastructure/comment_on_pr.sh
 
-  test-psi-pending:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Test PSI
-          command: npm run test-psi-pending
-
-
 
 workflows:
   version: 2
@@ -166,9 +160,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test-psi-pending:
-          requires:
-            - checkout
       - test-css:
           requires:
             - checkout

@@ -39,5 +39,3 @@ ghrepo.status(CIRCLE_SHA1, {
   target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=desktop`,
   description: 'PSI test desktop pending',
 }, () => console.log('Github status set \'PSI test desktop pending\'')); // created status
-
-exit(0);
