@@ -31,7 +31,7 @@ const ghrepo = client.repo(REPO_SLUG);
 console.log('ghrepoghrepo');
 console.log(ghrepo);
 console.log('ghrepoghrepo2');
-console.log(ghrepo.status);
+console.log(ghrepo.status());
 
 const statusCallback = (data, message) => {
   const { statusCode } = data;
@@ -43,15 +43,15 @@ const statusCallback = (data, message) => {
 }
 
 ghrepo.status(CIRCLE_SHA1, {
-  state: 'pending',
-  target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=mobile`,
-  description: 'PSI test mobile pending',
-  context: 'PSI',
+  "state": "pending",
+  "target_url": "https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=mobile",
+  "description": "PSI test mobile pending",
+  "context": "PSI"
 }, (data) => statusCallback(data, 'Github status set \'PSI test mobile pending\'')); // created status
 
 ghrepo.status(CIRCLE_SHA1, {
-  state: 'pending',
-  target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=desktop`,
-  description: 'PSI test desktop',
-  context: 'PSI',
+  "state": "pending",
+  "target_url": "https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=desktop",
+  "description": "PSI test desktop",
+  "context": "PSI"
 }, (data) => statusCallback(data, 'Github status set \'PSI test desktop pending\'')); // created status
