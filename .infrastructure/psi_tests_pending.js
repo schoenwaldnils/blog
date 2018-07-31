@@ -8,9 +8,9 @@ const {
 } = process.env;
 
 const REPO_SLUG = `${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}`;
-const CIRCLE_PR_NUMBER = CIRCLE_PULL_REQUEST.replace(/\//, '-');
+const CIRCLE_PR_NUMBER = CIRCLE_PULL_REQUEST.match(/[^/]+$/);
 
-const BRANCH_NAME = CIRCLE_BRANCH.match(/[^/]+$/);
+const BRANCH_NAME = CIRCLE_BRANCH.replace(/\//, '-');
 
 
 console.log('REPO_SLUG', REPO_SLUG);
