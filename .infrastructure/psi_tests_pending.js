@@ -26,28 +26,27 @@ const testUrl = `https://${BRANCH_NAME}.schoenwald.media/`;
 
 
 const client = github.client(BOT_GITHUB_TOKEN);
-const ghrepo = client.repo(REPO_SLUG);
+const ghrepo = client.repo(CIRCLE_PROJECT_REPONAME);
 
-console.log(ghrepo.issues(data => console.log(data)));
+const statusCallback = (data, message) => {
+  const { statusCode } = data;
+  if (statusCode === 404) {
+    return console.error(data)
+  }
+
+  return console.log(message);
+}
 
 ghrepo.status(CIRCLE_SHA1, {
   state: 'pending',
   target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=mobile`,
   description: 'PSI test mobile pending',
   context: 'PSI',
-}, (err, data, headers) => {
-  console.log("error: " + err);
-  console.log("data: " + data);
-  console.log("headers:" + headers);
-}); // created status
+}, (data) => statusCallback(data, 'Github status set \'PSI test mobile pending\'')); // created status
 
 ghrepo.status(CIRCLE_SHA1, {
   state: 'pending',
   target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=desktop`,
   description: 'PSI test desktop',
   context: 'PSI',
-}, (err, data, headers) => {
-  console.log("error: " + err);
-  console.log("data: " + data);
-  console.log("headers:" + headers);
-}); // created status
+}, (data) => statusCallback(data, 'Github status set \'PSI test desktop pending\'')); // created status
