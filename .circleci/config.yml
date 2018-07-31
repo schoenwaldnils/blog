@@ -41,9 +41,9 @@ jobs:
           command: npm run test-psi-pending
 
       - save_cache:
-          paths:
-            - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
 
       - persist_to_workspace:
           root: ~/repo
