@@ -25,7 +25,7 @@ const statusCallback = (err, message) => {
     return;
   }
 
-  return console.log(message.green);
+  return console.log('\x1b[33m%s\x1b[0m', message);  //yellow
 }
 
 ghrepo.status(CIRCLE_SHA1, {
