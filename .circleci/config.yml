@@ -170,14 +170,12 @@ workflows:
       - test-css:
           requires:
             - checkout
-            - test-psi
           filters:
             tags:
               only: /.*/
       - test-js:
           requires:
             - checkout
-            - test-psi
           filters:
             tags:
               only: /.*/
