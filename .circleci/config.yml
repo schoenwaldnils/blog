@@ -166,7 +166,9 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test-psi-pending
+      - test-psi-pending:
+          requires:
+            - checkout
       - test-css:
           requires:
             - checkout
