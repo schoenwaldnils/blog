@@ -147,14 +147,14 @@ jobs:
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             sh ./.infrastructure/comment_on_pr.sh
 
-  test-psi:
+  test-psi-pending:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/repo
       - run:
           name: Test PSI
-          command: npm run test-psi
+          command: npm run test-psi-pending
 
 
 
@@ -166,6 +166,7 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - test-psi-pending
       - test-css:
           requires:
             - checkout
@@ -201,25 +202,6 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-      - deploy-test:
-          requires:
-            - test-html
-          filters:
-            branches:
-              ignore: /.*/
-              only: 'redesign'
-            tags:
-              only: /^test.*/
       - deploy-pr:
           requires:
             - test-html
-          filters:
-            branches:
-              only:
-                - /.*\/.*/
-      - test-psi:
-          requires:
-            - checkout
-          filters:
-            tags:
-              only: /.*/

@@ -17,7 +17,7 @@
     "lint:js": "eslint \"**/*.js\"",
     "lint:js:fix": "eslint \"**/*.js\" --fix",
     "lint:html": "htmlhint out",
-    "test-psi": "babel-node .infrastructure/psi_tests_pending.js",
+    "test-psi-pending": "babel-node .infrastructure/psi_tests_pending.js",
     "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html --minify-css",
     "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons",
     "precommit": "lint-staged"
@@ -73,6 +73,7 @@
     "md5": "~2.2.1",
     "next": "6.1.1",
     "normalize.css": "^8.0.0",
+    "octonode": "^0.9.3",
     "postcss-calc": "~6.0.1",
     "postcss-custom-media": "^6.0.0",
     "postcss-import": "^11.1.0",
