@@ -1,4 +1,5 @@
 import github from 'octonode';
+import { tests } from './psi_tests';
 
 const {
   BOT_GITHUB_TOKEN,
@@ -28,16 +29,11 @@ const statusCallback = (err, message) => {
   return console.log('\x1b[33m%s\x1b[0m', message);  //yellow
 }
 
-ghrepo.status(CIRCLE_SHA1, {
-  state: 'pending',
-  target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=mobile`,
-  description: 'PSI test mobile pending',
-  context: 'psi/mobile',
-}, (err) => statusCallback(err, 'Github status set \'PSI test mobile pending\'')); // created status
-
-ghrepo.status(CIRCLE_SHA1, {
-  state: 'pending',
-  target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=desktop`,
-  description: 'PSI test desktop',
-  context: 'psi/desktop',
-}, (err) => statusCallback(err, 'Github status set \'PSI test desktop pending\'')); // created status
+tests.forEach(({ environment, test }) => {
+  ghrepo.status(CIRCLE_SHA1, {
+    state: 'pending',
+    target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`,
+    description: `PSI test \'${environment} ${test}\' pending`,
+    context: `psi/${environment}/${test}`,
+  }, (err) => statusCallback(err, `Github status set "PSI test \'${environment} ${test}\' pending"`)); // created status
+});
