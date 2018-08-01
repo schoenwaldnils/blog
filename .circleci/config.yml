@@ -36,10 +36,6 @@ jobs:
 
       - run: npm install --no-package-lock
 
-      - run:
-          name: Test PSI
-          command: npm run test-psi-pending
-
       - save_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths:
@@ -151,6 +147,31 @@ jobs:
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             sh ./.infrastructure/comment_on_pr.sh
 
+  psi-mobile:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: PSI mobile
+          command: |
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
+            export TEST_URL=https://${BRANCH_NAME}.schoenwald.media
+            npm run psi:mobile $TEST_URL --strategy=mobile --format=cli --threshold=75
+
+  psi-desktop:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: PSI desktop
+          command: |
+            export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
+            export TEST_URL=https://${BRANCH_NAME}.schoenwald.media
+            npm run psi:mobile $TEST_URL --strategy=desktop --format=cli --threshold=75
+
+
 
 workflows:
   version: 2
@@ -196,3 +217,9 @@ workflows:
       - deploy-pr:
           requires:
             - test-html
+      - psi-mobile:
+          requires:
+            - deploy-pr
+      - psi-desktop:
+          requires:
+            - deploy-pr
