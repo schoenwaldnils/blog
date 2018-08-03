@@ -52,21 +52,24 @@ export const tests = [
   },
 ];
 
+tests.forEach(async ({ environment, test }) => {
+  const results = await psi(testUrl, {
+    nokey: 'true',
+    strategy: environment,
+    threshold: 86,
+  });
+  console.log(results);
+  const { ruleGroups: {
+    SPEED: { score: speed_score },
+    USABILITY: { score: usability_score },
+   } } = results;
 
-psi(testUrl, {
+  const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`;
 
-})
-
-ghrepo.status(CIRCLE_SHA1, {
-  state: 'pending',
-  target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=mobile`,
-  description: 'PSI test mobile pending',
-  context: 'psi/mobile',
-}, (err) => statusCallback(err, 'Github status set \'PSI test mobile pending\'')); // created status
-
-ghrepo.status(CIRCLE_SHA1, {
-  state: 'pending',
-  target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=desktop`,
-  description: 'PSI test desktop',
-  context: 'psi/desktop',
-}, (err) => statusCallback(err, 'Github status set \'PSI test desktop pending\'')); // created status
+  ghrepo.status(CIRCLE_SHA1, {
+    state: 'pending',
+    target_url,
+    description: `PSI test \'${environment} ${test}\' pending`,
+    context: `psi/${environment}/${test}`,
+  }, (err) => statusCallback(err, `Github status set "PSI test \'${environment} ${test}\' pending"`)); // created status
+});
