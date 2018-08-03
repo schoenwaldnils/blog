@@ -30,20 +30,29 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-      - run: yarn install
+      - run: npm install --no-package-lock
 
       - save_cache:
-          paths:
-            - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
 
       - persist_to_workspace:
           root: ~/repo
           paths: .
+
+  psi-pending:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Guthub status psi pending
+          command: npm run psi-pending
 
   test-css:
     <<: *defaults
@@ -146,6 +155,9 @@ jobs:
           command: |
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             sh ./.infrastructure/comment_on_pr.sh
+      - run:
+          name: Guthub status psi pending
+          command: npm run psi-test
 
 
 workflows:
@@ -156,6 +168,12 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - psi-pending:
+          requires:
+            - checkout
+          filters:
+            branches:
+              only: /.+\/.+/
       - test-css:
           requires:
             - checkout
@@ -194,5 +212,4 @@ workflows:
             - test-html
           filters:
             branches:
-              only:
-                - /.*\/.*/
+              only: /.+\/.+/
