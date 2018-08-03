@@ -7,26 +7,32 @@ import {
   statusCallback,
 } from './psi_vars';
 
+const threshold = 86;
 
 tests.forEach(async ({ environment }) => {
   const results = await psi(testUrl, {
     nokey: 'true',
     strategy: environment,
-    threshold: 86,
+    threshold,
   });
   console.log(results);
   const { ruleGroups: {
-    USABILITY: { score },
+    SPEED: { score },
    } } = results;
 
   console.log('score: ', score );
 
-  // const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`;
+  const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`;
 
-  // ghrepo.status(CIRCLE_SHA1, {
-  //   state: 'pending',
-  //   target_url,
-  //   description: 'Test pending',
-  //   context: `PSI ${environment}`,
-  // }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' pending"`)); // created status
+  let state = 'error';
+  if (score) {
+    state = score >= threshold ? 'success' : 'failure';
+  }
+
+  ghrepo.status(CIRCLE_SHA1, {
+    state,
+    target_url,
+    description: `Test ${state}`,
+    context: `PSI ${environment}`,
+  }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' ${state}"`)); // created status
 });
