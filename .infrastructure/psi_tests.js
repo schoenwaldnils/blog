@@ -7,7 +7,7 @@ import {
   statusCallback,
 } from './psi_vars';
 
-const threshold = 86;
+const threshold = 40;
 
 tests.forEach(async ({ environment }) => {
   const results = await psi(testUrl, {
@@ -32,7 +32,7 @@ tests.forEach(async ({ environment }) => {
   ghrepo.status(CIRCLE_SHA1, {
     state,
     target_url,
-    description: `Test ${state}`,
+    description: `${state.toUpperCase()}: Score ${score} / Threshold ${threshold}`,
     context: `PSI ${environment}`,
   }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' ${state}"`)); // created status
 });

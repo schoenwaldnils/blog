@@ -10,7 +10,6 @@ tests.forEach(({ environment }) => {
   ghrepo.status(CIRCLE_SHA1, {
     state: 'pending',
     target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`,
-    description: 'Test pending',
     context: `PSI ${environment}`,
   }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' pending"`)); // created status
 });
