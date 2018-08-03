@@ -157,7 +157,8 @@ jobs:
           command: |
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             export TEST_URL=https://${BRANCH_NAME}.schoenwald.media
-            npm run psi -- $TEST_URL --strategy=mobile --format=cli --threshold=75
+            export PSI_LINK="\e]8;;https://developers.google.com/speed/pagespeed/insights/?url=$TEST_URL&tab=mobile\aPSI web link\e]8;;\a"
+            npm run psi -- $TEST_URL --strategy=mobile --format=cli --threshold=75 && echo -e PSI_LINK
 
   psi-desktop:
     <<: *defaults
@@ -169,7 +170,8 @@ jobs:
           command: |
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             export TEST_URL=https://${BRANCH_NAME}.schoenwald.media
-            npm run psi -- $TEST_URL --strategy=desktop --format=cli --threshold=75
+            export PSI_LINK="\e]8;;https://developers.google.com/speed/pagespeed/insights/?url=$TEST_URL&tab=desktop\aPSI web link\e]8;;\a"
+            npm run psi -- $TEST_URL --strategy=desktop --format=cli --threshold=75 && echo -e PSI_LINK
 
 
 
