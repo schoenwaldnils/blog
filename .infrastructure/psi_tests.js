@@ -10,6 +10,9 @@ import {
 const threshold = 40;
 
 tests.forEach(async ({ environment }) => {
+  let state = 'error';
+  const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`;
+
   try {
     const results = await psi(testUrl, {
       nokey: 'true',
@@ -23,21 +26,17 @@ tests.forEach(async ({ environment }) => {
 
     console.log('score: ', score );
 
-    const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`;
-
-    let state = 'error';
     if (score) {
       state = score >= threshold ? 'success' : 'failure';
     }
-
-    ghrepo.status(CIRCLE_SHA1, {
-      state,
-      target_url,
-      description: `${state.toUpperCase()}: Score ${score} / Threshold ${threshold}`,
-      context: `PSI ${environment}`,
-    }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' ${state}"`)); // created status
   } catch (error) {
     console.error(error);
-    process.exit(1)
   }
+
+  ghrepo.status(CIRCLE_SHA1, {
+    state,
+    target_url,
+    description: `${state.toUpperCase()}: Score ${score} / Threshold ${threshold}`,
+    context: `PSI ${environment}`,
+  }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' ${state}"`));
 });
