@@ -156,7 +156,7 @@ jobs:
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             sh ./.infrastructure/comment_on_pr.sh
       - run:
-          name: Guthub status psi pending
+          name: Guthub status psi test
           command: npm run psi-test
 
 
