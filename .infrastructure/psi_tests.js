@@ -11,6 +11,7 @@ const threshold = 40;
 
 tests.forEach(async ({ environment }) => {
   let state = 'error';
+  const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`;
 
   try {
     const results = await psi(testUrl, {
@@ -24,8 +25,6 @@ tests.forEach(async ({ environment }) => {
      } } = results;
 
     console.log('score: ', score );
-
-    const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`;
 
     if (score) {
       state = score >= threshold ? 'success' : 'failure';
