@@ -109,6 +109,6 @@
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "cli-real-favicon": "0.0.6",
-    "enzyme": "~3.3.0"
+    "enzyme": "~3.4.2"
   }
 }
