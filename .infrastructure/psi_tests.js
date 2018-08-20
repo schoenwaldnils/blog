@@ -12,11 +12,23 @@ const threshold = 40;
 
 
 async function fetchNow() {
-  const res = await fetch(testUrl)
-  console.log(`URL: "${testUrl}", Status ${res.status}`);
-  if (res.status === 200) {
-    runTests();
-  } else {
+  let counter = 0;
+  try {
+    const res = await fetch(testUrl)
+    console.log(`URL: "${testUrl}", Status ${res.status}`);
+    if (res.status === 200) {
+      runTests();
+    } else {
+      setTimeout(() => {
+        fetchNow();
+      }, 5000);
+    }
+  } catch (error) {
+    counter =+ 1;
+    console.error(error);
+    if (counter >= 5) {
+      process.exit(1)
+    }
     setTimeout(() => {
       fetchNow();
     }, 5000);
