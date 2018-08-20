@@ -30,11 +30,12 @@ fetchNow();
 function runTests() {
   tests.forEach(async ({ environment }) => {
     try {
-      const results = await fetch(`https://www.googleapis.com/pagespeedonline/v4/runPagespeed?key=${GOOGLE_PAGESPEED_API_KEY}&url=${testUrl}&strategy=${environment}`);
-      console.log(results);
+      const res = await fetch(`https://www.googleapis.com/pagespeedonline/v4/runPagespeed?key=${GOOGLE_PAGESPEED_API_KEY}&url=${testUrl}&strategy=${environment}`);
+      const result = res.json();
+      console.log(result);
       const { ruleGroups: {
         SPEED: { score },
-       } } = results;
+       } } = result;
 
       console.log('score: ', score );
 
