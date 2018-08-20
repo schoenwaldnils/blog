@@ -12,7 +12,8 @@ const threshold = 40;
 
 
 async function fetchNow() {
-  const res = fetch(testUrl)
+  const res = await fetch(testUrl)
+  console.log(res);
   console.log(`URL: "${testUrl}", Status ${res.status}`);
   if (res.status === 200) {
     runTests();
