@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import psi from 'psi';
 import {
   tests,
