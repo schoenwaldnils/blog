@@ -45,6 +45,7 @@
     "@babel/node": "7.0.0-beta.42",
     "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.42",
     "@babel/register": "7.0.0-beta.42",
+    "@babel/traverse": "^7.0.0-beta.42",
     "@zeit/next-css": "^0.2.0",
     "autoprefixer": "^9.0.1",
     "babel-plugin-inline-react-svg": "^0.5.2",
