@@ -48,16 +48,16 @@ function runTests() {
       if (score) {
         state = score >= threshold ? 'success' : 'failure';
       }
+
+      ghrepo.status(CIRCLE_SHA1, {
+        state,
+        target_url,
+        description: `${state.toUpperCase()}: Score ${score} / Threshold ${threshold}`,
+        context: `PSI ${environment}`,
+      }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' ${state}"`));
     } catch (error) {
       console.error(error);
       process.exit(1)
     }
-
-    ghrepo.status(CIRCLE_SHA1, {
-      state,
-      target_url,
-      description: `${state.toUpperCase()}: Score ${score} / Threshold ${threshold}`,
-      context: `PSI ${environment}`,
-    }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' ${state}"`));
   });
 }
