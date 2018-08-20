@@ -155,8 +155,14 @@ jobs:
           command: |
             export BRANCH_NAME=${CIRCLE_BRANCH//[\/|.]/-}
             sh ./.infrastructure/comment_on_pr.sh
+
+  test-psi:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
-          name: Guthub status psi pending
+          name: Guthub status psi test
           command: npm run psi-test
 
 
@@ -210,6 +216,12 @@ workflows:
       - deploy-pr:
           requires:
             - test-html
+          filters:
+            branches:
+              only: /.+\/.+/
+      - test-psi:
+          requires:
+            - deploy-pr
           filters:
             branches:
               only: /.+\/.+/
