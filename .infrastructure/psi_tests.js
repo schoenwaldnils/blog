@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
-import psi from 'psi';
 import {
   tests,
   CIRCLE_SHA1,
+  GOOGLE_PAGESPEED_API_KEY,
   testUrl,
   ghrepo,
   statusCallback,
@@ -30,11 +30,7 @@ fetchNow();
 function runTests() {
   tests.forEach(async ({ environment }) => {
     try {
-      const results = await psi(testUrl, {
-        nokey: 'true',
-        strategy: environment,
-        threshold,
-      });
+      const results = await fetch(`https://www.googleapis.com/pagespeedonline/v4/runPagespeed?key=${GOOGLE_PAGESPEED_API_KEY}&url=${testUrl}&strategy=${environment}`);
       console.log(results);
       const { ruleGroups: {
         SPEED: { score },
