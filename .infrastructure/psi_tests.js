@@ -26,12 +26,12 @@ async function fetchNow() {
   } catch (error) {
     counter =+ 1;
     console.error(error);
-    setTimeout(() => {
-      fetchNow();
-    }, 5000);
     if (counter >= 5) {
       process.exit(1)
     }
+    setTimeout(() => {
+      fetchNow();
+    }, 5000);
   }
 }
 
