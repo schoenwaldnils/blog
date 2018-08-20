@@ -13,7 +13,6 @@ const threshold = 40;
 
 async function fetchNow() {
   const res = await fetch(testUrl)
-  console.log(res);
   console.log(`URL: "${testUrl}", Status ${res.status}`);
   if (res.status === 200) {
     runTests();
@@ -30,7 +29,7 @@ fetchNow();
 function runTests() {
   tests.forEach(async ({ environment }) => {
     try {
-      const res = fetch(`https://www.googleapis.com/pagespeedonline/v4/runPagespeed?key=${GOOGLE_PAGESPEED_API_KEY}&url=${testUrl}&strategy=${environment}`);
+      const res = await fetch(`https://www.googleapis.com/pagespeedonline/v4/runPagespeed?key=${GOOGLE_PAGESPEED_API_KEY}&url=${testUrl}&strategy=${environment}`);
       const result = await res.json();
       console.log(result);
       const { ruleGroups: {
