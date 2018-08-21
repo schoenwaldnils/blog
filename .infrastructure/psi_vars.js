@@ -8,10 +8,11 @@ const {
 } = process.env;
 
 export const CIRCLE_SHA1 = process.env.CIRCLE_SHA1;
+export const GOOGLE_PAGESPEED_API_KEY = process.env.GOOGLE_PAGESPEED_API_KEY;
 
 const repoSlug = `${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}`;
 
-const branchName = CIRCLE_BRANCH.replace(/\//, '-');
+const branchName = CIRCLE_BRANCH.replace(/[\/|/.]/g, '-');
 
 export const testUrl = `https://${branchName}.schoenwald.media/`;
 
