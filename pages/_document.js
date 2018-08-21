@@ -29,7 +29,7 @@ export default class SmediaDocument extends Document {
       <html lang="en">
         <Head>
           {css.map((file) => {
-            return <link rel="stylesheet" href={`/_next/${file}${version}`} key={file} />;
+            return <link preload rel="stylesheet" href={`/_next/${file}${version}`} key={file} />;
           })}
           {this.props.styleTags}
         </Head>
