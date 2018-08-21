@@ -20,11 +20,10 @@ export default class SmediaDocument extends Document {
 
     const prod = process.env.NODE_ENV === 'production';
 
-    let version = '';
-    if (!prod) {
-      const hash = createHash('sha256');
-      version = `?v=${hash.digest('hex').substr(0, 8)}`;
-    }
+    const hash = createHash('sha256');
+    const timeInMs = Date.now();
+    hash.update(timeInMs.toString());
+    const version = `?v=${hash.digest('hex').substr(0, 8)}`;
 
     return (
       <html lang="en">
