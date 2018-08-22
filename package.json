@@ -105,7 +105,7 @@
     "suitcss-utils-size": "~2.0.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url": "^0.11.0",
-    "webpack": "^3.12.0",
+    "webpack": "^4.17.1",
     "yaml-front-matter": "~4.0.0"
   },
   "devDependencies": {
