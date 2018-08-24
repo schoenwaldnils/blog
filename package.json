@@ -42,7 +42,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "7.0.0-rc.1",
-    "@babel/node": "7.0.0-rc.1",
+    "@babel/node": "7.0.0-rc.3",
     "@babel/plugin-transform-modules-commonjs": "7.0.0-rc.1",
     "@babel/register": "7.0.0-rc.1",
     "@babel/traverse": "^7.0.0-rc.1",
