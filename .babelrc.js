@@ -7,32 +7,15 @@ const env = {
 }
 
 module.exports = {
-  env: {
-    development: {
-      presets: [
-        ["next/babel", {
-          "preset-env": {
-            "modules": "commonjs"
-          }
-        }]
-      ],
-      plugins: [
-        "inline-react-svg",
-        ['transform-define', env],
-      ]
-    },
-    production: {
-      presets: [
-        ["next/babel", {
-          "preset-env": {
-            "modules": "commonjs"
-          }
-        }]
-      ],
-      plugins: [
-        "inline-react-svg",
-        ['transform-define', env]
-      ]
-    }
-  }
+  presets: [
+    ['next/babel', {
+      'preset-env': {
+        modules: 'commonjs',
+      }
+    }]
+  ],
+  plugins: [
+    'inline-react-svg',
+    ['transform-define', env],
+  ]
 };
