@@ -1,4 +1,5 @@
 import withCSS from '@zeit/next-css';
+import Dotenv from 'dotenv-webpack';
 
 import { getEntries, getTags } from './scripts/contentful';
 
@@ -87,6 +88,8 @@ export default withCSS({
     // });
 
     // config.devtool = 'source-map';
+
+    config.plugins.push(new Dotenv());
 
     return config;
   },

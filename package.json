@@ -4,11 +4,9 @@
   "description": "Nils Blog",
   "main": "index.js",
   "scripts": {
-    "next": "next dev",
-    "dev": "babel-node server.js",
-    "build": "next build",
-    "export": "NODE_ENV=production next build && next export",
-    "start": "npm run dev",
+    "start": "dotenv-load next dev",
+    "build": "dotenv-load next build",
+    "export": "NODE_ENV=production dotenv-load next build && dotenv-load next export",
     "test": "npm run lint",
     "lint": "npm run lint:css && npm run lint:sc && npm run lint:js",
     "lint:css": "stylelint \"**/*.css\" --formatter verbose",
@@ -58,6 +56,8 @@
     "css-loader": "^1.0.0",
     "date-fns": "~1.29.0",
     "debounce-promise": "~3.1.0",
+    "dotenv-load": "^1.1.0",
+    "dotenv-webpack": "^1.5.7",
     "entities": "~1.1.1",
     "eslint": "^5.4.0",
     "eslint-config-schoenwaldnils": "^1.0.2",
@@ -94,7 +94,7 @@
     "react-dom": "^16.4.2",
     "react-icons": "^3.0.5",
     "react-tabs": "^2.2.2",
-    "style-loader": "~0.22.1",
+    "style-loader": "~0.23.0",
     "styled-components": "~3.4.0",
     "stylelint": "^9.5.0",
     "stylelint-config-schoenwaldnils": "^2.1.0",
@@ -111,6 +111,6 @@
   "devDependencies": {
     "babel-eslint": "^9.0.0",
     "cli-real-favicon": "0.0.6",
-    "enzyme": "~3.4.4"
+    "enzyme": "~3.5.0"
   }
 }
