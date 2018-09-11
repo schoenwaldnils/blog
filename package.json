@@ -81,7 +81,7 @@
     "postcss-custom-media": "^6.0.0",
     "postcss-import": "^12.0.0",
     "postcss-loader": "^3.0.0",
-    "postcss-nested": "~3.0.0",
+    "postcss-nested": "~4.1.0",
     "postcss-pseudoelements": "~5.0.0",
     "postcss-reporter": "^6.0.0",
     "postcss-url": "^8.0.0",
