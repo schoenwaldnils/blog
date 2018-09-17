@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/core": "7.1.0",
     "@babel/node": "7.0.0",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "7.1.0",
     "@babel/register": "7.0.0",
     "@babel/traverse": "^7.0.0",
     "@zeit/next-css": "^0.2.0",
