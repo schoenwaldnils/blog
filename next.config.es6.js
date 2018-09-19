@@ -78,27 +78,12 @@ export default withCSS({
   },
 
   webpack: (config, { dev }) => {
-    console.warn(dev ? 'Enviroment: DEVELOPMENT' : 'Enviroment: PRODUCTION');
+    console.warn(`Enviroment: ${dev ? 'DEVELOPMENT' : 'PRODUCTION'}`);
 
-    // config.module.rules = config.module.rules.map((rule) => {
-    //   if (rule.loader === 'babel-loader') {
-    //     rule.options.cacheDirectory = false;
-    //   }
-    //   return rule;
-    // });
+    if (dev) {
+      config.plugins.push(new Dotenv());
+    }
 
-    // config.devtool = 'source-map';
-
-    config.plugins.push(new Dotenv());
-
-    return config;
-  },
-  webpackDevMiddleware: (config) => {
-    // config.watchOptions = {
-    //   ignored: /node_modules/,
-    //   poll: 1000,
-    //   aggregateTimeout: 1000,
-    // };
     return config;
   },
 });

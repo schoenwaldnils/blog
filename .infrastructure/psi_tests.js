@@ -27,7 +27,7 @@ async function fetchNow() {
     counter =+ 1;
     console.error(error);
     if (counter >= 5) {
-      process.exit(1)
+      process.exit(1);
     }
     setTimeout(() => {
       fetchNow();
