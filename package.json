@@ -63,7 +63,6 @@
     "eslint-config-schoenwaldnils": "^1.0.2",
     "express": "^4.16.3",
     "favicons-webpack-plugin": "0.0.9",
-    "gh-pages": "^1.0.0",
     "highlight.js": "~9.12.0",
     "html-minifier": "^3.5.20",
     "html-react-parser": "^0.4.6",
