@@ -1,5 +1,3 @@
-import { createHash } from 'crypto';
-
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
@@ -15,22 +13,11 @@ export default class SmediaDocument extends Document {
   }
 
   render() {
-    const { buildManifest } = this.props;
-    const { css } = buildManifest;
-
     const prod = process.env.NODE_ENV === 'production';
-
-    const hash = createHash('sha256');
-    const timeInMs = Date.now();
-    hash.update(timeInMs.toString());
-    const version = `?v=${hash.digest('hex').substr(0, 8)}`;
 
     return (
       <html lang="en">
         <Head>
-          {css.map((file) => {
-            return <link preload rel="stylesheet" href={`/_next/${file}${version}`} key={file} />;
-          })}
           {this.props.styleTags}
         </Head>
         <body>
