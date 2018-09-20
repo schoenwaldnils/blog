@@ -142,18 +142,18 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            export BRANCH_NAME=${"${CIRCLE_BRANCH//[\/|.]/-}"//@/}
+            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / -)
             mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
       - run:
           name: Create subdomain
           command: |
-            export BRANCH_NAME=${"${CIRCLE_BRANCH//[\/|.]/-}"//@/}
+            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / -)
             sh .infrastructure/manage-subdomain.sh
       - run:
           name: Post preview comment
           command: |
-            export BRANCH_NAME=${"${CIRCLE_BRANCH//[\/|.]/-}"//@/}
+            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / -)
             sh ./.infrastructure/comment_on_pr.sh
 
   test-psi:
