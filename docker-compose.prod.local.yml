@@ -1,7 +1,0 @@
-version: '3'
-
-services:
-
-  nextjs:
-    env_file: .env
-    command: npm run export

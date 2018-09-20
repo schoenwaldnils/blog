@@ -14,18 +14,8 @@ body {
   color: var(--text-color);
 }
 
-h1,
-h2,
-h3,
-h4,
-ul,
-ol,
 dd,
-p,
-figure,
-pre,
 table,
-fieldset,
 hr {
   margin-top: 0;
   margin-bottom: 0;
