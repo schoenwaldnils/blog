@@ -1,7 +1,5 @@
 const { viewportsCss } = require('./source/js/viewports');
 
-console.log(viewportsCss);
-
 module.exports = () => ({
   plugins: {
     'postcss-import': {},
