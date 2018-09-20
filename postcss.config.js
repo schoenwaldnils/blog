@@ -1,12 +1,16 @@
 const { viewportsCss } = require('./source/js/viewports');
 
+console.log(viewportsCss);
+
 module.exports = () => ({
   plugins: {
     'postcss-import': {},
     'postcss-url': {},
     'postcss-nested': {},
     'postcss-custom-media': {
-      extensions: viewportsCss,
+      importFrom: [{
+        customMedia: viewportsCss,
+      }],
     },
     'postcss-calc': {},
     'postcss-easing-gradients': {},
