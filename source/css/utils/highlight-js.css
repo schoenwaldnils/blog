@@ -5,9 +5,9 @@ code {
   padding-left: .5em;
   font-size: .9em;
   line-height: 1.5;
-  color: var(--color-black);
+  color: var(--color-white);
   vertical-align: text-bottom;
-  background-color: var(--color-white);
+  background-color: var(--color-black);
 }
 
 .hljs {
