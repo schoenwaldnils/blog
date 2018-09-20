@@ -6,7 +6,9 @@ module.exports = () => ({
     'postcss-url': {},
     'postcss-nested': {},
     'postcss-custom-media': {
-      extensions: viewportsCss,
+      importFrom: [{
+        customMedia: viewportsCss,
+      }],
     },
     'postcss-calc': {},
     'postcss-pseudoelements': {},
