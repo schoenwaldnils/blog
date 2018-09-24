@@ -1,8 +1,7 @@
-import { createHash } from 'crypto';
-
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { ga } from '../source/data/config';
 
 const DRIFT_ID = '4r7cns5dxyfi';
 
@@ -15,22 +14,11 @@ export default class SmediaDocument extends Document {
   }
 
   render() {
-    const { buildManifest } = this.props;
-    const { css } = buildManifest;
-
     const prod = process.env.NODE_ENV === 'production';
-
-    const hash = createHash('sha256');
-    const timeInMs = Date.now();
-    hash.update(timeInMs.toString());
-    const version = `?v=${hash.digest('hex').substr(0, 8)}`;
 
     return (
       <html lang="en">
         <Head>
-          {css.map((file) => {
-            return <link preload rel="stylesheet" href={`/_next/${file}${version}`} key={file} />;
-          })}
           {this.props.styleTags}
         </Head>
         <body>
@@ -46,7 +34,7 @@ export default class SmediaDocument extends Document {
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','/static/scripts/analytics.js','ga');
 
-            ga('create', 'UA-33721620-2', 'auto');
+            ga('create', '${ga.id}', 'auto');
             ga('send', 'pageview');`,
           }} />}
 
