@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Parser from 'html-react-parser';
 import faviconData from '../../../faviconData.json';
+import { facebook } from '../../data/config';
 
 const faviconHtml = faviconData && faviconData.favicon.html_code;
 const Favicons = () => Parser(faviconHtml, {
@@ -37,7 +38,7 @@ const Meta = ({
       <meta property="og:image:width" content="200" />
       <meta property="og:image:height" content="200" />
 
-      <meta property="fb:app_id" content="481527111909443" />
+      <meta property="fb:app_id" content={facebook.id} />
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@schoenwaldnils" />
