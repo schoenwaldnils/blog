@@ -16,7 +16,7 @@ const LayoutBase = ({ children }) => (
 );
 
 LayoutBase.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default LayoutBase;
