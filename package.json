@@ -18,17 +18,16 @@
     "psi-pending": "babel-node .infrastructure/psi_tests_pending.js",
     "psi-test": "babel-node .infrastructure/psi_tests.js",
     "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html --minify-css",
-    "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons",
-    "precommit": "lint-staged"
+    "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons"
   },
   "lint-staged": {
     "**/*.js": [
-      "npm run lint:js:fix",
-      "npm run lint:sc",
+      "eslint --fix",
+      "stylelint --formatter verbose --config .stylelintrc-sc",
       "git add"
     ],
     "**/*.css": [
-      "npm run lint:css",
+      "stylelint --formatter verbose",
       "git add"
     ]
   },
@@ -115,5 +114,10 @@
     "babel-eslint": "10.0.0",
     "cli-real-favicon": "0.0.6",
     "enzyme": "3.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
