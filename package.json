@@ -51,7 +51,7 @@
     "@zeit/next-css": "1.0.1",
     "autoprefixer": "9.1.2",
     "babel-plugin-inline-react-svg": "0.5.4",
-    "babel-plugin-styled-components": "1.5.1",
+    "babel-plugin-styled-components": "1.8.0",
     "babel-plugin-transform-define": "1.3.0",
     "browserslist": "4.0.2",
     "classnames": "2.2.5",
