@@ -102,7 +102,7 @@
     "stylelint": "9.6.0",
     "stylelint-config-schoenwaldnils": "2.1.0",
     "stylelint-config-styled-components": "0.1.1",
-    "stylelint-processor-styled-components": "1.4.0",
+    "stylelint-processor-styled-components": "1.5.0",
     "suitcss-base": "4.0.0",
     "suitcss-utils-display": "1.0.2",
     "suitcss-utils-size": "2.0.0",
