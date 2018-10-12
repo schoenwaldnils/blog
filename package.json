@@ -81,7 +81,7 @@
     "normalize.css": "8.0.0",
     "octonode": "0.9.3",
     "postcss-calc": "6.0.2",
-    "postcss-custom-media": "7.0.4",
+    "postcss-custom-media": "7.0.5",
     "postcss-import": "12.0.0",
     "postcss-loader": "3.0.0",
     "postcss-nested": "4.1.0",
