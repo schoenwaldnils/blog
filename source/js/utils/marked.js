@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { decodeHTML } from 'entities';
+import { decode } from 'he';
 import marked from 'marked';
 import highlightJs from 'highlight.js';
 import qs from 'qs';
@@ -17,7 +17,7 @@ marked.setOptions({
 const renderer = new marked.Renderer();
 
 renderer.image = (href, title, text) => {
-  const src = decodeHTML(href).split(/[?|#]/);
+  const src = decode(href).split(/[?|#]/);
   const params = src[1] && qs.parse(src[1]);
   const options = src[2] && qs.parse(src[2]);
   return renderToString(<Picture

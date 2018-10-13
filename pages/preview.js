@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import marked from 'marked';
 import highlightJs from 'highlight.js';
 import qs from 'qs';
-import { decodeHTML } from 'entities';
+import { decode } from 'he';
 import { getFields } from '../scripts/contentful-preview';
 import LayoutBase from '../source/components/Layout/LayoutBase';
 import Meta from '../source/components/Meta/Meta';
@@ -21,7 +21,7 @@ marked.setOptions({
 const renderer = new marked.Renderer();
 
 renderer.image = (href, title, text) => {
-  const src = decodeHTML(href).split(/[?|#]/);
+  const src = decode(href).split(/[?|#]/);
   const params = src[1] && qs.parse(src[1]);
   const options = src[2] && qs.parse(src[2]);
   return renderToString(<Picture
