@@ -210,7 +210,7 @@ workflows:
             - test-html
           filters:
             branches:
-              - master
+              only: master
       - deploy-production:
           requires:
             - test-html
