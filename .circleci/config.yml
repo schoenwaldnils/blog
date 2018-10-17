@@ -117,7 +117,7 @@ jobs:
             mv out production
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./production schoenwald@5.35.245.22:www/schoenwald
 
-  deploy-test:
+  deploy-master:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -128,8 +128,8 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            mv out test
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./test schoenwald@5.35.245.22:www/schoenwald
+            mv out master
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./master schoenwald@5.35.245.22:www/schoenwald
 
   deploy-pr:
     <<: *defaults
@@ -205,6 +205,12 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - deploy-master:
+          requires:
+            - test-html
+          filters:
+            branches:
+              - master
       - deploy-production:
           requires:
             - test-html
