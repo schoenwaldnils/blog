@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { getFields } from '../scripts/contentful';
 import Meta from '../source/components/Meta/Meta';
 import LayoutBase from '../source/components/Layout/LayoutBase';
 import Post from '../source/components/Post/Post';
@@ -26,25 +25,7 @@ const Page = ({ type, fields }) => (
   </Fragment>
 );
 
-Page.getInitialProps = async ({ query }) => {
-  const fields = await getFields(query.id);
-  return {
-    type: query.type,
-    fields: {
-      id: query.id,
-      title: fields.title,
-      slug: fields.slug,
-      image: fields.image ? {
-        url: fields.image.fields.file.url,
-        alt: fields.image.fields.title,
-      } : null,
-      description: fields.description,
-      date: fields.date || null,
-      tags: fields.tags || null,
-      content: fields.content,
-    },
-  };
-};
+Page.getInitialProps = ({ query }) => query;
 
 Page.propTypes = {
   type: PropTypes.string.isRequired,

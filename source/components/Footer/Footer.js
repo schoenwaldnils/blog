@@ -5,11 +5,11 @@ import { social } from '../../data/config';
 
 const footerNav = [
   {
-    url: '/about',
+    url: '/about/',
     text: 'About',
   },
   {
-    url: '/imprint',
+    url: '/imprint/',
     text: 'Imprint',
   },
 ];
