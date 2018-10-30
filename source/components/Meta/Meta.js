@@ -38,7 +38,7 @@ const Meta = ({
       <meta property="og:image:width" content="200" />
       <meta property="og:image:height" content="200" />
 
-      <meta property="fb:app_id" content={facebook.id} />
+      <meta property="fb:app_id" content={facebook.app_id} />
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@schoenwaldnils" />
