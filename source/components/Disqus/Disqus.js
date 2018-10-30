@@ -12,7 +12,9 @@ const Disqus = ({ title, siteUrl, pageUrl }) => (
           this.page.identifier = '${pageUrl}';
         }`,
     }} />
-    <script defer src="//schoenwaldmedia.disqus.com/embed.js" data-timestamp={new Date()} />
+    {(typeof window !== 'undefined') &&
+      <script defer src="//schoenwaldmedia.disqus.com/embed.js" data-timestamp={new Date()} />
+    }
     <div className="Disqus u-whiteBox u-boxPadding" id="disqus_thread" />
   </Fragment>
 );
