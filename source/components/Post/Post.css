@@ -35,9 +35,9 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: .5em;
-  font-family: var(--font-second);
   font-size: 1em;
   font-weight: 200;
+  font-variant-caps: all-small-caps;
 }
 
 @media print {

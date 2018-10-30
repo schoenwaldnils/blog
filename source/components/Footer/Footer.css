@@ -55,9 +55,8 @@
 }
 
 .Footer-text {
-  font-family: var(--font-second);
-  font-size: .6rem;
+  font-size: .8rem;
+  font-variant-caps: all-small-caps;
   letter-spacing: .2em;
   color: var(--Footer-color);
-  text-transform: uppercase;
 }
