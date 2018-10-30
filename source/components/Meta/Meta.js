@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+
 import Favicons from '../Favicons/Favicons';
+import { facebook } from '../../data/config';
 
 const Meta = ({
   url, type, title, description, image,
@@ -23,7 +25,7 @@ const Meta = ({
       <meta property="og:image:width" content="200" />
       <meta property="og:image:height" content="200" />
 
-      <meta property="fb:app_id" content="481527111909443" />
+      <meta property="fb:app_id" content={facebook.app_id} />
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@schoenwaldnils" />

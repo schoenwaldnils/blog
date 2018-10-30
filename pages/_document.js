@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { ga } from '../source/data/config';
 
 const DRIFT_ID = '4r7cns5dxyfi';
 
@@ -23,7 +24,6 @@ export default class SmediaDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Karla" />
 
           {/* Google Analytics codeblock */}
           {prod && <script dangerouslySetInnerHTML={{
@@ -33,7 +33,7 @@ export default class SmediaDocument extends Document {
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','/static/scripts/analytics.js','ga');
 
-            ga('create', 'UA-33721620-2', 'auto');
+            ga('create', '${ga.id}', 'auto');
             ga('send', 'pageview');`,
           }} />}
 

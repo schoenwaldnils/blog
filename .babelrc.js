@@ -7,15 +7,14 @@ const env = {
 }
 
 module.exports = {
-  presets: [
-    ['next/babel', {
-      'preset-env': {
-        modules: 'commonjs',
-      }
-    }]
-  ],
+  presets: ['next/babel'],
   plugins: [
     'inline-react-svg',
     ['transform-define', env],
+    ['styled-components', {
+      'ssr': true,
+      'displayName': true,
+      'preprocess': false,
+    }],
   ]
 };

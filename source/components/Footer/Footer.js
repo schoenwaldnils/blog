@@ -1,27 +1,34 @@
 import React from 'react';
 import './Footer.css';
 import SocialIcon from '../SocialIcon/SocialIcon';
+import { social } from '../../data/config';
 
 const footerNav = [
   {
-    url: '/about',
+    url: '/about/',
     text: 'About',
   },
   {
-    url: '/imprint',
+    url: '/imprint/',
     text: 'Imprint',
   },
 ];
+
+const { links } = social;
+const {
+  twitter,
+  github,
+} = links;
 
 const Footer = () => (
   <footer className="Footer">
     <div className="Footer-content u-maxWidth u-widthPadding">
       <div className="Footer-socialIcons">
         <div className="Footer-wrapSocialIcon">
-          <SocialIcon name="Twitter" href="https://twitter.com/schoenwaldnils" />
+          <SocialIcon name="Twitter" href={twitter} />
         </div>
         <div className="Footer-wrapSocialIcon">
-          <SocialIcon name="Github" href="https://github.com/schoenwaldnils" />
+          <SocialIcon name="Github" href={github} />
         </div>
       </div>
       <nav className="Footer-nav Footer-text">

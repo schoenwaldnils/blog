@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { getFields } from '../scripts/contentful';
 
 import '../source/css/index.css';
 
@@ -27,25 +26,8 @@ const Page = ({ posts, tags, activeTag }) => {
 };
 
 Page.getInitialProps = async ({ query: { posts, tag, tags } }) => {
-  const handeledPosts = await Promise.all(posts.map(async (post) => {
-    const postFields = await getFields(post.id);
-    if (postFields.content) delete postFields.content;
-    if (postFields.tags) delete postFields.tags;
-    const altImage = {
-      url: postFields.image.fields.file.url,
-      alt: postFields.image.fields.title,
-    };
-    delete postFields.image;
-    postFields.image = altImage;
-
-    return {
-      ...postFields,
-      url: post.url,
-    };
-  }));
-
   return {
-    posts: handeledPosts,
+    posts,
     activeTag: tag || undefined,
     tags: tags || undefined,
   };

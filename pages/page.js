@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { getFields } from '../scripts/contentful';
 
 import '../source/css/index.css';
 
@@ -30,26 +29,7 @@ const Page = ({ type, fields }) => {
   );
 };
 
-Page.getInitialProps = async ({ query }) => {
-  const fields = await getFields(query.id);
-  return {
-    type: query.type,
-    fields: {
-      id: query.id,
-      title: fields.title,
-      slug: fields.slug,
-      image: fields.image ? {
-        color: fields.image.fields.file.details.color || null,
-        url: fields.image.fields.file.url,
-        alt: fields.image.fields.title,
-      } : null,
-      description: fields.description,
-      date: fields.date || null,
-      tags: fields.tags || null,
-      content: fields.content,
-    },
-  };
-};
+Page.getInitialProps = ({ query }) => query;
 
 Page.propTypes = {
   type: PropTypes.string.isRequired,
