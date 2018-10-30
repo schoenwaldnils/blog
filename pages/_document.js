@@ -24,7 +24,6 @@ export default class SmediaDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Karla" />
 
           {/* Google Analytics codeblock */}
           {prod && <script dangerouslySetInnerHTML={{
