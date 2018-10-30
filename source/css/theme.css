@@ -49,7 +49,17 @@
    * Fonts
    */
   --font-size: 1rem;
-  --font-family: 'Open Sans', sans-serif;
+  --font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Helvetica,
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol';
+
   --font-weight: 300;
   --line-height: 1.5;
 
@@ -60,8 +70,6 @@
   /*
    * Fonts
    */
-
-  --font-second: 'Karla', sans-serif;
 
   /*
    * Spacing
