@@ -26,24 +26,25 @@ const Post = (props) => {
 
   return (
     <article className={classNames}>
-      {(image || title) &&
+      {image &&
         <div className="Post-wrapImage">
-          {image && <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} color={image.color} />}
+          <Picture className="Post-image" imageSrc={image.url} imageAlt={image.alt} color={image.color} />
           {title &&
             <div className="Post-meta">
-              <h1 className="Post-title">{title}</h1>
+              <h1 className="Post-title Post-title--inImage u-boxPadding u-maxWidth">{title}</h1>
             </div>
           }
         </div>
       }
 
-      {content &&
-        <div className="u-boxPadding u-maxWidth">
-          <div className="Post-content u-richText" dangerouslySetInnerHTML={{ __html: marked(content) }} />
+      {content && type !== 'list' &&
+        <div className="Post-content u-boxPadding u-maxWidth">
+          {!image && <h1 className="Post-title Post-title--inContent">{title}</h1>}
+          <div className="u-richText" dangerouslySetInnerHTML={{ __html: marked(content) }} />
         </div>
       }
 
-      {tags &&
+      {tags && type !== 'list' &&
         <div className="Post-hr">
           <div className="u-boxPadding u-maxWidth">
             Related tags:

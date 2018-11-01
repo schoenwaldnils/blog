@@ -2,6 +2,7 @@
 
 .Post-wrapImage {
   position: relative;
+  min-height: 10vmin;
   background-color: #bbb;
 }
 
@@ -34,7 +35,6 @@
   top: 0;
   left: 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -42,17 +42,18 @@
 }
 
 .Post-title {
-  max-width: 90vw;
+  flex-grow: 1;
   font-family: var(--font-second);
-  font-size: 9vw;
   font-weight: bold;
+}
+
+.Post-title--inImage {
+  font-size: 9vw;
   color: var(--color-white);
-  text-align: center;
 }
 
 @media (--viewport-sm) {
-  .Post-title {
-    max-width: 50vw;
+  .Post-title--inImage {
     font-size: 5vw;
   }
 }
