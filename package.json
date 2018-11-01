@@ -56,7 +56,7 @@
     "browserslist": "4.3.4",
     "classnames": "2.2.5",
     "contentful": "7.0.5",
-    "contentful-management": "5.3.4",
+    "contentful-management": "5.3.6",
     "css-loader": "1.0.1",
     "date-fns": "1.29.0",
     "debounce-promise": "3.1.0",
