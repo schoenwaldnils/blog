@@ -82,7 +82,9 @@ jobs:
           name: Export static files
           command: |
             set -x
-            npm run export
+            NODE_ENV=production
+            next build
+            next export
 
       - run:
           name: Minify html
