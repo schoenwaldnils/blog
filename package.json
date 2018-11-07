@@ -78,7 +78,7 @@
     "lint-staged": "8.0.4",
     "marked": "0.5.1",
     "md5": "2.2.1",
-    "next": "7.0.2",
+    "next": "7.0.2-canary.18",
     "normalize.css": "8.0.0",
     "octonode": "0.9.5",
     "postcss-calc": "7.0.1",

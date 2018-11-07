@@ -78,11 +78,20 @@ jobs:
       - attach_workspace:
           at: ~/repo
 
+      - restore_cache:
+          keys:
+            - next-static-build
+
       - run:
           name: Export static files
           command: |
             set -x
             npm run export-ci
+
+      - save_cache:
+          key: next-static-build
+          paths:
+            - .next/records.json
 
       - run:
           name: Minify html
