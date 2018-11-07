@@ -80,8 +80,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - next-static-build-{{ checksum ".next/records.json" }}
-            # fallback to using the latest cache if no exact match is found
+            - next-static-build-{{ .Branch }}-{{ .Revision }}
+            - next-static-build-{{ .Branch }}-
             - next-static-build-
 
       - run:
@@ -91,7 +91,7 @@ jobs:
             npm run export-ci
 
       - save_cache:
-          key: next-static-build-{{ checksum ".next/records.json" }}
+          key: next-static-build-{{ .Branch }}-{{ .Revision }}
           paths:
             - .next/records.json
 
