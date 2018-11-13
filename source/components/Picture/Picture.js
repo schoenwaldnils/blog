@@ -68,9 +68,15 @@ const Picture = (props) => {
         );
       })}
 
+      <source
+        srcSet={`
+        ${imageSrc}?${getParams(320, Math.round(320 * ratio))} 1x,
+        ${imageSrc}?${getParams(320, Math.round(320 * ratio), true)} 2x
+        `} />
+
       <img
         className={className}
-        src={`${imageSrc}?${getParams(null, null)}`}
+        src={`${imageSrc}?${getParams(320, null)}`}
         alt={imageAlt}
         title={title}
         key="img" />
