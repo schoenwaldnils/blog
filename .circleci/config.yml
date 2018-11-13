@@ -45,15 +45,6 @@ jobs:
           root: ~/repo
           paths: .
 
-  psi-pending:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Guthub status psi pending
-          command: npm run psi-pending
-
   test-css:
     <<: *defaults
     steps:
@@ -174,12 +165,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - psi-pending:
-          requires:
-            - checkout
-          filters:
-            branches:
-              only: /.+\/.+/
       - test-css:
           requires:
             - checkout
