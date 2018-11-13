@@ -92,8 +92,8 @@ async function runTests() {
       ghrepo.status(CIRCLE_SHA1, {
         state,
         target_url,
-        description: `${state.toUpperCase()}: Score: ${100 * score}/100; min: ${100 * minExpectedScore}`,
-        context: `PSI strategy: ${strategy}, category: ${category}`,
+        description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
+        context: `PSI ${strategy} ${category}`,
       }, (err) => statusCallback(err, `Github status set "PSI test '${strategy} - ${category}' ${state}"`));
     } catch (error) {
       console.error(error);
