@@ -75,7 +75,7 @@
     "htmlhint": "0.10.0",
     "husky": "1.1.3",
     "isomorphic-fetch": "2.2.1",
-    "lint-staged": "8.0.4",
+    "lint-staged": "8.0.5",
     "marked": "0.5.1",
     "md5": "2.2.1",
     "next": "7.0.2",
