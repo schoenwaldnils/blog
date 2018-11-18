@@ -103,7 +103,7 @@
     "stylelint": "9.8.0",
     "stylelint-config-schoenwaldnils": "2.1.0",
     "stylelint-config-styled-components": "0.1.1",
-    "stylelint-processor-styled-components": "1.5.0",
+    "stylelint-processor-styled-components": "1.5.1",
     "suitcss-base": "5.0.0",
     "url": "0.11.0",
     "webpack": "4.23.0",
