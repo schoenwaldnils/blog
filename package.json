@@ -44,11 +44,11 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "7.1.5",
+    "@babel/core": "7.1.6",
     "@babel/node": "7.0.0",
     "@babel/plugin-transform-modules-commonjs": "7.1.0",
     "@babel/register": "7.0.0",
-    "@babel/traverse": "7.1.5",
+    "@babel/traverse": "7.1.6",
     "@zeit/next-css": "1.0.1",
     "autoprefixer": "9.3.0",
     "babel-plugin-inline-react-svg": "1.0.1",
