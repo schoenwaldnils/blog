@@ -1,6 +1,7 @@
 /** @define Filter */
 
 .Filter {
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -18,7 +19,7 @@
   font-size: .8em;
   font-weight: 200;
   cursor: pointer;
-  background-color: var(--cb6);
+  background-color: var(--color-white-darken);
 }
 
 .Filter-item.is-current {

@@ -15,7 +15,7 @@ const Disqus = ({ title, siteUrl, pageUrl }) => (
     {(typeof window !== 'undefined') &&
       <script defer src="//schoenwaldmedia.disqus.com/embed.js" data-timestamp={new Date()} />
     }
-    <div className="Disqus u-whiteBox u-boxPadding" id="disqus_thread" />
+    <div className="Disqus u-boxPadding u-maxWidth" id="disqus_thread" key="disqus-body" />
   </Fragment>
 );
 

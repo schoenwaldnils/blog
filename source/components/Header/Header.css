@@ -1,66 +1,16 @@
 /** @define Header */
 
 .Header {
-  --background-color: var(--Header-background, #000);
-
-  flex-shrink: 0;
-  margin-bottom: 1rem;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  font-size: 1rem;
-  color: var(--Header-color, #0ff);
-  background-color: var(--background-color);
-}
-
-@media print {
-  .Header {
-    display: none;
-  }
-}
-
-@media (--sm-viewport) {
-  .Header {
-    margin-bottom: 1.5rem;
-    font-size: 1.25rem;
-  }
-}
-
-@media (--md-viewport) {
-  .Header {
-    margin-bottom: 2.5rem;
-  }
-}
-
-.Header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-
-.Header-logo {
-  flex-shrink: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100%;
-  font-size: 1.65em;
-  line-height: 1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  background-color: var(--color-black);
 }
 
-.Header-socialIcons {
-  display: none;
-}
-
-@media (--sm-viewport) {
-  .Header-socialIcons {
-    flex-shrink: 0;
-    display: flex;
-    font-size: 1.5em;
-    line-height: 1;
+@media (--viewport-lg) {
+  .Header {
+    font-size: 3rem;
   }
-}
-
-.Header-wrapSocialIcon:not(:last-child) {
-  margin-right: .5em;
 }
