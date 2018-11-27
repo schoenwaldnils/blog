@@ -30,11 +30,11 @@ const categories = [
 ]
 
 const combineTests = () => {
-  const toasts = [];
+  const tests = [];
 
   strategies.forEach(strategy => {
     categories.forEach(category => {
-      toasts.push({
+      tests.push({
         strategy,
         category,
         minExpectedScore: 0.85,
@@ -42,7 +42,17 @@ const combineTests = () => {
     });
   });
 
-  return toasts;
+  // lower PWA test to 50%
+  tests.map(test => {
+    if (test.category === 'pwa') {
+      test.minExpectedScore = 0.5;
+    }
+    return test;
+  });
+
+  console.log(tests);
+
+  return tests;
 };
 
 export const tests = combineTests();
