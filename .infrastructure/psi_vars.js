@@ -37,20 +37,10 @@ const combineTests = () => {
       tests.push({
         strategy,
         category,
-        minExpectedScore: 0.85,
+        minExpectedScore: 0.5,
       });
     });
   });
-
-  // lower PWA test to 50%
-  tests.map(test => {
-    if (test.category === 'pwa') {
-      test.minExpectedScore = 0.5;
-    }
-    return test;
-  });
-
-  console.log(tests);
 
   return tests;
 };
