@@ -15,7 +15,7 @@ Object.keys(viewports).map((key) => {
 const viewportsCss = {};
 
 Object.keys(viewportsJs).map((key) => {
-  viewportsCss[`--${key}-viewport`] = viewportsJs[key];
+  viewportsCss[`--viewport-${key}`] = viewportsJs[key];
   return true;
 });
 

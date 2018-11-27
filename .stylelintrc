@@ -1,3 +1,7 @@
 {
-  "extends": "stylelint-config-schoenwaldnils"
+  "extends": "stylelint-config-schoenwaldnils",
+  "ignoreFiles": [
+    "./**/*.js",
+    "./out/**/*.css"
+  ]
 }

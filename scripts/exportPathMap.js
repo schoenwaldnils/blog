@@ -21,10 +21,12 @@ async function exportPathMap({
         id: post.sys.id,
         url: `/${post.fields.slug}/`,
         ...post.fields,
+        image: post.fields.image ? {
+          color: post.fields.image.fields.file.details.color || null,
+          url: post.fields.image.fields.file.url,
+          alt: post.fields.image.fields.title,
+        } : null,
       };
-
-      if (editedPost.image) delete editedPost.image;
-      if (editedPost.content) delete editedPost.content;
 
       return editedPost;
     });

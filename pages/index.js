@@ -1,21 +1,29 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Meta from '../source/components/Meta/Meta';
-import LayoutBase from '../source/components/Layout/LayoutBase';
-import Post from '../source/components/Post/Post';
-import Filter from '../source/components/Filter/Filter';
 
-const Page = ({ posts, tags, activeTag }) => (
-  <Fragment>
-    <Meta url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined} />
-    <LayoutBase>
-      {tags && <Filter activeTag={activeTag} tags={tags} />}
-      <div className="Page">
-        {posts.map(post => (<Post {...post} key={post.slug} />))}
-      </div>
-    </LayoutBase>
-  </Fragment>
-);
+import '../source/css/index.css';
+
+import Meta from '../source/components/Meta/Meta';
+import { TeaserList, TeaserListChild } from '../source/components/TeaserList/TeaserList';
+import Post from '../source/components/Post/Post';
+import Layout from '../source/components/Layout/Layout';
+
+const Page = ({ posts, tags, activeTag }) => {
+  return (
+    <Fragment>
+      <Meta url={activeTag ? `https://schoenwald.media/${activeTag}/` : undefined} />
+      <Layout type="postList" {...{ tags, activeTag }}>
+        <TeaserList>
+          {posts.map(post => (
+            <TeaserListChild href={post.url} key={post.slug}>
+              <Post {...post} type="list" />
+            </TeaserListChild>
+          ))}
+        </TeaserList>
+      </Layout>
+    </Fragment>
+  );
+};
 
 Page.getInitialProps = async ({ query: { posts, tag, tags } }) => {
   return {

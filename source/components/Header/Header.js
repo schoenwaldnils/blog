@@ -1,28 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import cn from 'classnames';
 import './Header.css';
-import SocialIcon from '../SocialIcon/SocialIcon';
 import SchoenwaldLogo from '../Svg/svgs/schoenwald-logo.svg';
 
-
-const Header = () => (
-  <header className="Header">
-    <div className="Header-content u-maxWidth u-widthPadding">
-
+const Header = ({ className }) => {
+  const classNames = cn(
+    'Header',
+    className,
+  );
+  return (
+    <header className={classNames} key="header-content">
       <a className="Header-logo" href="/">
         <SchoenwaldLogo className="Svg" />
       </a>
+    </header>
+  );
+};
 
-      <div className="Header-socialIcons">
-        <div className="Header-wrapSocialIcon">
-          <SocialIcon name="Twitter" href="https://twitter.com/schoenwaldnils" />
-        </div>
-        <div className="Header-wrapSocialIcon">
-          <SocialIcon name="Github" href="https://github.com/schoenwaldnils" />
-        </div>
-      </div>
+Header.defaultProps = {
+  className: null,
+};
 
-    </div>
-  </header>
-);
+Header.propTypes = {
+  className: PropTypes.string,
+};
 
 export default Header;
