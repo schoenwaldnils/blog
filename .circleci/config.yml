@@ -30,14 +30,14 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - {{ .Environment.NODE_ENV }}-dependencies-{{ checksum "package.json" }}
+            - -{{ .Environment.NODE_ENV }}-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - {{ .Environment.NODE_ENV }}-dependencies-
+            - -{{ .Environment.NODE_ENV }}-dependencies-
 
       - run: npm install --no-package-lock
 
       - save_cache:
-          key: {{ .Environment.NODE_ENV }}-dependencies-{{ checksum "package.json" }}
+          key: -{{ .Environment.NODE_ENV }}-dependencies-{{ checksum "package.json" }}
           paths:
             - ./node_modules
 
