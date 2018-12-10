@@ -58,7 +58,7 @@
     "classnames": "2.2.5",
     "contentful": "7.0.5",
     "contentful-management": "5.4.0",
-    "date-fns": "1.29.0",
+    "date-fns": "1.30.1",
     "debounce-promise": "3.1.0",
     "dotenv-load": "1.1.0",
     "dotenv-webpack": "1.5.7",
