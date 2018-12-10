@@ -67,6 +67,11 @@ async function runTests() {
         url: testUrl,
       };
 
+      const icons = {
+        'mobile': '📱',
+        'destop': '💻',
+      }
+
       const res = await fetch(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${qs.stringify(params)}`);
       const result = await res.json();
 
@@ -93,7 +98,7 @@ async function runTests() {
         state,
         target_url,
         description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
-        context: `PSI ${strategy} ${category}`,
+        context: `PSI ${icons[strategy]} ${category}`,
       }, (err) => statusCallback(err, `Github status set "PSI test '${strategy} - ${category}' ${state}"`));
     } catch (error) {
       console.error(error);
