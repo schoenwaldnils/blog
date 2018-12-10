@@ -54,7 +54,7 @@ export const ghrepo = client.repo(repoSlug);
 export const statusCallback = (err, message) => {
   if (err) {
     console.error(err);
-    process.exit(0);
+    process.exit(1);
     return;
   }
 

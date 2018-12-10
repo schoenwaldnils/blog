@@ -101,18 +101,12 @@ async function runTests() {
 
       const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${strategy}`;
 
-      try {
-        ghrepo.status(CIRCLE_SHA1, {
-          state,
-          target_url,
-          description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
-          context: `PSI ${icons[strategy]} ${category}`,
-        }, (err) => statusCallback(err, `Github status set "PSI test '${strategy} - ${category}' ${state}"`));
-      } catch (error) {
-        console.error(error);
-        process.exit(1)
-      }
-
+      ghrepo.status(CIRCLE_SHA1, {
+        state,
+        target_url,
+        description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
+        context: `PSI ${icons[strategy]} ${category}`,
+      }, (err) => statusCallback(err, `Github status set "PSI test '${strategy} - ${category}' ${state}"`));
     } catch (error) {
       console.error(error);
       process.exit(1)
