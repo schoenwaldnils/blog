@@ -67,11 +67,6 @@ async function runTests() {
         url: testUrl,
       };
 
-      const icons = {
-        'mobile': '📱',
-        'destop': '💻',
-      }
-
       let result;
 
       try {
@@ -105,7 +100,7 @@ async function runTests() {
         state,
         target_url,
         description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
-        context: `PSI ${icons[strategy]} ${category}`,
+        context: `PSI ${strategy} ${category}`,
       }, (err) => statusCallback(err, `Github status set "PSI test '${strategy} - ${category}' ${state}"`));
     } catch (error) {
       console.error(error);
