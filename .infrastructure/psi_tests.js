@@ -72,8 +72,15 @@ async function runTests() {
         'destop': '💻',
       }
 
-      const res = await fetch(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${qs.stringify(params)}`);
-      const result = await res.json();
+      let result;
+
+      try {
+        const res = await fetch(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${qs.stringify(params)}`);
+        result = await res.json();
+      } catch (error) {
+        console.error(error);
+        process.exit(1)
+      }
 
       if (result.error) {
         throw(result.error);
