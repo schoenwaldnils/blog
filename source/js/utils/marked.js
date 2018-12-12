@@ -1,38 +1,53 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import he from 'he';
-import marked from 'marked';
-import { highlight } from 'highlight.js';
 import qs from 'qs';
+import ReactMarkdown from 'react-markdown';
+import htmlParser from 'react-markdown/plugins/html-parser';
 
-import Picture from '../../../source/components/Picture/Picture';
+import Picture from '../../components/Picture/Picture';
+import CodeBlock from '../../components/CodeBlock/CodeBlock';
 
-marked.setOptions({
-  langPrefix: 'hljs ',
-  highlight: (code, lang) => {
-    return highlight(lang, code).value;
-  },
-  headerIds: false,
+
+// See https://github.com/aknuds1/html-to-react#with-custom-processing-instructions
+// for more info on the processing instructions
+const parseHtml = htmlParser({
+  isValidNode: node => node.type !== 'script',
 });
 
-const renderer = new marked.Renderer();
+class PictureOverride extends PureComponent {
+  render() {
+    const { src, alt } = this.props;
+    const [imgSrc, paramsQuery, optionsQuery] = he.decode(src).split(/[?|#]/);
+    const params = paramsQuery && qs.parse(paramsQuery);
+    const options = optionsQuery && qs.parse(optionsQuery);
+    // Be extra ceareful to check for calls on undefined, they will break the build
+    const width = params && params.w && parseInt(params.w, 10);
+    const float = options && options.float;
 
-renderer.image = (href, title, text) => {
-  const [imgSrc, paramsQuery, optionsQuery] = he.decode(href).split(/[?|#]/);
-  const params = paramsQuery && qs.parse(paramsQuery);
-  const options = optionsQuery && qs.parse(optionsQuery);
-  // Be extra ceareful to check for calls on undefined, they will break the build
-  const width = params && params.w && parseInt(params.w, 10);
-  const float = options && options.float;
+    return (<Picture
+      imageSrc={imgSrc}
+      imageAlt={alt}
+      width={width}
+      float={float} />);
+  }
+}
 
-  return renderToString(<Picture
-    imageSrc={imgSrc}
-    imageAlt={text}
-    title={title}
-    width={width}
-    float={float} />);
-}; // https://github.com/zeit/next.js/issues/3711#issuecomment-363855132
+PictureOverride.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+};
 
 export default function (content) {
-  return marked(content, { renderer });
+  const renderers = {
+    image: PictureOverride,
+    imageReference: PictureOverride,
+    code: CodeBlock,
+  };
+
+  return (<ReactMarkdown
+    renderers={renderers}
+    source={content}
+    escapeHtml={false}
+    astPlugins={[parseHtml]} />);
 }
