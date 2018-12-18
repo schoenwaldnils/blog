@@ -104,7 +104,7 @@ async function runTests() {
       }, (err) => statusCallback(err, `Github status set "PSI test '${strategy} - ${category}' ${state}"`));
     } catch (error) {
       console.error(error);
-      process.exit(1)
+      process.exit(1);
     }
   }));
 
@@ -112,4 +112,6 @@ async function runTests() {
   sortObjectArrayByValue(testResults.desktop, 'category');
 
   console.log(testResults);
+
+  process.exit(0)
 }
