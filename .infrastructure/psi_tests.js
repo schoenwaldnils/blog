@@ -58,7 +58,7 @@ async function runTests() {
     desktop: [],
   };
 
-  await Promise.all(tests.map(async ({ strategy, category, minExpectedScore }) => {
+  const testsResolved = await Promise.all(tests.map(async ({ strategy, category, minExpectedScore }) => {
     try {
       const params = {
         key: GOOGLE_PAGESPEED_API_KEY,
@@ -111,7 +111,9 @@ async function runTests() {
   sortObjectArrayByValue(testResults.mobile, 'category');
   sortObjectArrayByValue(testResults.desktop, 'category');
 
-  console.log(testResults);
+  console.log(await testResults);
 
-  process.exit(0)
+  await testsResolved;
+
+  process.exit(0);
 }
