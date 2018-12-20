@@ -11,5 +11,5 @@ tests.forEach(({ environment }) => {
     state: 'pending',
     target_url: `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${environment}`,
     context: `PSI ${environment}`,
-  }, (err) => statusCallback(err, `Github status set "PSI test \'${environment}\' pending"`)); // created status
+  }, err => statusCallback(err, `Github status set "PSI test '${environment}' pending"`)); // created status
 });
