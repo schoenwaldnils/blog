@@ -5,16 +5,19 @@ const {
   CIRCLE_PROJECT_USERNAME,
   CIRCLE_PROJECT_REPONAME,
   CIRCLE_BRANCH,
+  DOMAIN_NAME,
 } = process.env;
 
+/* eslint-disable prefer-destructuring */
 export const CIRCLE_SHA1 = process.env.CIRCLE_SHA1;
-export const GOOGLE_PAGESPEED_API_KEY = process.env.GOOGLE_PAGESPEED_API_KEY || 'AIzaSyAf7UuNR1g9QNohPNtn-7WcYN4oL_FmeyA';
+export const GOOGLE_PAGESPEED_API_KEY = process.env.GOOGLE_PAGESPEED_API_KEY;
+/* eslint-enable prefer-destructuring */
 
 const repoSlug = `${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}`;
 
-const branchName = CIRCLE_BRANCH && CIRCLE_BRANCH.replace(/[\/|/.|_]/g, '-').replace(/@/g, '');
+const branchName = CIRCLE_BRANCH && CIRCLE_BRANCH.replace(/[/|/.|_]/g, '-').replace(/@/g, '');
 
-export const testUrl = branchName ? `https://${branchName}.schoenwald.media/` : 'https://schoenwald.media/';
+export const testUrl = branchName ? `https://${branchName}.${DOMAIN_NAME}/` : `https://${DOMAIN_NAME}/`;
 
 const strategies = [
   'desktop',
@@ -27,12 +30,12 @@ const categories = [
   'performance',
   'pwa',
   'seo',
-]
+];
 
 const combineTests = () => {
   const tests = [];
 
-  strategies.forEach(strategy => {
+  strategies.forEach((strategy) => {
     tests.push({
       strategy,
       categories,

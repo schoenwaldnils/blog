@@ -16,8 +16,8 @@
     "lint:js": "eslint \"**/*.js\"",
     "lint:js:fix": "eslint \"**/*.js\" --fix",
     "lint:html": "htmlhint out",
-    "psi-pending": "babel-node .infrastructure/psi_tests_pending.js",
-    "psi-test": "babel-node .infrastructure/psi_tests.js",
+    "psi-pending": "babel-node _infrastructure/psi_tests_pending.js",
+    "psi-test": "babel-node _infrastructure/psi_tests.js",
     "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html --minify-css",
     "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons"
   },

@@ -19,7 +19,7 @@ if [ $CIRCLE_PULL_REQUEST ] ; then
   if [ -z $BOT_COMMENT_ID ] ; then
     echo "PR has no PR-Preview comment";
     curl -H "Authorization: token ${BOT_GITHUB_TOKEN}" -X POST \
-    -d "{\"body\": \"Preview: [https://${BRANCH_NAME}.schoenwald.media](https://${BRANCH_NAME}.schoenwald.media)\"}" \
+    -d "{\"body\": \"Preview: [https://${BRANCH_NAME}.${DOMAIN_NAME}](https://${BRANCH_NAME}.${DOMAIN_NAME})\"}" \
     "https://api.github.com/repos/${REPO_SLUG}/issues/${CIRCLE_PR_NUMBER}/comments";
   fi
 fi
