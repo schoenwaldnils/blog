@@ -142,12 +142,12 @@ jobs:
           name: Create subdomain
           command: |
             export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            sh .infrastructure/manage-subdomain.sh
+            sh ./_infrastructure/manage-subdomain.sh
       - run:
           name: Post preview comment
           command: |
             export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            sh ./.infrastructure/comment_on_pr.sh
+            sh ./_infrastructure/comment_on_pr.sh
 
   test-psi:
     <<: *defaults
