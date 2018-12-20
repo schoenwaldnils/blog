@@ -14,12 +14,30 @@ machine:
   services:
     - docker
 
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: schoenwaldnils/circleci-node:10.9.0-rsync
-      environment:
-        DOMAIN_NAME: schoenwald.media
+references:
+  defaults: &defaults
+    working_directory: ~/repo
+    docker:
+      - image: schoenwaldnils/circleci-node:10.9.0-rsync
+        environment:
+          DOMAIN_NAME: schoenwald.media
+
+  default_steps: &default_steps
+    attach_workspace:
+      at: ~/repo
+
+  default_steps_pr: &default_steps_pr
+    run:
+      name: Avoid hosts unknown for hosteurope
+      command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+  default_steps_pr_deploy: &default_steps_pr_deploy
+    run:
+      name: Deploy to Server
+      command: |
+        mv out $FOLDER
+        rsync -avr --delete --exclude='static/scripts/analytics.js' ./master schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+
 
 jobs:
   checkout:
@@ -50,8 +68,7 @@ jobs:
   test-css:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - *default_steps
       - run:
           name: Lint CSS
           command: npm run lint:css
@@ -59,8 +76,7 @@ jobs:
   test-js:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - *default_steps
       - run:
           name: Lint JS
           command: npm run lint:js
@@ -68,20 +84,16 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-
+      - *default_steps
       - run:
           name: Export static files
           command: |
             set -x
             npm run export-ci
-
       - run:
           name: Minify html
           command: |
             npm run minify-html
-
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -90,48 +102,34 @@ jobs:
   test-html:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - *default_steps
       - run:
           name: Lint HTML
           command: npm run lint:html
 
   deploy-production:
     <<: *defaults
+    environment:
+      FOLDER: production
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-      - run:
-          name: Deploy to Server
-          command: |
-            mv out production
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./production schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+      - *default_steps
+      - *default_steps_pr
+      - *default_steps_pr_deploy
 
   deploy-master:
     <<: *defaults
+    environment:
+      FOLDER: master
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-      - run:
-          name: Deploy to Server
-          command: |
-            mv out master
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./master schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+      - *default_steps
+      - *default_steps_pr
+      - *default_steps_pr_deploy
 
   deploy-pr:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - *default_steps
+      - *default_steps_pr
       - run:
           name: Deploy to Server
           command: |
@@ -152,8 +150,7 @@ jobs:
   test-psi:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - *default_steps
       - run:
           name: Guthub status psi test
           command: npm run psi-test
