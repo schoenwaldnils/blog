@@ -14,22 +14,30 @@ machine:
   services:
     - docker
 
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: schoenwaldnils/circleci-node:10.9.0-rsync
-      environment:
-        DOMAIN_NAME: schoenwald.media
+references:
+  defaults: &defaults
+    working_directory: ~/repo
+    docker:
+      - image: schoenwaldnils/circleci-node:10.9.0-rsync
+        environment:
+          DOMAIN_NAME: schoenwald.media
 
-attachToWorkspace: &attachToWorkspace
-  - attach_workspace:
+  default_steps: &default_steps
+    attach_workspace:
       at: ~/repo
 
-prDefaultsSteps: &prDefaultsSteps
-  <<: *attachToWorkspace
-  - run:
+  default_steps_pr: &default_steps_pr
+    run:
       name: Avoid hosts unknown for hosteurope
       command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+  default_steps_pr_deploy: &default_steps_pr_deploy
+    run:
+      name: Deploy to Server
+      command: |
+        mv out $FOLDER
+        rsync -avr --delete --exclude='static/scripts/analytics.js' ./master schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+
 
 jobs:
   checkout:
@@ -60,7 +68,7 @@ jobs:
   test-css:
     <<: *defaults
     steps:
-      <<: *attachToWorkspace
+      - *default_steps
       - run:
           name: Lint CSS
           command: npm run lint:css
@@ -68,7 +76,7 @@ jobs:
   test-js:
     <<: *defaults
     steps:
-      <<: *attachToWorkspace
+      - *default_steps
       - run:
           name: Lint JS
           command: npm run lint:js
@@ -76,7 +84,7 @@ jobs:
   build:
     <<: *defaults
     steps:
-      <<: *attachToWorkspace
+      - *default_steps
       - run:
           name: Export static files
           command: |
@@ -94,35 +102,34 @@ jobs:
   test-html:
     <<: *defaults
     steps:
-      <<: *attachToWorkspace
+      - *default_steps
       - run:
           name: Lint HTML
           command: npm run lint:html
 
   deploy-production:
     <<: *defaults
+    environment:
+      FOLDER: production
     steps:
-      <<: *prDefaultsSteps
-      - run:
-          name: Deploy to Server
-          command: |
-            mv out production
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./production schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+      - *default_steps
+      - *default_steps_pr
+      - *default_steps_pr_deploy
 
   deploy-master:
     <<: *defaults
+    environment:
+      FOLDER: master
     steps:
-      <<: *prDefaultsSteps
-      - run:
-          name: Deploy to Server
-          command: |
-            mv out master
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./master schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+      - *default_steps
+      - *default_steps_pr
+      - *default_steps_pr_deploy
 
   deploy-pr:
     <<: *defaults
     steps:
-      <<: *prDefaultsSteps
+      - *default_steps
+      - *default_steps_pr
       - run:
           name: Deploy to Server
           command: |
@@ -143,7 +150,7 @@ jobs:
   test-psi:
     <<: *defaults
     steps:
-      <<: *attachToWorkspace
+      - *default_steps
       - run:
           name: Guthub status psi test
           command: npm run psi-test
