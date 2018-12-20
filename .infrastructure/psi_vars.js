@@ -33,12 +33,10 @@ const combineTests = () => {
   const tests = [];
 
   strategies.forEach(strategy => {
-    categories.forEach(category => {
-      tests.push({
-        strategy,
-        category,
-        minExpectedScore: 0.5,
-      });
+    tests.push({
+      strategy,
+      categories,
+      minExpectedScore: 0.5,
     });
   });
 
@@ -50,13 +48,3 @@ export const tests = combineTests();
 
 const client = github.client(BOT_GITHUB_TOKEN);
 export const ghrepo = client.repo(repoSlug);
-
-export const statusCallback = (err, message) => {
-  if (err) {
-    console.error(err);
-    process.exit(1);
-    return;
-  }
-
-  return console.log('\x1b[33m%s\x1b[0m', message);  //yellow
-}

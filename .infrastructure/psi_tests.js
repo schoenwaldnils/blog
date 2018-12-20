@@ -6,77 +6,64 @@ import {
   GOOGLE_PAGESPEED_API_KEY,
   testUrl,
   ghrepo,
-  statusCallback,
 } from './psi_vars';
 
-async function fetchNow() {
-  let counter = 0;
-  try {
-    const res = await fetch(testUrl);
-    console.log(`URL: "${testUrl}", Status ${res.status}`);
-    if (res.status === 200) {
-      setTimeout(() => runTests(), 5000);
-    } else {
-      throw `${res.status} Page not ready yet.`;
-    }
-  } catch (error) {
-    counter =+ 1;
-    console.error(counter, error);
-    if (counter >= 5) {
-      process.exit(1);
-    }
-    setTimeout(() => {
-      fetchNow();
-    }, 5000);
-  }
-}
+async function runPagespeed({ strategy, categories }) {
+  const categoriesEdited = categories.map(category => `category=${category}`);
 
-fetchNow();
-
-
-const sortObjectArrayByValue = (arrayOfObjects, sortKey, reversed = false) => {
-  if (arrayOfObjects.length < 1) return arrayOfObjects;
-
-  arrayOfObjects.sort((a, b) => {
-    if (Number.isInteger(a[sortKey]) && Number.isInteger(b[sortKey])) return a[sortKey] - b[sortKey];
-    return a[sortKey].localeCompare(b[sortKey]);
-  });
-
-  if (reversed) return arrayOfObjects.reverse();
-  return arrayOfObjects;
-};
-
-
-
-async function runTests() {
-  const testResults = {
-    mobile: [],
-    desktop: [],
+  const params = {
+    key: GOOGLE_PAGESPEED_API_KEY,
+    category: 'REPLACEME',
+    strategy,
+    url: testUrl,
   };
 
-  await Promise.all(tests.map(async ({ strategy, category, minExpectedScore }) => {
-    try {
-      const params = {
-        key: GOOGLE_PAGESPEED_API_KEY,
-        category,
-        strategy,
-        url: testUrl,
-      };
+  const paramString = qs.stringify(params).replace('category=REPLACEME', categoriesEdited.join('&'));
 
-      let result;
+  return fetch(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${paramString}`)
+    .then((res) => {
+      if (res.status >= 400) throw new Error('Bad response from server');
 
-      try {
-        const res = await fetch(`https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${qs.stringify(params)}`);
-        result = await res.json();
-      } catch (error) {
-        console.error(error);
-        process.exit(1)
-      }
+      const result = res.json();
 
-      if (result.error) {
-        throw(result.error);
-      }
+      if (result.error) throw (result.error);
 
+      return result;
+    })
+    .catch((error) => {
+      console.error(error);
+      process.exit(1);
+    });
+}
+
+function postgithubStatus({
+  strategy, category, score, state, minExpectedScore,
+}) {
+  const targetUrl = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${strategy}`;
+
+  ghrepo.status(CIRCLE_SHA1, {
+    state,
+    target_url: targetUrl,
+    description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
+    context: `PSI ${strategy} ${category}`,
+  }, err => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    const message = `Github status set "PSI test '${strategy} - ${category}' ${state}"`;
+    return console.log('\x1b[33m%s\x1b[0m', message);  //yellow
+  });
+}
+
+
+function runTests() {
+  console.log('Running PSI tests.');
+
+  Promise.all(tests.map(async ({ strategy, categories, minExpectedScore }) => {
+    const result = await runPagespeed({ strategy, categories });
+
+    categories.forEach((category) => {
       const { score } = result.lighthouseResult.categories[category];
 
       let state = 'error';
@@ -84,28 +71,43 @@ async function runTests() {
         state = score >= minExpectedScore ? 'success' : 'failure';
       }
 
-      await testResults[strategy].push({
+      postgithubStatus({
+        strategy,
         category,
         score,
         state,
+        minExpectedScore,
       });
-
-      const target_url = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${strategy}`;
-
-      ghrepo.status(CIRCLE_SHA1, {
-        state,
-        target_url,
-        description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
-        context: `PSI ${strategy} ${category}`,
-      }, (err) => statusCallback(err, `Github status set "PSI test '${strategy} - ${category}' ${state}"`));
-    } catch (error) {
+    });
+  }))
+    .catch((error) => {
       console.error(error);
-      process.exit(1)
-    }
-  }));
-
-  sortObjectArrayByValue(testResults.mobile, 'category');
-  sortObjectArrayByValue(testResults.desktop, 'category');
-
-  console.log(testResults);
+      process.exit(1);
+    });
 }
+
+async function fetchNow() {
+  let counter = 0;
+
+  await fetch(testUrl)
+    .then((res) => {
+      console.log(`URL: "${testUrl}", Status ${res.status}`);
+      if (res.status === 200) {
+        setTimeout(() => runTests(), 5000);
+      } else {
+        throw new Error(`${res.status} Page not ready yet.`);
+      }
+    })
+    .catch((error) => {
+      counter = +1;
+      console.error(counter, error);
+      if (counter >= 5) {
+        process.exit(1);
+      }
+      setTimeout(() => {
+        fetchNow();
+      }, 5000);
+    });
+}
+
+fetchNow();
