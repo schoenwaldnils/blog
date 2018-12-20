@@ -46,13 +46,13 @@ function postgithubStatus({
     target_url: targetUrl,
     description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
     context: `PSI ${strategy} ${category}`,
-  }, err => {
+  }, (err) => {
     if (err) {
       console.error(err);
       process.exit(1);
     }
     const message = `Github status set "PSI test '${strategy} - ${category}' ${state}"`;
-    return console.log('\x1b[33m%s\x1b[0m', message);  //yellow
+    return console.log('\x1b[33m%s\x1b[0m', message); // yellow
   });
 }
 
