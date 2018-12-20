@@ -21,6 +21,16 @@ defaults: &defaults
       environment:
         DOMAIN_NAME: schoenwald.media
 
+attachToWorkspace: &attachToWorkspace
+  - attach_workspace:
+      at: ~/repo
+
+prDefaultsSteps: &prDefaultsSteps
+  <<: *attachToWorkspace
+  - run:
+      name: Avoid hosts unknown for hosteurope
+      command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
 jobs:
   checkout:
     <<: *defaults
@@ -50,8 +60,7 @@ jobs:
   test-css:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      <<: *attachToWorkspace
       - run:
           name: Lint CSS
           command: npm run lint:css
@@ -59,8 +68,7 @@ jobs:
   test-js:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      <<: *attachToWorkspace
       - run:
           name: Lint JS
           command: npm run lint:js
@@ -68,20 +76,16 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-
+      <<: *attachToWorkspace
       - run:
           name: Export static files
           command: |
             set -x
             npm run export-ci
-
       - run:
           name: Minify html
           command: |
             npm run minify-html
-
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -90,8 +94,7 @@ jobs:
   test-html:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      <<: *attachToWorkspace
       - run:
           name: Lint HTML
           command: npm run lint:html
@@ -99,11 +102,7 @@ jobs:
   deploy-production:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      <<: *prDefaultsSteps
       - run:
           name: Deploy to Server
           command: |
@@ -113,11 +112,7 @@ jobs:
   deploy-master:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      <<: *prDefaultsSteps
       - run:
           name: Deploy to Server
           command: |
@@ -127,11 +122,7 @@ jobs:
   deploy-pr:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      <<: *prDefaultsSteps
       - run:
           name: Deploy to Server
           command: |
@@ -152,8 +143,7 @@ jobs:
   test-psi:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      <<: *attachToWorkspace
       - run:
           name: Guthub status psi test
           command: npm run psi-test
