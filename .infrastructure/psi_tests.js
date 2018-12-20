@@ -12,20 +12,16 @@ import {
 async function fetchNow() {
   let counter = 0;
   try {
-    const res = await fetch(testUrl)
+    const res = await fetch(testUrl);
     console.log(`URL: "${testUrl}", Status ${res.status}`);
     if (res.status === 200) {
-      setTimeout(() => {
-        runTests();
-      }, 5000);
+      setTimeout(() => runTests(), 5000);
     } else {
-      setTimeout(() => {
-        fetchNow();
-      }, 5000);
+      throw `${res.status} Page not ready yet.`;
     }
   } catch (error) {
     counter =+ 1;
-    console.error(error);
+    console.error(counter, error);
     if (counter >= 5) {
       process.exit(1);
     }
