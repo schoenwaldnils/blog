@@ -5,6 +5,7 @@ const {
   CIRCLE_PROJECT_USERNAME,
   CIRCLE_PROJECT_REPONAME,
   CIRCLE_BRANCH,
+  DOMAIN_NAME,
 } = process.env;
 
 /* eslint-disable prefer-destructuring */
@@ -16,7 +17,7 @@ const repoSlug = `${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}`;
 
 const branchName = CIRCLE_BRANCH && CIRCLE_BRANCH.replace(/[/|/.|_]/g, '-').replace(/@/g, '');
 
-export const testUrl = branchName ? `https://${branchName}.schoenwald.media/` : 'https://schoenwald.media/';
+export const testUrl = branchName ? `https://${branchName}.${DOMAIN_NAME}/` : `https://${DOMAIN_NAME}/`;
 
 const strategies = [
   'desktop',
