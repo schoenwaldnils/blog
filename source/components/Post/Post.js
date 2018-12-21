@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import cn from 'classnames';
 // import { format } from 'date-fns';
 import marked from '../../js/utils/marked';
@@ -52,11 +53,13 @@ const Post = (props) => {
             Related tags:
             <div className="Post-tags">
               {tags.map(tag => (
-                <a className="Post-tagLink" href={`/tag/${tag}`} key={tag}>
-                  <button className="Post-tag">
-                    {tag}
-                  </button>
-                </a>
+                <Link href={`/tag/${tag}`} key={tag}>
+                  <a className="Post-tagLink">
+                    <button className="Post-tag">
+                      {tag}
+                    </button>
+                  </a>
+                </Link>
               ))}
             </div>
           </div>
