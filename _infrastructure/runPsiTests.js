@@ -1,12 +1,14 @@
 import fetch from 'isomorphic-fetch';
 import qs from 'qs';
+
+import { gitStatus } from './octokit';
+import { previewUrl as testUrl } from './commonVars';
+
 import {
   tests,
   CIRCLE_SHA1,
   GOOGLE_PAGESPEED_API_KEY,
-  testUrl,
-  ghrepo,
-} from './psi_vars';
+} from './psiVars';
 
 async function runPagespeed({ strategy, categories }) {
   const categoriesEdited = categories.map(category => `category=${category}`);
@@ -36,24 +38,30 @@ async function runPagespeed({ strategy, categories }) {
     });
 }
 
-function postgithubStatus({
+async function postgithubStatus({
   strategy, category, score, state, minExpectedScore,
 }) {
   const targetUrl = `https://developers.google.com/speed/pagespeed/insights/?url=${testUrl}&tab=${strategy}`;
 
-  ghrepo.status(CIRCLE_SHA1, {
+  const result = await gitStatus({
+    sha: CIRCLE_SHA1,
     state,
     target_url: targetUrl,
     description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
     context: `PSI ${strategy} ${category}`,
-  }, (err) => {
-    if (err) {
-      console.error(err);
+  })
+    .catch((error) => {
+      console.error(error);
       process.exit(1);
-    }
+    });
+
+
+  if (result) {
+    console.log(result);
+
     const message = `Github status set "PSI test '${strategy} - ${category}' ${state}"`;
-    return console.log('\x1b[33m%s\x1b[0m', message); // yellow
-  });
+    console.log('\x1b[33m%s\x1b[0m', message); // yellow
+  }
 }
 
 
@@ -70,6 +78,14 @@ function runTests() {
       if (score) {
         state = score >= minExpectedScore ? 'success' : 'failure';
       }
+
+      console.log({
+        strategy,
+        category,
+        score,
+        state,
+        minExpectedScore,
+      });
 
       postgithubStatus({
         strategy,
