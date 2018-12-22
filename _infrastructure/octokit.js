@@ -15,12 +15,22 @@ octokit.authenticate({
   token: BOT_GITHUB_TOKEN,
 });
 
+console.log({
+  type: 'oauth',
+  token: BOT_GITHUB_TOKEN,
+});
+
 const repoOptions = {
   owner: CIRCLE_PROJECT_USERNAME,
   repo: CIRCLE_PROJECT_REPONAME,
 };
 
 export const gitComments = (number) => {
+  console.log({
+    ...repoOptions,
+    number,
+  });
+
   return octokit.issues.listComments({
     ...repoOptions,
     number,
