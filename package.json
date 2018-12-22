@@ -19,7 +19,8 @@
     "psi-pending": "babel-node _infrastructure/psi_tests_pending.js",
     "psi-test": "babel-node _infrastructure/psi_tests.js",
     "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html --minify-css",
-    "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons"
+    "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons",
+    "comment-on-pr": "node _infrastructure/comment_on_pr.js"
   },
   "lint-staged": {
     "**/*.js": [
