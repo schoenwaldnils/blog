@@ -2,8 +2,8 @@ import { gitComments, gitCreateComment } from './octokit';
 import { previewUrl } from './commonVars';
 
 const {
-  BOT_NAME = 'schoenwald-bot',
-  CIRCLE_PULL_REQUEST = 'https://github.com/schoenwaldnils/blog/pull/314',
+  BOT_NAME,
+  CIRCLE_PULL_REQUEST,
 } = process.env;
 
 if (!BOT_NAME) throw new Error('Environment variable <BOT_NAME> undefined!');
@@ -13,7 +13,11 @@ if (!BOT_NAME) throw new Error('Environment variable <BOT_NAME> undefined!');
     console.log('Is PR!');
 
     const circlePrNumber = CIRCLE_PULL_REQUEST.match(/\d+$/)[0];
-    const comments = await gitComments(circlePrNumber);
+    const comments = await gitComments(circlePrNumber)
+      .catch((error) => {
+        console.error(error);
+        process.exit(1);
+      });
 
     if (comments.some(comment => comment.user.login === BOT_NAME)) {
       console.log('PR already has bot comment.');
@@ -21,7 +25,11 @@ if (!BOT_NAME) throw new Error('Environment variable <BOT_NAME> undefined!');
     }
 
     console.log('PR has no bot comment.');
-    const commentLink = await gitCreateComment(circlePrNumber, `Preview: ${previewUrl}`);
+    const commentLink = await gitCreateComment(circlePrNumber, `Preview: ${previewUrl}`)
+      .catch((error) => {
+        console.error(error);
+        process.exit(1);
+      });
 
     if (commentLink) {
       console.log(`Preview comment written on PR: ${commentLink}`);

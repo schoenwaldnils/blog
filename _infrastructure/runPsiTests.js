@@ -49,7 +49,12 @@ async function postgithubStatus({
     target_url: targetUrl,
     description: `${state.toUpperCase()}: Score: ${100 * score}; min: ${100 * minExpectedScore}`,
     context: `PSI ${strategy} ${category}`,
-  });
+  })
+    .catch((error) => {
+      console.error(error);
+      process.exit(1);
+    });
+
 
   if (result) {
     console.log(result);
