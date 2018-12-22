@@ -3,6 +3,7 @@ import rest from '@octokit/rest';
 const octokit = rest();
 
 const {
+  BOT_NAME,
   BOT_GITHUB_TOKEN,
   CIRCLE_PROJECT_USERNAME,
   CIRCLE_PROJECT_REPONAME,
@@ -12,6 +13,7 @@ if (!BOT_GITHUB_TOKEN) throw new Error('Environment variable <BOT_NAME> undefine
 
 octokit.authenticate({
   type: 'token',
+  username: BOT_NAME,
   token: BOT_GITHUB_TOKEN,
 });
 
