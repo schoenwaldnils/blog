@@ -79,6 +79,14 @@ function runTests() {
         state = score >= minExpectedScore ? 'success' : 'failure';
       }
 
+      console.log({
+        strategy,
+        category,
+        score,
+        state,
+        minExpectedScore,
+      });
+
       postgithubStatus({
         strategy,
         category,

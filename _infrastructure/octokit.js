@@ -15,8 +15,6 @@ octokit.authenticate({
   token: BOT_GITHUB_TOKEN,
 });
 
-console.log(octokit);
-
 const repoOptions = {
   owner: CIRCLE_PROJECT_USERNAME,
   repo: CIRCLE_PROJECT_REPONAME,
@@ -45,11 +43,20 @@ export const gitCreateComment = (number, body) => {
     });
 };
 
-export const gitStatus = async (sha, options) => {
+export const gitStatus = async ({
+  sha,
+  state,
+  target_url, // eslint-disable-line camelcase
+  description,
+  context,
+}) => {
   return octokit.repos.createStatus({
     ...repoOptions,
     sha,
-    ...options,
+    state,
+    target_url,
+    description,
+    context,
   })
     .then(({ data }) => data)
     .catch((error) => {
