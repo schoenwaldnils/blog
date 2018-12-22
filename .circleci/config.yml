@@ -144,8 +144,7 @@ jobs:
       - run:
           name: Post preview comment
           command: |
-            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            sh ./_infrastructure/comment_on_pr.sh
+            npm run comment-on-pr
 
   test-psi:
     <<: *defaults
