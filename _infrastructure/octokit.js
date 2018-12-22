@@ -11,12 +11,7 @@ const {
 if (!BOT_GITHUB_TOKEN) throw new Error('Environment variable <BOT_NAME> undefined!');
 
 octokit.authenticate({
-  type: 'oauth',
-  token: BOT_GITHUB_TOKEN,
-});
-
-console.log({
-  type: 'oauth',
+  type: 'token',
   token: BOT_GITHUB_TOKEN,
 });
 
@@ -26,11 +21,6 @@ const repoOptions = {
 };
 
 export const gitComments = (number) => {
-  console.log({
-    ...repoOptions,
-    number,
-  });
-
   return octokit.issues.listComments({
     ...repoOptions,
     number,

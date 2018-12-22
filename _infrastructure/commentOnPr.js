@@ -6,11 +6,6 @@ const {
   CIRCLE_PULL_REQUEST,
 } = process.env;
 
-console.log({
-  BOT_NAME,
-  CIRCLE_PULL_REQUEST,
-});
-
 if (!BOT_NAME) throw new Error('Environment variable <BOT_NAME> undefined!');
 
 (async () => {
