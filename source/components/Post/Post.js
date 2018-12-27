@@ -40,7 +40,9 @@ const Post = (props) => {
       {content && type !== 'list' &&
         <div className="Post-content u-boxPadding u-maxWidth">
           {!image && <h1 className="Post-title Post-title--inContent">{title}</h1>}
-          <div className="u-richText" dangerouslySetInnerHTML={{ __html: marked(content) }} />
+          <div className="u-richText">
+            { marked(content) }
+          </div>
         </div>
       }
 

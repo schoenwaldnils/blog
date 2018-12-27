@@ -14,12 +14,30 @@ machine:
   services:
     - docker
 
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: schoenwaldnils/circleci-node:10.9.0-rsync
-      environment:
-        DOMAIN_NAME: schoenwald.media
+references:
+  defaults: &defaults
+    working_directory: ~/repo
+    docker:
+      - image: schoenwaldnils/circleci-node:10.9.0-rsync
+        environment:
+          DOMAIN_NAME: schoenwald.media
+
+  default_steps: &default_steps
+    attach_workspace:
+      at: ~/repo
+
+  default_steps_pr: &default_steps_pr
+    run:
+      name: Avoid hosts unknown for hosteurope
+      command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+  default_steps_pr_deploy: &default_steps_pr_deploy
+    run:
+      name: Deploy to Server
+      command: |
+        mv out $FOLDER
+        rsync -avr --delete --exclude='static/scripts/analytics.js' ./master schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+
 
 jobs:
   checkout:
@@ -30,16 +48,16 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - -v2.0.1-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
+            - -v2.0.2-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
             # fallback to using the latest cache if no exact match is found
-            - -v2.0.1-dependencies-{{ checksum "package.json" }}
+            - -v2.0.2-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - -v2.0.1-dependencies-
+            - -v2.0.2-dependencies-
 
       - run: npm install --no-package-lock
 
       - save_cache:
-          key: -v2.0.1-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: -v2.0.2-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ./node_modules
 
@@ -50,8 +68,7 @@ jobs:
   test-css:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - *default_steps
       - run:
           name: Lint CSS
           command: npm run lint:css
@@ -59,8 +76,7 @@ jobs:
   test-js:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - *default_steps
       - run:
           name: Lint JS
           command: npm run lint:js
@@ -68,31 +84,25 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-
+      - *default_steps
       - restore_cache:
           keys:
             - next-static-build-{{ .Branch }}-{{ .Revision }}
             - next-static-build-{{ .Branch }}-
             - next-static-build-
-
       - run:
           name: Export static files
           command: |
             set -x
             npm run export-ci
-
       - save_cache:
           key: next-static-build-{{ .Branch }}-{{ .Revision }}
           paths:
             - .next/records.json
-
       - run:
           name: Minify html
           command: |
             npm run minify-html
-
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -101,70 +111,54 @@ jobs:
   test-html:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - *default_steps
       - run:
           name: Lint HTML
           command: npm run lint:html
 
   deploy-production:
     <<: *defaults
+    environment:
+      FOLDER: production
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-      - run:
-          name: Deploy to Server
-          command: |
-            mv out production
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./production schoenwald@5.35.245.22:www/schoenwald
+      - *default_steps
+      - *default_steps_pr
+      - *default_steps_pr_deploy
 
   deploy-master:
     <<: *defaults
+    environment:
+      FOLDER: master
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-      - run:
-          name: Deploy to Server
-          command: |
-            mv out master
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./master schoenwald@5.35.245.22:www/schoenwald
+      - *default_steps
+      - *default_steps_pr
+      - *default_steps_pr_deploy
 
   deploy-pr:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Avoid hosts unknown for hosteurope
-          command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - *default_steps
+      - *default_steps_pr
       - run:
           name: Deploy to Server
           command: |
             export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
             mv out $BRANCH_NAME
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald
+            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
       - run:
           name: Create subdomain
           command: |
             export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            sh .infrastructure/manage-subdomain.sh
+            sh ./_infrastructure/manage-subdomain.sh
       - run:
           name: Post preview comment
           command: |
-            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            sh ./.infrastructure/comment_on_pr.sh
+            npm run comment-on-pr
 
   test-psi:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/repo
+      - *default_steps
       - run:
           name: Guthub status psi test
           command: npm run psi-test
