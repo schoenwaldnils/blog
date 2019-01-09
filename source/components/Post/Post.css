@@ -84,6 +84,7 @@
 .Post-tag {
   padding: .5em .75em;
   color: var(--color-white);
+  cursor: pointer;
   background-color: var(--color-interactive);
 }
 
