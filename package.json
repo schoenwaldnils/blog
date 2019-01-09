@@ -76,6 +76,7 @@
     "marked": "0.6.0",
     "md5": "2.2.1",
     "next": "7.0.2",
+    "next-purgecss": "3.0.0",
     "node-vibrant": "3.0.0",
     "normalize.css": "8.0.1",
     "postcss-calc": "7.0.1",

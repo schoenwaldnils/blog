@@ -1,9 +1,10 @@
 const withCSS = require('@zeit/next-css');
+const withPurgeCss = require('next-purgecss');
 const Dotenv = require('dotenv-webpack');
 
 const exportPathMap = require('./scripts/exportPathMap');
 
-module.exports = withCSS({
+module.exports = withCSS(withPurgeCss({
   serverRuntimeConfig: { // Will only be available on the server side
   },
   publicRuntimeConfig: { // Will be available on both server and client
@@ -24,4 +25,4 @@ module.exports = withCSS({
 
     return config;
   },
-});
+}));
