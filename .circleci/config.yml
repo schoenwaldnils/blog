@@ -137,6 +137,7 @@ jobs:
           name: Deploy to S3
           command: |
             export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
+            mv out $BRANCH_NAME
             aws s3 sync $BRANCH_NAME s3://schoenwald/$CIRCLE_PROJECT_REPONAME/$BRANCH_NAME --delete
 
 
