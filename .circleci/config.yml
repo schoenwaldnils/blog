@@ -125,26 +125,19 @@ jobs:
       - *default_steps_pr
       - *default_steps_pr_deploy
 
-  deploy-pr:
+  deploy-pr-to-aws:
     <<: *defaults
     steps:
       - *default_steps
-      - *default_steps_pr
       - run:
-          name: Deploy to Server
+          name: Install awscli
+          command: sudo pip install awscli
+      - run:
+          name: Deploy to S3
           command: |
             export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            mv out $BRANCH_NAME
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
-      - run:
-          name: Create subdomain
-          command: |
-            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            sh ./_infrastructure/manage-subdomain.sh
-      - run:
-          name: Post preview comment
-          command: |
-            npm run comment-on-pr
+            aws s3 sync $BRANCH_NAME s3://schoenwald/$CIRCLE_PROJECT_REPONAME/$BRANCH_NAME --delete
+
 
   test-psi:
     <<: *defaults
@@ -202,7 +195,7 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-      - deploy-pr:
+      - deploy-pr-to-aws:
           requires:
             - test-html
           filters:
