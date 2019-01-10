@@ -137,7 +137,7 @@ jobs:
       - run:
           name: Deploy to S3
           command: |
-            aws s3 sync out s3://aws.schoenwald.media --delete
+            aws s3 sync out s3://schoen.world --delete
 
 
 workflows:
