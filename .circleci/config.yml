@@ -139,15 +139,6 @@ jobs:
             aws s3 sync $BRANCH_NAME s3://schoenwald/$CIRCLE_PROJECT_REPONAME/$BRANCH_NAME --delete
 
 
-  test-psi:
-    <<: *defaults
-    steps:
-      - *default_steps
-      - run:
-          name: Guthub status psi test
-          command: npm run psi-test
-
-
 workflows:
   version: 2
   CircleCI:
@@ -198,12 +189,6 @@ workflows:
       - deploy-pr-to-aws:
           requires:
             - test-html
-          filters:
-            branches:
-              only: /.+\/.+/
-      - test-psi:
-          requires:
-            - deploy-pr
           filters:
             branches:
               only: /.+\/.+/
