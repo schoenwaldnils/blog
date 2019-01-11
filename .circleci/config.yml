@@ -138,6 +138,8 @@ jobs:
           name: Deploy to S3
           command: |
             aws s3 sync out s3://schoen.world --delete
+            aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
 
 
 workflows:
