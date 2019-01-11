@@ -125,34 +125,22 @@ jobs:
       - *default_steps_pr
       - *default_steps_pr_deploy
 
-  deploy-pr:
-    <<: *defaults
+  deploy-pr-to-aws:
+    docker:
+      - image: circleci/python:2.7-jessie
+    working_directory: ~/repo
     steps:
       - *default_steps
-      - *default_steps_pr
       - run:
-          name: Deploy to Server
-          command: |
-            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            mv out $BRANCH_NAME
-            rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+          name: Install awscli
+          command: sudo pip install awscli
       - run:
-          name: Create subdomain
+          name: Deploy to S3
           command: |
-            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
-            sh ./_infrastructure/manage-subdomain.sh
-      - run:
-          name: Post preview comment
-          command: |
-            npm run comment-on-pr
+            SOURCE_DIR="out" S3_TARGET_DIR="s3://schoen.world" _infrastructure/deploy_dir_to_s3.sh
+            # aws s3 sync out s3://schoen.world --delete
+            # aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
-  test-psi:
-    <<: *defaults
-    steps:
-      - *default_steps
-      - run:
-          name: Guthub status psi test
-          command: npm run psi-test
 
 
 workflows:
@@ -202,15 +190,9 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-      - deploy-pr:
+      - deploy-pr-to-aws:
           requires:
             - test-html
-          filters:
-            branches:
-              only: /.+\/.+/
-      - test-psi:
-          requires:
-            - deploy-pr
           filters:
             branches:
               only: /.+\/.+/
