@@ -10,7 +10,7 @@ glob('out/**/*.html', (globErr, files) => {
       if (readErr) {
         return console.log(readErr);
       }
-      const result = data.replace('rel="stylesheet"', 'rel="stylesheet preload"');
+      const result = data.replace(/rel="stylesheet"/g, 'rel="stylesheet preload"');
 
       fs.writeFile(file, result, 'utf8', (writeErr) => {
         if (writeErr) return console.log(writeErr);
