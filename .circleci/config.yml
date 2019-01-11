@@ -137,8 +137,9 @@ jobs:
       - run:
           name: Deploy to S3
           command: |
-            aws s3 sync out s3://schoen.world --delete
-            aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+            SOURCE_DIR="out" S3_TARGET_DIR="s3://schoen.world" _infrastructure/deploy_dir_to_s3.sh
+            # aws s3 sync out s3://schoen.world --delete
+            # aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
 
 
