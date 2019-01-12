@@ -132,7 +132,7 @@ jobs:
     <<: *defaults_deploy
     steps:
       - *default_steps
-      - run: exports FOLDER=$CIRCLE_BRANCH
+      - run: export FOLDER=$CIRCLE_BRANCH
       - *default_steps_deploy
 
 
