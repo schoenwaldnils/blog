@@ -25,6 +25,9 @@ function check_preconditions() {
     [ -z "$SOURCE_DIR" ] && echo "SOURCE_DIR missing" && exit 1
     [ -z "$S3_TARGET_DIR" ] && echo "S3_TARGET_DIR missing" && exit 1
 
+    echo $FOLDER
+    echo $S3_TARGET_DIR
+
     check_aws_cli
 }
 
