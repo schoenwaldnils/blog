@@ -134,10 +134,11 @@ jobs:
 
   deploy-branch:
     <<: *defaults_deploy
+    environment:
+      FOLDER: "$CIRCLE_BRANCH"
     steps:
       - *default_steps
       - *install_aws
-      - run: export FOLDER=$CIRCLE_BRANCH
       - *deploy_to_s3
 
 
