@@ -19,24 +19,29 @@ references:
     working_directory: ~/repo
     docker:
       - image: schoenwaldnils/circleci-node:10.9.0-rsync
+
+  defaults_deploy: &defaults_deploy
+    working_directory: ~/repo
+    docker:
+      - image: circleci/python:2.7-jessie
         environment:
           DOMAIN_NAME: schoenwald.media
+          S3_BUCKET: s3://schoen.world
 
   default_steps: &default_steps
     attach_workspace:
       at: ~/repo
 
-  default_steps_pr: &default_steps_pr
+  default_steps_deploy: &default_steps_deploy
     run:
-      name: Avoid hosts unknown for hosteurope
-      command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-
-  default_steps_pr_deploy: &default_steps_pr_deploy
+      name: Install awscli
+      command: sudo pip install awscli
     run:
-      name: Deploy to Server
+      name: Deploy to S3
       command: |
-        mv out $FOLDER
-        rsync -avr --delete --exclude='static/scripts/analytics.js' ./master schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
+        SOURCE_DIR="out"
+        S3_TARGET_DIR="s3://schoen.world/$CIRCLE_PROJECT_REPONAME/$FOLDER"
+        _infrastructure/deploy_dir_to_s3.sh
 
 
 jobs:
@@ -108,38 +113,27 @@ jobs:
           command: npm run lint:html
 
   deploy-production:
-    <<: *defaults
+    <<: *defaults_deploy
     environment:
       FOLDER: production
     steps:
       - *default_steps
-      - *default_steps_pr
-      - *default_steps_pr_deploy
+      - *default_steps_deploy
 
   deploy-master:
-    <<: *defaults
+    <<: *defaults_deploy
     environment:
       FOLDER: master
     steps:
       - *default_steps
-      - *default_steps_pr
-      - *default_steps_pr_deploy
+      - *default_steps_deploy
 
-  deploy-pr-to-aws:
-    docker:
-      - image: circleci/python:2.7-jessie
-    working_directory: ~/repo
+  deploy-branch:
+    <<: *defaults_deploy
     steps:
       - *default_steps
-      - run:
-          name: Install awscli
-          command: sudo pip install awscli
-      - run:
-          name: Deploy to S3
-          command: |
-            SOURCE_DIR="out" S3_TARGET_DIR="s3://schoen.world" _infrastructure/deploy_dir_to_s3.sh
-            # aws s3 sync out s3://schoen.world --delete
-            # aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+      - run: exports FOLDER=$CIRCLE_BRANCH
+      - *default_steps_deploy
 
 
 
@@ -190,7 +184,7 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-      - deploy-pr-to-aws:
+      - deploy-branch:
           requires:
             - test-html
           filters:
