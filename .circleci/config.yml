@@ -39,8 +39,8 @@ references:
     run:
       name: Deploy to S3
       command: |
-        SOURCE_DIR="out"
-        S3_TARGET_DIR="s3://schoen.world/$CIRCLE_PROJECT_REPONAME/$FOLDER"
+        export SOURCE_DIR="out"
+        export S3_TARGET_DIR="s3://schoen.world/$CIRCLE_PROJECT_REPONAME/$FOLDER"
         _infrastructure/deploy_dir_to_s3.sh
 
 
