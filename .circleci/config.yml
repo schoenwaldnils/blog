@@ -42,7 +42,6 @@ references:
       name: Deploy to S3
       command: |
         export SOURCE_DIR="out"
-        export S3_TARGET_DIR="s3://schoen.world/$CIRCLE_PROJECT_REPONAME/$FOLDER"
         _infrastructure/deploy_dir_to_s3.sh
 
 
@@ -121,24 +120,19 @@ jobs:
     steps:
       - *default_steps
       - *install_aws
-      - *deploy_to_s3
-
-  deploy-master:
-    <<: *defaults_deploy
-    environment:
-      FOLDER: master
-    steps:
-      - *default_steps
-      - *install_aws
+      - run:
+        name: Define directory
+        command: export S3_TARGET_DIR="$S3_BUCKET/$CIRCLE_PROJECT_REPONAME/production"
       - *deploy_to_s3
 
   deploy-branch:
     <<: *defaults_deploy
-    environment:
-      FOLDER: "$CIRCLE_BRANCH"
     steps:
       - *default_steps
       - *install_aws
+      - run:
+        name: Define directory
+        command: export S3_TARGET_DIR="$S3_BUCKET/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH"
       - *deploy_to_s3
 
 
