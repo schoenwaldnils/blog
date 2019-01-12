@@ -37,13 +37,6 @@ references:
       name: Install awscli
       command: sudo pip install awscli
 
-  deploy_to_s3: &deploy_to_s3
-    run:
-      name: Deploy to S3
-      command: |
-        export SOURCE_DIR="out"
-        _infrastructure/deploy_dir_to_s3.sh
-
 
 jobs:
   checkout:
@@ -121,9 +114,11 @@ jobs:
       - *default_steps
       - *install_aws
       - run:
-          name: Define directory
-          command: export S3_TARGET_DIR="$S3_BUCKET/$CIRCLE_PROJECT_REPONAME/production"
-      - *deploy_to_s3
+          name: Deploy to S3
+          command: |
+            export SOURCE_DIR="out"
+            export S3_TARGET_DIR="$S3_BUCKET/$CIRCLE_PROJECT_REPONAME/production"
+            _infrastructure/deploy_dir_to_s3.sh
 
   deploy-branch:
     <<: *defaults_deploy
@@ -131,9 +126,11 @@ jobs:
       - *default_steps
       - *install_aws
       - run:
-          name: Define directory
-          command: export S3_TARGET_DIR="$S3_BUCKET/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH"
-      - *deploy_to_s3
+          name: Deploy to S3
+          command: |
+            export SOURCE_DIR="out"
+            export S3_TARGET_DIR="$S3_BUCKET/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BRANCH"
+            _infrastructure/deploy_dir_to_s3.sh
 
 
 
