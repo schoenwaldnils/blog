@@ -32,10 +32,12 @@ references:
     attach_workspace:
       at: ~/repo
 
-  default_steps_deploy: &default_steps_deploy
+  install_aws: &install_aws
     run:
       name: Install awscli
       command: sudo pip install awscli
+
+  deploy_to_s3: &deploy_to_s3
     run:
       name: Deploy to S3
       command: |
@@ -118,7 +120,8 @@ jobs:
       FOLDER: production
     steps:
       - *default_steps
-      - *default_steps_deploy
+      - *install_aws
+      - *deploy_to_s3
 
   deploy-master:
     <<: *defaults_deploy
@@ -126,14 +129,16 @@ jobs:
       FOLDER: master
     steps:
       - *default_steps
-      - *default_steps_deploy
+      - *install_aws
+      - *deploy_to_s3
 
   deploy-branch:
     <<: *defaults_deploy
     steps:
       - *default_steps
+      - *install_aws
       - run: export FOLDER=$CIRCLE_BRANCH
-      - *default_steps_deploy
+      - *deploy_to_s3
 
 
 
