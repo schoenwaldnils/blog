@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import he from 'he';
 import qs from 'qs';
 import ReactMarkdown from 'react-markdown';
 import htmlParser from 'react-markdown/plugins/html-parser';
@@ -18,7 +17,7 @@ const parseHtml = htmlParser({
 class PictureOverride extends PureComponent {
   render() {
     const { src, alt } = this.props;
-    const [imgSrc, paramsQuery, optionsQuery] = he.decode(src).split(/[?|#]/);
+    const [imgSrc, paramsQuery, optionsQuery] = decodeURI(src).split(/[?|#]/);
     const params = paramsQuery && qs.parse(paramsQuery);
     const options = optionsQuery && qs.parse(optionsQuery);
     // Be extra ceareful to check for calls on undefined, they will break the build
