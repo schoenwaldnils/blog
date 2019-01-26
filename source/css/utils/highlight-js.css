@@ -90,7 +90,7 @@ code {
 .hljs-keyword,
 .hljs-name,
 .hljs-selector-tag {
-  color: var(--color-red);
+  color: var(--color-red-1plus);
 }
 
 .hljs-deletion,
