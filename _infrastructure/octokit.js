@@ -1,6 +1,4 @@
-import rest from '@octokit/rest';
-
-const octokit = rest();
+const Octokit = require('@octokit/rest');
 
 const {
   BOT_GITHUB_TOKEN,
@@ -10,10 +8,10 @@ const {
 
 if (!BOT_GITHUB_TOKEN) throw new Error('Environment variable <BOT_NAME> undefined!');
 
-octokit.authenticate({
-  type: 'token',
-  token: BOT_GITHUB_TOKEN,
+const octokit = new Octokit({
+  auth: `token ${BOT_GITHUB_TOKEN}`,
 });
+
 
 const repoOptions = {
   owner: CIRCLE_PROJECT_USERNAME,
