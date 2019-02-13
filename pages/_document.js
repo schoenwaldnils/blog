@@ -1,26 +1,16 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
 import { ga } from '../source/data/config';
 
 const DRIFT_ID = '4r7cns5dxyfi';
 
 export default class SmediaDocument extends Document {
-  static getInitialProps({ renderPage }) {
-    const sheet = new ServerStyleSheet();
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
-    const styleTags = sheet.getStyleElement();
-    return { ...page, styleTags };
-  }
-
   render() {
     const prod = process.env.NODE_ENV === 'production';
 
     return (
       <html lang="en">
-        <Head>
-          {this.props.styleTags}
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

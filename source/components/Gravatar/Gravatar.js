@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import gravatarUrl from '../../js/utils/gravatar-url';
 
 const Gravatar = ({ className, email, size }) => (
@@ -13,7 +12,11 @@ const Gravatar = ({ className, email, size }) => (
       srcSet={gravatarUrl(email, size * 1.5)}
       media="(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)" />
 
-    <img className={className} src={gravatarUrl(email, size)} alt="Gravatar Avatar" />
+    <img
+      className={className}
+      style={{ width: size && `${size}px` }}
+      src={gravatarUrl(email, size)}
+      alt="Gravatar Avatar" />
   </picture>
 );
 
@@ -28,6 +31,4 @@ Gravatar.propTypes = {
   size: PropTypes.number,
 };
 
-export default styled(Gravatar)`
-  width: ${props => props.size}px;
-`;
+export default Gravatar;

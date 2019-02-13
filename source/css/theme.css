@@ -17,7 +17,7 @@
   --color-white-darken: #dee3e5;
 
   --color-disabled-on-white: #686868;
-  --color-disabled-on-black: #9d9d9d;
+  --color-disabled-on-black: #b4b4b4;
 
   --color-brand: #ba3e48;
 
@@ -26,13 +26,14 @@
 
   --color-twitter: #55acee;
 
-  --color-interactive-2plus: #95c6ed;
-  --color-interactive-1plus: #66a2d4;
-  --color-interactive: #3e83ba;
-  --color-interactive-1minus: #2d6da1;
-  --color-interactive-2minus: #1f5887;
+  --color-interactive-2plus: #75addb;
+  --color-interactive-1plus: #558fbe;
+  --color-interactive: #246396;
+  --color-interactive-1minus: #164063;
+  --color-interactive-2minus: #113655;
 
-  --color-red: #ff2c6d;
+  --color-red: #fc3848;
+  --color-red-1plus: #fa707d;
   --color-orange: #ffb86c;
   --color-green: #19f9d8;
   --color-blue: #45a9f9;
