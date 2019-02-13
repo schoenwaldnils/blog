@@ -1,0 +1,5 @@
+{
+  "sm": "(min-width: 480px)",
+  "md": "(min-width: 620px)",
+  "lg": "(min-width: 768px)"
+}
