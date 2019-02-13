@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import qs from 'qs';
 import { viewports, viewportsJs } from '../../js/viewports';
 
@@ -34,12 +33,33 @@ const Picture = (props) => {
     title,
     width,
     height,
+    float,
+    color,
   } = props;
 
   const viewportKeys = Object.keys(viewports).reverse();
   const maxWidth = width || 1366;
 
   const ratio = height && height / width;
+
+  let css = {};
+
+  if (float) {
+    css = {
+      float,
+      marginRight: float === 'left' && '8px',
+      marginBottom: '8px',
+      marginLeft: float === 'right' && '8px',
+    };
+  }
+
+  if (width) {
+    css.width = `${width}px`;
+  }
+
+  if (color) {
+    css.backgroundColor = color;
+  }
 
   return (
     <picture>
@@ -76,6 +96,7 @@ const Picture = (props) => {
 
       <img
         className={className}
+        style={css}
         src={`${imageSrc}?${getParams(320, null)}`}
         alt={imageAlt}
         title={title}
@@ -100,15 +121,11 @@ Picture.propTypes = {
   title: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
-  color: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  float: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  color: PropTypes.string,
+  float: PropTypes.oneOf([
+    'left',
+    'right',
+  ]),
 };
 
-export default styled(Picture)`
-  float: ${props => props.float};
-  width: ${props => props.width && `${props.width}px`};
-  margin-right: ${props => props.float === 'left' && '8px'};
-  margin-bottom: ${props => props.float && '8px'};
-  margin-left: ${props => props.float === 'right' && '8px'};
-  background-color: ${props => props.color};
-`;
+export default Picture;
