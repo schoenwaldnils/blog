@@ -11,10 +11,6 @@ module.exports = {
   plugins: [
     'inline-react-svg',
     ['transform-define', env],
-    ['styled-components', {
-      'ssr': true,
-      'displayName': true,
-      'preprocess': false,
-    }],
+    'emotion',
   ]
 };
