@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import qs from 'qs';
-import { viewports, viewportsJs } from '../../js/viewports';
+import viewports from '../../js/viewports.json';
 
 const getParams = (width, height = false, retina = false) => {
   const retinaFactor = 1.5;
@@ -23,6 +23,12 @@ const getParams = (width, height = false, retina = false) => {
   const string = qs.stringify(params, { skipNulls: true });
 
   return string;
+};
+
+const pictureViewports = {
+  lg: 768,
+  md: 620,
+  sm: 480,
 };
 
 const Picture = (props) => {
@@ -63,7 +69,7 @@ const Picture = (props) => {
 
   return (
     <picture>
-      {width < viewports.sm && <source
+      {width < pictureViewports.sm && <source
         srcSet={`
         ${imageSrc}?${getParams(width, height)} 1x,
         ${imageSrc}?${getParams(width, height, true)} 2x
@@ -71,7 +77,7 @@ const Picture = (props) => {
         key={width} />
       }
 
-      {maxWidth >= viewports.sm && viewportKeys.map((identifier, key) => {
+      {maxWidth >= pictureViewports.sm && viewportKeys.map((identifier, key) => {
         const currentViewport = viewports[identifier];
         const nextViewport = viewportKeys[key - 1] || null;
         const imageSize = viewports[nextViewport] || maxWidth;
@@ -83,7 +89,7 @@ const Picture = (props) => {
             ${imageSrc}?${getParams(imageSize, Math.round(imageSize * ratio))} 1x,
             ${imageSrc}?${getParams(imageSize, Math.round(imageSize * ratio), true)} 2x
             `}
-            media={viewportsJs[identifier]}
+            media={viewports[identifier]}
             key={imageSize + maxWidth} />
         );
       })}
