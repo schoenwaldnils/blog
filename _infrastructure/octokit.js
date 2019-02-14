@@ -18,7 +18,7 @@ const repoOptions = {
   repo: CIRCLE_PROJECT_REPONAME,
 };
 
-export const gitComments = (number) => {
+const gitComments = (number) => {
   return octokit.issues.listComments({
     ...repoOptions,
     number,
@@ -29,7 +29,7 @@ export const gitComments = (number) => {
     });
 };
 
-export const gitCreateComment = (number, body) => {
+const gitCreateComment = (number, body) => {
   return octokit.issues.createComment({
     ...repoOptions,
     number,
@@ -41,7 +41,7 @@ export const gitCreateComment = (number, body) => {
     });
 };
 
-export const gitStatus = async ({
+const gitStatus = async ({
   sha,
   state,
   target_url, // eslint-disable-line camelcase
@@ -62,3 +62,8 @@ export const gitStatus = async ({
     });
 };
 
+module.exports = {
+  gitComments,
+  gitCreateComment,
+  gitStatus,
+};

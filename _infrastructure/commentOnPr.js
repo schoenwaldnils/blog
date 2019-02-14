@@ -1,5 +1,5 @@
-import { gitComments, gitCreateComment } from './octokit';
-import { previewUrl } from './commonVars';
+const { gitComments, gitCreateComment } = require('./octokit');
+const { previewUrl } = require('./commonVars');
 
 const {
   BOT_NAME,

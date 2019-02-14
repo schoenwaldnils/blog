@@ -18,7 +18,7 @@
     "lint:html": "htmlhint out",
     "minify-html": "html-minifier --input-dir out --output-dir out --file-ext html --minify-css",
     "psi-test": "babel-node _infrastructure/runPsiTests.js",
-    "comment-on-pr": "babel-node _infrastructure/commentOnPr.js",
+    "comment-on-pr": "node _infrastructure/commentOnPr.js",
     "favicons-generate": "real-favicon generate faviconDescription.json faviconData.json static/assets/images/favicons",
     "replaceInHtml": "node _infrastructure/preloadStylesheets.js"
   },
@@ -48,8 +48,6 @@
     "@babel/core": "7.2.2",
     "@babel/node": "7.2.2",
     "@babel/plugin-transform-modules-commonjs": "7.2.0",
-    "@babel/register": "7.0.0",
-    "@babel/traverse": "7.2.3",
     "@emotion/core": "10.0.7",
     "@emotion/styled": "10.0.7",
     "@octokit/rest": "16.15.0",
