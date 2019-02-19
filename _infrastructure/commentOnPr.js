@@ -1,5 +1,5 @@
 const { gitComments, gitCreateComment } = require('./octokit');
-const { previewUrl } = require('./commonVars');
+const { testUrl } = require('./commonVars');
 
 const {
   BOT_NAME,
@@ -25,7 +25,7 @@ if (!BOT_NAME) throw new Error('Environment variable <BOT_NAME> undefined!');
     }
 
     console.log('PR has no bot comment.');
-    const commentLink = await gitCreateComment(circlePrNumber, `Preview: ${previewUrl}`)
+    const commentLink = await gitCreateComment(circlePrNumber, `Preview: ${testUrl}`)
       .catch((error) => {
         console.error(error);
         process.exit(1);
