@@ -1,4 +1,4 @@
-const { viewportsCss } = require('./source/js/viewports');
+const viewportsCss = require('./source/js/viewportsCss.js');
 
 module.exports = () => ({
   plugins: {

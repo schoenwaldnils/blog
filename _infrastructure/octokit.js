@@ -6,7 +6,7 @@ const {
   CIRCLE_PROJECT_REPONAME,
 } = process.env;
 
-if (!BOT_GITHUB_TOKEN) throw new Error('Environment variable <BOT_NAME> undefined!');
+if (!BOT_GITHUB_TOKEN) throw new Error('Environment variable <BOT_GITHUB_TOKEN> undefined!');
 
 const octokit = new Octokit({
   auth: `token ${BOT_GITHUB_TOKEN}`,
