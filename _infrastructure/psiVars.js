@@ -1,9 +1,3 @@
-/* eslint-disable prefer-destructuring */
-export const CIRCLE_SHA1 = process.env.CIRCLE_SHA1;
-export const GOOGLE_PAGESPEED_API_KEY = process.env.GOOGLE_PAGESPEED_API_KEY;
-/* eslint-enable prefer-destructuring */
-
-
 const strategies = [
   'desktop',
   'mobile',
@@ -31,4 +25,8 @@ const combineTests = () => {
   return tests;
 };
 
-export const tests = combineTests();
+module.exports = {
+  CIRCLE_SHA1: process.env.CIRCLE_SHA1,
+  GOOGLE_PAGESPEED_API_KEY: process.env.GOOGLE_PAGESPEED_API_KEY,
+  tests: combineTests(),
+};
