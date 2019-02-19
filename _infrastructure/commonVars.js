@@ -7,8 +7,8 @@ if (!DOMAIN_NAME) throw new Error('Environment variable <DOMAIN_NAME> undefined!
 
 const branchName = CIRCLE_BRANCH && CIRCLE_BRANCH.replace(/[/|/.|_]/g, '-').replace(/@/g, '');
 
-const testUrl = branchName ? `https://${branchName}.${DOMAIN_NAME}/` : `https://${DOMAIN_NAME}/`;
+export const previewUrl = branchName ? `https://${branchName}.${DOMAIN_NAME}/` : `https://${DOMAIN_NAME}/`;
 
-module.exports = {
-  testUrl,
+export default {
+  previewUrl,
 };

@@ -1,14 +1,14 @@
-const fetch = require('isomorphic-fetch');
-const qs = require('qs');
+import fetch from 'isomorphic-fetch';
+import qs from 'qs';
 
-const { gitStatus } = require('./octokit');
-const { testUrl } = require('./commonVars');
+import { gitStatus } from './octokit';
+import { previewUrl as testUrl } from './commonVars';
 
-const {
+import {
   tests,
   CIRCLE_SHA1,
   GOOGLE_PAGESPEED_API_KEY,
-} = require('./psiVars');
+} from './psiVars';
 
 async function runPagespeed({ strategy, categories }) {
   const categoriesEdited = categories.map(category => `category=${category}`);
