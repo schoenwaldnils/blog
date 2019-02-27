@@ -116,5 +116,10 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "greenkeeper": {
+    "prTitles": {
+      "basicPR": "Update ${dependency}@${oldVersion} to ${version}"
+    }
   }
 }
