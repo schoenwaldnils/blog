@@ -1,3 +1,4 @@
+const fs = require('fs');
 const { createClient } = require('contentful');
 
 async function exportPathMap({
@@ -86,23 +87,33 @@ async function exportPathMap({
       pathMap[url] = {
         page: '/page',
         query: {
-          type: 'page',
-          fields: {
-            id,
-            title,
-            slug,
-            image: image ? {
-              url: image.fields.file.url,
-              alt: image.fields.title,
-            } : null,
-            description,
-            date: date || null,
-            tags: postTags || null,
-            content,
-          },
+          id,
         },
       };
+
+      const data = JSON.stringify({
+        type: 'page',
+        fields: {
+          id,
+          title,
+          slug,
+          image: image ? {
+            url: image.fields.file.url,
+            alt: image.fields.title,
+          } : null,
+          description,
+          date: date || null,
+          tags: postTags || null,
+          content,
+        },
+      });
+
+      fs.writeFile(`./source/contentfulPages/${id}.json`, data, (writeErr) => {
+        if (writeErr) return console.log(writeErr);
+      });
+
     });
+
 
     resPosts.items.forEach(({ sys: { id }, fields }) => {
       const {
@@ -119,22 +130,30 @@ async function exportPathMap({
       pathMap[url] = {
         page: '/page',
         query: {
-          type: 'post',
-          fields: {
-            id,
-            title,
-            slug,
-            image: image ? {
-              url: image.fields.file.url,
-              alt: image.fields.title,
-            } : null,
-            description,
-            date: date || null,
-            tags: postTags || null,
-            content,
-          },
+          id,
         },
       };
+
+      const data = JSON.stringify({
+        type: 'post',
+        fields: {
+          id,
+          title,
+          slug,
+          image: image ? {
+            url: image.fields.file.url,
+            alt: image.fields.title,
+          } : null,
+          description,
+          date: date || null,
+          tags: postTags || null,
+          content,
+        },
+      });
+
+      fs.writeFile(`./source/contentfulPages/${id}.json`, data, (writeErr) => {
+        if (writeErr) return console.log(writeErr);
+      });
     });
 
 
