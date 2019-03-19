@@ -14,11 +14,11 @@ class Page extends PureComponent {
     super(props);
 
     if (props.id) {
-      this.fields = require(`../source/contentfulPages/${props.id}.json`);
+      this.fields = require(`../source/contentfulPages/${props.id}.json`); // eslint-disable-line global-require import/no-dynamic-require max-len
     }
   }
 
-  render () {
+  render() {
     const { type, fields } = this.fields;
 
     console.log(this.fields);
@@ -40,8 +40,8 @@ class Page extends PureComponent {
         </Layout>
       </Fragment>
     );
-  };
-};
+  }
+}
 
 Page.getInitialProps = ({ query }) => query;
 
