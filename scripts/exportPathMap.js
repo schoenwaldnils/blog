@@ -111,7 +111,6 @@ async function exportPathMap({
       fs.writeFile(`./source/contentfulPages/${id}.json`, data, (writeErr) => {
         if (writeErr) return console.log(writeErr);
       });
-
     });
 
 

@@ -14,7 +14,7 @@ class Page extends PureComponent {
     super(props);
 
     if (props.id) {
-      this.fields = require(`../source/contentfulPages/${props.id}.json`); // eslint-disable-line global-require import/no-dynamic-require max-len
+      this.fields = require(`../source/contentfulPages/${props.id}.json`); // eslint-disable-line
     }
   }
 
