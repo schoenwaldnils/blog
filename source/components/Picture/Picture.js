@@ -69,15 +69,16 @@ const Picture = (props) => {
 
   return (
     <picture>
-      {width < pictureViewports.sm && <source
-        srcSet={`
-        ${imageSrc}?${getParams(width, height)} 1x,
-        ${imageSrc}?${getParams(width, height, true)} 2x
-        `}
-        key={width} />
-      }
+      {width < pictureViewports.sm && (
+        <source
+          srcSet={`
+          ${imageSrc}?${getParams(width, height)} 1x,
+          ${imageSrc}?${getParams(width, height, true)} 2x
+          `}
+          key={width} />
+      ) }
 
-      {maxWidth >= pictureViewports.sm && viewportKeys.map((identifier, key) => {
+      { maxWidth >= pictureViewports.sm && viewportKeys.map((identifier, key) => {
         const currentViewport = viewports[identifier];
         const nextViewport = viewportKeys[key - 1] || null;
         const imageSize = viewports[nextViewport] || maxWidth;

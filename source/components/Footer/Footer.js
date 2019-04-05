@@ -37,7 +37,7 @@ const Footer = () => (
         ))}
       </nav>
       <div className="Footer-copy Footer-text">
-        © {(new Date()).getFullYear()} Nils Schönwald
+        {`© ${new Date().getFullYear()} Nils Schönwald`}
       </div>
     </div>
   </footer>

@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'debounce-promise';
 import './Post.css';
-import { updateField } from '../../../scripts/contentful-management';
+// import { updateField } from '../../../scripts/contentful-management';
+
+const updateField = () => {};
 
 const debouncedUpdateField = debounce(updateField, 500);
 
@@ -48,10 +50,12 @@ const PostEdit = ({
           dangerouslySetInnerHTML={{ __html: title }}
           key="post-title" />
 
-        {content && <textarea
-          className="Post-textarea"
-          defaultValue={content}
-          onChange={event => handleContentChange(event)} />}
+        { content && (
+          <textarea
+            className="Post-textarea"
+            defaultValue={content}
+            onChange={event => handleContentChange(event)} />
+        ) }
 
       </div>
     </article>
