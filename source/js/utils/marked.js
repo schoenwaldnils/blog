@@ -24,11 +24,13 @@ class PictureOverride extends PureComponent {
     const width = params && params.w && parseInt(params.w, 10);
     const float = options && options.float;
 
-    return (<Picture
-      imageSrc={imgSrc}
-      imageAlt={alt}
-      width={width}
-      float={float} />);
+    return (
+      <Picture
+        imageSrc={imgSrc}
+        imageAlt={alt}
+        width={width}
+        float={float} />
+    );
   }
 }
 
@@ -44,9 +46,11 @@ export default function (content) {
     code: CodeBlock,
   };
 
-  return (<ReactMarkdown
-    renderers={renderers}
-    source={content}
-    escapeHtml={false}
-    astPlugins={[parseHtml]} />);
+  return (
+    <ReactMarkdown
+      renderers={renderers}
+      source={content}
+      escapeHtml={false}
+      astPlugins={[parseHtml]} />
+  );
 }
