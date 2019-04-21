@@ -14,7 +14,12 @@ const Button = ({
   );
 
   return (
-    <button className={classNameList} {...props}>{children}</button>
+    <button
+      className={classNameList}
+      {...props}
+      type="button">
+      {children}
+    </button>
   );
 };
 
