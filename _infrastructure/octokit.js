@@ -61,4 +61,3 @@ export const gitStatus = async ({
       throw new Error(error);
     });
 };
-
