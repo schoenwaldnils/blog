@@ -54,7 +54,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - -v2.0.2-dependencies-
 
-      - run: npm install --no-package-lock
+      - run: npm ci
 
       - save_cache:
           key: -v2.0.2-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
