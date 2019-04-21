@@ -22,7 +22,7 @@ const SocialIcon = ({ name, href }) => {
       href={href}
       target="_blank"
       title={`Show ${name}-profile`}
-      rel="noopener noreferrer" >
+      rel="noopener noreferrer">
       <span className="SocialIcon-iconFront">
         { Icon }
       </span>
