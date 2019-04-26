@@ -46,7 +46,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/node": "7.2.2",
-    "@babel/plugin-transform-modules-commonjs": "7.4.3",
+    "@babel/plugin-transform-modules-commonjs": "7.4.4",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.10",
     "@octokit/rest": "16.25.0",
