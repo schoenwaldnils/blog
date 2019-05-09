@@ -48,7 +48,7 @@
     "@babel/node": "7.2.2",
     "@babel/plugin-transform-modules-commonjs": "7.4.4",
     "@emotion/core": "10.0.10",
-    "@emotion/styled": "10.0.10",
+    "@emotion/styled": "10.0.11",
     "@octokit/rest": "16.25.2",
     "@zeit/next-css": "1.0.1",
     "autoprefixer": "9.5.1",
