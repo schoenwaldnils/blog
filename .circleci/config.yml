@@ -43,25 +43,21 @@ jobs:
   checkout:
     <<: *defaults
     steps:
-      - run:
-          name: Clean workspace
-          command: rm -r ~/repo/*
-
       - checkout
 
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - -v2.0.2-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
+            - -v2.1.0-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
             # fallback to using the latest cache if no exact match is found
-            - -v2.0.2-dependencies-{{ checksum "package.json" }}
+            - -v2.1.0-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - -v2.0.2-dependencies-
+            - -v2.1.0-dependencies-
 
       - run: npm ci
 
       - save_cache:
-          key: -v2.0.2-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: -v2.1.0-dependencies-{{ checksum "package.json" }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ./node_modules
 
