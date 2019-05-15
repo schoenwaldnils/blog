@@ -85,20 +85,11 @@ jobs:
     <<: *defaults
     steps:
       - *default_steps
-      - restore_cache:
-          keys:
-            - next-static-build-{{ .Branch }}-{{ .Revision }}
-            - next-static-build-{{ .Branch }}-
-            - next-static-build-
       - run:
           name: Export static files
           command: |
             set -x
             npm run export-ci
-      - save_cache:
-          key: next-static-build-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - .next/records.json
       - run:
           name: Minify html
           command: |
