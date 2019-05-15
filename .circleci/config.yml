@@ -43,6 +43,10 @@ jobs:
   checkout:
     <<: *defaults
     steps:
+      - run:
+          name: Clean workspace
+          command: rm -r ~/repo/*
+
       - checkout
 
       # Download and cache dependencies
