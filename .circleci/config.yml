@@ -31,10 +31,6 @@ references:
       name: Avoid hosts unknown for hosteurope
       command: mkdir ~/.ssh/ && echo -e "Host 5.35.245.22\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 
-    run:
-      name: Set BRANCH_NAME
-      command: export BRANCH_NAME=$( node ./_infrastructure/setBranchName.js )
-
   default_steps_pr_deploy: &default_steps_pr_deploy
     run:
       name: Deploy to Server
@@ -137,16 +133,18 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            echo $BRANCH_NAME
+            export BRANCH_NAME=$( node ./_infrastructure/setBranchName.js )
             mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
       - run:
           name: Create subdomain
           command: |
+            export BRANCH_NAME=$( node ./_infrastructure/setBranchName.js )
             sh ./_infrastructure/manage-subdomain.sh
       - run:
           name: Post preview comment
           command: |
+            export BRANCH_NAME=$( node ./_infrastructure/setBranchName.js )
             npm run comment-on-pr
 
   test-psi:

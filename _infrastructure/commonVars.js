@@ -1,7 +1,11 @@
-const {
-  BRANCH_NAME,
-  DOMAIN_NAME,
-} = process.env;
+const branchName = require('./setBranchName');
+
+const { DOMAIN_NAME } = process.env;
+let { BRANCH_NAME } = process.env;
+
+if (!BRANCH_NAME) {
+  BRANCH_NAME = branchName;
+}
 
 if (!DOMAIN_NAME) throw new Error('Environment variable <DOMAIN_NAME> undefined!');
 

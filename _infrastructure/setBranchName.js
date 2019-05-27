@@ -8,3 +8,5 @@ const branchName = CIRCLE_BRANCH && CIRCLE_BRANCH
   .replace(/@/g, '');
 
 console.log(branchName);
+
+module.exports = branchName;
