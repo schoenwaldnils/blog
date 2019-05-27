@@ -5,7 +5,10 @@ const {
 
 if (!DOMAIN_NAME) throw new Error('Environment variable <DOMAIN_NAME> undefined!');
 
-const branchName = CIRCLE_BRANCH && CIRCLE_BRANCH.replace(/[/|/.|_]/g, '-').replace(/@/g, '');
+const branchName = CIRCLE_BRANCH && CIRCLE_BRANCH
+  .replace('/npm_and_yarn', '')
+  .replace(/[/|/.|_]/g, '-')
+  .replace(/@/g, '');
 
 export const previewUrl = branchName ? `https://${branchName}.${DOMAIN_NAME}/` : `https://${DOMAIN_NAME}/`;
 

@@ -133,13 +133,13 @@ jobs:
       - run:
           name: Deploy to Server
           command: |
-            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
+            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d /npm_and_yarn | tr -d @ | tr . - | tr / - | tr _ -)
             mv out $BRANCH_NAME
             rsync -avr --delete --exclude='static/scripts/analytics.js' ./$BRANCH_NAME schoenwald@5.35.245.22:www/schoenwald/$CIRCLE_PROJECT_REPONAME
       - run:
           name: Create subdomain
           command: |
-            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d @ | tr . - | tr / - | tr _ -)
+            export BRANCH_NAME=$( echo $CIRCLE_BRANCH | tr -d /npm_and_yarn | tr -d @ | tr . - | tr / - | tr _ -)
             sh ./_infrastructure/manage-subdomain.sh
       - run:
           name: Post preview comment
