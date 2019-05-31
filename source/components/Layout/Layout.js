@@ -17,9 +17,9 @@ const Layout = ({
     <Fragment>
       <Header className={`Header--${type}`} />
       {tags && <Filter activeTag={activeTag} tags={tags} />}
-      <section className="Layout" role="main">
+      <main className="Layout" role="main">
         { children }
-      </section>
+      </main>
       <Footer />
     </Fragment>
   );
