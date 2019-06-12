@@ -109,7 +109,7 @@
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "cli-real-favicon": "0.0.7",
-    "enzyme": "3.9.0",
+    "enzyme": "3.10.0",
     "husky": "2.3.0"
   },
   "husky": {
