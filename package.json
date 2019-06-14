@@ -108,7 +108,7 @@
   },
   "devDependencies": {
     "babel-eslint": "10.0.1",
-    "cli-real-favicon": "0.0.7",
+    "cli-real-favicon": "0.0.8",
     "enzyme": "3.10.0",
     "husky": "2.4.1"
   },
