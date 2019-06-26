@@ -47,7 +47,7 @@
   "dependencies": {
     "@babel/node": "7.4.5",
     "@babel/plugin-transform-modules-commonjs": "7.4.4",
-    "@emotion/core": "10.0.10",
+    "@emotion/core": "10.0.14",
     "@emotion/styled": "10.0.12",
     "@octokit/rest": "16.28.2",
     "@zeit/next-css": "1.0.1",
