@@ -73,7 +73,7 @@
     "htmlhint": "0.11.0",
     "isomorphic-fetch": "2.2.1",
     "lint-staged": "8.2.1",
-    "marked": "0.6.2",
+    "marked": "0.6.3",
     "md5": "2.2.1",
     "next": "8.1.0",
     "node-vibrant": "3.1.3",
