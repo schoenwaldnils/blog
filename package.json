@@ -58,7 +58,7 @@
     "browserslist": "4.7.0",
     "classnames": "2.2.6",
     "contentful": "7.10.0",
-    "contentful-management": "5.10.2",
+    "contentful-management": "5.11.0",
     "date-fns": "2.2.1",
     "debounce-promise": "3.1.2",
     "dotenv-load": "2.0.0",
