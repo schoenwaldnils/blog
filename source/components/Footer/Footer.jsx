@@ -1,7 +1,7 @@
-import React from 'react';
-import './Footer.css';
-import SocialIcon from '../SocialIcon/SocialIcon';
-import { social } from '../../data/config';
+import React from 'react'
+import './Footer.css'
+import SocialIcon from '../SocialIcon/SocialIcon'
+import { social } from '../../data/config'
 
 const footerNav = [
   {
@@ -12,13 +12,10 @@ const footerNav = [
     url: '/imprint/',
     text: 'Imprint',
   },
-];
+]
 
-const { links } = social;
-const {
-  twitter,
-  github,
-} = links;
+const { links } = social
+const { twitter, github } = links
 
 const Footer = () => (
   <footer className="Footer">
@@ -33,14 +30,21 @@ const Footer = () => (
       </div>
       <nav className="Footer-nav Footer-text">
         {footerNav.map(item => (
-          <a className="Footer-navItem" href={item.url} title={item.text} key={item.text}>{item.text}</a>
+          <a
+            className="Footer-navItem"
+            href={item.url}
+            title={item.text}
+            key={item.text}
+          >
+            {item.text}
+          </a>
         ))}
       </nav>
       <div className="Footer-copy Footer-text">
-        {`© ${(new Date()).getFullYear()} Nils Schönwald`}
+        {`© ${new Date().getFullYear()} Nils Schönwald`}
       </div>
     </div>
   </footer>
-);
+)
 
-export default Footer;
+export default Footer

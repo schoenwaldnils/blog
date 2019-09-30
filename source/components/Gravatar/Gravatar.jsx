@@ -1,34 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import gravatarUrl from '../../js/utils/gravatar-url';
+import React from 'react'
+import PropTypes from 'prop-types'
+import gravatarUrl from '../../js/utils/gravatar-url'
 
 const Gravatar = ({ className, email, size }) => (
   <picture>
     <source
       srcSet={gravatarUrl(email, size * 2)}
-      media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)" />
+      media="(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
+    />
 
     <source
       srcSet={gravatarUrl(email, size * 1.5)}
-      media="(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)" />
+      media="(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)"
+    />
 
     <img
       className={className}
       style={{ width: size && `${size}px` }}
       src={gravatarUrl(email, size)}
-      alt="Gravatar Avatar" />
+      alt="Gravatar Avatar"
+    />
   </picture>
-);
+)
 
 Gravatar.defaultProps = {
   className: null,
   size: 100,
-};
+}
 
 Gravatar.propTypes = {
   className: PropTypes.string,
   email: PropTypes.string.isRequired,
   size: PropTypes.number,
-};
+}
 
-export default Gravatar;
+export default Gravatar
