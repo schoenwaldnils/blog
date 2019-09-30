@@ -1,10 +1,10 @@
-const viewports = require('./viewports.json');
+const viewports = require('./viewports.json')
 
-const viewportsCss = {};
+const viewportsCss = {}
 
-Object.keys(viewports).map((key) => {
-  viewportsCss[`--viewport-${key}`] = viewports[key];
-  return true;
-});
+Object.keys(viewports).map(key => {
+  viewportsCss[`--viewport-${key}`] = viewports[key]
+  return true
+})
 
-module.exports = viewportsCss;
+module.exports = viewportsCss
