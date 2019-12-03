@@ -79,7 +79,7 @@ async function exportPathMap({ space, accessToken, host = false }) {
         tags: postTags,
         content
       } = fields;
-      const url = `/${slug}/`;
+      const url = `/${slug}`;
 
       pathMap[url] = {
         page: "/page",
@@ -114,7 +114,7 @@ async function exportPathMap({ space, accessToken, host = false }) {
         tags: postTags,
         content
       } = fields;
-      const url = `/${slug}/`;
+      const url = `/${slug}`;
 
       pathMap[url] = {
         page: "/page",
