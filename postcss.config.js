@@ -1,4 +1,4 @@
-const viewportsCss = require('./source/js/viewportsCss.js');
+const viewportsCss = require('./source/js/viewportsCss.js')
 
 module.exports = () => ({
   plugins: {
@@ -6,9 +6,11 @@ module.exports = () => ({
     'postcss-url': {},
     'postcss-nested': {},
     'postcss-custom-media': {
-      importFrom: [{
-        customMedia: viewportsCss,
-      }],
+      importFrom: [
+        {
+          customMedia: viewportsCss,
+        },
+      ],
     },
     'postcss-calc': {},
     'postcss-easing-gradients': {},
@@ -18,4 +20,4 @@ module.exports = () => ({
       clearMessages: true,
     },
   },
-});
+})

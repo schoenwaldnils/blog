@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Head from 'next/head';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Head from 'next/head'
 
-import Favicons from '../Favicons/Favicons';
-import { facebook } from '../../data/config';
+import Favicons from '../Favicons/Favicons'
+import { facebook } from '../../data/config'
 
-const Meta = ({
-  url, type, title, description, image,
-}) => {
-  const alteredImage = image.includes('contentful') ? `https:${image}?w=200&h=200&fit=fill` : image;
+const Meta = ({ url, type, title, description, image }) => {
+  const alteredImage = image.includes('contentful')
+    ? `https:${image}?w=200&h=200&fit=fill`
+    : image
   return (
     <Head>
       <meta content="width=device-width,initial-scale=1" name="viewport" />
 
-      <title>{ title }</title>
+      <title>{title}</title>
       <meta name="description" content={description} />
 
       <meta property="og:url" content={url} />
@@ -33,8 +33,8 @@ const Meta = ({
 
       <Favicons />
     </Head>
-  );
-};
+  )
+}
 
 Meta.defaultProps = {
   url: 'https://schoenwald.media',
@@ -42,7 +42,7 @@ Meta.defaultProps = {
   title: 'Schönwald',
   description: 'Thoughts on CSS, JS, and overall clean code.',
   image: 'https://schoenwald.media/static/assets/images/icon-on-black.png',
-};
+}
 
 Meta.propTypes = {
   url: PropTypes.string,
@@ -50,6 +50,6 @@ Meta.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
-};
+}
 
-export default Meta;
+export default Meta
