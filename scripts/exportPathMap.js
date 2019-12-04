@@ -15,7 +15,7 @@ async function exportPathMap({ space, accessToken, host = false }) {
     const posts = resPosts.items.map(post => {
       const editedPost = {
         id: post.sys.id,
-        url: `/${post.fields.slug}/`,
+        url: `/${post.fields.slug}`,
         ...post.fields,
         image: post.fields.image
           ? {
