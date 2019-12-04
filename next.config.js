@@ -5,6 +5,7 @@ const Dotenv = require('dotenv-webpack')
 const exportPathMap = require('./scripts/exportPathMap')
 
 module.exports = withCSS({
+  exportTrailingSlash: true,
   serverRuntimeConfig: {
     // Will only be available on the server side
   },

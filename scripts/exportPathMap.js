@@ -15,7 +15,7 @@ async function exportPathMap({ space, accessToken, host = false }) {
     const posts = resPosts.items.map(post => {
       const editedPost = {
         id: post.sys.id,
-        url: `/${post.fields.slug}`,
+        url: `/${post.fields.slug}/`,
         ...post.fields,
         image: post.fields.image
           ? {
@@ -79,7 +79,7 @@ async function exportPathMap({ space, accessToken, host = false }) {
         tags: postTags,
         content
       } = fields;
-      const url = `/${slug}`;
+      const url = `/${slug}/`;
 
       pathMap[url] = {
         page: "/page",
@@ -114,7 +114,7 @@ async function exportPathMap({ space, accessToken, host = false }) {
         tags: postTags,
         content
       } = fields;
-      const url = `/${slug}`;
+      const url = `/${slug}/`;
 
       pathMap[url] = {
         page: "/page",
